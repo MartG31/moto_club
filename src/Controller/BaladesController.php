@@ -39,7 +39,8 @@ class BaladesController extends AbstractController
     	//
 
     	return $this->render('balades/add.html.twig', [
-
+            'errors' => $errors ?? '',
+            'success' => $success ?? false,
         ]);
     }
 

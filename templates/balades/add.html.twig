@@ -3,64 +3,64 @@
 {% block title %}Ajout balade{% endblock %}
 
 {% block content %}
-	
-	<form>
-		<h2>Proposer une nouvelle balade</h2>
 
-		<div class="form-container">
-			<div class="form-group row">
-				<label for="titre" class="col-lg-3">Titre</label>
-				<input id="titre" class="col-lg-9 form-control form-control-lg" name="titre" type="text" value="{{ post.titre ?? '' }}">
-			</div>
-			<div class="form-group row">
-				<label for="contenu" class="col-lg-3">Contenu</label>
-				<textarea id="contenu" class="col-lg-9 form-control" name="contenu" cols="50" rows="6">{{ post.contenu ?? '' }}</textarea>
-			</div>
-			<div class="form-group row">
-				<label for="date_debut" class="col-lg-3">Date de début</label>
-				<input id="date_debut" class="col-lg-9 form-control form-control-lg" name="date_debut" type="text" value="{{ post.date_debut ?? '' }}">
-			</div>
-			<div class="form-group row">
-				<label for="date_fin" class="col-lg-3">Date de fin</label>
-				<input id="date_fin" class="col-lg-9 form-control form-control-lg" name="date_fin" type="text" value="{{ post.date_fin ?? '' }}">
-			</div>
+	<div class="container">
+		<div class="card">
+			<div class="card-header">Proposer une nouvelle balade</div>
+			<div class="card-body">
+				<form>
+					<div class="form-group row">
+						<label for="titre" class="col-lg-3">Titre</label>
+						<input id="titre" class="col-lg-9 form-control" name="titre" type="text" value="{{ post.titre ?? '' }}">
+					</div>
+					<div class="form-group row">
+						<label for="contenu" class="col-lg-3">Contenu</label>
+						<textarea id="contenu" class="col-lg-9 form-control" name="contenu" cols="50" rows="6">{{ post.contenu ?? '' }}</textarea>
+					</div>
+					<div class="form-group row">
+						<label for="date_debut" class="col-lg-3">Date de début</label>
+						<input id="date_debut" class="col-lg-9 form-control" name="date_debut" type="date" value="{{ post.date_debut ?? '' }}">
+					</div>
+					<div class="form-group row">
+						<label for="date_fin" class="col-lg-3">Date de fin</label>
+						<input id="date_fin" class="col-lg-9 form-control" name="date_fin" type="date" value="{{ post.date_fin ?? '' }}">
+					</div>
+					<div class="form-group row">
+						<label for="datetime_rdv" class="col-lg-3">Rendez-vous</label>
+						<input id="datetime_rdv" class="col-lg-9 form-control" name="datetime_rdv" type="datetime-local" value="{{ post.datetime_rdv ?? '' }}">
+					</div>
+					<div class="form-group row">
+						<label for="adresse_rdv" class="col-lg-3">Adresse</label>
+						<div class="col-lg-9 row">
+							<input id="adresse_rdv" class="col-lg-12 form-control" name="adresse_rdv" type="text" placeholder="Libellé" value="{{ post.adresse_rdv ?? '' }}">
+							<input id="cp_rdv" class="col-lg-3 form-control" name="cp_rdv" type="text" placeholder="Code postal" value="{{ post.cp_rdv ?? '' }}">
+							<input id="ville_rdv" class="col-lg-9 form-control" name="ville_rdv" type="text" placeholder="Ville" value="{{ post.ville_rdv ?? '' }}">
+						</div>
+					</div>
 
 
-			<div class="form-group row">
-				<label for="cat" class="col-lg-3">Catégorie</label>
-				<select id="cat" class="col-lg-9 custom-select" name="cat_key">
-					<option disabled selected> --- Sélectionner une catégorie --- </option>
-					<option value=""></option>
-					{% for key, cat in categories %}
-						<option value="{{ key }}" 
-							{% if post.cat_key is defined and post.cat_key == key %}
-								selected
-							{% endif %}>
-							{{ cat }}
-						</option>
-					{% endfor %}
-				</select>
-			</div>
-			<div class="form-group row custom-file">
-				<div class="col-lg-3 offset-lg-3">
-					<label for="photo" class="custom-file-label">Choisir une photo</label>
-					<input id="photo" class="custom-file-input" name="photo" type="file">
-				</div>
-			</div>
-			<div class="form-group row d-flex justify-content-center">
-				<input type="submit" class="btn btn-primary btn-lg" value="Ajouter un article">
-				<input type="reset" class="btn btn-secondary btn-lg" value="Réinitialiser">
+					
+					<div class="form-group row custom-file">
+						<div class="col-lg-3 offset-lg-3">
+							<label for="photo" class="custom-file-label">Choisir une photo</label>
+							<input id="photo" class="custom-file-input" name="photo" type="file">
+						</div>
+					</div>
+					<div class="form-group row d-flex justify-content-center">
+						<input type="submit" class="btn btn-primary btn-lg" value="Ajouter un article">
+						<input type="reset" class="btn btn-secondary btn-lg" value="Réinitialiser">
+					</div>
+
+					{% if errors is not empty %}
+						<div class="alert alert-warning">
+							{{ errors|join('<br>')|raw }}
+						</div>
+					{% elseif success == true %}
+						<div class="alert alert-success">Votre article a bien été ajouté à la base de données.</div>
+					{% endif %}
+				</form>
 			</div>
 		</div>
-
-		{% if errors is not empty %}
-			<div class="alert alert-warning">
-				{{ errors|join('<br>')|raw }}
-			</div>
-		{% elseif success == true %}
-			<div class="alert alert-success">Votre article a bien été ajouté à la base de données.</div>
-		{% endif %}
-
-	</form>
-
+	</div>
+		
 {% endblock %}
