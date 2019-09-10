@@ -58,7 +58,7 @@ class UsersController extends AbstractController
     			$success = true;
     		}
     	}
-        return $this->render('users/inscription.html.twig', [
+        return $this->render('backoffice/inscription.html.twig', [
         	'errors'     => $errors,
         	'donnees_saisies' => $safe ?? [],
         	'success' => $success ?? false,
