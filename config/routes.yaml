@@ -1,3 +1,15 @@
+# accueil admin
+
+admin_accueil:
+    path: /backoffice/accueil
+    controller: App\Controller\BackOfficeController::index
+
+# liste users
+
+liste_user:
+    path: /backoffice/liste-utilisateur
+    controller: App\Controller\BackOfficeController::viewUsers
+
 # Session
 
 inscription_user:

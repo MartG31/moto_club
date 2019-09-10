@@ -1,6 +1,6 @@
 {% extends 'admin.html.twig' %} 
 
-{% block title %}SB Admin - Tables{% endblock %}
+{% block title %}Liste des adhérent·es{% endblock %}
 
 {% block content %}
 
@@ -9,65 +9,33 @@
 <div class="card mb-3">
   <div class="card-header">
     <i class="fas fa-table"></i>
-    Data Table Example</div>
+    Liste des adhérent·es</div>
   <div class="card-body">
     <div class="table-responsive">
       <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Position</th>
-            <th>Office</th>
-            <th>Age</th>
-            <th>Start date</th>
-            <th>Salary</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Date adhésion</th>
+            <th>Email</th>
+            <th></th>
           </tr>
         </thead>
-        <tfoot>
-          <tr>
-            <th>Name</th>
-            <th>Position</th>
-            <th>Office</th>
-            <th>Age</th>
-            <th>Start date</th>
-            <th>Salary</th>
-          </tr>
-        </tfoot>
         <tbody>
-          <tr>
-            <td>Tiger Nixon</td>
-            <td>System Architect</td>
-            <td>Edinburgh</td>
-            <td>61</td>
-            <td>2011/04/25</td>
-            <td>$320,800</td>
-          </tr>
-          <tr>
-            <td>Garrett Winters</td>
-            <td>Accountant</td>
-            <td>Tokyo</td>
-            <td>63</td>
-            <td>2011/07/25</td>
-            <td>$170,750</td>
-          </tr>
-          <tr>
-            <td>Ashton Cox</td>
-            <td>Junior Technical Author</td>
-            <td>San Francisco</td>
-            <td>66</td>
-            <td>2009/01/12</td>
-            <td>$86,000</td>
-          </tr>
+          {% for adherentTrouve in adherentsTrouves %}
           
           <tr>
-            <td>Donna Snider</td>
-            <td>Customer Support</td>
-            <td>New York</td>
-            <td>27</td>
-            <td>2011/01/25</td>
-            <td>$112,000</td>
+            <td>{{ adherentTrouve.getNom() }} </td>
+            <td>{{ adherentTrouve.getPrenom() }} </td>
+            <td>{{ adherentTrouve.getDateAdhesion() }} </td>
+            <td>{{ adherentTrouve.getEmail() }} </td>
+            <td><a class="btn btn-secondary" href="{{ path('ed_article', {id : articleTrouve.getId()}) }}" role="button">Modifier</a></td>
+            <td><a class="btn btn-secondary" href="{{ path('view_article', {id : articleTrouve.getId()}) }}" role="button">Afficher</a></td>
           </tr>
+          {%  endfor %} 
         </tbody>
+
       </table>
     </div>
   </div>

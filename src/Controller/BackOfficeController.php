@@ -16,4 +16,11 @@ class BackOfficeController extends AbstractController
             'controller_name' => 'BackOfficeController',
         ]);
     }
+
+    public function viewUsers()
+    {
+        return $this->render('back_office/tables.html.twig', [
+            'controller_name' => 'BackOfficeController',
+        ]);
+    }
 }
