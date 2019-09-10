@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ComptesRendus
  *
- * @ORM\Table(name="comptes_rendus", indexes={@ORM\Index(name="fk_cr_reu_id", columns={"reu_id"})})
+ * @ORM\Table(name="comptes_rendus", indexes={@ORM\Index(name="fk_cr_user_id", columns={"user_id"}), @ORM\Index(name="fk_cr_reu_id", columns={"reu_id"})})
  * @ORM\Entity
  */
 class ComptesRendus
@@ -36,6 +36,20 @@ class ComptesRendus
     private $contenu;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="datetime_post", type="datetime", nullable=false)
+     */
+    private $datetimePost;
+
+    /**
+     * @var \DateTime|null
+     *
+     * @ORM\Column(name="datetime_modif", type="datetime", nullable=true, options={"default"="NULL"})
+     */
+    private $datetimeModif = 'NULL';
+
+    /**
      * @var \Reunions
      *
      * @ORM\ManyToOne(targetEntity="Reunions")
@@ -44,6 +58,16 @@ class ComptesRendus
      * })
      */
     private $reu;
+
+    /**
+     * @var \Utilisateurs
+     *
+     * @ORM\ManyToOne(targetEntity="Utilisateurs")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * })
+     */
+    private $user;
 
     public function getId(): ?int
     {
@@ -74,6 +98,30 @@ class ComptesRendus
         return $this;
     }
 
+    public function getDatetimePost(): ?\DateTimeInterface
+    {
+        return $this->datetimePost;
+    }
+
+    public function setDatetimePost(\DateTimeInterface $datetimePost): self
+    {
+        $this->datetimePost = $datetimePost;
+
+        return $this;
+    }
+
+    public function getDatetimeModif(): ?\DateTimeInterface
+    {
+        return $this->datetimeModif;
+    }
+
+    public function setDatetimeModif(?\DateTimeInterface $datetimeModif): self
+    {
+        $this->datetimeModif = $datetimeModif;
+
+        return $this;
+    }
+
     public function getReu(): ?Reunions
     {
         return $this->reu;
@@ -82,6 +130,18 @@ class ComptesRendus
     public function setReu(?Reunions $reu): self
     {
         $this->reu = $reu;
+
+        return $this;
+    }
+
+    public function getUser(): ?Utilisateurs
+    {
+        return $this->user;
+    }
+
+    public function setUser(?Utilisateurs $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Balades
  *
- * @ORM\Table(name="balades")
+ * @ORM\Table(name="balades", indexes={@ORM\Index(name="fk_bal_user_id", columns={"user_id"})})
  * @ORM\Entity
  */
 class Balades
@@ -31,9 +31,9 @@ class Balades
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text", length=65535, nullable=false)
+     * @ORM\Column(name="contenu", type="text", length=65535, nullable=false)
      */
-    private $description;
+    private $contenu;
 
     /**
      * @var \DateTime
@@ -77,6 +77,37 @@ class Balades
      */
     private $villeRdv = 'NULL';
 
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="file_gps", type="string", length=80, nullable=true, options={"default"="'NULL'"})
+     */
+    private $fileGps = '\'NULL\'';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="datetime_post", type="datetime", nullable=false)
+     */
+    private $datetimePost;
+
+    /**
+     * @var \DateTime|null
+     *
+     * @ORM\Column(name="datetime_modif", type="datetime", nullable=true, options={"default"="NULL"})
+     */
+    private $datetimeModif = 'NULL';
+
+    /**
+     * @var \Utilisateurs
+     *
+     * @ORM\ManyToOne(targetEntity="Utilisateurs")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * })
+     */
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -94,14 +125,14 @@ class Balades
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getContenu(): ?string
     {
-        return $this->description;
+        return $this->contenu;
     }
 
-    public function setDescription(string $description): self
+    public function setContenu(string $contenu): self
     {
-        $this->description = $description;
+        $this->contenu = $contenu;
 
         return $this;
     }
@@ -174,6 +205,54 @@ class Balades
     public function setVilleRdv(?string $villeRdv): self
     {
         $this->villeRdv = $villeRdv;
+
+        return $this;
+    }
+
+    public function getFileGps(): ?string
+    {
+        return $this->fileGps;
+    }
+
+    public function setFileGps(?string $fileGps): self
+    {
+        $this->fileGps = $fileGps;
+
+        return $this;
+    }
+
+    public function getDatetimePost(): ?\DateTimeInterface
+    {
+        return $this->datetimePost;
+    }
+
+    public function setDatetimePost(\DateTimeInterface $datetimePost): self
+    {
+        $this->datetimePost = $datetimePost;
+
+        return $this;
+    }
+
+    public function getDatetimeModif(): ?\DateTimeInterface
+    {
+        return $this->datetimeModif;
+    }
+
+    public function setDatetimeModif(?\DateTimeInterface $datetimeModif): self
+    {
+        $this->datetimeModif = $datetimeModif;
+
+        return $this;
+    }
+
+    public function getUser(): ?Utilisateurs
+    {
+        return $this->user;
+    }
+
+    public function setUser(?Utilisateurs $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

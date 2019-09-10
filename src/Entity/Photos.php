@@ -36,6 +36,13 @@ class Photos
     private $legende = 'NULL';
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="datetime_post", type="datetime", nullable=false)
+     */
+    private $datetimePost;
+
+    /**
      * @var \Balades
      *
      * @ORM\ManyToOne(targetEntity="Balades")
@@ -70,6 +77,18 @@ class Photos
     public function setLegende(?string $legende): self
     {
         $this->legende = $legende;
+
+        return $this;
+    }
+
+    public function getDatetimePost(): ?\DateTimeInterface
+    {
+        return $this->datetimePost;
+    }
+
+    public function setDatetimePost(\DateTimeInterface $datetimePost): self
+    {
+        $this->datetimePost = $datetimePost;
 
         return $this;
     }

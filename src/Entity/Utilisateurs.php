@@ -36,6 +36,13 @@ class Utilisateurs
     private $pwd;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="acces", type="integer", nullable=false)
+     */
+    private $acces;
+
+    /**
      * @var string|null
      *
      * @ORM\Column(name="pseudo", type="string", length=50, nullable=true, options={"default"="NULL"})
@@ -102,6 +109,18 @@ class Utilisateurs
     public function setPwd(string $pwd): self
     {
         $this->pwd = $pwd;
+
+        return $this;
+    }
+
+    public function getAcces(): ?int
+    {
+        return $this->acces;
+    }
+
+    public function setAcces(int $acces): self
+    {
+        $this->acces = $acces;
 
         return $this;
     }

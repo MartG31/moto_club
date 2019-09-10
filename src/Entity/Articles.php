@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Articles
  *
- * @ORM\Table(name="articles", indexes={@ORM\Index(name="fk_art_user_id", columns={"user_id"}), @ORM\Index(name="fk_art_cat_id", columns={"cat_id"})})
+ * @ORM\Table(name="articles", indexes={@ORM\Index(name="fk_art_user_id", columns={"user_id"})})
  * @ORM\Entity
  */
 class Articles
@@ -31,9 +31,9 @@ class Articles
     /**
      * @var string
      *
-     * @ORM\Column(name="content", type="text", length=65535, nullable=false)
+     * @ORM\Column(name="contenu", type="text", length=65535, nullable=false)
      */
-    private $content;
+    private $contenu;
 
     /**
      * @var \DateTime
@@ -48,16 +48,6 @@ class Articles
      * @ORM\Column(name="datetime_modif", type="datetime", nullable=true, options={"default"="NULL"})
      */
     private $datetimeModif = 'NULL';
-
-    /**
-     * @var \Categories
-     *
-     * @ORM\ManyToOne(targetEntity="Categories")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="cat_id", referencedColumnName="id")
-     * })
-     */
-    private $cat;
 
     /**
      * @var \Utilisateurs
@@ -86,14 +76,14 @@ class Articles
         return $this;
     }
 
-    public function getContent(): ?string
+    public function getContenu(): ?string
     {
-        return $this->content;
+        return $this->contenu;
     }
 
-    public function setContent(string $content): self
+    public function setContenu(string $contenu): self
     {
-        $this->content = $content;
+        $this->contenu = $contenu;
 
         return $this;
     }
@@ -118,18 +108,6 @@ class Articles
     public function setDatetimeModif(?\DateTimeInterface $datetimeModif): self
     {
         $this->datetimeModif = $datetimeModif;
-
-        return $this;
-    }
-
-    public function getCat(): ?Categories
-    {
-        return $this->cat;
-    }
-
-    public function setCat(?Categories $cat): self
-    {
-        $this->cat = $cat;
 
         return $this;
     }
