@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use Doctrine\ORM\EntityManagerInterface; // Connexion a la base de données
+use App\Entity\Utilisateurs; // Intéractions avec la table "users"
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -17,7 +19,7 @@ class UsersController extends AbstractController
 		// Nettoyage des données
 		$safe = array_map('trim', array_map('strip_tags', $_POST));
     	$errors = [];
-        $emailExist = $this->getDoctrine()->getRepository(Users::class)->findBy(['email' => $safe['email']]);
+        $emailExist = $this->getDoctrine()->getRepository(Utilisateurs::class)->findBy(['email' => $safe['email']]);
 
     	if(!empty($_POST)){
 
