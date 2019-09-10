@@ -17,17 +17,19 @@ class UsersController extends AbstractController
 		// Utilisation de la base de données
 		$em = $this->getDoctrine()->getManager();
 		// Nettoyage des données
-		$safe = array_map('trim', array_map('strip_tags', $_POST));
     	$errors = [];
-        $emailExist = $this->getDoctrine()->getRepository(Utilisateurs::class)->findBy(['email' => $safe['email']]);
+        
 
     	if(!empty($_POST)){
+
+			$safe = array_map('trim', array_map('strip_tags', $_POST));
 
 			// Vérifie le bon format de mon email
 			if(!filter_var($safe['email'], FILTER_VALIDATE_EMAIL)){
 				$errors[] = 'L\'adresse email est invalide';
 			}
-
+			
+			$emailExist = $this->getDoctrine()->getRepository(Utilisateurs::class)->findBy(['email' => $safe['email']]);
 			if(!empty($emailExist)){
 				$errors[] = 'L\'adresse email existe déjà';
 			}
@@ -58,7 +60,8 @@ class UsersController extends AbstractController
     			$success = true;
     		}
     	}
-        return $this->render('backoffice/inscription.html.twig', [
+
+        return $this->render('users/inscription.html.twig', [
         	'errors'     => $errors,
         	'donnees_saisies' => $safe ?? [],
         	'success' => $success ?? false,
