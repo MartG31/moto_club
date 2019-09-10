@@ -24,14 +24,13 @@
         </thead>
         <tbody>
           {% for adherentTrouve in adherentsTrouves %}
-          
           <tr>
             <td>{{ adherentTrouve.getNom() }} </td>
             <td>{{ adherentTrouve.getPrenom() }} </td>
             <td>{{ adherentTrouve.getDateAdhesion() }} </td>
             <td>{{ adherentTrouve.getEmail() }} </td>
-            <td><a class="btn btn-secondary" href="{{ path('ed_article', {id : articleTrouve.getId()}) }}" role="button">Modifier</a></td>
-            <td><a class="btn btn-secondary" href="{{ path('view_article', {id : articleTrouve.getId()}) }}" role="button">Afficher</a></td>
+            <td><a class="btn btn-secondary" href="{{path('admin_accueil')}}" role="button">Modifier</a></td>
+            <td><a class="btn btn-secondary" href="{{path('admin_accueil')}}" role="button">Afficher</a></td>
           </tr>
           {%  endfor %} 
         </tbody>
