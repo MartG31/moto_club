@@ -23,9 +23,9 @@ class BackOfficeController extends AbstractController
 
     public function viewUsers()
     {
-    	// Récupération de l'article
+    	// Récupération la liste des utilisateurs
             $entityManager = $this->getDoctrine()->getManager();
-            // Permet de chercher l'article donnée en id via le repository
+            // Permet de chercher la liste via le repository
             $adhFound = $entityManager->getRepository(Utilisateurs::class)->findAll();
 
         return $this->render('back_office/liste.html.twig', [

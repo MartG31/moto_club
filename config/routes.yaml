@@ -1,3 +1,5 @@
+############################# Users ##################
+
 # accueil admin
 
 admin_accueil:
@@ -16,8 +18,35 @@ inscription_user:
     path: /users/inscription
     controller: App\Controller\UsersController::inscriptionUser
 
+############################# Balades ##################
+
 # Balades
 
 add_balade:
     path: /balades/ajouter
     controller: App\Controller\BaladesController::addBalade
+
+############################# Réunions ##################
+
+index_reunions:
+    path: /reunions/index
+    controller: App\Controller\ReunionsController::indexReunion
+
+view_reunion:
+    path: /reunions/details/{id}
+    controller: App\Controller\ReunionsController::viewReunion
+    #requirement + regex
+
+add_reunions:
+    path: /reunions/ajouter-une-reunion
+    controller: App\Controller\ReunionsController::addReunion
+
+edit_reunions:
+    path: /reunions/modifier-une-reunion/{id}
+    controller: App\Controller\ReunionsController::editReunion
+    #requirement + regex
+
+del_reunions:
+    path: /reunions/supprimer-une-reunion/{id}
+    controller: App\Controller\ReunionsController::delReunion
+    #requirement + regex

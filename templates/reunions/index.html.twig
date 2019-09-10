@@ -1,0 +1,46 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Réunions{% endblock %}
+
+{% block content %}
+    
+<div class="card mb-3">
+    <h1>Accueil réunion </h1>
+    <div class="card-header">
+    	<i class="fas fa-table"></i>Calendrier des réunions
+    </div>
+  	<div class="card-body">
+  		<!-- Calendrier -->
+  	</div>
+  	<div class="card-header">
+    	<i class="fas fa-table"></i>Liste des réunions passées
+    </div>
+  	<div class="card-body">
+	    <div class="table-responsive">
+	      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+	        <thead>
+	          <tr>
+	            <th>Intitulé de la réunion</th>
+	            <th>Type de réunion</th>
+	            <th>Date de la réunion</th>
+	            <th></th>
+	          </tr>
+	        </thead>
+	        <tbody>
+	          {% for reunionTrouvee in reunionsTrouvees %}
+	          <tr>
+	            <td>{{ reunionTrouvee.getTitre() }} </td>
+	            <td>{{ reunionTrouvee.getTypeReu() }} </td>
+	            <td>{{ reunionTrouvee.getDatetimeReu() }} </td>
+	            <td><a class="btn btn-secondary" href="{{path('admin_accueil')}}" role="button">Modifier</a></td>
+	            <td><a class="btn btn-secondary" href="{{path('admin_accueil')}}" role="button">Afficher</a></td>
+	          </tr>
+	          {%  endfor %} 
+	        </tbody>
+
+	      </table>
+	    </div>
+	</div>
+	<div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+</div>
+{% endblock %}
