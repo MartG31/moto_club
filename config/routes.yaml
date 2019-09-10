@@ -1,3 +1,11 @@
+# Session
+
 inscription_user:
     path: /backoffice/inscription
     controller: App\Controller\UsersController::inscriptionUser
+
+# Balades
+
+add_balade:
+    path: /balades/ajouter
+    controller: App\Controller\BaladesController::addBalade
