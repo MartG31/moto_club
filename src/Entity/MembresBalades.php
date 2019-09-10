@@ -41,34 +41,5 @@ class MembresBalades
      */
     private $user;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    public function getBal(): ?Balades
-    {
-        return $this->bal;
-    }
-
-    public function setBal(?Balades $bal): self
-    {
-        $this->bal = $bal;
-
-        return $this;
-    }
-
-    public function getUser(): ?Utilisateurs
-    {
-        return $this->user;
-    }
-
-    public function setUser(?Utilisateurs $user): self
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
 
 }
