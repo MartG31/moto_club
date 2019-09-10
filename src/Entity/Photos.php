@@ -52,5 +52,58 @@ class Photos
      */
     private $bal;
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getFileName(): ?string
+    {
+        return $this->fileName;
+    }
+
+    public function setFileName(string $fileName): self
+    {
+        $this->fileName = $fileName;
+
+        return $this;
+    }
+
+    public function getLegende(): ?string
+    {
+        return $this->legende;
+    }
+
+    public function setLegende(?string $legende): self
+    {
+        $this->legende = $legende;
+
+        return $this;
+    }
+
+    public function getDatetimePost(): ?\DateTimeInterface
+    {
+        return $this->datetimePost;
+    }
+
+    public function setDatetimePost(\DateTimeInterface $datetimePost): self
+    {
+        $this->datetimePost = $datetimePost;
+
+        return $this;
+    }
+
+    public function getBal(): ?Balades
+    {
+        return $this->bal;
+    }
+
+    public function setBal(?Balades $bal): self
+    {
+        $this->bal = $bal;
+
+        return $this;
+    }
+
 
 }

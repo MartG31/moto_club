@@ -69,5 +69,82 @@ class ComptesRendus
      */
     private $user;
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getTitre(): ?string
+    {
+        return $this->titre;
+    }
+
+    public function setTitre(string $titre): self
+    {
+        $this->titre = $titre;
+
+        return $this;
+    }
+
+    public function getContenu(): ?string
+    {
+        return $this->contenu;
+    }
+
+    public function setContenu(string $contenu): self
+    {
+        $this->contenu = $contenu;
+
+        return $this;
+    }
+
+    public function getDatetimePost(): ?\DateTimeInterface
+    {
+        return $this->datetimePost;
+    }
+
+    public function setDatetimePost(\DateTimeInterface $datetimePost): self
+    {
+        $this->datetimePost = $datetimePost;
+
+        return $this;
+    }
+
+    public function getDatetimeModif(): ?\DateTimeInterface
+    {
+        return $this->datetimeModif;
+    }
+
+    public function setDatetimeModif(?\DateTimeInterface $datetimeModif): self
+    {
+        $this->datetimeModif = $datetimeModif;
+
+        return $this;
+    }
+
+    public function getReu(): ?Reunions
+    {
+        return $this->reu;
+    }
+
+    public function setReu(?Reunions $reu): self
+    {
+        $this->reu = $reu;
+
+        return $this;
+    }
+
+    public function getUser(): ?Utilisateurs
+    {
+        return $this->user;
+    }
+
+    public function setUser(?Utilisateurs $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
 
 }

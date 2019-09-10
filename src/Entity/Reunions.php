@@ -73,5 +73,94 @@ class Reunions
      */
     private $user;
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getTitre(): ?string
+    {
+        return $this->titre;
+    }
+
+    public function setTitre(string $titre): self
+    {
+        $this->titre = $titre;
+
+        return $this;
+    }
+
+    public function getContenu(): ?string
+    {
+        return $this->contenu;
+    }
+
+    public function setContenu(string $contenu): self
+    {
+        $this->contenu = $contenu;
+
+        return $this;
+    }
+
+    public function getDatetimeReu(): ?\DateTimeInterface
+    {
+        return $this->datetimeReu;
+    }
+
+    public function setDatetimeReu(\DateTimeInterface $datetimeReu): self
+    {
+        $this->datetimeReu = $datetimeReu;
+
+        return $this;
+    }
+
+    public function getLieuReu(): ?string
+    {
+        return $this->lieuReu;
+    }
+
+    public function setLieuReu(string $lieuReu): self
+    {
+        $this->lieuReu = $lieuReu;
+
+        return $this;
+    }
+
+    public function getTypeReu(): ?string
+    {
+        return $this->typeReu;
+    }
+
+    public function setTypeReu(string $typeReu): self
+    {
+        $this->typeReu = $typeReu;
+
+        return $this;
+    }
+
+    public function getDatetimePost(): ?\DateTimeInterface
+    {
+        return $this->datetimePost;
+    }
+
+    public function setDatetimePost(\DateTimeInterface $datetimePost): self
+    {
+        $this->datetimePost = $datetimePost;
+
+        return $this;
+    }
+
+    public function getUser(): ?Utilisateurs
+    {
+        return $this->user;
+    }
+
+    public function setUser(?Utilisateurs $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
 
 }

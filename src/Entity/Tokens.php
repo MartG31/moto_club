@@ -45,5 +45,46 @@ class Tokens
      */
     private $user;
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getToken(): ?string
+    {
+        return $this->token;
+    }
+
+    public function setToken(string $token): self
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
+    public function getDatetimeToken(): ?\DateTimeInterface
+    {
+        return $this->datetimeToken;
+    }
+
+    public function setDatetimeToken(\DateTimeInterface $datetimeToken): self
+    {
+        $this->datetimeToken = $datetimeToken;
+
+        return $this;
+    }
+
+    public function getUser(): ?Utilisateurs
+    {
+        return $this->user;
+    }
+
+    public function setUser(?Utilisateurs $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
 
 }
