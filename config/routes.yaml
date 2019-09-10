@@ -1,7 +1,7 @@
 # Session
 
 inscription_user:
-    path: /backoffice/inscription
+    path: /users/inscription
     controller: App\Controller\UsersController::inscriptionUser
 
 # Balades
