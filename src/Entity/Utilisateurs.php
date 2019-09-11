@@ -45,30 +45,30 @@ class Utilisateurs
     /**
      * @var string|null
      *
-     * @ORM\Column(name="pseudo", type="string", length=50, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="pseudo", type="string", length=50, nullable=true)
      */
-    private $pseudo = 'NULL';
+    private $pseudo;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="nom", type="string", length=50, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="nom", type="string", length=50, nullable=true)
      */
-    private $nom = 'NULL';
+    private $nom;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="prenom", type="string", length=50, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="prenom", type="string", length=50, nullable=true)
      */
-    private $prenom = 'NULL';
+    private $prenom;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="avatar", type="string", length=120, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="avatar", type="string", length=120, nullable=true)
      */
-    private $avatar = 'NULL';
+    private $avatar;
 
     /**
      * @var \DateTime
@@ -80,9 +80,29 @@ class Utilisateurs
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="datetime_adhesion", type="datetime", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="datetime_adhesion", type="datetime", nullable=true)
      */
-    private $datetimeAdhesion = 'NULL';
+    private $datetimeAdhesion;
+
+    /**
+     * @ORM\Column(type="string", length=120)
+     */
+    private $adresse;
+
+    /**
+     * @ORM\Column(type="string", length=10)
+     */
+    private $cp;
+
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $ville;
+
+    /**
+     * @ORM\Column(type="string", length=20, nullable=true)
+     */
+    private $telephone;
 
     public function getId(): ?int
     {
@@ -193,6 +213,54 @@ class Utilisateurs
     public function setDatetimeAdhesion(?\DateTimeInterface $datetimeAdhesion): self
     {
         $this->datetimeAdhesion = $datetimeAdhesion;
+
+        return $this;
+    }
+
+    public function getAdresse(): ?string
+    {
+        return $this->adresse;
+    }
+
+    public function setAdresse(string $adresse): self
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    public function getCp(): ?string
+    {
+        return $this->cp;
+    }
+
+    public function setCp(string $cp): self
+    {
+        $this->cp = $cp;
+
+        return $this;
+    }
+
+    public function getVille(): ?string
+    {
+        return $this->ville;
+    }
+
+    public function setVille(string $ville): self
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    public function getTelephone(): ?string
+    {
+        return $this->telephone;
+    }
+
+    public function setTelephone(?string $telephone): self
+    {
+        $this->telephone = $telephone;
 
         return $this;
     }

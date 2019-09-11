@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Portefolio{% endblock %}
+
+{% block content %}
+	<main>
+		<div id="content">
+			<div class="view photos">
+				<p class="imglist" style="max-width: 1000px;">
+					<div class="row">
+						
+						<div class="col-md-4">
+							<figure>
+							  <a href="moto1.jpg" data-fancybox="images" data-caption="Moto 1">
+							    <img class="img-fluid" src="moto1.jpg"/>
+							  </a>
+							</figure>
+						</div>
+
+						<div class="col-md-4">
+							<figure>
+							  <a href="moto2.jpg" data-fancybox="images" data-caption="Moto 2">
+							    <img class="img-fluid" src="moto2.jpg"/>
+							  </a>
+							</figure>
+						</div>
+
+						<div class="col-md-4">
+							<figure> 
+							  <a href="moto3.jpg" data-fancybox="images" data-caption="Moto 3">
+							    <img class="img-fluid" src="moto3.jpg"/>
+							  </a>
+							</figure>
+						</div>
+
+						<div class="col-md-4">
+							<figure>
+							  <a href="moto3.jpg" data-fancybox="images" data-caption="Moto 1">
+							    <img class="img-fluid" src="moto3.jpg"/>
+							  </a>
+							</figure>
+						</div>
+
+						<div class="col-md-4">
+							<figure>
+							  <a href="moto2.jpg" data-fancybox="images" data-caption="Moto 2">
+							    <img class="img-fluid" src="moto2.jpg"/>
+							  </a>
+							</figure>
+						</div>
+
+						<div class="col-md-4">
+							<figure> 
+							  <a href="moto1.jpg" data-fancybox="images" data-caption="Moto 3">
+							    <img class="img-fluid" src="moto1.jpg"/>
+							  </a>
+							</figure>
+						</div>
+					</div> 
+				</p>		
+			</div>
+		</div>
+	</main>
+{% endblock %}
+
+
+{% block javascripts %}
+		<script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+		<script src = "https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+	<!-- <script src="test_francy.js"></script>-->
+{% endblock %}
