@@ -22,9 +22,15 @@ inscription_user:
 
 # Balades
 
+index_balade:
+    path: /balades
+    controller: App\Controller\BaladesController::indexBalades
+
 add_balade:
     path: /balades/ajouter
     controller: App\Controller\BaladesController::addBalade
+
+
 
 ############################# Réunions ##################
 
