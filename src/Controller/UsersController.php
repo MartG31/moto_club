@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use \Respect\Validation\Validator as v;
 
-class UsersController extends AbstractController
+class UsersController extends MasterController
 {
     /**
      * @Route("/users", name="users")
