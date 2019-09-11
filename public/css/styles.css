@@ -17,47 +17,6 @@ img{
 	height: auto;
 }
 
-section{
-
-	width: 100%;
-	height: 100vh;
-}
-
-section.sec1{
-
-	background: url(img/bmw-3177914_1280.jpg);
-	background-size: cover;
-}
-
-section.sec2{
-
-	padding: 100px;
-	box-sizing: border-box;
-	height: auto;
-}
-
-section.sec2 h2{
-
-	font-size: 3em;
-	margin: 0;
-	padding: 0 0 20px;
-	color: #000;
-}
-
-section.sec2 p{
-
-	font-size: 1.4em;
-	margin: 0;
-	padding: 0;
-	color: #000;
-}
-
-section.sec3{
-
-	background: url(img/motorcycle-428191_1280.jpg);
-	background-size: cover;
-}
-
 nav{
 
 	min-height: 8vh;
