@@ -52,37 +52,37 @@ class Balades
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="datetime_rdv", type="datetime", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="datetime_rdv", type="datetime", nullable=true)
      */
-    private $datetimeRdv = 'NULL';
+    private $datetimeRdv;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="adresse_rdv", type="string", length=120, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="adresse_rdv", type="string", length=120, nullable=true)
      */
-    private $adresseRdv = 'NULL';
+    private $adresseRdv;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="cp_rdv", type="string", length=10, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="cp_rdv", type="string", length=10, nullable=true)
      */
-    private $cpRdv = 'NULL';
+    private $cpRdv;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="ville_rdv", type="string", length=50, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="ville_rdv", type="string", length=50, nullable=true)
      */
-    private $villeRdv = 'NULL';
+    private $villeRdv;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="file_gps", type="string", length=80, nullable=true, options={"default"="'NULL'"})
+     * @ORM\Column(name="file_gps", type="string", length=80, nullable=true)
      */
-    private $fileGps = '\'NULL\'';
+    private $fileGps;
 
     /**
      * @var \DateTime
@@ -94,9 +94,9 @@ class Balades
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="datetime_modif", type="datetime", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="datetime_modif", type="datetime", nullable=true)
      */
-    private $datetimeModif = 'NULL';
+    private $datetimeModif;
 
     /**
      * @var \Utilisateurs

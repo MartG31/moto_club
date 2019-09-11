@@ -105,7 +105,7 @@ class Utilisateurs
     private $telephone;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      */
     private $date_naiss;
 
