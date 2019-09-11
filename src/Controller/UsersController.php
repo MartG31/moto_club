@@ -28,7 +28,7 @@ class UsersController extends AbstractController
 				$errors[] = 'L\'adresse email est invalide';
 			}
 			
-			if($this->emailExist($safe['email']))){
+			if($this->checkEmailExists($safe['email'])){
 				$errors[] = 'L\'adresse email existe déjà';
 			}
 
@@ -107,13 +107,13 @@ class UsersController extends AbstractController
      * @param string $email L'email à vérifier
      * @return boolean true si l'email existe, false sinon
      */
-    public function checkEmailExist($email){
+    public function checkEmailExists($email){
 
     	$exist = $this->getDoctrine()
     		->getRepository(Utilisateurs::class)
 	    	->findOneBy(['email' => $email]);
 
 
-	    return ($exist) ? true : false
+	    return ($exist) ? true : false;
     }
 }
