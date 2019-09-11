@@ -56,3 +56,15 @@ del_reunions:
     path: /reunions/supprimer-une-reunion/{id}
     controller: App\Controller\ReunionsController::delReunion
     #requirement + regex
+
+############################# Portfolio ##################
+
+view_portfolio:
+    path: /photos/portfolio
+    controller: App\Controller\PhotosController::viewPortfolio
+
+############################# Albums ##################
+
+view_albums:
+    path: /photos/albums
+    controller: App\Controller\PhotosController::viewAlbums
