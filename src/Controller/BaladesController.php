@@ -2,19 +2,22 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+// use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
+// use App\Controller\MasterController;
 use App\Entity\Utilisateurs;
 use App\Entity\Balades;
 
 use \Respect\Validation\Validator as v;
 
-class BaladesController extends AbstractController
+class BaladesController extends MasterController
 {
+
     /**
      * @Route("/balades", name="balades")
      */
+
     public function indexBalades() {
 
     	// Affichage du calendrier des balades
@@ -61,29 +64,64 @@ class BaladesController extends AbstractController
 
             $post = array_map('trim', array_map('strip_tags', $_POST));
 
-            // echo '<pre>';
-            // var_dump($post);
-            // echo '</pre>';
+            echo '<pre>';
+            var_dump($post);
+            echo '</pre>';
 
             if(!v::notEmpty()->length(3,30)->validate($post['titre'])) {
                 $errors[] = 'Le titre doit comporter entre 3 et 30 caractères';
             }
 
-            if(!v::notEmpty()->date('Y-m-d')->validate($post['date_debut'])) {
-                $errors[] = 'La date de début est invalide ou n\'a pas été renseignée';
+            if(!v::notEmpty()->length(10,1000)->validate($post['titre'])) {
+                $errors[] = 'Le titre doit comporter entre 10 et 1000 caractères';
             }
 
-            if(!v::notEmpty()->date('Y-m-d')->validate($post['date_fin'])) {
-                $errors[] = 'La date de fin est invalide ou n\'a pas été renseignée';
+            // DATE DEBUT & FIN
+
+            if(!v::notEmpty()->validate($post['date_debut'])) {
+                $errors[] = 'La date de début doit être renseignée';   
+            }
+            elseif(!v::date('Y-m-d')->validate($post['date_debut'])) {
+                $errors[] = 'La date de début est invalide';
+            }
+            elseif(!$this->checkEnglishDate($post['date_debut'])) {
+                $errors[] = 'La date de début n\'existe pas';
             }
 
-            if(!v::notEmpty()->postalCode('FR')->validate($post['cp_rdv'])) {
-                $errors[] = 'Le code postal est invalide ou n\'a pas été correctement renseignée';
+            if(!v::notEmpty()->validate($post['date_fin'])) {
+                $errors[] = 'La date de fin doit être renseignée';   
             }
+            elseif(!v::date('Y-m-d')->validate($post['date_fin'])) {
+                $errors[] = 'La date de fin est invalide';
+            }
+            elseif(!$this->checkEnglishDate($post['date_fin'])) {
+                $errors[] = 'La date de fin n\'existe pas';
+            }
+
+            if($post['date_debut'] > $post['date_fin']) {
+                $errors[] = 'La date de début doit être antérieure à la date de fin';
+            }
+
+            // RENDEZ-VOUS
+
+            // if(!v::notEmpty()->validate($post['adresse_rdv'])) {
+            //     $errors[] = 'L\'adresse du rendez-vous doit être renseignée';
+            // }
+
+            // if(!v::notEmpty()->postalCode('FR')->validate($post['cp_rdv'])) {
+            //     $errors[] = 'Le code postal du rendez-vous est invalide ou n\'a pas été correctement renseignée';
+            // }
+
+            // if(!v::notEmpty()->validate($post['ville_rdv'])) {
+            //     $errors[] = 'La ville du rendez-vous doit être renseignée';
+            // }
+
+            // GPS
+            // ???
 
             if(count($errors) === 0) {
 
-                $user = $em->getRepository(Utilisateurs::class)->find(3);
+                $user = $em->getRepository(Utilisateurs::class)->find(1);
 
                 $bal = new Balades();
                 $bal->setUser($user);
@@ -92,7 +130,9 @@ class BaladesController extends AbstractController
                 $bal->setContenu($post['contenu']);
                 $bal->setDateDebut(new \DateTime($post['date_debut']));
                 $bal->setDateFin(new \DateTime($post['date_fin']));
-                $bal->setDatetimeRdv(new \DateTime($post['datetime_rdv']));
+
+
+                $bal->setDatetimeRdv($this->mergeDateTime($post['date_rdv'], $post['time_rdv']));
                 $bal->setAdresseRdv($post['adresse_rdv']);
                 $bal->setCpRdv($post['cp_rdv']);
                 $bal->setVilleRdv($post['ville_rdv']);
@@ -132,6 +172,4 @@ class BaladesController extends AbstractController
 
         ]);
     }
-
-
 }
