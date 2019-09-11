@@ -50,8 +50,16 @@ class UsersController extends AbstractController
     			/* $articlesData me permet d'utiliser les méthodes de la class App\Entity\Articles.php */
     			$usersData = new Users();
     			$usersData->setEmail($safe['email'])
-							 ->setPassword(password_hash($safe['password'], PASSWORD_DEFAULT))
-    						 ->setRoles('User');
+							->setPassword(password_hash($safe['password'], PASSWORD_DEFAULT))
+							->setPrenom($safe['firstname'])
+							->setNom($safe['name'])
+							->setTelephone($safe['phone'])
+							->setAdresse($safe['address'])
+							->setCodePostal($safe['postal_code'])
+							->setVille($safe['city'])
+							->setDateNaiss($safe['birthday'])
+    						->setAcces('Membre')
+                            ->setDatetimeInscription(new \DateTime('now'));
 
     			// On prépare la requete.
     			$em->persist($usersData);
