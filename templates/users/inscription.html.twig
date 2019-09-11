@@ -83,7 +83,9 @@
             </div>
           </div>
         </div>
-        <input type="submit" class="btn btn-primary btn-block" value="S'inscrire">
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary btn-block" value="S'inscrire">
+        </div>
         {% if errors is not empty %}
             <div class="alert alert-danger">
                 {{ errors|join('<br>')|raw }} 
