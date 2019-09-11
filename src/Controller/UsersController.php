@@ -69,9 +69,7 @@ class UsersController extends AbstractController
 			}
 
     		if(count($errors) == 0){
-
-    			/* $articlesData me permet d'utiliser les méthodes de la class App\Entity\Articles.php */
-    			/*
+    			
     			$usersData = new Utilisateurs();
     			$usersData->setEmail($safe['email'])
 							->setPwd(password_hash($safe['password'], PASSWORD_DEFAULT))
@@ -88,7 +86,7 @@ class UsersController extends AbstractController
     			// On prépare la requete.
     			$em->persist($usersData);
     			// On l'exécute
-    			$em->flush();*/
+    			$em->flush();
     			$success = true;
     		}
     	}
