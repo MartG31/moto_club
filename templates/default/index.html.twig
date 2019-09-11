@@ -4,20 +4,19 @@
 
 {% block stylesheets %}
 
-<link rel="stylesheet" type="text/css" href="css/swiper.min.css">
-
 {% endblock %}
 
 {% block content %}
 
 	<div class="container">
-				<span class="text1 text-center">Dernières actualités</span>
-			</div>
+		<h2 class="text1 text-center text-uppercase">Dernières actualités</h2>
+	</div>
 
+	<section>
 		<div class="swiper-container">
 		    <div class="swiper-wrapper">
 		        <div class="swiper-slide">
-					<div class="card">
+					<div class="card-news">
 						<div class="sliderText">
 							<h3>Actu 1</h3>
 						</div>
@@ -31,7 +30,7 @@
 					</div>
 				</div>
 				<div class="swiper-slide">
-					<div class="card">
+					<div class="card-news">
 						<div class="sliderText">
 							<h3>Actu 2</h3>
 						</div>
@@ -45,7 +44,7 @@
 					</div>
 				</div>
 				<div class="swiper-slide">
-					<div class="card">
+					<div class="card-news">
 						<div class="sliderText">
 							<h3>Actu 3</h3>
 						</div>
@@ -59,7 +58,7 @@
 					</div>
 				</div>
 				<div class="swiper-slide">
-					<div class="card">
+					<div class="card-news">
 						<div class="sliderText">
 							<h3>Actu 4</h3>
 						</div>
@@ -73,7 +72,7 @@
 					</div>
 				</div>
 				<div class="swiper-slide">
-					<div class="card">
+					<div class="card-news">
 						<div class="sliderText">
 							<h3>Actu 5</h3>
 						</div>
@@ -88,12 +87,31 @@
 				</div>
 			</div>
 		</div>
+	</section>
+
 
 {% endblock %}
 
 {% block javascripts %}
 
-	<script src="js/swiper.min.js"></script>
-	<script src="js/swipActus.js"></script>
+	<script src="/js/swiper.min.js"></script>
+	<script>
+		var swiper = new Swiper('.swiper-container', {
+	      effect: 'coverflow',
+	      grabCursor: true,
+	      centeredSlides: true,
+	      slidesPerView: 'auto',
+	      coverflowEffect: {
+	        rotate: 30,
+	        stretch: 0,
+	        depth: 200,
+	        modifier: 1,
+	        slideShadows : true,
+	      },
+	      pagination: {
+	        el: '.swiper-pagination',
+	      },
+	    });
+	</script>
 
 {% endblock %}
