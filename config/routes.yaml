@@ -41,7 +41,8 @@ index_reunions:
 view_reunion:
     path: /reunions/details/{id}
     controller: App\Controller\ReunionsController::viewReunion
-    #requirement + regex
+    requirements:
+      id: '\d+' 
 
 add_reunions:
     path: /reunions/ajouter-une-reunion
@@ -50,12 +51,14 @@ add_reunions:
 edit_reunions:
     path: /reunions/modifier-une-reunion/{id}
     controller: App\Controller\ReunionsController::editReunion
-    #requirement + regex
+    requirements:
+      id: '\d+' 
 
 del_reunions:
     path: /reunions/supprimer-une-reunion/{id}
     controller: App\Controller\ReunionsController::delReunion
-    #requirement + regex
+    requirements:
+      id: '\d+' 
 
 ############################# Portfolio ##################
 
