@@ -5,11 +5,8 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
-
 class MasterController extends AbstractController
 {
-
-
 
     protected function checkEnglishDate(string $date) {
         $exp = explode('-', $date);
@@ -17,10 +14,8 @@ class MasterController extends AbstractController
     }
 
     protected function mergeDateTime(string $date, string $time) {
-    	
     	$exp_date = explode('-', $date);
     	$exp_time = explode(':', $time);
-
 
     	$dt = new \DateTime();
     	$dt->setDate($exp_date[0], $exp_date[1], $exp_date[2]);
@@ -28,8 +23,4 @@ class MasterController extends AbstractController
 
     	return $dt;
     }
-
-
-
-
 }
