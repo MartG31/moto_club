@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityManagerInterface; // Connexion a la base de données
 use App\Entity\Utilisateurs; // Intéractions avec la table "users"
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use \Respect\Validation\Validator as v;
 
 class UsersController extends AbstractController
 {
@@ -19,12 +20,10 @@ class UsersController extends AbstractController
 		// Nettoyage des données
     	$errors = [];
         
-
     	if(!empty($_POST)){
 
 			$safe = array_map('trim', array_map('strip_tags', $_POST));
 
-			// Vérifie le bon format de mon email
 			if(!filter_var($safe['email'], FILTER_VALIDATE_EMAIL)){
 				$errors[] = 'L\'adresse email est invalide';
 			}
@@ -34,17 +33,42 @@ class UsersController extends AbstractController
 				$errors[] = 'L\'adresse email existe déjà';
 			}
 
-			// Vérifie que le mot de passe a au moins 8 caractères
-			if(strlen($safe['password']) < 7){
+			if(!v::stringType()->length(8, null)->validate($safe['password'])){
 				$errors[] = 'Le mot de passe doit comporter au moins 8 caractères';
 			}
 
-			// Vérifie que le mot de passe confirmé et le même que le mot de passe
-			if($safe['password'] != $safe['confirmpassword']) {
+			if(!v::equals($safe['password'])->validate($safe['confirmpassword'])) {
 				$errors[] = 'Les mots de passe ne correspondent pas';
 			}
 
-			// Aucune erreur, je sauvegarde mes données
+			if(!v::stringType()->length(3, null)->validate($safe['lastname'])){
+				$errors[] = 'Le nom doit comporter au moins 3 caractères';
+			}
+
+			if(!v::stringType()->length(3, null)->validate($safe['firstname'])){
+				$errors[] = 'Le prénom doit comporter au moins 3 caractères';
+			}
+
+			if(!v::notEmpty()->date('Y-m-d')->validate($safe['birthday'])){
+				$errors[] = 'La date de naissance est invalide';
+			}
+
+			if(!v::phone($safe['phone'])){
+				$errors[] = 'Le numéro de téléphone est invalide';
+			}
+
+			if(!v::stringType()->length(7, null)->validate($safe['address'])){
+				$errors[] = 'La rue doit comporter au moins 7 caractères';
+			}
+
+			if(!v::postalCode('FR')->validate($safe['postal_code'])){
+				$errors[] = 'Le code postal est invalide';
+			}
+
+			if(!v::stringType()->length(3, null)->validate($safe['city'])){
+				$errors[] = 'La ville doit comporter au moins 3 caractères';
+			}
+
     		if(count($errors) == 0){
 
     			/* $articlesData me permet d'utiliser les méthodes de la class App\Entity\Articles.php */
