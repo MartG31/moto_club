@@ -129,8 +129,6 @@ class BaladesController extends MasterController
                 $bal->setContenu($post['contenu']);
                 $bal->setDateDebut(new \DateTime($post['date_debut']));
                 $bal->setDateFin(new \DateTime($post['date_fin']));
-
-
                 $bal->setDatetimeRdv($this->mergeDateTime($post['date_rdv'], $post['time_rdv']));
                 $bal->setAdresseRdv($post['adresse_rdv']);
                 $bal->setCpRdv($post['cp_rdv']);
