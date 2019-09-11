@@ -104,6 +104,11 @@ class Utilisateurs
      */
     private $telephone;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $date_naiss;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -261,6 +266,18 @@ class Utilisateurs
     public function setTelephone(?string $telephone): self
     {
         $this->telephone = $telephone;
+
+        return $this;
+    }
+
+    public function getDateNaiss(): ?\DateTimeInterface
+    {
+        return $this->date_naiss;
+    }
+
+    public function setDateNaiss(\DateTimeInterface $date_naiss): self
+    {
+        $this->date_naiss = $date_naiss;
 
         return $this;
     }

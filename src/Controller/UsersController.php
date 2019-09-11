@@ -48,17 +48,17 @@ class UsersController extends AbstractController
     		if(count($errors) == 0){
 
     			/* $articlesData me permet d'utiliser les méthodes de la class App\Entity\Articles.php */
-    			$usersData = new Users();
+    			$usersData = new Utilisateurs();
     			$usersData->setEmail($safe['email'])
-							->setPassword(password_hash($safe['password'], PASSWORD_DEFAULT))
+							->setPwd(password_hash($safe['password'], PASSWORD_DEFAULT))
+							->setNom($safe['lastname'])
 							->setPrenom($safe['firstname'])
-							->setNom($safe['name'])
 							->setTelephone($safe['phone'])
+							->setDateNaiss(new \DateTime($safe['birthday']))
 							->setAdresse($safe['address'])
-							->setCodePostal($safe['postal_code'])
+							->setCp($safe['postal_code'])
 							->setVille($safe['city'])
-							->setDateNaiss($safe['birthday'])
-    						->setAcces('Membre')
+    						->setAcces(1)
                             ->setDatetimeInscription(new \DateTime('now'));
 
     			// On prépare la requete.

@@ -7,8 +7,17 @@
 <div class="container">
   <div class="card card-register mx-auto mt-5">
     <div class="card-header">S'inscrire</div>
+    {% if errors is not empty %}
+        <div class="alert alert-danger">
+            {{ errors|join('<br>')|raw }} 
+        </div>
+    {% elseif success == true %}
+        <div class="alert alert-success">
+            Votre êtes inscrit(e) !
+        </div>
+    {% endif %}
     <div class="card-body">
-      <form>
+      <form method="post">
         <div class="form-group">
           <div class="form-group">
             <label for="email">Adresse email</label>
@@ -58,7 +67,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="phone">Numéro de Téléphone</label>
-                <input type="text" id="phone" name="phone" class="form-control" required>
+                <input type="text" id="phone" name="phone" class="form-control" maxlength="10" required>
               </div>
             </div>
           </div>
@@ -77,13 +86,13 @@
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label for="Ville">Ville</label>
-                <input type="text" id="Ville" name="Ville" class="form-control" required>
+                <label for="city">Ville</label>
+                <input type="text" id="city" name="city" class="form-control" required>
               </div>
             </div>
           </div>
         </div>
-        <a class="btn btn-primary btn-block" href="login.html">S'inscrire</a>
+        <input type="submit" class="btn btn-primary btn-block" value="S'inscrire">
       </form>
       <div class="text-center">
         <a class="d-block small mt-3" href="login.html">Se connecter</a>
