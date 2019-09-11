@@ -36,9 +36,9 @@ class Utilisateurs
     private $pwd;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="acces", type="integer", nullable=false)
+     * @ORM\Column(name="acces", type="string", length=10, nullable=false)
      */
     private $acces;
 
@@ -100,7 +100,7 @@ class Utilisateurs
     private $ville;
 
     /**
-     * @ORM\Column(type="string", length=20, nullable=true)
+     * @ORM\Column(type="string", length=20)
      */
     private $telephone;
 
@@ -138,12 +138,12 @@ class Utilisateurs
         return $this;
     }
 
-    public function getAcces(): ?int
+    public function getAcces(): ?string
     {
         return $this->acces;
     }
 
-    public function setAcces(int $acces): self
+    public function setAcces(string $acces): self
     {
         $this->acces = $acces;
 
