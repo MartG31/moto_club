@@ -8,11 +8,11 @@
 <div class="container">
   <div class="card card-register mx-auto mt-5">
     <div class="card-header">Ajouter une réunion</div>
-{% if errors is not empty %}
-    <div class="alert alert-danger">{{errors|raw}}</div>
-  {% elseif success == true %}
-    <div class="alert alert-success">Votre réunion a bien été ajoutée</div>
-  {% endif %}
+    {% if errors is not empty %}
+      <div class="alert alert-danger">{{errors|raw}}</div>
+    {% elseif success == true %}
+      <div class="alert alert-success">Votre réunion a bien été ajoutée</div>
+    {% endif %}
     <div class="card-body">
       <form method="post">
         <div class="form-group">
@@ -35,7 +35,7 @@
           <div class="form-row">
             <div class="col-md-6">
               <label for="date">Date de la réunion</label>
-              <input type="date" id="date" name="date" class="form-control" required="required">
+              <input type="datetime" id="date" name="date" class="form-control" required="required">
             </div>
             <div class="col-md-6">
                 <label for="lieu">Lieu de la réunion</label>

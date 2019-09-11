@@ -7,8 +7,13 @@
 <div class="container">
   <div class="card card-register mx-auto mt-5">
     <div class="card-header">Modifier une réunion</div>
+    {% if errors is not empty %}
+      <div class="alert alert-danger">{{errors|raw}}</div>
+    {% elseif success == true %}
+      <div class="alert alert-success">Votre réunion a bien été ajoutée</div>
+    {% endif %}
     <div class="card-body">
-      <form>
+      <form method="post">
         <div class="form-group">
           <div class="form-row">
             <div class="col-md-6">
@@ -16,8 +21,8 @@
                 <input type="text" id="titre" name="titre" class="form-control" required="required" autofocus="autofocus" value="{{ reunionTrouvee.getTitre() }}">
             </div>
             <div class="col-md-6">
-                <label for="type-reu">Type de réunion</label>
-                <input type="text" id="type-reu" name="type-reu" class="form-control" required="required" value="{{ reunionTrouvee.getTypeReu() }}">
+                <label for="type">Type de réunion</label>
+                <input type="text" id="type" name="type" class="form-control" required="required" value="{{ reunionTrouvee.getTypeReu() }}">
             </div>
           </div>
         </div>
@@ -28,20 +33,24 @@
         <div class="form-group">
           <div class="form-row">
             <div class="col-md-6">
-              <label for="date-reu">Date de la réunion</label>
-              <input type="date" id="date-reu" name="date-reu" class="form-control" required="required" value="">
+              <label for="date">Date de la réunion</label>
+              <input type="date" id="date" name="date" class="form-control" required="required" value="{{ reunionTrouvee.getDatetimeReu()|date("d/m/Y") }}">
+            </div>
+            <div class="col-md-6">
+              <label for="heure">Heure de la réunion</label>
+              <input type="date" id="heure" name="heure" class="form-control" required="required" value="{{ reunionTrouvee.getDatetimeReu()|date("d/m/Y") }}">
+            </div>
+            <div class="col-md-6">
+              <label for="user">Réunion proposée par : </label>
+              <input type="text" id="user" name="user" class="form-control" value="{{ reunionTrouvee.getUser() }}" disabled="disabled">
             </div>
             <div class="col-md-6">
               <label for="lieu">Lieu de la réunion</label>
               <input type="text" id="lieu" name="lieu" class="form-control" required="required" value="{{ reunionTrouvee.getLieuReu() }}">
             </div>
-            <div class="col-md-6">
-              <label for="lieu">Réunion proposée par : </label>
-              <input type="text" id="lieu" name="lieu" class="form-control" value="{{ reunionTrouvee.getUser() }}" disabled="disabled">
-            </div>
           </div>
         </div>
-        <a class="btn btn-primary btn-block" href="#">Modifier</a>
+        <input type="submit" value="Modifier" class="btn btn-primary btn-block">
       </form>
     </div>
   </div>
