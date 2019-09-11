@@ -16,26 +16,28 @@
 	          <tr>
 	            <th>Intitulé de la réunion</th>
 	            <th>Type de réunion</th>
-	            <th>Date de la réunion</th>
+	            <th>Date et heure </th>
+	            <th>Lieux</th>
+	            <th>Contenu de la réunion</th>
+	            <th>Proposé par </th>
 	            <th></th>
 	          </tr>
 	        </thead>
 	        <tbody>
-	         <!-- {% for reunionTrouvee in reunionsTrouvees %} -->
 	          <tr>
 	            <td>{{ reunionTrouvee.getTitre() }} </td>
 	            <td>{{ reunionTrouvee.getTypeReu() }} </td>
-	            <td>{{ reunionTrouvee.getDatetimeReu() }} </td>
+	            <td>Le {{ reunionTrouvee.getDatetimeReu()|date("d/m/Y") }} à {{ reunionTrouvee.getDatetimeReu()|date("H:i") }} </td>
+	            <td>{{ reunionTrouvee.getLieuReu() }} </td>
 	            <td>{{ reunionTrouvee.getContenu() }} </td>
-	            <td><a class="btn btn-secondary" href="{{path('admin_accueil')}}" role="button">Modifier</a></td>
-	            <td><a class="btn btn-secondary" href="{{path('admin_accueil')}}" role="button">Afficher</a></td>
+	            <td>{{ reunionTrouvee.getUser().getPrenom() ?? '' }} </td>
+	            <td><a class="btn btn-secondary" href="{{ path('edit_reunion', {id : reunionTrouvee.getId()}) }}" role="button">Modifier</a></td>
 	          </tr>
-			<!-- {%  endfor %}  -->
 	        </tbody>
 
 	      </table>
 	    </div>
 	</div>
-	<div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+	<div class="card-footer small text-muted">Mise à jour le {{"now"|date("d/m/Y")}}</div>
 </div>
 {% endblock %}

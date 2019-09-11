@@ -11,8 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Respect\Validation\Validator as v;
 use Intervention\Image\ImageManagerStatic as Image;
 
-
-
+use App\Entity\Utilisateurs;
 use App\Entity\Reunions;
 
 class ReunionsController extends MasterController
@@ -72,7 +71,8 @@ class ReunionsController extends MasterController
             (!v::notEmpty()->stringType()->length(3, 80)->validate($safe['lieu'])) ? 'Le lieu de réunion doit faire entre 3 et 80 caractères' : null,
             (!v::notEmpty()->stringType()->length(2, 30)->validate($safe['type'])) ? 'Le type de réunion doit faire entre 2 et 30 caractères' : null,
             (!v::notEmpty()->stringType()->length(3)->validate($safe['contenu'])) ? 'Le contenu doit faire au moins 3 caractères' : null,
-            (!v::notEmpty()->date()->validate($safe['date'])) ? 'La réunion doit être une date valide' : null,
+            (!v::notEmpty()->date()->validate($safe['date_reu'])) ? 'La réunion doit être une date valide' : null,
+            //(!v::notEmpty()->date()->validate($safe['time_rdv'])) ? 'L\'heure de réunion doit être une heure valide' : null,
             
             ];
 
@@ -85,7 +85,7 @@ class ReunionsController extends MasterController
                         ->setLieuReu($safe['lieu'])
                         ->setTypeReu($safe['type'])
                         ->setContenu($safe['contenu'])
-                        ->setDatetimeReu(new \DateTime($safe['date']))
+                        ->setDatetimeReu($this->mergeDateTime($safe['date_reu'], $safe['time_reu']))
                         ->setDatetimePost(new \DateTime('now'));
                 
 
@@ -144,15 +144,12 @@ class ReunionsController extends MasterController
 
             if(count($errors) == 0 ){
 
-                $dt_reu = new DateTime();
-                $dt_reu->setDate($safe['date']);
-                $dt_reu->setTime($safe['time']);
                    /////////////////////////////////////////// ajout bdd ////////////////////////////////////              
                 $reuFound->setTitre($safe['titre'])
                         ->setLieuReu($safe['lieu'])
                         ->setTypeReu($safe['type'])
                         ->setContenu($safe['contenu'])
-                        ->setDatetimeReu($dt_reu)
+                        ->setDatetimeReu($this->mergeDateTime($safe['date_reu'], $safe['time_reu']))
                         ->setDatetimePost(new \DateTime('now'));
                 
 

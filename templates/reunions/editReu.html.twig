@@ -33,16 +33,16 @@
         <div class="form-group">
           <div class="form-row">
             <div class="col-md-6">
-              <label for="date">Date de la réunion</label>
-              <input type="date" id="date" name="date" class="form-control" required="required" value="{{ reunionTrouvee.getDatetimeReu()|date("d/m/Y") }}">
+              <label for="date_reu">Date de la réunion</label>
+              <input type="date" id="date_reu" name="date_reu" class="form-control" required="required" value="{{ reunionTrouvee.getDatetimeReu()|date("d/m/Y") }}">
             </div>
             <div class="col-md-6">
-              <label for="heure">Heure de la réunion</label>
-              <input type="date" id="heure" name="heure" class="form-control" required="required" value="{{ reunionTrouvee.getDatetimeReu()|date("d/m/Y") }}">
+              <label for="time_reu">Heure de la réunion</label>
+              <input type="time" id="time_reu" name="time_reu" class="form-control" required="required" value="">
             </div>
             <div class="col-md-6">
               <label for="user">Réunion proposée par : </label>
-              <input type="text" id="user" name="user" class="form-control" value="{{ reunionTrouvee.getUser() }}" disabled="disabled">
+              <input type="text" id="user" name="user" class="form-control" value="{{ reunionTrouvee.getUser().getPrenom() ?? '' }}" disabled="disabled">
             </div>
             <div class="col-md-6">
               <label for="lieu">Lieu de la réunion</label>

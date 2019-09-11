@@ -44,9 +44,12 @@ add_photo:
 
 
 ############################# Réunions ##################
+add_reunion:
+    path: /reunions/ajouter-une-reunion
+    controller: App\Controller\ReunionsController::addReunion
 
 index_reunions:
-    path: /reunions/index
+    path: /reunions
     controller: App\Controller\ReunionsController::indexReunion
 
 view_reunion:
@@ -55,17 +58,13 @@ view_reunion:
     requirements:
       id: '\d+' 
 
-add_reunions:
-    path: /reunions/ajouter-une-reunion
-    controller: App\Controller\ReunionsController::addReunion
-
-edit_reunions:
+edit_reunion:
     path: /reunions/modifier-une-reunion/{id}
     controller: App\Controller\ReunionsController::editReunion
     requirements:
       id: '\d+' 
 
-del_reunions:
+del_reunion:
     path: /reunions/supprimer-une-reunion/{id}
     controller: App\Controller\ReunionsController::delReunion
     requirements:
