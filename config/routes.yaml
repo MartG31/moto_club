@@ -71,3 +71,9 @@ view_portfolio:
 view_albums:
     path: /photos/albums
     controller: App\Controller\PhotosController::viewAlbums
+
+############################# Default ##################
+
+accueil:
+    path: /
+    controller: App\Controller\DefaultController::index
