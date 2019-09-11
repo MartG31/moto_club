@@ -125,3 +125,9 @@ nav ul li a.active{
 	width: 100%;
 	margin: 5% auto;
 }
+
+.sticky-footer{
+	position: relative;
+	height: 20%; 
+
+}

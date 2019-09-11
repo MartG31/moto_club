@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-// use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 // use App\Controller\MasterController;
@@ -64,9 +64,9 @@ class BaladesController extends MasterController
 
             $post = array_map('trim', array_map('strip_tags', $_POST));
 
-            echo '<pre>';
-            var_dump($post);
-            echo '</pre>';
+            // echo '<pre>';
+            // var_dump($post);
+            // echo '</pre>';
 
             if(!v::notEmpty()->length(3,30)->validate($post['titre'])) {
                 $errors[] = 'Le titre doit comporter entre 3 et 30 caractères';

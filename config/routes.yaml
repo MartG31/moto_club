@@ -1,18 +1,18 @@
-############################# Users ##################
+############################# Default ##################
 
-# accueil admin
+accueil:
+    path: /
+    controller: App\Controller\DefaultController::index
+
+############################# Users ##################
 
 admin_accueil:
     path: /backoffice/accueil
     controller: App\Controller\BackOfficeController::index
 
-# liste users
-
 liste_user:
     path: /backoffice/liste-utilisateur
     controller: App\Controller\BackOfficeController::viewUsers
-
-# Session
 
 inscription_user:
     path: /users/inscription
@@ -20,9 +20,7 @@ inscription_user:
 
 ############################# Balades ##################
 
-# Balades
-
-index_balade:
+index_balades:
     path: /balades
     controller: App\Controller\BaladesController::indexBalades
 
@@ -30,6 +28,19 @@ add_balade:
     path: /balades/ajouter
     controller: App\Controller\BaladesController::addBalade
 
+############################# Photos ##################
+
+view_portfolio:
+    path: /photos/portfolio
+    controller: App\Controller\PhotosController::viewPortfolio
+
+view_albums:
+    path: /photos/albums
+    controller: App\Controller\PhotosController::viewAlbums
+
+add_photo:
+    path: /photos/ajouter
+    controller: App\Controller\PhotosController::addPhoto
 
 
 ############################# Réunions ##################
@@ -60,20 +71,3 @@ del_reunions:
     requirements:
       id: '\d+' 
 
-############################# Portfolio ##################
-
-view_portfolio:
-    path: /photos/portfolio
-    controller: App\Controller\PhotosController::viewPortfolio
-
-############################# Albums ##################
-
-view_albums:
-    path: /photos/albums
-    controller: App\Controller\PhotosController::viewAlbums
-
-############################# Default ##################
-
-accueil:
-    path: /
-    controller: App\Controller\DefaultController::index
