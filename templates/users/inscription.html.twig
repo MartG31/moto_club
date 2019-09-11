@@ -7,15 +7,6 @@
 <div class="container">
   <div class="card card-register mx-auto mt-5">
     <div class="card-header">S'inscrire</div>
-    {% if errors is not empty %}
-        <div class="alert alert-danger">
-            {{ errors|join('<br>')|raw }} 
-        </div>
-    {% elseif success == true %}
-        <div class="alert alert-success">
-            Votre êtes inscrit(e) !
-        </div>
-    {% endif %}
     <div class="card-body">
       <form method="post">
         <div class="form-group">
@@ -92,7 +83,6 @@
             </div>
           </div>
         </div>
-
         {% if errors is not empty %}
             <div class="alert alert-danger">
                 {{ errors|join('<br>')|raw }} 
@@ -105,7 +95,6 @@
         <div class="form-group">
             <input type="submit" class="btn btn-primary btn-block" value="S'inscrire">
         </div>
-
       </form>
       <div class="text-center">
         <a class="d-block small mt-3" href="login.html">Se connecter</a>
