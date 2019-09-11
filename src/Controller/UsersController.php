@@ -71,6 +71,7 @@ class UsersController extends AbstractController
 
     		if(count($errors) == 0){
 
+
     			/* $articlesData me permet d'utiliser les méthodes de la class App\Entity\Articles.php */
     			$usersData = new Utilisateurs();
     			$usersData->setEmail($safe['email'])
