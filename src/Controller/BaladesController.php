@@ -18,12 +18,22 @@ class BaladesController extends AbstractController
     public function indexBalades() {
 
     	// Affichage du calendrier des balades
+
+
     	// Affichage des dernières balades
+
+        $em = $this->getDoctrine()->getManager();
+        $balades = $em->getRepository(Balades::class)->findAll();
+
+
+
+
 
 
 
 
         return $this->render('balades/index.html.twig', [
+            'balades' => $balades ?? [],
 
         ]);
     }
@@ -33,6 +43,8 @@ class BaladesController extends AbstractController
     	// Affichage du détail des balades (Titre, dates, description, map)
     	// Accéder à la galerie
     	// Bouton "S'inscrire"
+
+
 
     	return $this->render('balades/view.html.twig', [
 
@@ -95,16 +107,6 @@ class BaladesController extends AbstractController
             }
 
         }
-
-        $balades = $em->getRepository(Balades::class)->findAll();
-
-        echo '<pre>';
-        print_r($balades[0]->getUser()->getPrenom());
-        echo '</pre>';
-
-
-
-
 
     	return $this->render('balades/add.html.twig', [
             'post' => $post ?? [],
