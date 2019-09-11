@@ -28,8 +28,7 @@ class UsersController extends AbstractController
 				$errors[] = 'L\'adresse email est invalide';
 			}
 			
-			$emailExist = $this->getDoctrine()->getRepository(Utilisateurs::class)->findBy(['email' => $safe['email']]);
-			if(!empty($emailExist)){
+			if($this->emailExist($safe['email']))){
 				$errors[] = 'L\'adresse email existe déjà';
 			}
 
@@ -72,13 +71,14 @@ class UsersController extends AbstractController
     		if(count($errors) == 0){
 
     			/* $articlesData me permet d'utiliser les méthodes de la class App\Entity\Articles.php */
+    			/*
     			$usersData = new Utilisateurs();
     			$usersData->setEmail($safe['email'])
 							->setPwd(password_hash($safe['password'], PASSWORD_DEFAULT))
 							->setNom($safe['lastname'])
 							->setPrenom($safe['firstname'])
 							->setTelephone($safe['phone'])
-							->setDateNaiss(new \DateTime($safe['birthday']))
+							->setDateNaiss(new \DateTime('now'))
 							->setAdresse($safe['address'])
 							->setCp($safe['postal_code'])
 							->setVille($safe['city'])
@@ -88,7 +88,7 @@ class UsersController extends AbstractController
     			// On prépare la requete.
     			$em->persist($usersData);
     			// On l'exécute
-    			$em->flush();
+    			$em->flush();*/
     			$success = true;
     		}
     	}
@@ -98,5 +98,22 @@ class UsersController extends AbstractController
         	'donnees_saisies' => $safe ?? [],
         	'success' => $success ?? false,
         ]);
+    }
+
+
+
+    /**
+     * Vérifie l'existence d'une adresse email
+     * @param string $email L'email à vérifier
+     * @return boolean true si l'email existe, false sinon
+     */
+    public function checkEmailExist($email){
+
+    	$exist = $this->getDoctrine()
+    		->getRepository(Utilisateurs::class)
+	    	->findOneBy(['email' => $email]);
+
+
+	    return ($exist) ? true : false
     }
 }
