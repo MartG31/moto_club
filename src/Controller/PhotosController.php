@@ -26,10 +26,21 @@ class PhotosController extends MasterController
 
     // PAGES & METHODES
 
-    public function indexPhotos()
-    {
-        return $this->render('photos/index.html.twig', [
+    public function viewAlbums() {
 
+        $em = $this->getDoctrine()->getManager();
+
+        $balades = $em->getRepository(Balades::class)->findAll();
+        $albums = [];
+
+        foreach ($balades as $balade) {
+            $firstPhotoDeChaqueBalade = $em->getRepository(Photos::class)->findOneBy(['bal' => $balade ]);
+            $albums[] = $firstPhotoDeChaqueBalade;
+        }
+
+        return $this->render('photos/albums.html.twig', [
+            'albums' => $albums,
+            'uploadDir' => $this->uploadDir,
         ]);
     }
 

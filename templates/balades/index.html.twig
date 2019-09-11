@@ -7,7 +7,6 @@
 	{% for bal in balades %}
 		<div>
 			<div>{{ bal.getTitre() }}</div>
-			<div>{{ bal.getContenu() }}</div>
 
 			{% if bal.getDateDebut() == bal.getDateFin() %}
 				<div>le {{ bal.getDateDebut()|date('d/m/Y') }}</div>
@@ -15,6 +14,7 @@
 				<div>du {{ bal.getDateDebut()|date('d/m/Y') }} au {{ bal.getDateFin()|date('d/m/Y') }}</div>
 			{% endif %}
 
+			<div>{{ bal.getContenu() }}</div>
 			<div>
 				Posté par 
 				{{ bal.getUser().getNom() ~ ' ' ~ bal.getUser().getPrenom() }} 
