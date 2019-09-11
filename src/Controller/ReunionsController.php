@@ -15,7 +15,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 use App\Entity\Reunions;
 
-class ReunionsController extends AbstractController
+class ReunionsController extends MasterController
 {
     /**
      * @Route("/reunions", name="reunions")

@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Utilisateurs;
 
 
-class BackOfficeController extends AbstractController
+class BackOfficeController extends MasterController
 {
     /**
      * @Route("/back/office", name="back_office")
