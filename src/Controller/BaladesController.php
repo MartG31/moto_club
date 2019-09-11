@@ -68,22 +68,23 @@ class BaladesController extends AbstractController
 
             if(count($errors) === 0) {
 
-                $entityManager = $this->getDoctrine()->getManager();
+                $em = $this->getDoctrine()->getManager();
 
                 $bal = new Balades();
                 $bal->setTitre($post['titre']);
                 $bal->setContenu($post['contenu']);
-                $bal->setDateDebut(new \DateTime()->setDate($post['date_debut']));
-                $bal->setDateFin(new \DateTime()->setDate($post['date_fin']));
+                $bal->setDateDebut(new \DateTime($post['date_debut']));
+                $bal->setDateFin(new \DateTime($post['date_fin']));
                 // $bal->setDatetimeRdv(new \DateTime($post['datetime_rdv']));
                 // $bal->setAdresseRdv($post['adresse_rdv']);
                 // $bal->setCpRdv($post['cp_rdv']);
                 // $bal->setVilleRdv($post['ville_rdv']);
                 // $bal->setFileGps($post['file_gps']);
-                $bal->setDatetimePost(new \DateTime('now'));
+                $bal->setDatetimePost(new \DateTime());
+                // $bal->setDatetimeModif(new \DateTime());
 
-                $entityManager->persist($bal);
-                $entityManager->flush();
+                $em->persist($bal);
+                $em->flush();
 
                 $success = true;
             }
