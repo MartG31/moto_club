@@ -52,6 +52,10 @@ class ReunionsController extends AbstractController
     public function addReunion()
     
     {
+        // Utilisation de la base de données
+        $entityManager = $this->getDoctrine()->getManager();
+        $errors = [];
+
         if(!empty($_POST)){
 
             $safe = array_map('trim', array_map('strip_tags', $_POST));
@@ -75,19 +79,14 @@ class ReunionsController extends AbstractController
             $errors = array_filter($errors);
 
             if(count($errors) == 0 ){
-                $success = true;
-
-                   /////////////////////////////////////////// ajout bdd /////////////////////////////////////
-                $entityManager = $this->getDoctrine()->getManager();//
-                
-
-                $reunion = new Réunions();
+                   /////////////////////////////////////////// ajout bdd ////////////////////////////////////              
+                $reunion = new Reunions();
                 $reunion->setTitre($safe['titre'])
                         ->setLieuReu($safe['lieu'])
                         ->setTypeReu($safe['type'])
                         ->setContenu($safe['contenu'])
-                        ->setDatetimeReu($safe['date'])
-                        ->setDatePublication(new \DateTime('now'));
+                        ->setDatetimeReu(new \DateTime($safe['date']))
+                        ->setDatetimePost(new \DateTime('now'));
                 
 
                 // tell Doctrine you want to (eventually) save the Product (no queries yet)
@@ -95,6 +94,7 @@ class ReunionsController extends AbstractController
 
                 // actually executes the queries (i.e. the INSERT query)
                 $entityManager->flush();
+                $success = true;
             }
             else {
                 $errorsForm = implode('<br>', $errors);

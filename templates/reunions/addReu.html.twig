@@ -4,17 +4,17 @@
 
 {% block content %}
 
-{% if errors is not empty %}
-    <div class="alert alert-danger">{{errors|raw}}</div>
-  {% elseif success == true %}
-    <div class="alert alert-success">Votre compte a bien été créé</div>
-  {% endif %}
     
 <div class="container">
   <div class="card card-register mx-auto mt-5">
     <div class="card-header">Ajouter une réunion</div>
+{% if errors is not empty %}
+    <div class="alert alert-danger">{{errors|raw}}</div>
+  {% elseif success == true %}
+    <div class="alert alert-success">Votre réunion a bien été ajoutée</div>
+  {% endif %}
     <div class="card-body">
-      <form>
+      <form method="post">
         <div class="form-group">
           <div class="form-row">
             <div class="col-md-6">
@@ -22,8 +22,8 @@
               <input type="text" id="titre" name="titre" class="form-control" required="required" autofocus="autofocus">
             </div>
             <div class="col-md-6">
-              <label for="type-reu">Type de réunion</label>
-              <input type="text" id="type-reu" name="type-reu" class="form-control" placeholder="ex: AG" required="required">
+              <label for="type">Type de réunion</label>
+              <input type="text" id="type-reu" name="type" class="form-control" placeholder="ex: AG" required="required">
             </div>
           </div>
         </div>
@@ -34,8 +34,8 @@
         <div class="form-group">
           <div class="form-row">
             <div class="col-md-6">
-              <label for="date-reu">Date de la réunion</label>
-              <input type="date" id="date-reu" name="date-reu" class="form-control" required="required">
+              <label for="date">Date de la réunion</label>
+              <input type="date" id="date" name="date" class="form-control" required="required">
             </div>
             <div class="col-md-6">
                 <label for="lieu">Lieu de la réunion</label>
@@ -43,7 +43,7 @@
             </div>
           </div>
         </div>
-        <input type="button" value="Ajouter" class="btn btn-primary btn-block">
+        <input type="submit" value="Ajouter" class="btn btn-primary btn-block">
       </form>
     </div>
   </div>
