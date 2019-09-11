@@ -10,9 +10,9 @@
 			<div>{{ bal.getContenu() }}</div>
 
 			{% if bal.getDateDebut() == bal.getDateFin() %}
-				<div>le {{ bal.getDateDebut() }}</div>
+				<div>le {{ bal.getDateDebut()|date('d/m/Y') }}</div>
 			{% else %}
-				<div>du {{ bal.getDateDebut() }} au {{ bal.getDateFin() }}</div>
+				<div>du {{ bal.getDateDebut()|date('d/m/Y') }} au {{ bal.getDateFin()|date('d/m/Y') }}</div>
 			{% endif %}
 
 			<div>
