@@ -4,7 +4,7 @@ accueil:
     path: /
     controller: App\Controller\DefaultController::index
 
-############################# Users ##################
+############################# BackOffice ##################
 
 admin_accueil:
     path: /backoffice/accueil
@@ -14,6 +14,7 @@ liste_user:
     path: /backoffice/liste-utilisateur
     controller: App\Controller\BackOfficeController::viewUsers
 
+############################# Users ##################
 inscription_user:
     path: /users/inscription
     controller: App\Controller\UsersController::inscriptionUser
@@ -106,3 +107,9 @@ view_cr:
     controller: App\Controller\ReunionsController::viewCr
     requirements:
       id: '\d+' 
+
+del_cr:
+    path: /reunions/supprimer-un-cr/{id}
+    controller: App\Controller\ReunionsController::delCr
+    requirements:
+      id: '\d+'
