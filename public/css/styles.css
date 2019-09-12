@@ -1,7 +1,17 @@
+html { 
+  box-sizing: border-box;
+  width: 100%;
+}
+
 body{
-	
+	margin:0;
 	font-family: sans-serif;
 }
+
+*, *:before, *:after {
+ box-sizing: inherit;
+}
+
 
 header{
 
