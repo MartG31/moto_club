@@ -128,7 +128,7 @@ class UsersController extends MasterController
 
     			if(password_verify($safe['password'], $userExists->getPwd())){
 
-    				$_SESSION['user'] = $userExists;
+    				$this->session->set('user', $userExists);
     				session_regenerate_id();
     				$success = true;
     				header('Refresh: 0; /');
@@ -152,5 +152,38 @@ class UsersController extends MasterController
     {
 		session_destroy();
 		return $this->redirectToRoute('accueil');
+    }
+
+    public function lostPasswordUser()
+    {
+		// Utilisation de la base de données
+		$em = $this->getDoctrine()->getManager();
+		// Nettoyage des données
+    	$errors = [];
+        
+    	if(!empty($_POST)){
+
+			$safe = array_map('trim', array_map('strip_tags', $_POST));
+
+			if(!filter_var($safe['email'], FILTER_VALIDATE_EMAIL)){
+				$errors[] = 'L\'adresse email est invalide';
+			}
+			
+			$userExists = $this->getDoctrine()->getRepository(Utilisateurs::class)->findOneBy(['email' => $safe['email']]);
+			if(!$userExists){
+				$errors[] = 'L\'adresse email n\'existe pas';
+			}
+
+    		if(count($errors) == 0){
+
+    		}
+    	}
+
+        return $this->render('users/login.html.twig', [
+        	'errors'     => $errors,
+        	'donnees_saisies' => $safe ?? [],
+        	'user' => $userExists ?? false,
+        	'success' => $success ?? false,
+        ]);
     }
 }
