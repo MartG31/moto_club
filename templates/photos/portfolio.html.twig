@@ -1,6 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Portefolio{% endblock %}
+{% block stylesheets %}
+    <!-- Lien du CSS albums -->
+    <link rel="stylesheet" type="text/css" href="/css/stylesportfolio.css">
+ {% endblock %}
+
 
 {% block content %}
 <main>
@@ -8,9 +13,8 @@
 	    <div class="row">
 	  		{% for ph in photos %}
 	            <div class="col-sm-6 col-md-4 col-lg-3">
-	                <p class="imglist" style="max-width: 1000px;">
+	                <p class="imglist">
 	                    <figure>
-	                        <!-- A modifier le lien pour montrer les photos de l'album séléctionné uniquement -->
 	                        <a href="{{ '/' ~ uploadDir ~ ph.getFileName() }}" data-fancybox="images" data-caption="{{ ph.getLegende() }}">
 	                            <img class="img-fluid" src="{{ '/' ~ uploadDir ~ ph.getFileName() }}">
 	                        </a>   
