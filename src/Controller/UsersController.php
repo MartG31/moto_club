@@ -116,8 +116,8 @@ class UsersController extends MasterController
 				$errors[] = 'L\'adresse email est invalide';
 			}
 			
-			$userExists = $this->getDoctrine()->getRepository(Utilisateurs::class)->findBy(['email' => $safe['email']]);
-			if(empty($userExists)){
+			$userExists = $this->getDoctrine()->getRepository(Utilisateurs::class)->findOneBy(['email' => $safe['email']]);
+			if(!$userExists){
 				$errors[] = 'L\'adresse email n\'existe pas';
 			}
 
@@ -131,6 +131,11 @@ class UsersController extends MasterController
 
     				$_SESSION['user'] = $userExists;
     				session_regenerate_id();
+    				$success = true;
+    			}
+
+    			else{
+    				$errors[] = 'Le mot de passe est incorrect';
     			}
     		}
     	}
@@ -140,5 +145,11 @@ class UsersController extends MasterController
         	'donnees_saisies' => $safe ?? [],
         	'success' => $success ?? false,
         ]);
+    }
+
+    public function logoutUser()
+    {
+		session_destroy();
+		return $this->redirectToRoute('accueil');
     }
 }

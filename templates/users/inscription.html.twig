@@ -12,7 +12,7 @@
         <div class="form-group">
           <div class="form-group">
             <label for="email">Adresse email</label>
-            <input type="email" id="email" name="email" class="form-control" required autofocus>
+            <input type="email" id="email" name="email" class="form-control" value="{{donnees_saisies.email ?? ''}}" required autofocus>
           </div>
         </div>
         <div class="form-group">
@@ -36,13 +36,13 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="lastName">Nom</label>
-                <input type="text" id="lastName" name="lastname" class="form-control" required>
+                <input type="text" id="lastName" name="lastname" class="form-control" value="{{donnees_saisies.lastname ?? ''}}" required>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label for="firstName">Prénom</label>
-                <input type="text" id="firstName" name="firstname" class="form-control" required>
+                <input type="text" id="firstName" name="firstname" class="form-control" value="{{donnees_saisies.firstname ?? ''}}" required>
               </div>
             </div>
           </div>
@@ -52,33 +52,33 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="birthday">Date de Naissance</label>
-                <input type="date" id="birthday" name="birthday" class="form-control" required>
+                <input type="date" id="birthday" name="birthday" class="form-control" value="{{donnees_saisies.birthday ?? ''}}" required>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label for="phone">Numéro de Téléphone</label>
-                <input type="text" id="phone" name="phone" class="form-control" maxlength="10" required>
+                <input type="text" id="phone" name="phone" class="form-control" value="{{donnees_saisies.phone ?? ''}}" maxlength="10" required>
               </div>
             </div>
           </div>
         </div>
         <div class="form-group">
             <label for="address">Adresse</label>
-            <input type="text" id="address" name="address" class="form-control" required>
+            <input type="text" id="address" name="address" class="form-control" value="{{donnees_saisies.address ?? ''}}" required>
         </div>
         <div class="form-group">
           <div class="form-row">
             <div class="col-md-6">
               <div class="form-group">
                 <label for="postal_code">Code Postal</label>
-                <input type="text" id="postal_code" name="postal_code" class="form-control" required>
+                <input type="text" id="postal_code" name="postal_code" class="form-control" value="{{donnees_saisies.postal_code ?? ''}}" required>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label for="city">Ville</label>
-                <input type="text" id="city" name="city" class="form-control" required>
+                <input type="text" id="city" name="city" class="form-control" value="{{donnees_saisies.city ?? ''}}" required>
               </div>
             </div>
           </div>
