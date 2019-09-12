@@ -13,8 +13,7 @@ class UsersController extends MasterController
     /**
      * @Route("/users", name="users")
      */
-    public function inscriptionUser()
-    {
+    public function inscriptionUser() {
 		// Utilisation de la base de données
 		$em = $this->getDoctrine()->getManager();
 		// Nettoyage des données
@@ -100,8 +99,7 @@ class UsersController extends MasterController
         ]);
     }
 
-    public function loginUser()
-    {
+    public function loginUser() {
 		// Utilisation de la base de données
 		$em = $this->getDoctrine()->getManager();
 		// Nettoyage des données
@@ -148,20 +146,18 @@ class UsersController extends MasterController
         ]);
     }
 
-    public function logoutUser()
-    {
+    public function logoutUser() {
 		session_destroy();
 		return $this->redirectToRoute('accueil');
     }
 
-    public function forgotPasswordUser($name, \Swift_Mailer $mailer)
-	{
+    public function forgotPasswordUser($name, \Swift_Mailer $mailer) {
 		// Utilisation de la base de données
 		$em = $this->getDoctrine()->getManager();
 		// Nettoyage des données
     	$errors = [];
         
-    	if(!empty($_POST)){
+    	if(!empty($_POST)) {
 
 			$safe = array_map('trim', array_map('strip_tags', $_POST));
 
@@ -170,11 +166,11 @@ class UsersController extends MasterController
 			}
 			
 			$userExists = $this->getDoctrine()->getRepository(Utilisateurs::class)->findOneBy(['email' => $safe['email']]);
-			if(!$userExists){
+			if(!$userExists) {
 				$errors[] = 'L\'adresse email n\'existe pas';
 			}
 
-    		if(count($errors) == 0){
+    		if(count($errors) == 0) {
 			    $message = (new \Swift_Message('Hello Email'))
 			        ->setFrom('send@example.com')
 			        ->setTo($safe['email'])
@@ -190,6 +186,6 @@ class UsersController extends MasterController
 			    $mailer->send($message);
 			}
 
-	    return $this->render(...);
+	    return $this->render();
 	}
 }
