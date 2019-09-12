@@ -13,7 +13,12 @@ class DefaultController extends MasterController
     public function index()
     {
         return $this->render('default/index.html.twig', [
-            'controller_name' => 'DefaultController',
+        ]);
+    }
+
+    public function contact()
+    {
+        return $this->render('default/contact.html.twig', [
         ]);
     }
 }
