@@ -29,7 +29,6 @@ class ReunionsController extends MasterController
             $reuFound = $entityManager->getRepository(Reunions::class)->findAll();
 
         return $this->render('reunions/index.html.twig', [
-            'controller_name' => 'ReunionController',
             'reunionsTrouvees' => $reuFound, 
         ]);
     }
@@ -44,7 +43,6 @@ class ReunionsController extends MasterController
 
 
         return $this->render('reunions/viewReu.html.twig', [
-            'controller_name' => 'ReunionController',
             'reunionTrouvee' => $reuFound, 
         ]);
     }
@@ -199,6 +197,7 @@ class ReunionsController extends MasterController
             // Permet de chercher les réunions via le repository
             $reuFound = $entityManager->getRepository(Reunions::class)->find($id);
 
+
             if(!empty($_POST)){
 
                 $safe = array_map('trim', array_map('strip_tags', $_POST));
@@ -246,6 +245,78 @@ class ReunionsController extends MasterController
             'donnees_saisies'   => $safe ?? [],
             'success'           => $success ?? false,
             'errors'            => $errorsForm ?? [],
+        ]);
+    }
+
+    public function editCr($id)
+    
+    {
+        // Récupération de la liste des réunions
+            $entityManager = $this->getDoctrine()->getManager();
+            // Permet de chercher les réunions via le repository
+            $reuFound = $entityManager->getRepository(Reunions::class)->find($id);
+            $crFound = $entityManager->getRepository(ComptesRendus::class)->find($id);
+
+            if(!empty($_POST)){
+
+                $safe = array_map('trim', array_map('strip_tags', $_POST));
+
+                //pas de controle d'unicité de la réunion : il s'agira d'une modération manuelle
+                #$entityManager = $this->getDoctrine()->getManager();
+                #$userFound = $entityManager->getRepository(Reunions::class)->findByEmail($safe['email']);
+                //var_dump($userFound);
+                
+               ///////////////////////////////////////// tableau d'erreur
+
+                $errors = [                                                      
+                (!v::notEmpty()->stringType()->length(3)->validate($safe['contenu'])) ? 'Le contenu du compte rendu réunion doit faire au moins 3 caractères' : null,
+                (!v::notEmpty()->stringType()->length(3, 80)->validate($safe['titre'])) ? 'Le titre du compte rendu réunion doit faire entre 3 et 80 caractères' : null,
+                ];
+
+                $errors = array_filter($errors);
+
+                if(count($errors) == 0 ){
+                       /////////////////////////////////////////// ajout bdd ////////////////////////////////////              
+                   
+                    $crFound->setContenu($safe['contenu'])
+                        ->setTitre($safe['titre'])
+                        ->setReu($reuFound)
+                        //->setUser($_SESSION['user'])
+                        ->setDatetimeModif(new \DateTime('now'));
+
+                    // tell Doctrine you want to (eventually) save the Product (no queries yet)
+                    $entityManager->persist($crFound);
+
+                    // actually executes the queries (i.e. the INSERT query)
+                    $entityManager->flush();
+                    $success = true;
+                }
+                else {
+                    $errorsForm = implode('<br>', $errors);
+                }
+                //suppression de l'article trouvé
+                #$entityManager->remove($reuFound);
+                #$entityManager->flush();
+            }
+
+        return $this->render('reunions/editCr.html.twig', [
+            'reunionTrouvee'    => $reuFound,
+            'crTrouve'          => $crFound,
+            'donnees_saisies'   => $safe ?? [],
+            'success'           => $success ?? false,
+            'errors'            => $errorsForm ?? [],
+        ]);
+    }
+    public function indexCr()
+    
+    {
+        // Récupération de la liste des réunions
+            $entityManager = $this->getDoctrine()->getManager();
+            // Permet de chercher les réunions via le repository
+            $crFound = $entityManager->getRepository(ComptesRendus::class)->findAll();
+
+        return $this->render('reunions/indexCr.html.twig', [
+            'crTrouves' => $crFound, 
         ]);
     }
 

@@ -84,9 +84,6 @@
               </div>
             </li>
 
-            <li>
-              {{ app.session|length }}
-            </li>
           </ul>
 
         </nav>
@@ -133,6 +130,10 @@
 
                 <div class="container-fluid">
 
+
+          <div class="alert alert-danger">
+              {{  app.request.session.get("page") }}
+            </div>
                     <!-- Breadcrumbs-->
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
@@ -141,8 +142,8 @@
                         <li class="breadcrumb-item active">Blank Page</li>
                     </ol>
 
-        {% block content %}
-        {% endblock %}
+                  {% block content %}
+                  {% endblock %}
 
                 </div><!-- /.container-fluid -->
     
