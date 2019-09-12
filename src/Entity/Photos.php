@@ -31,9 +31,9 @@ class Photos
     /**
      * @var string|null
      *
-     * @ORM\Column(name="legende", type="string", length=50, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="legende", type="string", length=50, nullable=true)
      */
-    private $legende = 'NULL';
+    private $legende;
 
     /**
      * @var \DateTime

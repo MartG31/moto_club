@@ -45,9 +45,9 @@ class Articles
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="datetime_modif", type="datetime", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="datetime_modif", type="datetime", nullable=true)
      */
-    private $datetimeModif = 'NULL';
+    private $datetimeModif;
 
     /**
      * @var \Utilisateurs

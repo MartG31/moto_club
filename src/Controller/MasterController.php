@@ -7,12 +7,21 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class MasterController extends AbstractController
 {
+    // ATTRIBUTS MUTUALISES
+
     public $rank = array(
         'membre' => 1,
         'adherent' => 2,
         'bureau' => 3,
         'admin' => 4,
     );
+
+
+    // CONSTRUCTEUR
+
+    public function __construct() {
+        
+    }
 
     // FONCTIONS MUTUALISEES
 
