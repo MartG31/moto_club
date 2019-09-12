@@ -100,4 +100,45 @@ class UsersController extends MasterController
         	'success' => $success ?? false,
         ]);
     }
+
+    public function loginUser()
+    {
+		// Utilisation de la base de données
+		$em = $this->getDoctrine()->getManager();
+		// Nettoyage des données
+    	$errors = [];
+        
+    	if(!empty($_POST)){
+
+			$safe = array_map('trim', array_map('strip_tags', $_POST));
+
+			if(!filter_var($safe['email'], FILTER_VALIDATE_EMAIL)){
+				$errors[] = 'L\'adresse email est invalide';
+			}
+			
+			$userExists = $this->getDoctrine()->getRepository(Utilisateurs::class)->findBy(['email' => $safe['email']]);
+			if(empty($userExists)){
+				$errors[] = 'L\'adresse email n\'existe pas';
+			}
+
+			if(!v::stringType()->length(8, null)->validate($safe['password'])){
+				$errors[] = 'Le mot de passe doit comporter au moins 8 caractères';
+			}
+
+    		if(count($errors) == 0){
+    			
+    			if(password_verify($safe['password'], $userExists->getPwd())){
+
+    				$_SESSION['user'] = $userExists;
+    				session_regenerate_id();
+    			}
+    		}
+    	}
+
+        return $this->render('users/login.html.twig', [
+        	'errors'     => $errors,
+        	'donnees_saisies' => $safe ?? [],
+        	'success' => $success ?? false,
+        ]);
+    }
 }
