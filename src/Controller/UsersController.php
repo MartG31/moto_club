@@ -154,8 +154,8 @@ class UsersController extends MasterController
 		return $this->redirectToRoute('accueil');
     }
 
-    public function lostPasswordUser()
-    {
+    public function forgotPasswordUser($name, \Swift_Mailer $mailer)
+	{
 		// Utilisation de la base de données
 		$em = $this->getDoctrine()->getManager();
 		// Nettoyage des données
@@ -175,15 +175,21 @@ class UsersController extends MasterController
 			}
 
     		if(count($errors) == 0){
+			    $message = (new \Swift_Message('Hello Email'))
+			        ->setFrom('send@example.com')
+			        ->setTo($safe['email'])
+			        ->setBody(
+			            $this->renderView(
+			                // templates/emails/registration.html.twig
+			                'emails/registration.html.twig',
+			                ['name' => $name]
+			            ),
+			            'text/html'
+			        );
 
-    		}
-    	}
+			    $mailer->send($message);
+			}
 
-        return $this->render('users/login.html.twig', [
-        	'errors'     => $errors,
-        	'donnees_saisies' => $safe ?? [],
-        	'user' => $userExists ?? false,
-        	'success' => $success ?? false,
-        ]);
-    }
+	    return $this->render(...);
+	}
 }

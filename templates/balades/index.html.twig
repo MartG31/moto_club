@@ -1,7 +1,6 @@
-{% extends 'admin.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}Balades{% endblock %}
-
 
 {% block content %}
 	{% for bal in balades %}
@@ -25,6 +24,4 @@
 			</div>
 		</div>
 	{% endfor %}
-
-	
 {% endblock %}
