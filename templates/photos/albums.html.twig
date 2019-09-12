@@ -15,16 +15,14 @@
             <div class="titlealbums">
                 {{ fPh.getBal().getTitre() }}
             </div>            
-            
-                <figure>
-                    <!-- A modifier le lien pour aller directement voir les photos de l'album séléctionné uniquement -->
-                    <a href ="portfolio.html.twig"> 
-                        <figcaption>
-                            <img class="img-fluid img-album" src="{{ '/' ~ uploadDir ~ fPh.getFileName() }}">
-                        </figcaption>
-                    </a>
-                </figure>
-                      
+           <figure>
+                <!-- A modifier le lien pour aller directement voir les photos de l'album séléctionné uniquement -->
+                <a href ="portfolio.html.twig"> 
+                    <figcaption>
+                        <img class="img-fluid img-album" src="{{ '/' ~ uploadDir ~ fPh.getFileName() }}">
+                    </figcaption>
+                </a>
+            </figure>            
             <div>{{ fPh.getLegende() }}</div>            
         </div>
       {% endfor %}

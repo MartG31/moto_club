@@ -3,64 +3,25 @@
 {% block title %}Portefolio{% endblock %}
 
 {% block content %}
-	<main>
-		<div id="content">
-			<div class="view photos">
-				<p class="imglist" style="max-width: 1000px;">
-					<div class="row">
-						
-						<div class="col-md-4">
-							<figure>
-							  <a href="moto1.jpg" data-fancybox="images" data-caption="Moto 1">
-							    <img class="img-fluid" src="moto1.jpg"/>
-							  </a>
-							</figure>
-						</div>
-
-						<div class="col-md-4">
-							<figure>
-							  <a href="moto2.jpg" data-fancybox="images" data-caption="Moto 2">
-							    <img class="img-fluid" src="moto2.jpg"/>
-							  </a>
-							</figure>
-						</div>
-
-						<div class="col-md-4">
-							<figure> 
-							  <a href="moto3.jpg" data-fancybox="images" data-caption="Moto 3">
-							    <img class="img-fluid" src="moto3.jpg"/>
-							  </a>
-							</figure>
-						</div>
-
-						<div class="col-md-4">
-							<figure>
-							  <a href="moto3.jpg" data-fancybox="images" data-caption="Moto 1">
-							    <img class="img-fluid" src="moto3.jpg"/>
-							  </a>
-							</figure>
-						</div>
-
-						<div class="col-md-4">
-							<figure>
-							  <a href="moto2.jpg" data-fancybox="images" data-caption="Moto 2">
-							    <img class="img-fluid" src="moto2.jpg"/>
-							  </a>
-							</figure>
-						</div>
-
-						<div class="col-md-4">
-							<figure> 
-							  <a href="moto1.jpg" data-fancybox="images" data-caption="Moto 3">
-							    <img class="img-fluid" src="moto1.jpg"/>
-							  </a>
-							</figure>
-						</div>
-					</div> 
-				</p>		
-			</div>
-		</div>
-	</main>
+<main>
+	<div id="content">
+	    <div class="row">
+	  		{% for ph in photos %}
+	            <div class="col-md-4">
+	                <p class="imglist" style="max-width: 1000px;">
+	                    <figure>
+	                        <!-- A modifier le lien pour montrer les photos de l'album séléctionné uniquement -->
+	                        <a href="{{ '/' ~ uploadDir ~ ph.getFileName() }}" data-fancybox="images" data-caption="{{ ph.getLegende() }}">
+	                            <img class="img-fluid" src="{{ '/' ~ uploadDir ~ ph.getFileName() }}">
+	                        </a>   
+	                    </figure>
+	                </p>    
+	                <div>{{ ph.getLegende() }}</div> 
+	            </div>                  
+	        {% endfor %} 
+	    </div>
+	</div>
+</main>
 {% endblock %}
 
 

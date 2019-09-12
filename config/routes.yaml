@@ -38,8 +38,12 @@ add_balade:
 
 ############################# Photos ##################
 
+portfolio:
+    path: /portfolio/
+    controller: App\Controller\PhotosController::portfolio
+
 view_portfolio:
-    path: /photos/portfolio
+    path: /photos/portfolio/{id}
     controller: App\Controller\PhotosController::viewPortfolio
 
 view_albums:
