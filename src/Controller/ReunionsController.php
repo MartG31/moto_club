@@ -173,7 +173,7 @@ class ReunionsController extends MasterController
         ]);
     }
 
-    public function delReunion()
+    public function delReunion($id)
     
     {
         // Récupération de la liste des réunions
@@ -185,7 +185,7 @@ class ReunionsController extends MasterController
                 #$entityManager->flush();
 
         return $this->render('reunions/delReu.html.twig', [
-            'controller_name' => 'ReunionController',
+            'reunionTrouvee' => $reuFound,
         ]);
     }
 
@@ -331,6 +331,22 @@ class ReunionsController extends MasterController
 
         return $this->render('reunions/viewCr.html.twig', [
             'crTrouve' => $crFound, 
+        ]);
+    }
+
+    public function delCr($id)
+    
+    {
+        // Récupération de la liste des réunions
+            $entityManager = $this->getDoctrine()->getManager();
+            // Permet de chercher les réunions via le repository
+            $crFound = $entityManager->getRepository(ComptesRendus::class)->find($id);
+                //suppression de l'article trouvé
+                #$entityManager->remove($reuFound);
+                #$entityManager->flush();
+
+        return $this->render('reunions/delCr.html.twig', [
+            'crTrouve' => $crFound,
         ]);
     }
 

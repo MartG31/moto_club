@@ -1,11 +1,11 @@
 {% extends 'admin.html.twig' %}
 
-{% block title %}Détails d'un compte-rendu{% endblock %}
+{% block title %}Suppression d'un compte-rendu{% endblock %}
 
 {% block content %}
     
 <div class="card mb-3">
-    <h1>Compte-rendu complet  </h1>
+    <h1>Compte-rendu à supprimer  </h1>
   	<div class="card-header">
     	<i class="fas fa-table"></i>{{ crTrouve.getTitre() }}
     </div>
@@ -35,7 +35,7 @@
 	            <td>
 	            	<a class="btn btn-primary btn-block" href="{{ path('edit_cr', {id : crTrouve.getId()}) }}" role="button">Modifier</a>
 	            	<a class="btn btn-secondary btn-block" href="{{ path('index_cr') }}" role="button">Liste des compte-rendus</a>
-	            	<a class="btn btn-danger btn-block" href="{{ path('del_cr', {id : crTrouve.getId()}) }}" role="button">Supprimer</a>
+	            	<button type="button" class="btn btn-danger btn-block">Supprimer</button>
 	            </td>
 	          </tr>
 	        </tbody>

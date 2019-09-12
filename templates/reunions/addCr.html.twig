@@ -26,13 +26,16 @@
         </div>
         <div class="form-group">
           <label for="contenu">Contenu</label>
-          <input type="text" id="contenu" name="contenu" class="form-control" required="required" value="{{ donnees_saisies.contenu ?? '' }}">
+          <textarea id="contenu" name="contenu" class="form-control" required="required" >{{ donnees_saisies.contenu ?? '' }}
+          </textarea>
         </div>
+        <div class="card-body">
         {% if success == true %}
-          <a class="btn btn-primary btn-block" href="{{ path('add_cr', {id : reunionTrouvee.getId()}) }}" role="button">Modifier ce compte rendu </a>
+          <a class="btn btn-success btn-block" href="{{ path('edit_cr', {id : reunionTrouvee.getId()}) }}" role="button">Modifier ce compte rendu </a>
         {% else %}
-        <input type="submit" value="Ajouter" class="btn btn-primary btn-block">
+          <input type="submit" value="Ajouter" class="btn btn-primary btn-block">
         {% endif %}
+        </div>
       </form>
     </div>
   </div>

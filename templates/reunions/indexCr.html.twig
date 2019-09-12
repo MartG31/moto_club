@@ -22,8 +22,11 @@
 	          {% for crTrouve in crTrouves %}
 	          <tr>
 	            <td>{{ crTrouve.getTitre() }} </td>
-	            <td><a class="btn btn-secondary" href="{{ path('edit_cr', {id : crTrouve.getId()}) }}" role="button">Modifier</a>
-	            <a class="btn btn-secondary" href="{{ path('view_cr', {id : crTrouve.getId()}) }}" role="button">Afficher</a></td>
+	            <td>
+	            	<a class="btn btn-primary" href="{{ path('view_cr', {id : crTrouve.getId()}) }}" role="button">Afficher</a>
+	           		<a class="btn btn-secondary" href="{{ path('edit_cr', {id : crTrouve.getId()}) }}" role="button">Modifier</a>
+	            	<a class="btn btn-danger" href="{{ path('del_cr', {id : crTrouve.getId()}) }}" role="button">Supprimer</a>
+	            </td>
 	          </tr>
 	          {%  endfor %} 
 	        </tbody>

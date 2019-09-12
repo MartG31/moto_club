@@ -27,12 +27,13 @@
         </div>
         <div class="form-group">
           <label for="contenu">Contenu</label>
-          <textarea id="contenu" name="contenu" class="form-control" required="required" >{{ crTrouve.getContenu() }}
-            
-          </textarea>
+          <textarea id="contenu" name="contenu" class="form-control" required="required" >{{ crTrouve.getContenu() }}</textarea>
         </div>
-          <input type="submit" value="Modifier" class="btn btn-primary btn-block">
-          <a class="btn btn-secondary" href="{{ path('index_cr') }}" role="button">Retour à la liste des compte-rendus</a>
+          <div class="card-body">
+            <a class="btn btn-success " href="{{ path('view_cr', {id : crTrouve.getId()}) }}" role="button">Afficher</a>
+            <input type="submit" value="Modifier" class="btn btn-primary">
+            <a class="btn btn-secondary " href="{{ path('index_cr') }}" role="button">Liste des compte-rendus</a>
+          </div>
       </form>
     </div>
   </div>

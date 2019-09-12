@@ -24,7 +24,6 @@
 	            <th>Type de réunion</th>
 	            <th>Date de la réunion</th>
 	            <th></th>
-	            <th></th>
 	          </tr>
 	        </thead>
 	        <tbody>
@@ -33,8 +32,11 @@
 	            <td>{{ reunionTrouvee.getTitre() }} </td>
 	            <td>{{ reunionTrouvee.getTypeReu() }} </td>
 	            <td>{{ reunionTrouvee.getDatetimeReu()|date("d/m/Y") }} </td>
-	            <td><a class="btn btn-secondary" href="{{ path('edit_reunion', {id : reunionTrouvee.getId()}) }}" role="button">Modifier</a></td>
-	            <td><a class="btn btn-secondary" href="{{ path('view_reunion', {id : reunionTrouvee.getId()}) }}" role="button">Afficher</a></td>
+	            <td>
+		            <a class="btn btn-primary" href="{{ path('view_reunion', {id : reunionTrouvee.getId()}) }}" role="button">Afficher</a>
+		            <a class="btn btn-secondary" href="{{ path('edit_reunion', {id : reunionTrouvee.getId()}) }}" role="button">Modifier</a>
+		            <a class="btn btn-danger" href="{{ path('del_reunion', {id : reunionTrouvee.getId()}) }}" role="button">Supprimer</a>
+		        </td>
 	          </tr>
 	          {%  endfor %} 
 	        </tbody>
