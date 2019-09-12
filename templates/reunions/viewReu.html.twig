@@ -31,7 +31,10 @@
 	            <td>{{ reunionTrouvee.getLieuReu() }} </td>
 	            <td>{{ reunionTrouvee.getContenu() }} </td>
 	            <td>{{ reunionTrouvee.getUser().getPrenom() ?? '' }} </td>
-	            <td><a class="btn btn-secondary" href="{{ path('edit_reunion', {id : reunionTrouvee.getId()}) }}" role="button">Modifier</a></td>
+	            <td>
+	            	<a class="btn btn-secondary" href="{{ path('edit_reunion', {id : reunionTrouvee.getId()}) }}" role="button">Modifier</a>
+	            	<a class="btn btn-secondary" href="{{ path('index_reunions') }}" role="button">Retour à la liste des réunions</a>
+	            </td>
 	          </tr>
 	        </tbody>
 
