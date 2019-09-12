@@ -1,17 +1,17 @@
 {% extends 'admin.html.twig' %}
 
-{% block title %}Compte-rendu{% endblock %}
+{% block title %}Compte-rendu - modification{% endblock %}
 
 {% block content %}
 
     
 <div class="container">
   <div class="card card-register mx-auto mt-5">
-    <div class="card-header">Ajouter un compte-rendu pour {{ reunionTrouvee.getTitre() }}</div>
+    <div class="card-header">Modifier le compte-rendu pour {{ reunionTrouvee.getTitre() }}</div>
     {% if errors is not empty %}
       <div class="alert alert-danger">{{errors|raw}}</div>
     {% elseif success == true %}
-      <div class="alert alert-success">Votre CR a bien été ajouté</div>
+      <div class="alert alert-success">Votre CR a bien été modifié</div>
     {% endif %}
     <div class="card-body">Réunion du {{ reunionTrouvee.getDatetimeReu()|date("Y-m-d") }} à {{ reunionTrouvee.getDatetimeReu()|date("H:i") }}</div>
     <div class="card-body">
@@ -20,19 +20,15 @@
           <div class="form-row">
             <div class="col-md-6">
               <label for="titre">Nom du compte rendu</label>
-              <input type="text" id="titre" name="titre" class="form-control" required="required" autofocus="autofocus" value="{{ donnees_saisies.titre ?? '' }}">
+              <input type="text" id="titre" name="titre" class="form-control" required="required" autofocus="autofocus" value="{{ crTrouve.getTitre() }}">
             </div>
           </div>
         </div>
         <div class="form-group">
           <label for="contenu">Contenu</label>
-          <input type="text" id="contenu" name="contenu" class="form-control" required="required" value="{{ donnees_saisies.contenu ?? '' }}">
+          <input type="text" id="contenu" name="contenu" class="form-control" required="required" value="{{ crTrouve.getContenu() }}">
         </div>
-        {% if success == true %}
-          <a class="btn btn-primary btn-block" href="{{ path('add_cr', {id : reunionTrouvee.getId()}) }}" role="button">Modifier ce compte rendu </a>
-        {% else %}
-        <input type="submit" value="Ajouter" class="btn btn-primary btn-block">
-        {% endif %}
+          <input type="submit" value="Modifier" class="btn btn-primary btn-block">
       </form>
     </div>
   </div>

@@ -38,8 +38,12 @@ add_balade:
 
 ############################# Photos ##################
 
+portfolio:
+    path: /portfolio/
+    controller: App\Controller\PhotosController::portfolio
+
 view_portfolio:
-    path: /photos/portfolio
+    path: /photos/portfolio/{id}
     controller: App\Controller\PhotosController::viewPortfolio
 
 view_albums:
@@ -87,3 +91,12 @@ add_cr:
     requirements:
       id: '\d+'
 
+edit_cr:
+    path: /reunions/modifier-un-cr/{id}
+    controller: App\Controller\ReunionsController::editCr
+    requirements:
+      id: '\d+'
+
+index_cr:
+    path: /reunions/liste-cr
+    controller: App\Controller\ReunionsController::indexCr
