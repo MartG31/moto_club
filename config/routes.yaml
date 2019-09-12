@@ -22,6 +22,10 @@ connexion_user:
     path: /users/login
     controller: App\Controller\UsersController::loginUser
 
+deconnexion_user:
+    path: /users/logout
+    controller: App\Controller\UsersController::logoutUser
+
 ############################# Balades ##################
 
 index_balades:
