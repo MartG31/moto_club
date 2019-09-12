@@ -87,3 +87,9 @@ add_cr:
     requirements:
       id: '\d+'
 
+edit_cr:
+    path: /reunions/modifier-un-cr/{id}
+    controller: App\Controller\ReunionsController::editCr
+    requirements:
+      id: '\d+'
+

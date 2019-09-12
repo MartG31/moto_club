@@ -1,6 +1,6 @@
 {% extends 'admin.html.twig' %}
 
-{% block title %}Compte-rendu{% endblock %}
+{% block title %}Compte-rendu - modification{% endblock %}
 
 {% block content %}
 
@@ -20,16 +20,16 @@
           <div class="form-row">
             <div class="col-md-6">
               <label for="titre">Nom du compte rendu</label>
-              <input type="text" id="titre" name="titre" class="form-control" required="required" autofocus="autofocus" value="{{ donnees_saisies.titre ?? '' }}">
+              <input type="text" id="titre" name="titre" class="form-control" required="required" autofocus="autofocus" value="{{ reunionTrouvee.getTitre() }}">
             </div>
           </div>
         </div>
         <div class="form-group">
           <label for="contenu">Contenu</label>
-          <input type="text" id="contenu" name="contenu" class="form-control" required="required" value="{{ donnees_saisies.contenu ?? '' }}">
+          <input type="text" id="contenu" name="contenu" class="form-control" required="required" value="{{ reunionTrouvee.getContenu() }}">
         </div>
         {% if success == true %}
-          <a class="btn btn-primary btn-block" href="{{ path('add_cr', {id : reunionTrouvee.getId()}) }}" role="button">Modifier ce compte rendu </a>
+          <a class="btn btn-primary btn-block" href="{{ path('edit_cr', {id : reunionTrouvee.getId()}) }}" role="button">Modifier ce compte rendu </a>
         {% else %}
         <input type="submit" value="Ajouter" class="btn btn-primary btn-block">
         {% endif %}
