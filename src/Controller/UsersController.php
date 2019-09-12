@@ -8,8 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use \Respect\Validation\Validator as v;
 
-class UsersController extends MasterController
-{
+class UsersController extends MasterController {
     /**
      * @Route("/users", name="users")
      */
@@ -185,6 +184,7 @@ class UsersController extends MasterController
 
 			    $mailer->send($message);
 			}
+		}
 
 	    return $this->render();
 	}
