@@ -139,7 +139,17 @@ nav ul li a.active{
 footer{
 	background-color: #2e7ff0;
 	min-height: 8vh;
+	
 }
+
 .colorlink{
 	color: black;
+}
+
+.footerlink{
+	color: black;
+}
+
+.footerlink:hover{
+	color: white;
 }
