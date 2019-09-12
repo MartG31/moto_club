@@ -9,6 +9,7 @@ body{
 	font-family: sans-serif;
 }
 
+
 *, *:before, *:after {
  box-sizing: inherit;
 }
@@ -138,8 +139,11 @@ nav ul li a.active{
 
 footer{
 	background-color: #2e7ff0;
-	min-height: 8vh;
-	
+	position:absolute; 
+	height: auto;
+	width: 100%;
+	bottom: 0;
+
 }
 
 .colorlink{
