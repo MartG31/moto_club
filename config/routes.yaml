@@ -78,3 +78,9 @@ del_reunion:
     requirements:
       id: '\d+' 
 
+add_cr:
+    path: /reunions/ajouter-un-cr/{id}
+    controller: App\Controller\ReunionsController::addCr
+    requirements:
+      id: '\d+'
+

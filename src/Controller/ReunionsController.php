@@ -210,9 +210,8 @@ class ReunionsController extends MasterController
                ///////////////////////////////////////// tableau d'erreur
 
                 $errors = [                                                      
-                (!v::notEmpty()->stringType()->length(3)->validate($safe['cr'])) ? 'Le contenu du compte rendu réunion doit faire au moins 3 caractères' : null,
+                (!v::notEmpty()->stringType()->length(3)->validate($safe['contenu'])) ? 'Le contenu du compte rendu réunion doit faire au moins 3 caractères' : null,
                 (!v::notEmpty()->stringType()->length(3, 80)->validate($safe['titre'])) ? 'Le titre du compte rendu réunion doit faire entre 3 et 80 caractères' : null,
-                
                 ];
 
                 $errors = array_filter($errors);
@@ -220,7 +219,7 @@ class ReunionsController extends MasterController
                 if(count($errors) == 0 ){
                        /////////////////////////////////////////// ajout bdd ////////////////////////////////////              
                     $cr = new ComptesRendus();
-                    $cr->setContenu($safe['cr'])
+                    $cr->setContenu($safe['contenu'])
                         ->setTitre($safe['titre'])
                         ->setReu($reuFound->getId())
                         ->setUser($reuFound->getUser()->getPrenom())
@@ -239,14 +238,14 @@ class ReunionsController extends MasterController
                 //suppression de l'article trouvé
                 #$entityManager->remove($reuFound);
                 #$entityManager->flush();
+            }
 
-        return $this->render('reunions/crReu.html.twig', [
+        return $this->render('reunions/addCr.html.twig', [
             'reunionTrouvee'    => $reuFound,
             'donnees_saisies'   => $safe ?? [],
             'success'           => $success ?? false,
             'errors'            => $errorsForm ?? [],
         ]);
     }
-
 
 }
