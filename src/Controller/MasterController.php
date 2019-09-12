@@ -33,10 +33,10 @@ class MasterController extends AbstractController
         $this->twig->addGlobal('_post', $_POST);
         $this->twig->addGlobal('_get', $_GET);
         
-        echo '<pre>';
-        print_r($_SESSION);
-        var_dump($this->twig->getGlobals()); 
-        echo '</pre>';
+        // echo '<pre>';
+        // print_r($_SESSION);
+        // var_dump($this->twig->getGlobals()); 
+        // echo '</pre>';
     
 
     }
