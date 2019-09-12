@@ -1,0 +1,40 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Compte-rendu{% endblock %}
+
+{% block content %}
+
+    
+<div class="container">
+  <div class="card card-register mx-auto mt-5">
+    <div class="card-header">Ajouter un compte-rendu pour {{ reunionTrouvee.getTitre() }}</div>
+    {% if errors is not empty %}
+      <div class="alert alert-danger">{{errors|raw}}</div>
+    {% elseif success == true %}
+      <div class="alert alert-success">Votre CR a bien été ajouté</div>
+    {% endif %}
+    <div class="card-body">Réunion du {{ reunionTrouvee.getDatetimeReu()|date("Y-m-d") }} à {{ reunionTrouvee.getDatetimeReu()|date("H:i") }}</div>
+    <div class="card-body">
+      <form method="post">
+        <div class="form-group">
+          <div class="form-row">
+            <div class="col-md-6">
+              <label for="titre">Nom du compte rendu</label>
+              <input type="text" id="titre" name="titre" class="form-control" required="required" autofocus="autofocus" value="{{ donnees_saisies.titre ?? '' }}">
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="contenu">Contenu</label>
+          <input type="text" id="contenu" name="contenu" class="form-control" required="required" value="{{ donnees_saisies.contenu ?? '' }}">
+        </div>
+        {% if success == true %}
+          <a class="btn btn-primary btn-block" href="#" role="button">Modifier le CR</a>
+        {% else %}
+        <input type="submit" value="Ajouter" class="btn btn-primary btn-block">
+        {% endif %}
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

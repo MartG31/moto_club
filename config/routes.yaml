@@ -22,6 +22,10 @@ connexion_user:
     path: /users/login
     controller: App\Controller\UsersController::loginUser
 
+deconnexion_user:
+    path: /users/logout
+    controller: App\Controller\UsersController::logoutUser
+
 ############################# Balades ##################
 
 index_balades:
@@ -73,4 +77,10 @@ del_reunion:
     controller: App\Controller\ReunionsController::delReunion
     requirements:
       id: '\d+' 
+
+add_cr:
+    path: /reunions/ajouter-un-cr/{id}
+    controller: App\Controller\ReunionsController::addCr
+    requirements:
+      id: '\d+'
 

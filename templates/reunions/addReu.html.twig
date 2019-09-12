@@ -19,35 +19,39 @@
           <div class="form-row">
             <div class="col-md-6">
               <label for="titre">Intitulé de la réunion</label>
-              <input type="text" id="titre" name="titre" class="form-control" required="required" autofocus="autofocus" >
+              <input type="text" id="titre" name="titre" class="form-control" required="required" autofocus="autofocus" value="{{ donnees_saisies.titre ?? '' }}">
             </div>
             <div class="col-md-6">
               <label for="type">Type de réunion</label>
-              <input type="text" id="type-reu" name="type" class="form-control" placeholder="ex: AG" required="required">
+              <input type="text" id="type-reu" name="type" class="form-control" placeholder="ex: AG" required="required" value="{{ donnees_saisies.type ?? '' }}">
             </div>
           </div>
         </div>
         <div class="form-group">
-          <label for="contenu">Contenu</label>
-          <input type="text" id="contenu" name="contenu" class="form-control" placeholder="Contenu" required="required">
+          <label for="contenu">Ordre du jour</label>
+          <input type="text" id="contenu" name="contenu" class="form-control" required="required" value="{{ donnees_saisies.contenu ?? '' }}">
         </div>
         <div class="form-group">
           <div class="form-row">
             <div class="col-md-4">
               <label for="date_reu">Date de la réunion</label>
-              <input type="date" id="date_reu" name="date_reu" class="form-control" required="required">
+              <input type="date" id="date_reu" name="date_reu" class="form-control" required="required" value="{{ donnees_saisies.date_reu ?? '' }}">
             </div>
             <div class="col-md-4">
               <label for="time_reu">Heure de la réunion</label>
-              <input type="time" id="time_reu" name="time_reu" class="form-control" required="required">
+              <input type="time" id="time_reu" name="time_reu" class="form-control" required="required"value="{{ donnees_saisies.time_reu ?? '' }}">
             </div>
             <div class="col-md-4">
                 <label for="lieu">Lieu de la réunion</label>
-                <input type="text" id="lieu" name="lieu" class="form-control" required="required">
+                <input type="text" id="lieu" name="lieu" class="form-control" required="required" value="{{ donnees_saisies.lieu ?? '' }}">
             </div>
           </div>
         </div>
+        {% if success == true %}
+          <a class="btn btn-primary btn-block" href="{{ path('add_reunion') }}" role="button">Ajouter une nouvelle réunion</a>
+        {% else %}
         <input type="submit" value="Ajouter" class="btn btn-primary btn-block">
+        {% endif %}
       </form>
     </div>
   </div>

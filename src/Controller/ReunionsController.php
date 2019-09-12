@@ -13,6 +13,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 use App\Entity\Utilisateurs;
 use App\Entity\Reunions;
+use App\Entity\ComptesRendus;
 
 class ReunionsController extends MasterController
 {
@@ -85,6 +86,7 @@ class ReunionsController extends MasterController
                         ->setLieuReu($safe['lieu'])
                         ->setTypeReu($safe['type'])
                         ->setContenu($safe['contenu'])
+                        //->setUser($_SESSION['user'])
                         ->setDatetimeReu($this->mergeDateTime($safe['date_reu'], $safe['time_reu']))
                         ->setDatetimePost(new \DateTime('now'));
                 
@@ -136,7 +138,7 @@ class ReunionsController extends MasterController
             (!v::notEmpty()->stringType()->length(3, 80)->validate($safe['lieu'])) ? 'Le lieu de réunion doit faire entre 3 et 80 caractères' : null,
             (!v::notEmpty()->stringType()->length(2, 30)->validate($safe['type'])) ? 'Le type de réunion doit faire entre 2 et 30 caractères' : null,
             (!v::notEmpty()->stringType()->length(3)->validate($safe['contenu'])) ? 'Le contenu doit faire au moins 3 caractères' : null,
-            (!v::notEmpty()->date()->validate($safe['date'])) ? 'La réunion doit être une date valide' : null,
+            (!v::notEmpty()->date()->validate($safe['date_reu'])) ? 'La réunion doit être une date valide' : null,
             
             ];
 
@@ -189,5 +191,62 @@ class ReunionsController extends MasterController
         ]);
     }
 
+    public function addCr($id)
+    
+    {
+        // Récupération de la liste des réunions
+            $entityManager = $this->getDoctrine()->getManager();
+            // Permet de chercher les réunions via le repository
+            $reuFound = $entityManager->getRepository(Reunions::class)->find($id);
+
+            if(!empty($_POST)){
+
+                $safe = array_map('trim', array_map('strip_tags', $_POST));
+
+                //pas de controle d'unicité de la réunion : il s'agira d'une modération manuelle
+                #$entityManager = $this->getDoctrine()->getManager();
+                #$userFound = $entityManager->getRepository(Reunions::class)->findByEmail($safe['email']);
+                //var_dump($userFound);
+                
+               ///////////////////////////////////////// tableau d'erreur
+
+                $errors = [                                                      
+                (!v::notEmpty()->stringType()->length(3)->validate($safe['contenu'])) ? 'Le contenu du compte rendu réunion doit faire au moins 3 caractères' : null,
+                (!v::notEmpty()->stringType()->length(3, 80)->validate($safe['titre'])) ? 'Le titre du compte rendu réunion doit faire entre 3 et 80 caractères' : null,
+                ];
+
+                $errors = array_filter($errors);
+
+                if(count($errors) == 0 ){
+                       /////////////////////////////////////////// ajout bdd ////////////////////////////////////              
+                    $cr = new ComptesRendus();
+                    $cr->setContenu($safe['contenu'])
+                        ->setTitre($safe['titre'])
+                        ->setReu($reuFound)
+                        //->setUser($_SESSION['user'])
+                        ->setDatetimePost(new \DateTime('now'));
+
+                    // tell Doctrine you want to (eventually) save the Product (no queries yet)
+                    $entityManager->persist($cr);
+
+                    // actually executes the queries (i.e. the INSERT query)
+                    $entityManager->flush();
+                    $success = true;
+                }
+                else {
+                    $errorsForm = implode('<br>', $errors);
+                }
+                //suppression de l'article trouvé
+                #$entityManager->remove($reuFound);
+                #$entityManager->flush();
+            }
+
+        return $this->render('reunions/addCr.html.twig', [
+            'reunionTrouvee'    => $reuFound,
+            'donnees_saisies'   => $safe ?? [],
+            'success'           => $success ?? false,
+            'errors'            => $errorsForm ?? [],
+        ]);
+    }
 
 }

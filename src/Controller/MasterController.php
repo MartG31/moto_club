@@ -7,6 +7,14 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class MasterController extends AbstractController
 {
+    public $rank = array(
+        'membre' => 1,
+        'adherent' => 2,
+        'bureau' => 3,
+        'admin' => 4,
+    );
+
+    // FONCTIONS MUTUALISEES
 
     protected function checkEnglishDate(string $date) {
         $exp = explode('-', $date);
