@@ -1,43 +1,36 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Albums{% endblock %}
+{% block stylesheets %}
+    <!-- Lien du CSS albums -->
+    <link rel="stylesheet" type="text/css" href="/css/stylesalbums.css">
+ {% endblock %}
 
 {% block content %}
 
-  {% for fPh in albums %}
-    <div>
-      <div>{{ fPh.getBal().getTitre() }}</div>
-      <figure>
-        <img src="{{ '/' ~ uploadDir ~ fPh.getFileName() }}">
-      </figure>
-      <div>{{ fPh.getLegende() }}</div>
+<div id="content">
+    <div class="row">
+      {% for fPh in albums %}
+        <div class="col-md-4">            
+            <div class="titlealbums">
+                {{ fPh.getBal().getTitre() }}
+            </div>            
+            <div class="row">
+                <figure>
+                    <!-- A modifier le lien pour aller directement voir les photos de l'album séléctionné uniquement -->
+                    <a href ="portfolio.html.twig"> 
+                        <figcaption>
+                            <img class="img-fluid img-album" src="{{ '/' ~ uploadDir ~ fPh.getFileName() }}">
+                        </figcaption>
+                    </a>
+                </figure>
+            </div>            
+            <div>{{ fPh.getLegende() }}</div>            
+        </div>
+      {% endfor %}
     </div>
-  {% endfor %}
+</div>  
 
-  
-
-	<div id="content">
-  		<div class="view photos">
-    		<div class="row">
-     			<div class="col-md-2">
-                	<a href ="portfolio.html.twig">
-                    	<figure>
-                          	<img class="img-fluid" src="img_album1.jpg" alt="Album test">
-                          	<figcaption>Album test 1</figcaption> 
-                    	</figure> 
-                	</a>
-              	</div>
-              	<div class="col-md-2">
-                	<a href ="portfolio.html.twig">
-                    	<figure>
-                          	<img class="img-fluid" src="img_album2.jpg" alt="Album test2">
-                          	<figcaption>Album test 2</figcaption> 
-                    	</figure> 
-                	</a>
-              	</div>        
-        	</div>
-  		</div>
-    </div>
 {% endblock %}
 
 

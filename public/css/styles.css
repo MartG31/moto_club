@@ -12,7 +12,6 @@ header{
 }
 
 img{
-
 	width: 150px;
 	height: auto;
 }
@@ -129,5 +128,4 @@ nav ul li a.active{
 .sticky-footer{
 	position: relative;
 	height: 20%; 
-
 }
