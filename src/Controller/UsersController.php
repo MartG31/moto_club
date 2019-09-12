@@ -28,8 +28,8 @@ class UsersController extends MasterController
 				$errors[] = 'L\'adresse email est invalide';
 			}
 			
-			$emailExist = $this->getDoctrine()->getRepository(Utilisateurs::class)->findBy(['email' => $safe['email']]);
-			if(!empty($emailExist)){
+			$emailExists = $this->getDoctrine()->getRepository(Utilisateurs::class)->findBy(['email' => $safe['email']]);
+			if(!empty($emailExists)){
 				$errors[] = 'L\'adresse email existe déjà';
 			}
 
@@ -71,8 +71,6 @@ class UsersController extends MasterController
 
     		if(count($errors) == 0){
 
-
-    			/* $articlesData me permet d'utiliser les méthodes de la class App\Entity\Articles.php */
     			$usersData = new Utilisateurs();
     			$usersData->setEmail($safe['email'])
 							->setPwd(password_hash($safe['password'], PASSWORD_DEFAULT))
@@ -91,6 +89,7 @@ class UsersController extends MasterController
     			// On l'exécute
     			$em->flush();
     			$success = true;
+    			header('Refresh: 0; /users/login');
     		}
     	}
 
@@ -126,12 +125,13 @@ class UsersController extends MasterController
 			}
 
     		if(count($errors) == 0){
-    			
+
     			if(password_verify($safe['password'], $userExists->getPwd())){
 
     				$_SESSION['user'] = $userExists;
     				session_regenerate_id();
     				$success = true;
+    				header('Refresh: 0; /');
     			}
 
     			else{
@@ -143,6 +143,7 @@ class UsersController extends MasterController
         return $this->render('users/login.html.twig', [
         	'errors'     => $errors,
         	'donnees_saisies' => $safe ?? [],
+        	'user' => $userExists ?? false,
         	'success' => $success ?? false,
         ]);
     }
