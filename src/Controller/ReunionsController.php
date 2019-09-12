@@ -86,6 +86,7 @@ class ReunionsController extends MasterController
                         ->setLieuReu($safe['lieu'])
                         ->setTypeReu($safe['type'])
                         ->setContenu($safe['contenu'])
+                        //->setUser($_SESSION['user'])
                         ->setDatetimeReu($this->mergeDateTime($safe['date_reu'], $safe['time_reu']))
                         ->setDatetimePost(new \DateTime('now'));
                 
@@ -221,8 +222,8 @@ class ReunionsController extends MasterController
                     $cr = new ComptesRendus();
                     $cr->setContenu($safe['contenu'])
                         ->setTitre($safe['titre'])
-                        ->setReu($reuFound->getId())
-                        ->setUser($reuFound->getUser()->getPrenom())
+                        ->setReu($reuFound)
+                        //->setUser($_SESSION['user'])
                         ->setDatetimePost(new \DateTime('now'));
 
                     // tell Doctrine you want to (eventually) save the Product (no queries yet)
