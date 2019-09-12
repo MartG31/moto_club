@@ -17,7 +17,7 @@
             </div>            
            <figure>
                 <!-- A modifier le lien pour aller directement voir les photos de l'album séléctionné uniquement -->
-                <a href ="portfolio.html.twig"> 
+                <a href ="{{ path('view_portfolio',{id: fPh.getBal().getId()}) }}"> 
                     <figcaption>
                         <img class="img-fluid img-album" src="{{ '/' ~ uploadDir ~ fPh.getFileName() }}">
                     </figcaption>

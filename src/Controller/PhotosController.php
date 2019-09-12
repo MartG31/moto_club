@@ -130,7 +130,8 @@ class PhotosController extends MasterController
 
         
         return $this->render('photos/portfolio.html.twig', [
-             'photos' => $photos,        
+             'photos' => $photos,
+             'uploadDir' => $this->uploadDir,        
         ]);
     }
  }
