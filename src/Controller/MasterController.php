@@ -36,7 +36,11 @@ class MasterController extends AbstractController
         
         // echo '<pre>';
         // print_r($_SESSION);
-        // var_dump($this->twig->getGlobals()); 
+        // var_dump($this->twig->getGlobals());
+        // echo '</pre>';
+
+        // echo '<pre>';
+        // print_r($this->session);
         // echo '</pre>';
     
 

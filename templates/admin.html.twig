@@ -15,8 +15,7 @@
         <link href="/css/sb-admin.css" rel="stylesheet">
    
 
-        {% block stylesheets %}
-        {% endblock %}
+        {% block stylesheets %}{% endblock %}
 
     </head>
 
@@ -83,11 +82,6 @@
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
               </div>
             </li>
-
-            <li>
-              {{ app.session.get('test') }}
-            </li>
-
           </ul>
 
         </nav>
@@ -134,10 +128,6 @@
 
                 <div class="container-fluid">
 
-
-          <div class="alert alert-danger">
-              {{  app.request.session.get("page") }}
-            </div>
                     <!-- Breadcrumbs-->
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
