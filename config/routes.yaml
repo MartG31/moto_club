@@ -18,6 +18,10 @@ inscription_user:
     path: /users/inscription
     controller: App\Controller\UsersController::inscriptionUser
 
+connexion_user:
+    path: /users/login
+    controller: App\Controller\UsersController::loginUser
+
 ############################# Balades ##################
 
 index_balades:
