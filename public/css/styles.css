@@ -136,7 +136,10 @@ nav ul li a.active{
 	margin: 5% auto;
 }
 
-.sticky-footer{
-	position: relative;
-	height: 20%; 
+footer{
+	background-color: #2e7ff0;
+	min-height: 8vh;
+}
+.colorlink{
+	color: black;
 }
