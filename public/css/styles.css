@@ -9,33 +9,36 @@ body{
 	font-family: sans-serif;
 }
 
-
 *, *:before, *:after {
  box-sizing: inherit;
 }
 
 
 header{
-
 	padding: 10px 100px;
 	box-sizing: border-box;
 	background: url(../images/img1.jpg);
 	height: 250px;
 }
 
-nav{
+footer{
+	background-color: #2e7ff0;
+	position:absolute; 
+	height: auto;
+	width: 100%;
+	bottom: 0;
+}
 
+nav{
 	min-height: 8vh;
 	background: #2e7ff0;
 }
 
 nav ul{
-
 	padding: 0 100px;
 }
 
 nav ul li a{
-
 	text-transform: uppercase;
 	font-weight: bold;
 	line-height: 50px;
@@ -43,13 +46,11 @@ nav ul li a{
 
 nav ul li a:hover,
 nav ul li a.active{
-
 	background: #fff;
 }
 
 .navbar-light .navbar-nav .nav-item .nav-link:hover,
 .navbar-light .navbar-nav .nav-item.active .nav-link{
-
 	background: #2e7ff0;
 	color: #fff;
 }
@@ -64,7 +65,6 @@ nav ul li a.active{
 }
 
 .card{
-
 	position: relative;
 	background: #fff;
 	width: 400px;
@@ -74,14 +74,12 @@ nav ul li a.active{
 }
 
 .card .content{
-
 	width: 400px;
 	padding: 30px;
 	box-sizing: border-box;
 }
 
 .card .content a{
-
 	display: inline-block;
 	margin: 10px 0 0;
 	padding: 10px 20px;
@@ -92,7 +90,6 @@ nav ul li a.active{
 }
 
 .card .sliderText{
-
 	position: relative;
 	width: 100%;
 	height: 200px;
@@ -102,32 +99,26 @@ nav ul li a.active{
 	background: #000;
 }
 
-
 .card .sliderText h3{
-
 	color: #fff;
 	font-size: 3em;
 }
 
 .swiper-slide{
-
 	width: 400px;
 }
 
 .swiper-slide .sliderText{
-
 	background: #2196f3;
 }
 
 .container span{
-
 	color: #000;
 	text-transform: uppercase;
 	display: block;
 }
 
 .text1{
-
 	font-size: 40px;
 	font-weight: 600;
 	border: 5px solid #000;
@@ -135,15 +126,6 @@ nav ul li a.active{
 	border-radius: 10px;
 	width: 100%;
 	margin: 5% auto;
-}
-
-footer{
-	background-color: #2e7ff0;
-	position:absolute; 
-	height: auto;
-	width: 100%;
-	bottom: 0;
-
 }
 
 .colorlink{
