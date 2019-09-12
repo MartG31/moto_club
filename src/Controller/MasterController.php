@@ -14,6 +14,8 @@ class MasterController extends AbstractController
         'admin' => 4,
     );
 
+    // FONCTIONS MUTUALISEES
+
     protected function checkEnglishDate(string $date) {
         $exp = explode('-', $date);
         return checkdate($exp[1], $exp[2], $exp[0]);
