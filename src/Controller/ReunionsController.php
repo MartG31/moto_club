@@ -320,4 +320,18 @@ class ReunionsController extends MasterController
         ]);
     }
 
+    public function viewCr($id)
+    
+    {
+        // Récupération de la liste des réunions
+            $entityManager = $this->getDoctrine()->getManager();
+            // Permet de chercher les réunions via le repository
+            $crFound = $entityManager->getRepository(ComptesRendus::class)->find($id);
+
+
+        return $this->render('reunions/viewCr.html.twig', [
+            'crTrouve' => $crFound, 
+        ]);
+    }
+
 }
