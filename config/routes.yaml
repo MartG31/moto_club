@@ -76,7 +76,10 @@ del_reunion:
     path: /reunions/supprimer-une-reunion/{id}
     controller: App\Controller\ReunionsController::delReunion
     requirements:
-      id: '\d+' 
+      id: '\d+'
+
+
+    #### CR 
 
 add_cr:
     path: /reunions/ajouter-un-cr/{id}
