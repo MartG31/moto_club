@@ -19,6 +19,16 @@ class BaladesController extends MasterController
 
     public function indexBalades() {
 
+
+
+        // var_dump($_SESSION);
+        // echo '<pre>';
+        // print_r($sess);
+        // echo '</pre>';
+
+
+
+
     	// Affichage du calendrier des balades
 
 
@@ -63,9 +73,9 @@ class BaladesController extends MasterController
 
             $post = array_map('trim', array_map('strip_tags', $_POST));
 
+
             echo '<pre>';
             // var_dump($post);
-            var_dump($_SESSION);
             echo '</pre>';
 
             if(!v::notEmpty()->length(3,30)->validate($post['titre'])) {

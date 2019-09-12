@@ -20,7 +20,25 @@ class MasterController extends AbstractController
     // CONSTRUCTEUR
 
     public function __construct() {
+
         
+
+        $_SESSION['test'] = rand(1,9);
+
+        // Ajout des variables _session, _post, et _get a twig
+        $loader = new \Twig\Loader\FilesystemLoader();
+        $this->twig = new \Twig\Environment($loader);
+
+        $this->twig->addGlobal('_session', $_SESSION);
+        $this->twig->addGlobal('_post', $_POST);
+        $this->twig->addGlobal('_get', $_GET);
+        
+        // echo '<pre>';
+        // print_r($_SESSION);
+        // var_dump($this->twig->getGlobals()); 
+        // echo '</pre>';
+    
+
     }
 
     // FONCTIONS MUTUALISEES
