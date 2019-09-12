@@ -3,6 +3,19 @@
 {% block title %}Albums{% endblock %}
 
 {% block content %}
+
+  {% for fPh in albums %}
+    <div>
+      <div>{{ fPh.getBal().getTitre() }}</div>
+      <figure>
+        <img src="{{ '/' ~ uploadDir ~ fPh.getFileName() }}">
+      </figure>
+      <div>{{ fPh.getLegende() }}</div>
+    </div>
+  {% endfor %}
+
+  
+
 	<div id="content">
   		<div class="view photos">
     		<div class="row">
