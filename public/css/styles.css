@@ -4,6 +4,7 @@ html {
 }
 
 body{
+	padding: 0;
 	margin:0;
 	font-family: sans-serif;
 }
@@ -54,6 +55,11 @@ nav ul li a.active{
 
 .navbar-light .navbar-nav .nav-link {
     color: #000;
+}
+
+.img-logo{
+	width: 100px;
+	height: auto; 
 }
 
 .card{

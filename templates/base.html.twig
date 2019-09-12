@@ -15,11 +15,15 @@
     <body>
 		
 		<header>
-		<img src="img/logo.jpg" class="float-right img-fluid h-auto" style="width: 150px;">
+			<a class="navbar-brand" href="{{ path('accueil') }}">
+				
+			</a>
 		</header>
 
 		<nav class="navbar sticky-top navbar-expand-lg navbar-light ">
-			<a class="navbar-brand" href="#">LOGO</a>
+			<a class="navbar-brand" href="{{ path('accueil') }}">
+				<img src="/images/logo.jpg" class="float-right img-fluid h-auto img-logo" style="width: 100px;">
+			</a>
 			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			    <span class="navbar-toggler-icon"></span>
 			  </button>
