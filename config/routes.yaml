@@ -53,6 +53,12 @@ add_balade:
     path: /balades/ajouter
     controller: App\Controller\BaladesController::addBalade
 
+view_balade:
+    path: /balades/afficher-une-balade/{id}
+    controller: App\Controller\BaladesController::viewBalade
+     requirements:
+      id: '\d+'
+
 ############################# Photos ##################
 
 portfolio:
@@ -62,6 +68,8 @@ portfolio:
 view_portfolio:
     path: /photos/portfolio/{id}
     controller: App\Controller\PhotosController::viewPortfolio
+    requirements:
+      id: '\d+'
 
 view_albums:
     path: /photos/albums
