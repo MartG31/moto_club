@@ -143,7 +143,7 @@ class UsersController extends MasterController {
 
     				session_regenerate_id();
     				$success = true;
-    				header('Refresh: 0; /');
+    				header('Refresh: 1; /');
     			}
 
     			else{
