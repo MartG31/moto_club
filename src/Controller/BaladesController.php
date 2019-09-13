@@ -37,13 +37,6 @@ class BaladesController extends MasterController
         $em = $this->getDoctrine()->getManager();
         $balades = $em->getRepository(Balades::class)->findAll();
 
-
-
-
-
-
-
-
         return $this->render('balades/index.html.twig', [
             'balades' => $balades ?? [],
 
