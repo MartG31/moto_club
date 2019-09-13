@@ -10,14 +10,14 @@
 					<div class="card-header">
 						<div class="card-title">
 							<b>{{ bal.getTitre() }}
+							<a href="{{ path('view_balade', {id: bal.getId()}) }}" class="btn btn-primary float-right mb-5" role="button">
+								Afficher la balade
+							</a>
 							{% if bal.getDateDebut() == bal.getDateFin() %}
 							<div>le {{ bal.getDateDebut()|date('d/m/Y') }}</div>
 							{% else %}
 								<div>du {{ bal.getDateDebut()|date('d/m/Y') }} au {{ bal.getDateFin()|date('d/m/Y') }}</div>
 							{% endif %}</b>
-							<a href="{{ path('view_balade', {id: bal.getId()}) }}" class="btn btn-primary" role="button">
-								Afficher la balade
-							</a>
 					   </div>
 
 
