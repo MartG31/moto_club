@@ -6,7 +6,7 @@ html {
 body{
 	padding: 0;
 	margin:0;
-	font-family: sans-serif;
+	font-family: 'Poppins';
 }
 
 *, *:before, *:after {
@@ -24,7 +24,7 @@ header{
 footer{
 	background-color: #2e7ff0;
 	position: relative;
-	height: 60px;
+	height: 70px;
 	width: 100%;
 }
 
@@ -136,4 +136,5 @@ nav ul li a.active{
 
 .footerlink:hover{
 	color: white;
+	text-decoration: none;
 }
