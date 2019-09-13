@@ -4,28 +4,23 @@
 
 {% block content %}
 	<div class="pb-5">
-		{% for bal in balades %}
+		{% for balade in balades %}
 		<div class="card-deck my-5">
 			<div class="card">
 				<div class="card-header">
 					<div class="card-title">
-						<b>{{ bal.getTitre() }}
-						{% if bal.getDateDebut() == bal.getDateFin() %}
-						<div>le {{ bal.getDateDebut()|date('d/m/Y') }}</div>
-						{% else %}
-							<div>du {{ bal.getDateDebut()|date('d/m/Y') }} au {{ bal.getDateFin()|date('d/m/Y') }}</div>
-						{% endif %}</b>
+						{{ balade.getTitre() }}
 				   </div>
 
 
-					<div class="card-body">{{ bal.getContenu() }}</div>
+					<div class="card-body">{{ balade.getContenu() }}</div>
 					<div class="card-footer">
 						Posté par 
-						{{ bal.getUser().getNom() ~ ' ' ~ bal.getUser().getPrenom() }} 
-						le 
-						{{ bal.getDatetimePost()|date('d/m/Y') }} 
-						à 
-						{{ bal.getDatetimePost()|date('H:i') }}
+							{{ balade.getUser().getNom() ~ ' ' ~ balade.getUser().getPrenom() }} 
+							le 
+							{{ balade.getDatetimePost()|date('d/m/Y') }} 
+							à 
+							{{ balade.getDatetimePost()|date('H:i') }}
 					</div>
 				</div>
 			</div>
