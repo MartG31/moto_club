@@ -11,10 +11,11 @@ use Symfony\Component\Routing\Annotation\Route;
 use Respect\Validation\Validator as v;
 use Intervention\Image\ImageManagerStatic as Image;
 
+//use App\Repository\ReunionsRepository;
+
 use App\Entity\Utilisateurs;
 use App\Entity\Reunions;
 use App\Entity\ComptesRendus;
-use App\Repository\ReunionsRepository;
 
 
 class ReunionsController extends MasterController
@@ -29,34 +30,23 @@ class ReunionsController extends MasterController
         $entityManager = $this->getDoctrine()->getManager();
         // Permet de chercher les réunions via le repository
         $reuFound = $entityManager->getRepository(Reunions::class)->findAll();
-        
         $reuNotPass = $entityManager->getRepository(Reunions::class)->findAllNotPast();
-
-
-                
-
 
         $reuWithoutCr = [];
         foreach ($reuFound as $reu) {
-            
             // Vérifie si un CR existe et l'ajoute a mon tableau
             $crFound = $entityManager->getRepository(ComptesRendus::class)->findOneBy([
                 'reu' => $reu
             ]);
-
             if(empty($crFound)){
                 $reuWithoutCr[] = $reu;
             }
         }
 
-
-
-
-
         return $this->render('reunions/index.html.twig', [
             'reunionsTrouvees' => $reuFound, 
-            // 'reusNonPassees'   => $reuNotPass,
-            'reusSansCr'   => $reuWithoutCr,
+            'reusNonPassees'   => $reuNotPass,
+            'reusSansCr'       => $reuWithoutCr,
             //'reunionsTrouvees' => $newReus, 
             //'crTrouves' => $crFound,
         ]);

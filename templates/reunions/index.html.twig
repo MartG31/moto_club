@@ -16,6 +16,93 @@
   			</div>
 		</div>
   	</div>
+  	<div class="card-deck my-5 pb-5">
+  	  	<div class="card">
+  		  	<div class="card-header">
+  		    	<i class="fas fa-table"></i>Liste des réunions à venir
+  		    </div>
+  		        {% for reuNonPassee in reusNonPassees %}
+  	  		<div class="card my-2">
+  					{# <div class="row col-md-3"> #}
+  				<div class="card-title">
+  					<b> Intitulé de la réunion </b>
+  				</div>
+  				<div class="card-body">
+  	  				{{ reuNonPassee.getTitre() }}
+  				</div>
+  				<div class="card-title">
+  			         <b>Type de réunion</b>
+  			    </div>
+  		    	<div class="card-body">
+  	  				{{ reuNonPassee.getTypeReu() }}
+  		    	</div>
+  			    <div class="card-title">
+  			        <b>Date de la réunion</b>
+  			    </div>
+  		         <div class="card-body">
+  	    			{{ reuNonPassee.getDatetimeReu()|date("d/m/Y") }}
+  		    	</div>
+  			    <div class="card-title">
+  			        <b>Action</b>
+  			    </div>
+  		        <div class="card-body">
+  		            <a class="btn btn-primary" href="{{ path('view_reunion', {id : reuNonPassee.getId()}) }}" role="button">Afficher</a>
+  		            <a class="btn btn-secondary" href="{{ path('edit_reunion', {id : reuNonPassee.getId()}) }}" role="button">Modifier</a>
+  		            <a class="btn btn-danger" href="{{ path('del_reunion', {id : reuNonPassee.getId()}) }}" role="button">Supprimer</a>
+  		    	</div>
+  				{# </div> #}    		      
+  		         
+  				<div class="card-footer small text-muted mb-2">
+  					Updated yesterday at 11:59 PM
+  				</div>
+  			</div>
+  	          {%  endfor %} 
+  		</div>
+  	</div>
+
+	<div class="card-deck my-5 pb-5">
+	  	<div class="card">
+		  	<div class="card-header">
+		    	<i class="fas fa-table"></i>Liste des réunions sans CR
+		    </div>
+		        {% for reuSansCr in reusSansCr %}
+	  		<div class="card my-2">
+					{# <div class="row col-md-3"> #}
+				<div class="card-title">
+					<b> Intitulé de la réunion </b>
+				</div>
+				<div class="card-body">
+	  				{{ reuSansCr.getTitre() }}
+				</div>
+				<div class="card-title">
+			         <b>Type de réunion</b>
+			    </div>
+		    	<div class="card-body">
+	  				{{ reuSansCr.getTypeReu() }}
+		    	</div>
+			    <div class="card-title">
+			        <b>Date de la réunion</b>
+			    </div>
+		         <div class="card-body">
+	    			{{ reuSansCr.getDatetimeReu()|date("d/m/Y") }}
+		    	</div>
+			    <div class="card-title">
+			        <b>Action</b>
+			    </div>
+		        <div class="card-body">
+		            <a class="btn btn-primary" href="{{ path('view_reunion', {id : reuSansCr.getId()}) }}" role="button">Afficher</a>
+		            <a class="btn btn-secondary" href="{{ path('edit_reunion', {id : reuSansCr.getId()}) }}" role="button">Modifier</a>
+		            <a class="btn btn-danger" href="{{ path('del_reunion', {id : reuSansCr.getId()}) }}" role="button">Supprimer</a>
+		    	</div>
+				{# </div> #}    		      
+		         
+				<div class="card-footer small text-muted mb-2">
+					Updated yesterday at 11:59 PM
+				</div>
+			</div>
+	          {%  endfor %} 
+		</div>
+	</div>
 
 	<div class="card-deck my-5 pb-5">
 	  	<div class="card">
@@ -60,49 +147,5 @@
 	          {%  endfor %} 
 		</div>
 	</div>
-	<div class="card-deck my-5 pb-5">
-	  	<div class="card">
-		  	<div class="card-header">
-		    	<i class="fas fa-table"></i>Liste des réunions à venir
-		    </div>
-		        {% for reuSansCr in reusSansCr %}
-	  		<div class="card my-2">
-					{# <div class="row col-md-3"> #}
-				<div class="card-title">
-					<b> Intitulé de la réunion </b>
-				</div>
-				<div class="card-body">
-	  				{{ reuSansCr.getTitre() }}
-				</div>
-				<div class="card-title">
-			         <b>Type de réunion</b>
-			    </div>
-		    	<div class="card-body">
-	  				{{ reuSansCr.getTypeReu() }}
-		    	</div>
-			    <div class="card-title">
-			        <b>Date de la réunion</b>
-			    </div>
-		         <div class="card-body">
-	    			{{ reuSansCr.getDatetimeReu()|date("d/m/Y") }}
-		    	</div>
-			    <div class="card-title">
-			        <b>Action</b>
-			    </div>
-		        <div class="card-body">
-		            <a class="btn btn-primary" href="{{ path('view_reunion', {id : reuSansCr.getId()}) }}" role="button">Afficher</a>
-		            <a class="btn btn-secondary" href="{{ path('edit_reunion', {id : reuSansCr.getId()}) }}" role="button">Modifier</a>
-		            <a class="btn btn-danger" href="{{ path('del_reunion', {id : reuSansCr.getId()}) }}" role="button">Supprimer</a>
-		    	</div>
-				{# </div> #}    		      
-		         
-				<div class="card-footer small text-muted mb-2">
-					Updated yesterday at 11:59 PM
-				</div>
-			</div>
-	          {%  endfor %} 
-		</div>
-	</div>
-
 
 {% endblock %}
