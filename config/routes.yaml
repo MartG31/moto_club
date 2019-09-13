@@ -43,6 +43,10 @@ view_profile:
     path: /users/profil
     controller: App\Controller\UsersController::viewProfile
 
+view_users:
+    path: /users/lister-utilisateurs
+    controller: App\Controller\BackOfficeController::viewUsers
+
 ############################# Balades ##################
 
 index_balades:

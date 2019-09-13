@@ -23,6 +23,10 @@ class BackOfficeController extends MasterController
 
     public function viewUsers()
     {
+        // $this->niveauAcces('bureau');
+        
+        // if($this->session->get('rank') < 3) { return $this->redirectToRoute('accueil'); }
+
     	// Récupération la liste des utilisateurs
             $entityManager = $this->getDoctrine()->getManager();
             // Permet de chercher la liste via le repository

@@ -46,6 +46,12 @@ class MasterController extends AbstractController
 
     }
 
+    // GESTION DES ACCES
+
+    protected function niveauAcces($niv) {
+        
+    }
+
     // FONCTIONS MUTUALISEES
 
     protected function checkEnglishDate(string $date) {
