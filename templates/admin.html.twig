@@ -36,7 +36,7 @@
                     <li class="nav-item"><a class="nav-link" href="{{ path('inscription_user') }}">Inscription</a></li>
                     <li class="nav-item"><a class="nav-link btn btn-success border border-dark" href="{{ path('connexion_user') }}">Connexion</a></li>
                 {% else %}
-                    <li class="nav-item"><a class="nav-link" href="{{ path('admin_accueil') }}">{{ app.session.get('prenom') ~ ' ' ~ app.session.get('nom') }}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ path('view_profile') }}">{{ app.session.get('prenom') ~ ' ' ~ app.session.get('nom') }}</a></li>
                     <li class="nav-item"><a class="nav-link btn btn-danger border border-dark" href="{{ path('deconnexion_user') }}"><i class="fas fa-power-off"></i></a></li>
                 {% endif %}
 
@@ -54,7 +54,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ path('view_profile') }}">
                         <i class="fas fa-user-edit"></i>
                         <span>Mon profil</span>
                     </a>
@@ -85,18 +85,8 @@
                         <span>Réunions</span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-                        <a class="dropdown-item" href="{{path('add_reunion')}}">Ajouter</a>
-                        <a class="dropdown-item" href="#">Modifier</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-copy"></i>
-                        <span>Comptes Rendus</span>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-                        <a class="dropdown-item" href="#">Ajouter</a>
-                        <a class="dropdown-item" href="#">Modifier</a>
+                        <a class="dropdown-item" href="{{path('index_reunions')}}">Liste des réunions</a>
+                        <a class="dropdown-item" href="{{path('index_cr')}}">Comptes rendus</a>
                     </div>
                 </li>
                 <li class="nav-item">
