@@ -201,6 +201,32 @@ class UsersController extends MasterController {
 			}
 		}
 
-	    return $this->render();
+	    return $this->render('users/forgotpassword.html.twig', [
+        	'errors'     => $errors ?? [],
+        	'donnees_saisies' => $safe ?? [],
+        	'success' => $success ?? false,
+        ]);
 	}
+
+    public function reinitPasswordUser() {
+		
+
+	    return $this->render('users/reinitpassword.html.twig', [
+        	'errors'     => $errors ?? [],
+        	'donnees_saisies' => $safe ?? [],
+        	'success' => $success ?? false,
+        ]);
+    }
+
+    public function viewProfile() {
+		
+
+	    return $this->render('users/viewprofile.html.twig', [
+        	
+        ]);
+    }
+
+
+
+
 }
