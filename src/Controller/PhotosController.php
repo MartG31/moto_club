@@ -20,7 +20,7 @@ class PhotosController extends MasterController
     // ATTRIBUTS
     public $errors = [];
 
-    public $maxFileSize = 3 * 1000 * 1000;
+    public $maxFileSize = 3 * 1000 * 1000; // Limite la taille des photos de balades à 3 Mo
     public $uploadDir = 'uploads/photos/';
 
 
