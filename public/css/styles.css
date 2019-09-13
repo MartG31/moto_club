@@ -23,10 +23,9 @@ header{
 
 footer{
 	background-color: #2e7ff0;
-	position:absolute; 
-	height: auto;
+	position: relative;
+	height: 60px;
 	width: 100%;
-	bottom: 0;
 }
 
 nav{
@@ -122,10 +121,9 @@ nav ul li a.active{
 	font-size: 40px;
 	font-weight: 600;
 	border: 5px solid #000;
-	margin-top: 5%;
 	border-radius: 10px;
 	width: 100%;
-	margin: 5% auto;
+	margin: 3% auto 0 auto;
 }
 
 .colorlink{
