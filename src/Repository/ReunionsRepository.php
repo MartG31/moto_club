@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Reunions;
+use App\Entity\ComptesRendus;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
@@ -20,12 +21,23 @@ class ReunionsRepository extends ServiceEntityRepository
     }
 
 
-	// public function findAllNotPast()
+	public function findAllNotPast()
+ 	{
+    return $this->createQueryBuilder('r')
+            ->andWhere('r.datetimeReu < DateTime.Now')
+            ->orderBy('r.dateReu', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+
+    }
+    
+    	// public function findReWithCr()
  // 	{
- //    return $this->createQueryBuilder('f')
- //            ->andWhere('f.dateReu < NOW')
+ //    return $this->createQueryBuilder('r')
+ //            ->andWhere('r.datetimeReu < DateTime.Now')
  //            //->setParameter('val', $value)
- //            ->orderBy('f.dateReu', 'ASC')
+ //            ->orderBy('r.dateReu', 'ASC')
  //            //->setMaxResults(10)
  //            ->getQuery()
  //            ->getResult()
