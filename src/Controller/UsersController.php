@@ -79,7 +79,7 @@ class UsersController extends MasterController {
 							->setAdresse($safe['address'])
 							->setCp($safe['postal_code'])
 							->setVille($safe['city'])
-    						->setAcces(1)
+    						->setAcces('membre')
                             ->setDatetimeInscription(new \DateTime('now'));
 
     			// On prépare la requete.
