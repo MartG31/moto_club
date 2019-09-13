@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Doctrine\ORM\EntityManagerInterface; // Connexion a la base de données
 use App\Entity\Utilisateurs; // Intéractions avec la table "users"
+use App\Entity\Tokens;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use \Respect\Validation\Validator as v;
@@ -174,10 +175,6 @@ class UsersController extends MasterController {
     	if(!empty($_POST)) {
 
 			$safe = array_map('trim', array_map('strip_tags', $_POST));
-
-			if(!filter_var($safe['email'], FILTER_VALIDATE_EMAIL)){
-				$errors[] = 'L\'adresse email est invalide';
-			}
 			
 			$userExists = $this->getDoctrine()->getRepository(Utilisateurs::class)->findOneBy(['email' => $safe['email']]);
 			if(!$userExists) {
@@ -185,6 +182,18 @@ class UsersController extends MasterController {
 			}
 
     		if(count($errors) == 0) {
+
+    			$token = bin2hex(random_bytes(50));
+    			
+    			$tok = new Tokens();
+    			$tok->setUser($userExists);
+    			
+    			$tok->setToken($token);
+    			$tok->setDatetimeToken(new \DateTime())
+
+				$em->persist($tok);
+    			$em->flush();
+    			$tok->getUser()->getEmail();
 			    
 			}
 		}
