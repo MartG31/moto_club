@@ -77,11 +77,8 @@ class MasterController extends AbstractController
     protected function restrictAccess($niv) {
 
         echo '<pre class="alert alert-danger">';
-        print_r($niv);
-        echo '<br>';
-        print_r(!in_array($niv, $this->session->get('ranks')));
-        echo '<br>';
-        ;
+        print_r('Accès réservé : '.$niv);
+        echo '</pre>';
 
         if(!in_array($niv, $this->session->get('ranks'))) {
             return true;

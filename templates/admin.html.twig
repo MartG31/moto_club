@@ -95,6 +95,7 @@
                         <span>Statistiques</span>
                     </a>
                 </li>
+                {% if 'bureau' in app.session.get('ranks') %}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-users-cog"></i>
@@ -102,9 +103,12 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="pagesDropdown">
                         <a class="dropdown-item" href="{{path('liste_users')}}">Liste des membres</a>
+                        {% if 'admin' in app.session.get('ranks') %}
                         <a class="dropdown-item" href="#">Gérer les adhérents</a>
+                        {% endif %}
                     </div>
                 </li>
+                {% endif %}
 
 
                 
