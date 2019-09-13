@@ -27,7 +27,22 @@ class ReunionsRepository extends ServiceEntityRepository
 	public function findAllNotPast($param = null)
  	{
         return $this->createQueryBuilder('r')
-                //->andWhere('r.datetimeReu > DateTime.Now')
+                ->andWhere('r.datetimeReu > :datecourant')
+                ->setParameter('datecourant', new \Datetime())
+                ->orderBy('r.datetimeReu', 'DESC')
+                ->getQuery()
+                ->getResult();
+
+    }
+
+     /**
+     * @return Reunions[] Returns an array of Reunions objects
+     */
+    public function findAllPast($param = null)
+    {
+        return $this->createQueryBuilder('r')
+                ->andWhere('r.datetimeReu < :datecourant')
+                ->setParameter('datecourant', new \Datetime())
                 ->orderBy('r.datetimeReu', 'DESC')
                 ->getQuery()
                 ->getResult();

@@ -31,6 +31,7 @@ class ReunionsController extends MasterController
         // Permet de chercher les réunions via le repository
         $reuFound = $entityManager->getRepository(Reunions::class)->findAll();
         $reuNotPass = $entityManager->getRepository(Reunions::class)->findAllNotPast();
+        $reuPass = $entityManager->getRepository(Reunions::class)->findAllPast();
 
         $reuWithoutCr = [];
         foreach ($reuFound as $reu) {
@@ -44,7 +45,7 @@ class ReunionsController extends MasterController
         }
 
         return $this->render('reunions/index.html.twig', [
-            'reunionsTrouvees' => $reuFound, 
+            'reunionsPassees'  => $reuPass, 
             'reusNonPassees'   => $reuNotPass,
             'reusSansCr'       => $reuWithoutCr,
             //'reunionsTrouvees' => $newReus, 

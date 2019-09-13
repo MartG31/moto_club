@@ -109,34 +109,34 @@
 		  	<div class="card-header">
 		    	<i class="fas fa-table"></i>Liste des réunions passées
 		    </div>
-		        {% for reunionTrouvee in reunionsTrouvees %}
+		        {% for reunionPassee in reunionsPassees %}
 	  		<div class="card my-2">
 					{# <div class="row col-md-3"> #}
 				<div class="card-title">
 					<b> Intitulé de la réunion </b>
 				</div>
 				<div class="card-body">
-	  				{{ reunionTrouvee.getTitre() }}
+	  				{{ reunionPassee.getTitre() }}
 				</div>
 				<div class="card-title">
 			         <b>Type de réunion</b>
 			    </div>
 		    	<div class="card-body">
-	  				{{ reunionTrouvee.getTypeReu() }}
+	  				{{ reunionPassee.getTypeReu() }}
 		    	</div>
 			    <div class="card-title">
 			        <b>Date de la réunion</b>
 			    </div>
 		         <div class="card-body">
-	    			{{ reunionTrouvee.getDatetimeReu()|date("d/m/Y") }}
+	    			{{ reunionPassee.getDatetimeReu()|date("d/m/Y") }}
 		    	</div>
 			    <div class="card-title">
 			        <b>Action</b>
 			    </div>
 		        <div class="card-body">
-		            <a class="btn btn-primary" href="{{ path('view_reunion', {id : reunionTrouvee.getId()}) }}" role="button">Afficher</a>
-		            <a class="btn btn-secondary" href="{{ path('edit_reunion', {id : reunionTrouvee.getId()}) }}" role="button">Modifier</a>
-		            <a class="btn btn-danger" href="{{ path('del_reunion', {id : reunionTrouvee.getId()}) }}" role="button">Supprimer</a>
+		            <a class="btn btn-primary" href="{{ path('view_reunion', {id : reunionPassee.getId()}) }}" role="button">Afficher</a>
+		            <a class="btn btn-secondary" href="{{ path('edit_reunion', {id : reunionPassee.getId()}) }}" role="button">Modifier</a>
+		            <a class="btn btn-danger" href="{{ path('del_reunion', {id : reunionPassee.getId()}) }}" role="button">Supprimer</a>
 		    	</div>
 				{# </div> #}    		      
 		         
