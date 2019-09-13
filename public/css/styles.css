@@ -63,7 +63,7 @@ nav ul li a.active{
 	height: auto; 
 }
 
-.card{
+.cardSwip{
 	position: relative;
 	background: #fff;
 	width: 400px;
@@ -72,13 +72,13 @@ nav ul li a.active{
 	border: 1px solid #000;
 }
 
-.card .content{
+.cardSwip .content{
 	width: 400px;
 	padding: 30px;
 	box-sizing: border-box;
 }
 
-.card .content a{
+.cardSwip .content a{
 	display: inline-block;
 	margin: 10px 0 0;
 	padding: 10px 20px;
@@ -88,7 +88,7 @@ nav ul li a.active{
 	font-weight: 600;
 }
 
-.card .sliderText{
+.cardSwip .sliderText{
 	position: relative;
 	width: 100%;
 	height: 200px;
@@ -98,7 +98,7 @@ nav ul li a.active{
 	background: #000;
 }
 
-.card .sliderText h3{
+.cardSwip .sliderText h3{
 	color: #fff;
 	font-size: 3em;
 }
