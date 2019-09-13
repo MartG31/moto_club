@@ -44,6 +44,7 @@ class ReunionsController extends MasterController
             $reuFound = $entityManager->getRepository(Reunions::class)->find($id);
             $crFound = $entityManager->getRepository(ComptesRendus::class)->find($id);
             //$crFound = $entityManager->getRepository(ComptesRendus::class)->find(getReu()->$id);
+            //$crFound = $entityManager->getRepository(ComptesRendus::class)->findOneBy(['reu'];
 
         return $this->render('reunions/viewReu.html.twig', [
             'reunionTrouvee' => $reuFound, 
