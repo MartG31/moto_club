@@ -9,7 +9,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * Utilisateurs
  *
  * @ORM\Table(name="utilisateurs", uniqueConstraints={@ORM\UniqueConstraint(name="unique_email", columns={"email"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\UtilisateursRepository")
  */
 class Utilisateurs
 {
