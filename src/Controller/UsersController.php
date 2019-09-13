@@ -186,7 +186,7 @@ class UsersController extends MasterController {
 
     		if(count($errors) == 0) {
 			    $message = (new \Swift_Message('Hello Email'))
-			        ->setFrom('send@example.com')
+			        ->setFrom('Amicale BMW Moto 38')
 			        ->setTo($safe['email'])
 			        ->setBody(
 			            $this->renderView(
