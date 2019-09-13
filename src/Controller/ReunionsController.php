@@ -24,15 +24,42 @@ class ReunionsController extends MasterController
     
     {
     	// Récupération de la liste des réunions
-            $entityManager = $this->getDoctrine()->getManager();
-            // Permet de chercher les réunions via le repository
-            $reuFound = $entityManager->getRepository(Reunions::class)->findAll();
-            //$crFound = $entityManager->getRepository(ComptesRendus::class)->findAll();
+        $entityManager = $this->getDoctrine()->getManager();
+        // Permet de chercher les réunions via le repository
+        $reuFound = $entityManager->getRepository(Reunions::class)->findAll();
+
+
+        /*$i = 0;
+        $newReus = [];
+        foreach ($reuFound as $keyReu => $valueReu) {
+
+            $newReus[$i] = $valueReu;
+            
+            // Vérifie si un CR existe et l'ajoute a mon tableau
+            $crFound = $entityManager->getRepository(ComptesRendus::class)->findOneBy([
+                'reu' => $valueReu->getId()
+            ]);
+
+            if(!empty($crFound)){
+                $newReus[$i]['cr_exist'] = true;
+                $newReus[$i]['cr_id'] = $crFound->getId();
+            }
+            else {
+                $newReus[$i]['cr_exist'] = false;
+            }
+            $i++; 
+
+        }
+
+        var_dump($newReus);*/
+
 
         return $this->render('reunions/index.html.twig', [
             'reunionsTrouvees' => $reuFound, 
+            //'reunionsTrouvees' => $newReus, 
             //'crTrouves' => $crFound,
         ]);
+        
     }
 
     public function viewReunion($id)
@@ -42,7 +69,9 @@ class ReunionsController extends MasterController
             $entityManager = $this->getDoctrine()->getManager();
             // Permet de chercher les réunions via le repository
             $reuFound = $entityManager->getRepository(Reunions::class)->find($id);
-            $crFound = $entityManager->getRepository(ComptesRendus::class)->find($id);
+            $crFound = $entityManager->getRepository(ComptesRendus::class)->findOneBy([
+                'reu' => $reuFound
+            ]);
             //$crFound = $entityManager->getRepository(ComptesRendus::class)->find(getReu()->$id);
             //$crFound = $entityManager->getRepository(ComptesRendus::class)->findOneBy(['reu'];
 

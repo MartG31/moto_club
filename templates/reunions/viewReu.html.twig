@@ -35,12 +35,12 @@
 	            <td>{{ reunionTrouvee.getUser().getPrenom() ?? '' }} </td>
 	            <td>{{ crTrouve.getUser().getPrenom() ?? '' }} </td>
 	            <td>
-	            	{% if crTrouve.getContenu() is not empty %}
-	            	<a class="btn btn-success btn-block" href="{{ path('edit_cr', {id : crTrouve.getReu().getId()}) }}" role="button">Modifier le CR</a>
-	            	{%else %}
+	            	{% if crTrouve is not null %}
+	            	<a class="btn btn-success btn-block" href="{{ path('edit_cr', {id : crTrouve.getId()}) }}" role="button">Modifier le CR</a>
+	            	{% else %}
 	            	<a class="btn btn-success btn-block" href="{{ path('add_cr', {id : reunionTrouvee.getId()}) }}" role="button">Ajouter le CR</a>
 	            	<a class="btn btn-primary btn-block" href="{{ path('edit_reunion', {id : reunionTrouvee.getId()}) }}" role="button">Modifier</a>
-	            	{%endif%}
+	            	{% endif %}
 	            	<a class="btn btn-secondary btn-block" href="{{ path('index_reunions') }}" role="button">Liste des réunions</a>
 	            	<a class="btn btn-danger btn-block" href="{{ path('del_reunion', {id : reunionTrouvee.getId()}) }}" role="button">Supprimer</a>
 	            </td>
