@@ -124,7 +124,7 @@ class UsersController extends MasterController {
 
     				$this->initSession($userExists);
     				$success = true;
-    				header('Refresh: 1; /');
+    				// header('Refresh: 1; /');
     			}
 
     			else{

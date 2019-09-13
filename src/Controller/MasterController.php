@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class MasterController extends AbstractController
 {
-    // ATTRIBUTS MUTUALISES
+    // ATTRIBUTS
 
     public $session;
     public $ranks = array('admin', 'bureau', 'adherent', 'membre');
@@ -36,6 +36,12 @@ class MasterController extends AbstractController
         // echo '<pre>';
         // print_r($this->session);
         // echo '</pre>';
+
+        echo '<pre class="alert alert-info">';
+        print_r('user id : '.$this->session->get('id').' ('.$this->session->get('email').')');
+        echo '<br>';
+        print_r($this->session->get('ranks'));
+        echo '</pre>';
     
 
     }
@@ -47,7 +53,7 @@ class MasterController extends AbstractController
         $userRanks = [];
         $rankFound = false;
         foreach ($this->ranks as $rank) {
-            if($user->getAcces() == $rank) { $rankFound; }
+            if($user->getAcces() == $rank) { $rankFound = true; }
             if($rankFound) { $userRanks[] = $rank; }
         }
 
@@ -68,7 +74,20 @@ class MasterController extends AbstractController
         $this->session->set('date_naiss', $user->getDateNaiss());
     }
 
-    protected function niveauAcces($niv) {
+    protected function restrictAccess($niv) {
+
+        echo '<pre class="alert alert-danger">';
+        print_r($niv);
+        echo '<br>';
+        print_r(!in_array($niv, $this->session->get('ranks')));
+        echo '<br>';
+        ;
+
+        if(!in_array($niv, $this->session->get('ranks'))) {
+            print_r('in if');
+            echo '</pre>';
+            return true;
+        }  
 
     }
 

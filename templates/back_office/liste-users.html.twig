@@ -1,6 +1,6 @@
 {% extends 'admin.html.twig' %} 
 
-{% block title %}Liste des adhérent·es{% endblock %}
+{% block title %}Admin - Utilisateurs{% endblock %}
 
 {% block content %}
 
@@ -23,12 +23,8 @@
           </tr>
         </thead>
         <tbody>
-          {% for adherentTrouve in adherentsTrouves %}
+          {% for user in users %}
           <tr>
-            <td>{{ adherentTrouve.getNom() }} </td>
-            <td>{{ adherentTrouve.getPrenom() }} </td>
-            <td>{{ adherentTrouve.getDateAdhesion() }} </td>
-            <td>{{ adherentTrouve.getEmail() }} </td>
             <td><a class="btn btn-secondary" href="{{path('admin_accueil')}}" role="button">Modifier</a></td>
             <td><a class="btn btn-secondary" href="{{path('admin_accueil')}}" role="button">Afficher</a></td>
           </tr>

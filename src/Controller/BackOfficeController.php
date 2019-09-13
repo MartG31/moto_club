@@ -23,18 +23,16 @@ class BackOfficeController extends MasterController
 
     public function viewUsers()
     {
-        // $this->niveauAcces('bureau');
-        
+        if($this->restrictAccess('bureau')) { $this->redirectToRoute('accueil'); };
         // if($this->session->get('rank') < 3) { return $this->redirectToRoute('accueil'); }
 
     	// Récupération la liste des utilisateurs
             $entityManager = $this->getDoctrine()->getManager();
             // Permet de chercher la liste via le repository
-            $adhFound = $entityManager->getRepository(Utilisateurs::class)->findAll();
+            $users = $entityManager->getRepository(Utilisateurs::class)->findAll();
 
-        return $this->render('back_office/liste.html.twig', [
-        	'adherentsTrouves' => $adhFound, 
-            'controller_name' => 'BackOfficeController',
+        return $this->render('back_office/liste-users.html.twig', [
+        	'users' => $users ?? [],
         ]);
     }
 }
