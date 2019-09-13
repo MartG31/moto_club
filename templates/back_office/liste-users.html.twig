@@ -17,14 +17,19 @@
           <tr>
             <th>Nom</th>
             <th>Prénom</th>
-            <th>Date adhésion</th>
             <th>Email</th>
-            <th></th>
+            <th>Date inscription</th>
+            <th>Date adhésion</th>
           </tr>
         </thead>
         <tbody>
           {% for user in users %}
           <tr>
+            <td>{{ user.getNom() }}</td>
+            <td>{{ user.getPrenom() }}</td>
+            <td>{{ user.getEmail() }}</td>
+            <td>{{ user.getDatetimeInscription|date('d/m/Y') }}</td>
+            <td>{{ user.getDatetimeAdhesion|date('d/m/Y') }}</td>
             <td><a class="btn btn-secondary" href="{{path('admin_accueil')}}" role="button">Modifier</a></td>
             <td><a class="btn btn-secondary" href="{{path('admin_accueil')}}" role="button">Afficher</a></td>
           </tr>
