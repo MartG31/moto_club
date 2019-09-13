@@ -23,8 +23,8 @@ class BackOfficeController extends MasterController
 
     public function viewUsers()
     {
-        if($this->restrictAccess('bureau')) { $this->redirectToRoute('accueil'); };
-        // if($this->session->get('rank') < 3) { return $this->redirectToRoute('accueil'); }
+        // Si pas accès < bureau : redirection
+        if($this->restrictAccess('bureau')) { return $this->redirectToRoute('accueil'); }
 
     	// Récupération la liste des utilisateurs
             $entityManager = $this->getDoctrine()->getManager();

@@ -84,8 +84,6 @@ class MasterController extends AbstractController
         ;
 
         if(!in_array($niv, $this->session->get('ranks'))) {
-            print_r('in if');
-            echo '</pre>';
             return true;
         }  
 

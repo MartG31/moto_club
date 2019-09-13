@@ -32,12 +32,12 @@
             <!-- Navbar -->
             <ul class="navbar-nav ml-auto ml-md-0">
 
-                {% if app.session.get('ranks') is null %}
-                    <li class="nav-item"><a class="nav-link" href="{{ path('inscription_user') }}">Inscription</a></li>
-                    <li class="nav-item"><a class="nav-link btn btn-success border border-dark" href="{{ path('connexion_user') }}">Connexion</a></li>
-                {% else %}
+                {% if app.session.get('ranks') is not null %}
                     <li class="nav-item"><a class="nav-link" href="{{ path('view_profile') }}">{{ app.session.get('prenom') ~ ' ' ~ app.session.get('nom') }}</a></li>
                     <li class="nav-item"><a class="nav-link btn btn-danger border border-dark" href="{{ path('deconnexion_user') }}"><i class="fas fa-power-off"></i></a></li>
+                {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{{ path('inscription_user') }}">Inscription</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-success border border-dark" href="{{ path('connexion_user') }}">Connexion</a></li>
                 {% endif %}
 
             </ul>
