@@ -7,13 +7,13 @@
     
 <div class="container">
   <div class="card card-register mx-auto mt-5">
-    <div class="card-header">Modifier le compte-rendu pour {{ reunionTrouvee.getTitre() }}</div>
+    <div class="card-header">Modifier le compte-rendu pour {{ crTrouve.getReu().getTitre() }}</div>
     {% if errors is not empty %}
       <div class="alert alert-danger">{{errors|raw}}</div>
     {% elseif success == true %}
       <div class="alert alert-success">Votre CR a bien été modifié</div>
     {% endif %}
-    <div class="card-body">Réunion du {{ reunionTrouvee.getDatetimeReu()|date("Y-m-d") }} à {{ reunionTrouvee.getDatetimeReu()|date("H:i") }}
+    <div class="card-body">Réunion du {{ crTrouve.getReu().getDatetimeReu()|date("Y-m-d") }} à {{ crTrouve.getReu().getDatetimeReu()|date("H:i") }}
     </div>
     <div class="card-body">
       <form method="post">

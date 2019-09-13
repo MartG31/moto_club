@@ -27,9 +27,11 @@ class ReunionsController extends MasterController
             $entityManager = $this->getDoctrine()->getManager();
             // Permet de chercher les réunions via le repository
             $reuFound = $entityManager->getRepository(Reunions::class)->findAll();
+            //$crFound = $entityManager->getRepository(ComptesRendus::class)->findAll();
 
         return $this->render('reunions/index.html.twig', [
             'reunionsTrouvees' => $reuFound, 
+            //'crTrouves' => $crFound,
         ]);
     }
 
@@ -40,10 +42,12 @@ class ReunionsController extends MasterController
             $entityManager = $this->getDoctrine()->getManager();
             // Permet de chercher les réunions via le repository
             $reuFound = $entityManager->getRepository(Reunions::class)->find($id);
-
+            $crFound = $entityManager->getRepository(ComptesRendus::class)->find($id);
+            //$crFound = $entityManager->getRepository(ComptesRendus::class)->find(getReu()->$id);
 
         return $this->render('reunions/viewReu.html.twig', [
             'reunionTrouvee' => $reuFound, 
+            'crTrouve' => $crFound,
         ]);
     }
 
@@ -300,7 +304,7 @@ class ReunionsController extends MasterController
             }
 
         return $this->render('reunions/editCr.html.twig', [
-            'reunionTrouvee'    => $reuFound,
+            //'reunionTrouvee'    => $reuFound,
             'crTrouve'          => $crFound,
             'donnees_saisies'   => $safe ?? [],
             'success'           => $success ?? false,
