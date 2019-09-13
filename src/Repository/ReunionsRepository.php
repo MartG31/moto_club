@@ -3,7 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Reunions;
-use App\Entity\ComptesRendus;
+// use App\Entity\ComptesRendus;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
@@ -21,14 +21,16 @@ class ReunionsRepository extends ServiceEntityRepository
     }
 
 
-	public function findAllNotPast()
+    /**
+     * @return Reunions[] Returns an array of Reunions objects
+     */
+	public function findAllNotPast($param = null)
  	{
-    return $this->createQueryBuilder('r')
-            ->andWhere('r.datetimeReu < DateTime.Now')
-            ->orderBy('r.dateReu', 'ASC')
-            ->getQuery()
-            ->getResult()
-        ;
+        return $this->createQueryBuilder('r')
+                //->andWhere('r.datetimeReu > DateTime.Now')
+                ->orderBy('r.datetimeReu', 'DESC')
+                ->getQuery()
+                ->getResult();
 
     }
     
@@ -44,6 +46,35 @@ class ReunionsRepository extends ServiceEntityRepository
  //        ;
 
  //    }
+
+    // /**
+    //  * @return Flag[] Returns an array of Flag objects
+    //  */
+    /*
+    public function findByExampleField($value)
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.exampleField = :val')
+            ->setParameter('val', $value)
+            ->orderBy('f.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    */
+
+    /*
+    public function findOneBySomeField($value): ?Flag
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.exampleField = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+    */
 
 }
 
