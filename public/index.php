@@ -1,6 +1,5 @@
 <?php
-
-session_start();
+// session_start();
 
 use App\Kernel;
 use Symfony\Component\Debug\Debug;
