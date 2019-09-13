@@ -31,6 +31,18 @@ deconnexion_user:
     path: /users/logout
     controller: App\Controller\UsersController::logoutUser
 
+forgot_password:
+    path: /users/forgot-password
+    controller: App\Controller\UsersController::forgotPasswordUser
+
+reinit_password:
+    path: /users/reinit-password
+    controller: App\Controller\UsersController::reinitPasswordUser
+
+view_profile:
+    path: /users/profil
+    controller: App\Controller\UsersController::viewProfile
+
 ############################# Balades ##################
 
 index_balades:

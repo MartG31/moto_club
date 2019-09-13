@@ -33,20 +33,21 @@
 					<li class="nav-item"><a class="nav-link" href="{{ path('contact') }}">Contact</a></li>
 					{% if app.session.get('rank') is null %}
 						<li class="nav-item"><a class="nav-link" href="{{ path('inscription_user') }}">Inscription</a></li>
-						<li class="nav-item"><a class="nav-link" href="{{ path('connexion_user') }}">Connexion</a></li>
+						<li class="nav-item"><a class="nav-link btn btn-success border border-dark" href="{{ path('connexion_user') }}">Connexion</a></li>
 					{% else %}
 						<li class="nav-item"><a class="nav-link" href="{{ path('admin_accueil') }}">Back Office ({{ app.session.get('prenom') ~ ' ' ~ app.session.get('nom') }})</a></li>
-						<li class="nav-item"><a class="nav-link" href="{{ path('deconnexion_user') }}">Déconnexion</a></li>
+						<li class="nav-item"><a class="nav-link btn btn-danger border border-dark" href="{{ path('deconnexion_user') }}">Déconnexion</a></li>
 					{% endif %}
 				</ul>
 			</div>
 		</nav>
+		<div class="container">
+			{% block content %}{% endblock %}
+		</div>
 
-		{% block content %}{% endblock %}
-
-		<footer class="base-footer sticky-footer">
+		<footer class="base-footer fixed-bottom">
 			<div class="footer">
-				<div class="row">			
+				<div class="row ml-2">			
 					<div class="col-md-2"><a href ="#" class="colorlink footerlink">Mentions légales</a></div>
 					<div class="col-md-2"><a href="https://www.flickr.com/photos/136404712@N02/albums" class="colorlink footerlink">Site photo de l'Amicale</a></div>
 				</div>
