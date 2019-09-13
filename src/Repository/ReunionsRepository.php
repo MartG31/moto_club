@@ -20,11 +20,19 @@ class ReunionsRepository extends ServiceEntityRepository
     }
 
 
-    public function findAllWithCr()
-    {
+	// public function findAllNotPast()
+ // 	{
+ //    return $this->createQueryBuilder('f')
+ //            ->andWhere('f.dateReu < NOW')
+ //            //->setParameter('val', $value)
+ //            ->orderBy('f.dateReu', 'ASC')
+ //            //->setMaxResults(10)
+ //            ->getQuery()
+ //            ->getResult()
+ //        ;
 
+ //    }
 
-    }
 }
 
 ?>
