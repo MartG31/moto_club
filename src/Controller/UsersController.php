@@ -87,7 +87,7 @@ class UsersController extends MasterController {
     			// On l'exécute
     			$em->flush();
     			$success = true;
-    			header('Refresh: 0; /users/login');
+    			header('Refresh: 1; /users/login');
     		}
     	}
 
