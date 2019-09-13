@@ -20,7 +20,7 @@ class MasterController extends AbstractController
 
         $this->session = new Session();
 
-        echo '<pre class="alert alert-info">';
+        echo '<pre class="alert alert-info mb-0">';
         print_r('user id : '.$this->session->get('id').' ('.$this->session->get('email').') / RANG : '.$this->session->get('acces'));
         echo '</pre>';
     
@@ -56,7 +56,7 @@ class MasterController extends AbstractController
 
     protected function restrictAccess($niv) {
 
-        echo '<pre class="alert alert-danger">';
+        echo '<pre class="alert alert-danger mb-0">';
         print_r('Accès réservé : '.$niv);
         echo '</pre>';
 
