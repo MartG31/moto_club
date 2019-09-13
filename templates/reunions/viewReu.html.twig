@@ -11,30 +11,36 @@
     </div>
   	<div class="card-body">
 	    <div class="table-responsive">
-	      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-	        <thead>
-	          <tr>
-	            <th>Intitulé de la réunion</th>
-	            <th>Type de réunion</th>
-	            <th>Date et heure </th>
-	            <th>Lieux</th>
-	            <th>Contenu de la réunion</th>
-	            <th>Proposé par </th>
-	            <th>Compte-rendu </th>
+	      <div class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+	        
+	        <div class="card-deck">
+	          <div class="card-header">
+	          	<div class="card-title">
+	          	 <b>	
+		            Intitulé de la réunion
+		            Type de réunion
+		            Date et heure 
+		            Lieux
+		            Contenu de la réunion
+		            Proposé par 
+		            Compte-rendu 
+		          </b>
+		         </div>
+			  </div>
+	            
+	          
+	        
+	        
+	          
+	            {{ reunionTrouvee.getTitre() }} 
+	            {{ reunionTrouvee.getTypeReu() }} 
+	            Le {{ reunionTrouvee.getDatetimeReu()|date("d/m/Y") }} à {{ reunionTrouvee.getDatetimeReu()|date("H:i") }} 
+	            {{ reunionTrouvee.getLieuReu() }} 
+	            {{ reunionTrouvee.getContenu() }} 
+	            {{ reunionTrouvee.getUser().getPrenom() ?? '' }} 
+	            {{ crTrouve.getUser().getPrenom() ?? '' }} 
 
-	            <th></th>
-	          </tr>
-	        </thead>
-	        <tbody>
-	          <tr>
-	            <td>{{ reunionTrouvee.getTitre() }} </td>
-	            <td>{{ reunionTrouvee.getTypeReu() }} </td>
-	            <td>Le {{ reunionTrouvee.getDatetimeReu()|date("d/m/Y") }} à {{ reunionTrouvee.getDatetimeReu()|date("H:i") }} </td>
-	            <td>{{ reunionTrouvee.getLieuReu() }} </td>
-	            <td>{{ reunionTrouvee.getContenu() }} </td>
-	            <td>{{ reunionTrouvee.getUser().getPrenom() ?? '' }} </td>
-	            <td>{{ crTrouve.getUser().getPrenom() ?? '' }} </td>
-	            <td>
+	        </div>  
 	            	{% if crTrouve is not null %}
 	            	<a class="btn btn-success btn-block" href="{{ path('edit_cr', {id : crTrouve.getId()}) }}" role="button">Modifier le CR</a>
 	            	{% else %}
@@ -43,11 +49,10 @@
 	            	{% endif %}
 	            	<a class="btn btn-secondary btn-block" href="{{ path('index_reunions') }}" role="button">Liste des réunions</a>
 	            	<a class="btn btn-danger btn-block" href="{{ path('del_reunion', {id : reunionTrouvee.getId()}) }}" role="button">Supprimer</a>
-	            </td>
-	          </tr>
-	        </tbody>
+	            
+	        
 
-	      </table>
+	      </div>
 	    </div>
 	</div>
 	<div class="card-footer small text-muted">Reunion postée le  {{reunionTrouvee.getDatetimePost()|date("d/m/Y")}}</div>
