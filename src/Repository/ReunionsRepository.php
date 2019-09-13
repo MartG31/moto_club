@@ -18,6 +18,13 @@ class ReunionsRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Reunions::class);
     }
+
+
+    public function findAllWithCr()
+    {
+
+
+    }
 }
 
 ?>

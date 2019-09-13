@@ -50,15 +50,17 @@ class BaladesController extends MasterController
         ]);
     }
 
-    public function viewBalade() {
+    public function viewBalade($id) {
 
     	// Affichage du détail des balades (Titre, dates, description, map)
     	// Accéder à la galerie
     	// Bouton "S'inscrire"
-
+        $em = $this->getDoctrine()->getManager();
+        $balade = $em->getRepository(Balades::class)->find($id);
 
 
     	return $this->render('balades/view.html.twig', [
+            'balade' => $balade ?? [],
 
         ]);
     }
