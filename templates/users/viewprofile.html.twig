@@ -9,6 +9,9 @@
     <div class="card-header">
     </div>
   	<div class="card-body">
+  		{% for rank in app.session.get('ranks') %}
+  		<div class="alert alert-success">{{ rank }}</div>
+  		{% endfor %}
 	</div>
 	<div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
 </div>

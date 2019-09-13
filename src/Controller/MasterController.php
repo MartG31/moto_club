@@ -11,13 +11,7 @@ class MasterController extends AbstractController
     // ATTRIBUTS MUTUALISES
 
     public $session;
-
-    public $rank = array(
-        'membre' => 1,
-        'adherent' => 2,
-        'bureau' => 3,
-        'admin' => 4,
-    );
+    public $ranks = array('admin', 'bureau', 'adherent', 'membre');
 
 
     // CONSTRUCTEUR
@@ -48,8 +42,34 @@ class MasterController extends AbstractController
 
     // GESTION DES ACCES
 
+    protected function initSession($user) {
+
+        $userRanks = [];
+        $rankFound = false;
+        foreach ($this->ranks as $rank) {
+            if($user->getAcces() == $rank) { $rankFound; }
+            if($rankFound) { $userRanks[] = $rank; }
+        }
+
+        $this->session->set('id', $user->getId());
+        $this->session->set('email', $user->getEmail());
+        $this->session->set('acces', $user->getAcces());
+        $this->session->set('ranks', $userRanks);
+        $this->session->set('pseudo', $user->getPseudo());
+        $this->session->set('nom', $user->getNom());
+        $this->session->set('prenom', $user->getPrenom());
+        $this->session->set('avatar', $user->getAvatar());
+        $this->session->set('datetime_inscription', $user->getDatetimeInscription());
+        $this->session->set('datetime_adhesion', $user->getDatetimeAdhesion());
+        $this->session->set('adresse', $user->getAdresse());
+        $this->session->set('cp', $user->getCp());
+        $this->session->set('ville', $user->getVille());
+        $this->session->set('telephone', $user->getTelephone());
+        $this->session->set('date_naiss', $user->getDateNaiss());
+    }
+
     protected function niveauAcces($niv) {
-        
+
     }
 
     // FONCTIONS MUTUALISEES

@@ -122,23 +122,7 @@ class UsersController extends MasterController {
 
     			if(password_verify($safe['password'], $userExists->getPwd())){
 
-    				$this->session->set('id', $userExists->getId());
-    				$this->session->set('email', $userExists->getEmail());
-    				$this->session->set('acces', $userExists->getAcces());
-    				$this->session->set('rank', $this->rank[$userExists->getAcces()]);
-    				$this->session->set('pseudo', $userExists->getPseudo());
-    				$this->session->set('nom', $userExists->getNom());
-    				$this->session->set('prenom', $userExists->getPrenom());
-    				$this->session->set('avatar', $userExists->getAvatar());
-    				$this->session->set('datetime_inscription', $userExists->getDatetimeInscription());
-    				$this->session->set('datetime_adhesion', $userExists->getDatetimeAdhesion());
-    				$this->session->set('adresse', $userExists->getAdresse());
-    				$this->session->set('cp', $userExists->getCp());
-    				$this->session->set('ville', $userExists->getVille());
-    				$this->session->set('telephone', $userExists->getTelephone());
-    				$this->session->set('date_naiss', $userExists->getDateNaiss());
-
-    				session_regenerate_id();
+    				$this->initSession($userExists);
     				$success = true;
     				header('Refresh: 1; /');
     			}
