@@ -29,15 +29,34 @@
 					<li class="nav-item"><a class="nav-link" href="{{ path('accueil') }}">Accueil</a></li>
 					<li class="nav-item"><a class="nav-link" href="{{ path('index_balades') }}">Balades</a></li>
 					<li class="nav-item"><a class="nav-link" href="{{ path('view_albums') }}">Albums</a></li>
-					<li class="nav-item"><a class="nav-link" href="{{ path('index_reunions') }}">Réunions</a></li>
-					<li class="nav-item"><a class="nav-link" href="{{ path('index_cr') }}">Comptes rendus</a></li>
+
+					{% if 'bureau' in app.session.get('ranks') %}
+
+						<li class="nav-item"><a class="nav-link" href="{{ path('index_reunions') }}">Réunions</a></li>
+						<li class="nav-item"><a class="nav-link" href="{{ path('index_cr') }}">Comptes rendus</a></li>
+
+					{% endif %}
+					
 					<li class="nav-item"><a class="nav-link" href="{{ path('contact') }}">Contact</a></li>
+
 					{% if app.session.get('ranks') is not null %}
-						<li class="nav-item"><a class="nav-link btn btn-info border border-dark" href="{{ path('admin_accueil') }}">Back Office ({{ app.session.get('prenom') ~ ' ' ~ app.session.get('nom') }})</a></li>
-						<li class="nav-item"><a class="nav-link btn btn-danger border border-dark" href="{{ path('deconnexion_user') }}">Déconnexion</a></li>
+
+						<li class="nav-item">
+							<a class="nav-link btn btn-info border border-dark" href="{{ path('admin_accueil') }}">Back Office ({{ app.session.get('prenom') ~ ' ' ~ app.session.get('nom') }})</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link btn btn-danger border border-dark" href="{{ path('deconnexion_user') }}">Déconnexion</a>
+						</li>
+
 					{% else %}
-						<li class="nav-item"><a class="nav-link btn btn-secondary border border-dark" href="{{ path('inscription_user') }}">Inscription</a></li>
-						<li class="nav-item"><a class="nav-link btn btn-success border border-dark" href="{{ path('connexion_user') }}">Connexion</a></li>
+
+						<li class="nav-item">
+							<a class="nav-link btn btn-secondary border border-dark" href="{{ path('inscription_user') }}">Inscription</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link btn btn-success border border-dark" href="{{ path('connexion_user') }}">Connexion</a>
+						</li>
+
 					{% endif %}
 				</ul>
 			</div>

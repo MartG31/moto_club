@@ -10,14 +10,14 @@ class DefaultController extends MasterController
     /**
      * @Route("/default", name="default")
      */
-    public function index()
-    {
+    public function index() {
+
         return $this->render('default/index.html.twig', [
         ]);
     }
 
-    public function contact()
-    {
+    public function contact() {
+        
         return $this->render('default/contact.html.twig', [
         ]);
     }

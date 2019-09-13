@@ -23,9 +23,11 @@ class ReunionsController extends MasterController
     /**
      * @Route("/reunions", name="reunions")
      */
-    public function indexReunion()
     
-    {
+    public function indexReunion() {
+
+        if($this->restrictAccess('adherent')) { return $this->redirectToRoute('accueil'); }
+
     	// Récupération de la liste des réunions
         $entityManager = $this->getDoctrine()->getManager();
         // Permet de chercher les réunions via le repository
@@ -51,12 +53,12 @@ class ReunionsController extends MasterController
             //'reunionsTrouvees' => $newReus, 
             //'crTrouves' => $crFound,
         ]);
-        
     }
 
-    public function viewReunion($id)
-    
-    {
+    public function viewReunion($id) {
+
+        if($this->restrictAccess('adherent')) { return $this->redirectToRoute('accueil'); }
+
     	// Récupération de la liste des réunions
             $entityManager = $this->getDoctrine()->getManager();
             // Permet de chercher les réunions via le repository
@@ -73,9 +75,10 @@ class ReunionsController extends MasterController
         ]);
     }
 
-    public function addReunion()
-    
-    {
+    public function addReunion() {
+
+        if($this->restrictAccess('bureau')) { return $this->redirectToRoute('accueil'); }
+
         // Utilisation de la base de données
         $entityManager = $this->getDoctrine()->getManager();
         
@@ -138,9 +141,10 @@ class ReunionsController extends MasterController
         ]);     
     }
 
-    public function editReunion($id)
-    
-    {
+    public function editReunion($id) {
+
+        if($this->restrictAccess('bureau')) { return $this->redirectToRoute('accueil'); }
+
         // Utilisation de la base de données
         $entityManager = $this->getDoctrine()->getManager();
         $reuFound = $entityManager->getRepository(Reunions::class)->find($id);
@@ -199,9 +203,10 @@ class ReunionsController extends MasterController
         ]);
     }
 
-    public function delReunion($id)
-    
-    {
+    public function delReunion($id) {
+
+        if($this->restrictAccess('bureau')) { return $this->redirectToRoute('accueil'); }
+
         // Récupération de la liste des réunions
             $entityManager = $this->getDoctrine()->getManager();
             // Permet de chercher les réunions via le repository
@@ -215,9 +220,39 @@ class ReunionsController extends MasterController
         ]);
     }
 
-    public function addCr($id)
-    
-    {
+    public function indexCr() {
+
+        if($this->restrictAccess('adherent')) { return $this->redirectToRoute('accueil'); }
+
+        // Récupération de la liste des réunions
+            $entityManager = $this->getDoctrine()->getManager();
+            // Permet de chercher les réunions via le repository
+            $crFound = $entityManager->getRepository(ComptesRendus::class)->findAll();
+
+        return $this->render('reunions/indexCr.html.twig', [
+            'crTrouves' => $crFound, 
+        ]);
+    }
+
+    public function viewCr($id) {
+
+        if($this->restrictAccess('adherent')) { return $this->redirectToRoute('accueil'); }
+        
+        // Récupération de la liste des réunions
+            $entityManager = $this->getDoctrine()->getManager();
+            // Permet de chercher les réunions via le repository
+            $crFound = $entityManager->getRepository(ComptesRendus::class)->find($id);
+
+
+        return $this->render('reunions/viewCr.html.twig', [
+            'crTrouve' => $crFound, 
+        ]);
+    }
+
+    public function addCr($id) {
+
+        if($this->restrictAccess('bureau')) { return $this->redirectToRoute('accueil'); }
+
         // Récupération de la liste des réunions
             $entityManager = $this->getDoctrine()->getManager();
             // Permet de chercher les réunions via le repository
@@ -274,9 +309,10 @@ class ReunionsController extends MasterController
         ]);
     }
 
-    public function editCr($id)
-    
-    {
+    public function editCr($id) {
+
+        if($this->restrictAccess('bureau')) { return $this->redirectToRoute('accueil'); }
+
         // Récupération de la liste des réunions
             $entityManager = $this->getDoctrine()->getManager();
             // Permet de chercher les réunions via le repository
@@ -333,36 +369,11 @@ class ReunionsController extends MasterController
             'errors'            => $errorsForm ?? [],
         ]);
     }
-    public function indexCr()
-    
-    {
-        // Récupération de la liste des réunions
-            $entityManager = $this->getDoctrine()->getManager();
-            // Permet de chercher les réunions via le repository
-            $crFound = $entityManager->getRepository(ComptesRendus::class)->findAll();
 
-        return $this->render('reunions/indexCr.html.twig', [
-            'crTrouves' => $crFound, 
-        ]);
-    }
+    public function delCr($id) {
 
-    public function viewCr($id)
-    
-    {
-        // Récupération de la liste des réunions
-            $entityManager = $this->getDoctrine()->getManager();
-            // Permet de chercher les réunions via le repository
-            $crFound = $entityManager->getRepository(ComptesRendus::class)->find($id);
+        if($this->restrictAccess('bureau')) { return $this->redirectToRoute('accueil'); }
 
-
-        return $this->render('reunions/viewCr.html.twig', [
-            'crTrouve' => $crFound, 
-        ]);
-    }
-
-    public function delCr($id)
-    
-    {
         // Récupération de la liste des réunions
             $entityManager = $this->getDoctrine()->getManager();
             // Permet de chercher les réunions via le repository

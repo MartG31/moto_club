@@ -13,18 +13,18 @@ class BackOfficeController extends MasterController
     /**
      * @Route("/back/office", name="back_office")
      */
-    public function index()
-    {
+    public function index() {
+
+        if($this->restrictAccess('membre')) { return $this->redirectToRoute('accueil'); }
+
         return $this->render('back_office/index.html.twig', [
 
-            'controller_name' => 'BackOfficeController',
         ]);
     }
 
-    public function viewUsers()
-    {
+    public function viewUsers() {
         // Si pas accès < bureau : redirection
-        if($this->restrictAccess('bureau')) { return $this->redirectToRoute('accueil'); }
+        if($this->restrictAccess('bureau')) { return $this->redirectToRoute('admin_accueil'); }
 
     	// Récupération la liste des utilisateurs
             $entityManager = $this->getDoctrine()->getManager();

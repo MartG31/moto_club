@@ -20,15 +20,6 @@ class BaladesController extends MasterController
     public function indexBalades() {
 
 
-
-        // var_dump($_SESSION);
-        // echo '<pre>';
-        // print_r($sess);
-        // echo '</pre>';
-
-
-
-
     	// Affichage du calendrier des balades
 
 
@@ -59,6 +50,8 @@ class BaladesController extends MasterController
     }
 
     public function addBalade() {
+
+        if($this->restrictAccess('adherent')) { return $this->redirectToRoute('accueil'); }
 
     	$errors = [];
 
@@ -160,7 +153,7 @@ class BaladesController extends MasterController
 
     public function editBalade() {
 
-    	//
+    	if($this->restrictAccess('adherent')) { return $this->redirectToRoute('accueil'); }
 
     	return $this->render('balades/edit.html.twig', [
 
@@ -169,7 +162,7 @@ class BaladesController extends MasterController
 
     public function deleteBalade() {
 
-    	//
+    	if($this->restrictAccess('adherent')) { return $this->redirectToRoute('accueil'); }
 
     	return $this->render('balades/delete.html.twig', [
 

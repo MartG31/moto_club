@@ -46,6 +46,8 @@ class PhotosController extends MasterController
 
     public function addPhoto() {
 
+        if($this->restrictAccess('adherent')) { return $this->redirectToRoute('accueil'); }
+
     	$this->errors = [];
         $em = $this->getDoctrine()->getManager();
 

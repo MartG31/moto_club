@@ -16,6 +16,7 @@ class UsersController extends MasterController {
      * @Route("/users", name="users")
      */
     public function inscriptionUser() {
+
 		$em = $this->getDoctrine()->getManager();
     	$errors = [];
         
@@ -98,6 +99,7 @@ class UsersController extends MasterController {
     }
 
     public function loginUser() {
+
 		$em = $this->getDoctrine()->getManager();
     	$errors = [];
         
@@ -142,6 +144,7 @@ class UsersController extends MasterController {
     }
 
     public function logoutUser() {
+
 		session_destroy();
 		return $this->redirectToRoute('accueil');
     }
@@ -256,6 +259,8 @@ class UsersController extends MasterController {
     }
 
     public function viewProfile() {
+
+    	if($this->restrictAccess('membre')) { return $this->redirectToRoute('accueil'); }
 		
 
 	    return $this->render('users/viewprofile.html.twig', [
