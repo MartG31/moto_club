@@ -37,7 +37,7 @@ class MasterController extends AbstractController
 
     // GESTION DES ACCES
 
-    protected function initSession($user) {
+    protected function refreshSession($user) {
 
         $userRanks = [];
         $rankFound = false;
@@ -48,7 +48,7 @@ class MasterController extends AbstractController
 
         $this->session->set('id', $user->getId());
         $this->session->set('email', $user->getEmail());
-        $this->session->set('acces', $nomsRanks[$user->getAcces()]);
+        $this->session->set('acces', $this->nomsRanks[$user->getAcces()]);
         $this->session->set('ranks', $userRanks);
         $this->session->set('pseudo', $user->getPseudo());
         $this->session->set('nom', $user->getNom());
