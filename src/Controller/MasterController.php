@@ -115,7 +115,7 @@ class MasterController extends AbstractController
                             </style>
                         </head>
                         <body>
-                        '.$content.'
+                        '.nl2br($content).'
                         <hr>
                         <a href="http://127.0.0.1:8000/"><img src="https://i.imgur.com/ybBVpp5.png"></a>
                         <p>L\'Amicale BMW Moto 38</p>
