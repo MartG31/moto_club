@@ -20,6 +20,7 @@
 		  			<div class="profile-avatar-file">
 		  				<div class="form-group row d-flex justify-content-center text-center">
 		  					<label for="change-avatar-input" class="col-12 "><strong>Changer mon avatar</strong></label>
+		  					<!-- <input type="hidden" name="MAX_FILE_SIZE" value="1500000"> -->
 		  					<input id="change-avatar-input" class="text-center" name="avatar" type="file" value="Changer d'avatar">
 		  				</div>
 		  				{% if av_errors is not empty %}
@@ -36,6 +37,7 @@
 		    <div class="card-header">Mes informations</div>
 		  	<div class="card-body">
 		  		<form method="post">
+		  			<!-- <input type="hidden" name="action" value="form-infos-user"> -->
 		  			<div class="form-group row">
 		  				<label for="email" class="col-lg-3">Email</label>
 		  				<input id="email" class="col-lg-9 form-control" name="email" type="text" value="{{ app.session.get('email') }}" disabled>

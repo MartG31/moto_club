@@ -268,6 +268,10 @@ class UsersController extends MasterController {
 
     	$av_errors = [];
 
+        // echo '<pre class="alert alert-info mb-0">';
+        // print_r($_FILES);
+        // echo '</pre>';
+
     	if(!empty($_FILES)) {
 
     		if($_FILES['avatar']['error'] != UPLOAD_ERR_OK) {
@@ -383,6 +387,7 @@ class UsersController extends MasterController {
     	    'av_success' => $av_success ?? false,
             'errors' => $errors ?? [],
             'success' => $success ?? false,        	
+            'maxFileSize' => $this->maxFileSize,         
         ]);
     }
 
