@@ -6,6 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 class MasterController extends AbstractController
 {
     // ATTRIBUTS
@@ -20,9 +23,9 @@ class MasterController extends AbstractController
 
         $this->session = new Session();
 
-        echo '<pre class="alert alert-info mb-0">';
-        print_r('user id : '.$this->session->get('id').' ('.$this->session->get('email').') / RANG : '.$this->session->get('acces'));
-        echo '</pre>';
+        // echo '<pre class="alert alert-info mb-0">';
+        // print_r('user id : '.$this->session->get('id').' ('.$this->session->get('email').') / RANG : '.$this->session->get('acces'));
+        // echo '</pre>';
     
     }
 
@@ -56,9 +59,9 @@ class MasterController extends AbstractController
 
     protected function restrictAccess($niv) {
 
-        echo '<pre class="alert alert-danger mb-0">';
-        print_r('Accès réservé : '.$niv);
-        echo '</pre>';
+        // echo '<pre class="alert alert-danger mb-0">';
+        // print_r('Accès réservé : '.$niv);
+        // echo '</pre>';
 
         if(!in_array($niv, $this->session->get('ranks'))) {
             return true;
@@ -103,7 +106,7 @@ class MasterController extends AbstractController
                         </head>
                         <body>'.$content.'</body>
                     </html>';
-                    
+
         $mail->Send();
 
     }

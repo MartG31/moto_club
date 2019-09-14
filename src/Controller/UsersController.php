@@ -8,8 +8,6 @@ use App\Entity\Tokens;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use \Respect\Validation\Validator as v;
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
 
 class UsersController extends MasterController {
     /**
