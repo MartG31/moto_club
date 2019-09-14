@@ -35,9 +35,51 @@
 		<div class="card mb-3">
 		    <div class="card-header">Mes informations</div>
 		  	<div class="card-body">
-		  		<div>Adresse email : <strong>{{ app.session.get('email') }}</strong></div>
-		  		<div>Rang : <strong>{{ app.session.get('acces') }}</strong></div>
 		  		<form method="post">
+		  			<div class="form-group row">
+		  				<label for="email" class="col-lg-3">Email</label>
+		  				<input id="email" class="col-lg-9 form-control" name="email" type="text" value="{{ app.session.get('email') }}" disabled>
+		  			</div>
+		  			<div class="form-group row">
+		  				<label for="acces" class="col-lg-3">Accès</label>
+		  				<input id="acces" class="col-lg-9 form-control" name="acces" type="text" value="{{ app.session.get('acces') }}" disabled>
+		  			</div>
+		  			<div class="form-group row">
+		  				<label for="pseudo" class="col-lg-3">Pseudo</label>
+		  				<input id="pseudo" class="col-lg-9 form-control" name="pseudo" type="text" value="{{ app.session.get('pseudo') }}">
+		  			</div>
+		  			<div class="form-group row">
+		  				<label for="nom" class="col-lg-3">Nom</label>
+		  				<input id="nom" class="col-lg-9 form-control" name="nom" type="text" value="{{ app.session.get('nom') }}">
+		  			</div>
+		  			<div class="form-group row">
+		  				<label for="prenom" class="col-lg-3">Prénom</label>
+		  				<input id="prenom" class="col-lg-9 form-control" name="prenom" type="text" value="{{ app.session.get('prenom') }}">
+		  			</div>
+		  			<div class="form-group row">
+		  				<label for="adresse" class="col-lg-3">Adresse</label>
+		  				<input id="adresse" class="col-lg-9 form-control" name="adresse" type="text" value="{{ app.session.get('adresse') }}">
+		  			</div>
+		  			<div class="form-group row">
+		  				<label for="cp" class="col-lg-3">Code Postal</label>
+		  				<input id="cp" class="col-lg-9 form-control" name="cp" type="text" value="{{ app.session.get('cp') }}">
+		  			</div>
+		  			<div class="form-group row">
+		  				<label for="ville" class="col-lg-3">Ville</label>
+		  				<input id="ville" class="col-lg-9 form-control" name="ville" type="text" value="{{ app.session.get('ville') }}">
+		  			</div>
+		  			<div class="form-group row">
+		  				<label for="telephone" class="col-lg-3">Téléphone</label>
+		  				<input id="telephone" class="col-lg-9 form-control" name="telephone" type="text" maxlength="10" value="{{ app.session.get('telephone') }}">
+		  			</div>
+		  			<div class="form-group row">
+		  				<label for="date_naiss" class="col-lg-3">Date de naissance</label>
+		  				<input id="date_naiss" class="col-lg-9 form-control" name="date_naiss" type="date" value="{{ app.session.get('date_naiss')|date('Y-m-d') }}">
+		  			</div>
+		  			<div class="form-group row d-flex justify-content-center">
+		  				<input type="submit" class="btn btn-primary btn-lg" value="Enregistrer les modifications">
+		  				<input type="reset" class="btn btn-secondary btn-lg" value="Réinitialiser">
+		  			</div>
 		  		</form>
 			</div>
 		</div>

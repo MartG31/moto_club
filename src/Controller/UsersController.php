@@ -182,7 +182,7 @@ class UsersController extends MasterController {
 				// Envoi du mail
 				$receivers = [$safe['email']];
 				$subject = 'Récupération de Mot de passe';
-				$content = '<h1>Mot de passe perdu ?</h1>
+				$content = '<h2>Mot de passe perdu ?</h2>
 							<p>Bonjour, vous avez indiqué avoir perdu votre mot de passe, veuillez cliquer sur le lien suivant pour récupérer l\'accès à votre compte.</p>
 							<p><a href="http://127.0.0.1:8000/users/reinit-password?token='.$token.'">Réinitialiser mon mot de passe</a></p>
 							<p>Si vous n\'êtes pas à l\'origine de cette demande, veuillez ignorer cet email. Vous pouvez continuer à utiliser votre mot de passe actuel.</p>';
@@ -237,11 +237,16 @@ class UsersController extends MasterController {
     public function viewProfile() {
 
     	if($this->restrictAccess('membre')) { return $this->redirectToRoute('accueil'); }
+
+
+
 		
 
 	    return $this->render('users/viewprofile.html.twig', [
 	    	'post' => $post ?? [],
-            'errors' => $this->errors ?? '',
+    	    'ph_errors' => $ph_errors ?? [],
+    	    'ph_success' => $ph_success ?? false,
+            'errors' => $this->errors ?? [],
             'success' => $success ?? false,        	
         ]);
     }
