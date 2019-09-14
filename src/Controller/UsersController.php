@@ -148,7 +148,7 @@ class UsersController extends MasterController {
 
     			if(password_verify($safe['password'], $userExists->getPwd())){
 
-    				$this->initSession($userExists);
+    				$this->refreshSession($userExists);
     				$success = true;
     				header('Refresh: 1; /');
     			}
