@@ -15,6 +15,12 @@ class MasterController extends AbstractController
 
     public $session;
     public $ranks = array('admin', 'bureau', 'adherent', 'membre');
+    public $nomsRanks = array(
+        'admin' => 'Administrateur / Développeur', 
+        'bureau' => 'Membre du bureau', 
+        'adherent' => 'Adhérent de l\'association', 
+        'membre' => 'Membre du site', 
+    );
 
 
     // CONSTRUCTEUR
@@ -42,7 +48,7 @@ class MasterController extends AbstractController
 
         $this->session->set('id', $user->getId());
         $this->session->set('email', $user->getEmail());
-        $this->session->set('acces', $user->getAcces());
+        $this->session->set('acces', $nomsRanks[$user->getAcces()]);
         $this->session->set('ranks', $userRanks);
         $this->session->set('pseudo', $user->getPseudo());
         $this->session->set('nom', $user->getNom());
