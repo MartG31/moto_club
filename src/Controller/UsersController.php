@@ -85,6 +85,21 @@ class UsersController extends MasterController {
     			$em->persist($usersData);
     			$em->flush();
     			$success = true;
+    			// Envoi du mail
+				$receivers = [$safe['email']];
+				$subject = 'Bienvenue !';
+				$content = '<h1>Vous venez de vous inscrire sur notre site, nous avons le plaisir de vous souhaiter la bienvenue</h1>
+							<p>Voici un récapitulatif des informations que vous avez saisies :</p>
+							<p>Nom : '.$safe['lastname'].'</p>
+							<p>Prénom : '.$safe['firstname'].'</p>
+							<p>Téléphone : '.$safe['phone'].'</p>
+							<p>Date de naissance : '.date($safe['firstname']).'</p>
+							<p>Prénom : '.$safe['firstname'].'</p>
+							<p>Prénom : '.$safe['firstname'].'</p>
+							<p>Prénom : '.$safe['firstname'].'</p>
+							';
+
+				$this->sendingMails($receivers, $subject, $content);
     			header('Refresh: 1; /users/login');
     		}
     	}
@@ -122,7 +137,7 @@ class UsersController extends MasterController {
 
     			if(password_verify($safe['password'], $userExists->getPwd())){
 
-    				$this->initSession($userExists);
+    				$this->refreshSession($userExists);
     				$success = true;
     				header('Refresh: 1; /');
     			}
