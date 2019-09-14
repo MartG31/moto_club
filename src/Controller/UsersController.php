@@ -178,40 +178,16 @@ class UsersController extends MasterController {
     			$tok->getUser()->getEmail();
 
 				$success = true;
-				$mail = new PHPMailer;
-				$mail->SMTPOptions = ['ssl' => ['verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true]];
-				// $mail->SMTPDebug = 3; // mode debug si > 2
-				$mail->CharSet = 'UTF-8'; // charset utf-8
-				$mail->isSMTP(); // connexion directe à un serveur SMTP
-				$mail->isHTML(true); // mail au format HTML
-				$mail->Host = 'smtp.gmail.com'; // serveur SMTP
-				$mail->SMTPAuth = true; // serveur sécurisé
-				$mail->Port = 465; // port utilisé par le serveur
-				$mail->SMTPSecure = 'ssl'; // certificat SSL
-				$mail->Username = 'mathieu.webforce3@gmail.com'; // login
-				$mail->Password = 'AbC123456789'; // mot de passe
-				$mail->AddAddress($safe['email']); // destinataire
-				// $mail->AddAddress('truc.muche@gmail.com'); // autre destinataire
-				// $mail->AddCC('machin@bidule.fr'); // copie carbone
-				// $mail->AddBCC('patron@societe.com'); // copie cachée
-				$mail->SetFrom('mathieu.webforce3@gmail.com', 'Amicale BMW Moto 38'); // expéditeur
-				$mail->Subject = 'Récupération de Mot de passe - Amicale BMW Moto 38'; // sujet
-				// le corps du mail au format HTML
-				$mail->Body = '<html>
-								<head>
-									<style>
-										h1{color: grey;}
-										p{color: grey;}
-									</style>
-								</head>
-								<body>
-									<h1>Mot de passe perdu ?</h1>
-									<p>Bonjour, vous avez indiqué avoir perdu votre mot de passe, veuillez cliquer sur le lien suivant pour récupérer l\'accès à votre compte.</p>
-									<p><a href="http://127.0.0.1:8000/users/reinit-password?token='.$token.'">Réinitialiser mon mot de passe</a></p>
-									<p>Si vous n\'êtes pas à l\'origine de cette demande, veuillez ignorer cet email. Vous pouvez continuer à utiliser votre mot de passe actuel.</p>
-								</body>
-							</html>';
-				$mail->Send();
+
+				// Envoi du mail
+				$receivers = [$safe['email']];
+				$subject = 'Récupération de Mot de passe';
+				$content = '<h1>Mot de passe perdu ?</h1>
+							<p>Bonjour, vous avez indiqué avoir perdu votre mot de passe, veuillez cliquer sur le lien suivant pour récupérer l\'accès à votre compte.</p>
+							<p><a href="http://127.0.0.1:8000/users/reinit-password?token='.$token.'">Réinitialiser mon mot de passe</a></p>
+							<p>Si vous n\'êtes pas à l\'origine de cette demande, veuillez ignorer cet email. Vous pouvez continuer à utiliser votre mot de passe actuel.</p>';
+
+				$this->sendingMails($receivers, $subject, $content);
 			}
 		}
 

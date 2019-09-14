@@ -68,6 +68,46 @@ class MasterController extends AbstractController
 
     // FONCTIONS MUTUALISEES
 
+    protected function sendingMails(array $receivers, $subject, $content) {
+
+        $mail = new PHPMailer;
+        $mail->SMTPOptions = ['ssl' => ['verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true]];
+        // $mail->SMTPDebug = 3; // mode debug si > 2
+        $mail->CharSet = 'UTF-8'; // charset utf-8
+        $mail->isSMTP(); // connexion directe à un serveur SMTP
+        $mail->isHTML(true); // mail au format HTML
+        $mail->Host = 'smtp.gmail.com'; // serveur SMTP
+        $mail->SMTPAuth = true; // serveur sécurisé
+        $mail->Port = 465; // port utilisé par le serveur
+        $mail->SMTPSecure = 'ssl'; // certificat SSL
+        $mail->Username = 'mathieu.webforce3@gmail.com'; // login
+        $mail->Password = 'AbC123456789'; // mot de passe
+
+        foreach ($receivers as $receiver) {
+
+            $mail->AddAddress($receiver); // destinataires
+        }
+
+        // $mail->AddAddress('truc.muche@gmail.com'); // autre destinataire
+        // $mail->AddCC('machin@bidule.fr'); // copie carbone
+        // $mail->AddBCC('patron@societe.com'); // copie cachée
+        $mail->SetFrom('mathieu.webforce3@gmail.com', 'Amicale BMW Moto 38'); // expéditeur
+        $mail->Subject = $subject; // sujet
+        // le corps du mail au format HTML
+        $mail->Body = '<html>
+                        <head>
+                            <style>
+                                h1{color: grey;}
+                                p{color: grey;}
+                            </style>
+                        </head>
+                        <body>'.$content.'</body>
+                    </html>';
+                    
+        $mail->Send();
+
+    }
+
     protected function checkEnglishDate(string $date) {
         $exp = explode('-', $date);
         return checkdate($exp[1], $exp[2], $exp[0]);
@@ -83,4 +123,6 @@ class MasterController extends AbstractController
 
     	return $dt;
     }
+
+
 }
