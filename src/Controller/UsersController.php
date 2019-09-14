@@ -2,12 +2,16 @@
 
 namespace App\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Routing\Annotation\Route;
+
 use Doctrine\ORM\EntityManagerInterface; // Connexion a la base de données
 use App\Entity\Utilisateurs; // Intéractions avec la table "users"
 use App\Entity\Tokens;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
+
 use \Respect\Validation\Validator as v;
+use \Behat\Transliterator\Transliterator as tr;
+use Intervention\Image\ImageManagerStatic as Image; 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -15,6 +19,14 @@ class UsersController extends MasterController {
     /**
      * @Route("/users", name="users")
      */
+
+    // ATTRIBUTS
+    public $maxFileSize = 3 * 1000 * 1000;
+    public $uploadDir = 'uploads/avatars/';
+
+
+    // PAGES & METHODES
+
     public function inscriptionUser() {
 
 		$em = $this->getDoctrine()->getManager();
@@ -250,15 +262,126 @@ class UsersController extends MasterController {
 
     	if($this->restrictAccess('membre')) { return $this->redirectToRoute('accueil'); }
 
+    	$em = $this->getDoctrine()->getManager();
+
+    	// UPDATE AVATAR
+
+    	$av_errors = [];
+
+    	if(!empty($_FILES)) {
+
+    		if($_FILES['avatar']['error'] != UPLOAD_ERR_OK) {
+    		    $av_errors[] = 'Une erreur est survenue lors de la sélection du fichier';
+    		}
+    		else {
+    			$img = Image::make($_FILES['avatar']['tmp_name']);
+
+    			if($img->filesize() > $this->maxFileSize) {
+    			    $this->errors[] = 'La taille de votre image ne doit pas exéder 3 MB';
+    			}
+    			elseif(substr($img->mime(), 0, 5) != 'image') {
+    			    $this->errors[] = 'Type de fichier invalide. Vous devez sélectionner un fichier de type image';
+    			}
+
+    			if(count($av_errors) === 0) {
+
+    				$user = $em->getRepository(Utilisateurs::class)->find($this->session->get('id'));
+    				$current_avatar = $user->getAvatar();
+
+    				// Suppression de l'ancien avatar
+    				if($current_avatar != null) {
+    					unlink($this->uploadDir.$current_avatar);
+    				}
+
+    				$img->resize(500, null, function ($constraint) {
+    				    $constraint->aspectRatio();
+    				});
+
+    				$path = pathinfo($_FILES['avatar']['name']);
+    				$fileName = tr::transliterate(time().'-'.$path['filename']).'.'.$path['extension'];
+
+    				// Enregistrement en bdd
+    				$user->setAvatar($fileName);
+    				$em->flush();
+
+    				// Enregistrement du nouveau fichier
+    				$img->save($this->uploadDir.$fileName);
+
+    				$this->refreshSession($user);
+
+    				$av_success = true;
+    			}
+    		}
 
 
-		
+
+
+
+    	}
+
+    	// UPDATE INFOS
+
+    	$errors = [];
+
+    	if(!empty($_POST)) {
+    		$safe = array_map('trim', array_map('strip_tags', $_POST));
+
+    		if(!v::stringType()->length(3, null)->validate($safe['nom'])){
+    			$errors[] = 'Le nom doit comporter au moins 3 caractères';
+    		}
+
+    		if(!v::stringType()->length(3, null)->validate($safe['prenom'])){
+    			$errors[] = 'Le prénom doit comporter au moins 3 caractères';
+    		}
+
+    		if(!v::notEmpty()->date('Y-m-d')->validate($safe['date_naiss'])){
+    			$errors[] = 'La date de naissance est invalide';
+    		}
+
+    		if(!v::phone($safe['telephone'])){
+    			$errors[] = 'Le numéro de téléphone est invalide';
+    		}
+
+    		if(!v::stringType()->length(7, null)->validate($safe['adresse'])){
+    			$errors[] = 'La rue doit comporter au moins 7 caractères';
+    		}
+
+    		if(!v::postalCode('FR')->validate($safe['cp'])){
+    			$errors[] = 'Le code postal est invalide';
+    		}
+
+    		if(!v::stringType()->length(3, null)->validate($safe['ville'])){
+    			$errors[] = 'La ville doit comporter au moins 3 caractères';
+    		}
+
+    		if(count($errors) === 0) {
+
+    			$user = $em->getRepository(Utilisateurs::class)->find($this->session->get('id'));
+
+    			$user->setPseudo($safe['pseudo']);
+    			$user->setNom($safe['nom']);
+    			$user->setPrenom($safe['prenom']);
+    			$user->setPseudo($safe['pseudo']);
+    			$user->setAdresse($safe['adresse']);
+    			$user->setCp($safe['cp']);
+    			$user->setVille($safe['ville']);
+    			$user->setTelephone($safe['telephone']);
+    			$user->setDateNaiss(new \DateTime($safe['date_naiss']));
+
+    			$em->flush();
+
+    			$this->refreshSession($user);
+
+    			$success = true;
+    		}
+
+    	}
 
 	    return $this->render('users/viewprofile.html.twig', [
 	    	'post' => $post ?? [],
-    	    'ph_errors' => $ph_errors ?? [],
-    	    'ph_success' => $ph_success ?? false,
-            'errors' => $this->errors ?? [],
+    	    'av_errors' => $av_errors ?? [],
+    	    'av_success' => $av_success ?? false,
+            'errors' => $errors ?? [],
             'success' => $success ?? false,        	
         ]);
     }
