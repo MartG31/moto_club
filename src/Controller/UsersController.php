@@ -89,15 +89,13 @@ class UsersController extends MasterController {
 				$receivers = [$safe['email']];
 				$subject = 'Bienvenue !';
 				$content = '<h1>Vous venez de vous inscrire sur notre site, nous avons le plaisir de vous souhaiter la bienvenue</h1>
+							<hr>
 							<p>Voici un récapitulatif des informations que vous avez saisies :</p>
 							<p>Nom : '.$safe['lastname'].'</p>
 							<p>Prénom : '.$safe['firstname'].'</p>
 							<p>Téléphone : '.$safe['phone'].'</p>
-							<p>Date de naissance : '.date($safe['firstname']).'</p>
-							<p>Prénom : '.$safe['firstname'].'</p>
-							<p>Prénom : '.$safe['firstname'].'</p>
-							<p>Prénom : '.$safe['firstname'].'</p>
-							';
+							<p>Date de naissance : '.date("d/m/Y", strtotime($safe['birthday'])).'</p>
+							<p>Adresse : '.$safe['address'].', '.$safe['postal_code'].' '.$safe['city'].'</p>';
 
 				$this->sendingMails($receivers, $subject, $content);
     			header('Refresh: 1; /users/login');

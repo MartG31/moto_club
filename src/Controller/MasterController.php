@@ -106,11 +106,20 @@ class MasterController extends AbstractController
         $mail->Body = '<html>
                         <head>
                             <style>
-                                h1{color: grey;}
-                                p{color: grey;}
+                                h1{
+                                    color: grey;
+                                }
+                                p{
+                                    color: grey;
+                                }
                             </style>
                         </head>
-                        <body>'.$content.'</body>
+                        <body>
+                        '.$content.'
+                        <hr>
+                        <a href="http://127.0.0.1:8000/"><img src="https://i.imgur.com/ybBVpp5.png"></a>
+                        <p>L\'Amicale BMW Moto 38</p>
+                        </body>
                     </html>';
 
         $mail->Send();
