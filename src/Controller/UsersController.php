@@ -235,8 +235,6 @@ class UsersController extends MasterController {
     public function viewProfile() {
 
     	if($this->restrictAccess('membre')) { return $this->redirectToRoute('accueil'); }
-
-    	
 		
 
 	    return $this->render('users/viewprofile.html.twig', [
