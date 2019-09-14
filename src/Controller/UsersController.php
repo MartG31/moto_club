@@ -378,7 +378,7 @@ class UsersController extends MasterController {
     	}
 
 	    return $this->render('users/viewprofile.html.twig', [
-	    	'post' => $post ?? [],
+	    	'post' => $safe ?? [],
     	    'av_errors' => $av_errors ?? [],
     	    'av_success' => $av_success ?? false,
             'errors' => $errors ?? [],
