@@ -46,35 +46,35 @@
 		  			</div>
 		  			<div class="form-group row">
 		  				<label for="pseudo" class="col-lg-3">Pseudo</label>
-		  				<input id="pseudo" class="col-lg-9 form-control" name="pseudo" type="text" value="{{ app.session.get('pseudo') }}">
+		  				<input id="pseudo" class="col-lg-9 form-control" name="pseudo" type="text" value="{{ post.pseudo ?? app.session.get('pseudo') }}">
 		  			</div>
 		  			<div class="form-group row">
 		  				<label for="nom" class="col-lg-3">Nom</label>
-		  				<input id="nom" class="col-lg-9 form-control" name="nom" type="text" value="{{ app.session.get('nom') }}">
+		  				<input id="nom" class="col-lg-9 form-control" name="nom" type="text" value="{{ post.nom ?? app.session.get('nom') }}">
 		  			</div>
 		  			<div class="form-group row">
 		  				<label for="prenom" class="col-lg-3">Prénom</label>
-		  				<input id="prenom" class="col-lg-9 form-control" name="prenom" type="text" value="{{ app.session.get('prenom') }}">
+		  				<input id="prenom" class="col-lg-9 form-control" name="prenom" type="text" value="{{ post.prenom ?? app.session.get('prenom') }}">
 		  			</div>
 		  			<div class="form-group row">
 		  				<label for="adresse" class="col-lg-3">Adresse</label>
-		  				<input id="adresse" class="col-lg-9 form-control" name="adresse" type="text" value="{{ app.session.get('adresse') }}">
+		  				<input id="adresse" class="col-lg-9 form-control" name="adresse" type="text" value="{{ post.adresse ?? app.session.get('adresse') }}">
 		  			</div>
 		  			<div class="form-group row">
 		  				<label for="cp" class="col-lg-3">Code Postal</label>
-		  				<input id="cp" class="col-lg-9 form-control" name="cp" type="text" value="{{ app.session.get('cp') }}">
+		  				<input id="cp" class="col-lg-9 form-control" name="cp" type="text" value="{{ post.cp ?? app.session.get('cp') }}">
 		  			</div>
 		  			<div class="form-group row">
 		  				<label for="ville" class="col-lg-3">Ville</label>
-		  				<input id="ville" class="col-lg-9 form-control" name="ville" type="text" value="{{ app.session.get('ville') }}">
+		  				<input id="ville" class="col-lg-9 form-control" name="ville" type="text" value="{{ post.ville ?? app.session.get('ville') }}">
 		  			</div>
 		  			<div class="form-group row">
 		  				<label for="telephone" class="col-lg-3">Téléphone</label>
-		  				<input id="telephone" class="col-lg-9 form-control" name="telephone" type="text" maxlength="10" value="{{ app.session.get('telephone') }}">
+		  				<input id="telephone" class="col-lg-9 form-control" name="telephone" type="text" maxlength="10" value="{{ post.telephone ?? app.session.get('telephone') }}">
 		  			</div>
 		  			<div class="form-group row">
 		  				<label for="date_naiss" class="col-lg-3">Date de naissance</label>
-		  				<input id="date_naiss" class="col-lg-9 form-control" name="date_naiss" type="date" value="{{ app.session.get('date_naiss')|date('Y-m-d') }}">
+		  				<input id="date_naiss" class="col-lg-9 form-control" name="date_naiss" type="date" value="{{ post.date_naiss ?? app.session.get('date_naiss')|date('Y-m-d') }}">
 		  			</div>
 		  			{% if errors is not empty %}
 		  				<div class="alert alert-warning">{{ errors|join('<br>')|raw }}</div>
