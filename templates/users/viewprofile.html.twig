@@ -4,12 +4,44 @@
 
 {% block content %}
 	<h1>Profil</h1>
-	<div class="card mb-3">
-	    <div class="card-header">Mes informations</div>
-	  	<div class="card-body">
-	  		{% if app.session.get('acces') is not null %}
-	  		<div>Votre rang : <strong>{{ app.session.get('acces') }}</strong></div>
-	  		{% endif %}
+
+	<div class="container">
+		<div class="card mb-3">
+		    <div class="card-header">Mon avatar</div>
+		  	<div class="card-body">
+		  		<form method="post" enctype="multipart/form-data">
+		  			<figure class="profile-avatar">
+		  				{% if app.session.get('avatar') is not null %}
+		  					<img src="{{ '/uploads/avatars/' ~ app.session.get('avatar') }}">
+		  				{% else %}
+		  					<img src="{{ '/images/default-user.png' }}">
+		  				{% endif %}
+		  			</figure>
+		  			<div class="profile-avatar-file">
+		  				<div class="form-group row d-flex justify-content-center text-center">
+		  					<label for="avatar" class="col-12 "><strong>Changer mon avatar</strong></label>
+		  					<input id="avatar" class="text-center" name="avatar" type="file" value="Changer d'avatar">
+		  				</div>
+		  				{% if errors is not empty %}
+		  					<div class="alert alert-warning">{{ errors|join('<br>')|raw }}</div>
+		  				{% elseif success == true %}
+		  					<div class="alert alert-success">La photo a été ajoutée avec succès.</div>
+		  				{% endif %}
+		  			</div>
+		  		</form>
+			</div>
+		</div>x
+
+		<div class="card mb-3">
+		    <div class="card-header">Mes informations</div>
+		  	<div class="card-body">
+		  		<div>Adresse email : <strong>{{ app.session.get('email') }}</strong></div>
+		  		<div>Rang : <strong>{{ app.session.get('acces') }}</strong></div>
+		  		<form method="post">
+		  		</form>
+			</div>
 		</div>
 	</div>
+
+
 {% endblock %}

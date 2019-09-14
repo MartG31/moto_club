@@ -8,6 +8,8 @@ use App\Entity\Tokens;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use \Respect\Validation\Validator as v;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 class UsersController extends MasterController {
     /**
@@ -85,19 +87,6 @@ class UsersController extends MasterController {
     			$em->persist($usersData);
     			$em->flush();
     			$success = true;
-    			// Envoi du mail
-				$receivers = [$safe['email']];
-				$subject = 'Bienvenue !';
-				$content = '<h1>Vous venez de vous inscrire sur notre site, nous avons le plaisir de vous souhaiter la bienvenue</h1>
-							<hr>
-							<p>Voici un récapitulatif des informations que vous avez saisies :</p>
-							<p>Nom : '.$safe['lastname'].'</p>
-							<p>Prénom : '.$safe['firstname'].'</p>
-							<p>Téléphone : '.$safe['phone'].'</p>
-							<p>Date de naissance : '.date("d/m/Y", strtotime($safe['birthday'])).'</p>
-							<p>Adresse : '.$safe['address'].', '.$safe['postal_code'].' '.$safe['city'].'</p>';
-
-				$this->sendingMails($receivers, $subject, $content);
     			header('Refresh: 1; /users/login');
     		}
     	}
@@ -135,7 +124,7 @@ class UsersController extends MasterController {
 
     			if(password_verify($safe['password'], $userExists->getPwd())){
 
-    				$this->refreshSession($userExists);
+    				$this->initSession($userExists);
     				$success = true;
     				header('Refresh: 1; /');
     			}
@@ -251,7 +240,9 @@ class UsersController extends MasterController {
 		
 
 	    return $this->render('users/viewprofile.html.twig', [
-        	
+	    	'post' => $post ?? [],
+            'errors' => $this->errors ?? '',
+            'success' => $success ?? false,        	
         ]);
     }
 
