@@ -277,10 +277,10 @@ class UsersController extends MasterController {
     			$img = Image::make($_FILES['avatar']['tmp_name']);
 
     			if($img->filesize() > $this->maxFileSize) {
-    			    $this->errors[] = 'La taille de votre image ne doit pas exéder 3 MB';
+    			    $av_errors[] = 'La taille de votre image ne doit pas exéder 3 MB';
     			}
     			elseif(substr($img->mime(), 0, 5) != 'image') {
-    			    $this->errors[] = 'Type de fichier invalide. Vous devez sélectionner un fichier de type image';
+    			    $av_errors[] = 'Type de fichier invalide. Vous devez sélectionner un fichier de type image';
     			}
 
     			if(count($av_errors) === 0) {
