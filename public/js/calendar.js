@@ -40,9 +40,12 @@ document.addEventListener('DOMContentLoaded', function(){
      };
     
     Calendar.prototype.drawDays = function() {
-        var startDay = new Date(year, month, 1).getDay(),
+        var startDay = new Date(year, month, 1).getDay();
+            if(startDay == 0){
+                startDay = 7 ;
+                }
 
-            nDays = new Date(year, month + 1, 0).getDate(),
+        var nDays = new Date(year, month + 1, 0).getDate(),
     
             n = startDay;
 
