@@ -55,7 +55,7 @@
     width: 1em;
     height: 1em;
     line-height: 1em;
-    color: #e66b6b;
+    color: #2e7ff0;
     border-radius: 50%;
 }
 
@@ -112,7 +112,7 @@
 }
 
 #calendar thead tr {
-    color: #e66b6b;
+    color: #2e7ff0;
 	font-weight: 700;
 	text-transform: uppercase;
 }
@@ -142,7 +142,7 @@
 }
 
 #today {
-    background-color: #e66b6b;
+    background-color: #2e7ff0;
     color: #fff;
     font-family: serif;
     border-radius: 50%;
@@ -176,8 +176,8 @@
 }
 
 #reset-calendar:hover {
-    color: #e66b6b;
-    border-color: #e66b6b;
+    color: #2e7ff0;
+    border-color: #2e7ff0;
 }
 
 #reset-calendar:active{
