@@ -12,6 +12,70 @@
 		<h2 class="text1 text-center text-uppercase">Contactez nous</h2>
 	</div>
 
+	<div class="container pb-5">
+  <div class="card card-register mx-auto mt-5 pb-5 mb-5">
+    <div class="card-header">Nous contacter</div>
+    <div class="card-body">
+      <form method="post">
+        <div class="form-group">
+          <div class="form-row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="lastName">Nom</label>
+                <input type="text" id="lastName" name="lastname" class="form-control" value="{{donnees_saisies.lastname ?? ''}}" required autofocus>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="firstName">Prénom</label>
+                <input type="text" id="firstName" name="firstname" class="form-control" value="{{donnees_saisies.firstname ?? ''}}" required>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-row">
+            <div class="col-md-6">
+              <div class="form-group">
+            <label for="email">Adresse email</label>
+            <input type="email" id="email" name="email" class="form-control" value="{{donnees_saisies.email ?? ''}}" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="phone">Numéro de Téléphone</label>
+                <input type="text" id="phone" name="phone" class="form-control" value="{{donnees_saisies.phone ?? ''}}" maxlength="10" required>
+              </div>
+            </div>
+            <div class="col-md-12">
+	            <div class="form-group">
+	                <label for="message">Message</label>
+	                <textarea name="message" id="message" class="form-control" required placeholder="Votre message ici" rows="5">{{donnees_saisies.message ?? ''}}</textarea>
+	            </div>
+            </div>
+          </div>
+        </div>
+        {% if errors is not empty %}
+            <div class="alert alert-danger">
+                {{ errors|join('<br>')|raw }} 
+            </div>
+        {% elseif success == true %}
+            <div class="alert alert-success">
+                Merci pour votre message <strong>{{donnees_saisies.firstname}}</strong> ! Nous l'avons bien reçu et le traiterons dans les plus brefs délais.
+            </div>
+        {% endif %}
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary btn-block" value="Envoyer le message">
+        </div>
+      </form>
+      <div class="text-center">
+        <a class="d-block small mt-3" href="login">Se connecter</a>
+        <a class="d-block small" href="forgot-password">Mot de passe oublié ?</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock %}
 
 {% block javascripts %}{% endblock %}
