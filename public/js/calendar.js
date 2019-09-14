@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function(){
         this.getOptions();
         this.drawDays();
         var that = this,
-            reset = document.getElementById('reset'),
+            reset = document.getElementById('reset-calendar'),
             pre = document.getElementsByClassName('pre-button'),
             next = document.getElementsByClassName('next-button');
             
