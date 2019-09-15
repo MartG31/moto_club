@@ -169,6 +169,8 @@ class UsersController extends MasterController {
 
     public function logoutUser() {
 
+        if($this->restrictAccess('membre')) { return $this->redirectToRoute('accueil'); }
+
 		session_destroy();
 		return $this->redirectToRoute('accueil');
     }
@@ -263,11 +265,6 @@ class UsersController extends MasterController {
     	if($this->restrictAccess('membre')) { return $this->redirectToRoute('accueil'); }
 
     	$em = $this->getDoctrine()->getManager();
-
-        echo '<pre class="alert alert-info mb-0">';
-        print_r($this->checkTime('55:77'));
-        echo '</pre>';
-
 
         if(!empty($_POST)) {
 

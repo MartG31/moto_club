@@ -3,8 +3,9 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Doctrine\ORM\EntityManagerInterface;
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -14,6 +15,7 @@ class MasterController extends AbstractController
     // ATTRIBUTS
 
     public $session;
+    public $em;
     public $ranks = array('admin', 'bureau', 'adherent', 'membre');
     public $nomsRanks = array(
         'admin' => 'Administrateur / Développeur(se)', 
@@ -28,6 +30,9 @@ class MasterController extends AbstractController
     public function __construct() {
 
         $this->session = new Session();
+        // $this->em = $this->getDoctrine()->getManager();
+
+
 
         setlocale(LC_TIME, 'fr_FR.utf8','fra'); 
 

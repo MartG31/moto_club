@@ -53,9 +53,23 @@ add_balade:
     path: /balades/ajouter
     controller: App\Controller\BaladesController::addBalade
 
+
+
 view_balade:
-    path: /balades/afficher-une-balade/{id}
+    path: /balades/{id}
     controller: App\Controller\BaladesController::viewBalade
+    requirements:
+      id: '\d+'
+
+inscription_balade:
+    path: /balades/inscription/{id}
+    controller: App\Controller\BaladesController::inscriptionBalade
+    requirements:
+      id: '\d+'
+
+desinscription_balade:
+    path: /balades/desinscription/{id}
+    controller: App\Controller\BaladesController::desinscriptionBalade
     requirements:
       id: '\d+'
 

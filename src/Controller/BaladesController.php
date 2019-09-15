@@ -7,6 +7,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 use App\Entity\Utilisateurs;
 use App\Entity\Balades;
+use App\Entity\MembresBalades;
 
 use \Respect\Validation\Validator as v;
 
@@ -30,21 +31,6 @@ class BaladesController extends MasterController
 
         return $this->render('balades/index.html.twig', [
             'balades' => $balades ?? [],
-
-        ]);
-    }
-
-    public function viewBalade($id) {
-
-    	// Affichage du détail des balades (Titre, dates, description, map)
-    	// Accéder à la galerie
-    	// Bouton "S'inscrire"
-        $em = $this->getDoctrine()->getManager();
-        $balade = $em->getRepository(Balades::class)->find($id);
-
-
-    	return $this->render('balades/view.html.twig', [
-            'balade' => $balade ?? [],
 
         ]);
     }
@@ -167,5 +153,81 @@ class BaladesController extends MasterController
     	return $this->render('balades/delete.html.twig', [
 
         ]);
+    }
+
+    public function viewBalade($id) {
+
+        // Affichage du détail des balades (Titre, dates, description, map)
+        // Accéder à la galerie
+        // Bouton "S'inscrire"
+
+        $em = $this->getDoctrine()->getManager();
+        $balade = $em->getRepository(Balades::class)->find($id);
+
+        
+
+
+        return $this->render('balades/view.html.twig', [
+            'balade' => $balade ?? [],
+            'inscrit' => $this->inscrit($balade) ?? false,
+        ]);
+    }
+
+    public function inscriptionBalade($id) {
+
+        $em = $this->getDoctrine()->getManager();
+        $balade = $em->getRepository(Balades::class)->find($id);
+        $user = $em->getRepository(Utilisateurs::class)->find($this->session->get('id'));
+
+        if(!$this->inscrit($balade)) {
+
+            $mb = new MembresBalades();
+            $mb->setBal($balade);
+            $mb->setUser($user);
+
+            $em->persist($mb);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('view_balade', [
+            'id' => $balade->getId()
+        ]);
+    }
+
+    public function desinscriptionBalade($id) {
+
+        $em = $this->getDoctrine()->getManager();
+        $balade = $em->getRepository(Balades::class)->find($id);
+        $user = $em->getRepository(Utilisateurs::class)->find($this->session->get('id'));
+
+        if($this->inscrit($balade)) {
+
+            $mb = $em->getRepository(MembresBalades::class)->findOneBy([
+                'bal' => $balade,
+                'user' => $user,
+            ]);
+
+            $em->remove($mb);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('view_balade', [
+            'id' => $balade->getId()
+        ]);
+    }
+
+    // PRIVATE FUNCTIONS
+
+    private function inscrit(Balades $balade) {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $inscrits = $em->getRepository(MembresBalades::class)->findBy([
+            'bal' => $balade
+        ]);
+
+        foreach ($inscrits as $inscrit) {
+            if($inscrit->getUser()->getId() == $this->session->get('id')) { return true; }
+        }
     }
 }

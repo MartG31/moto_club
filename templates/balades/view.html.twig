@@ -11,8 +11,28 @@
 			<div class="card">
 				<div class="card-header">
 					<div class="card-title">
-						<a href="{{ path('view_balade', {id: balade.getId()}) }}" class="btn btn-success float-right ml-4" role="button">S'inscrire</a>
+
+						<!-- INSCRIPTION A BALADE -->
+
+						{% if 'adherent' in app.session.get('ranks') %}
+
+							{% if not inscrit %}
+
+								<a href="{{ path('inscription_balade', {id: balade.getId()}) }}" class="btn btn-success float-right ml-4" role="button">S'inscrire</a>
+
+							{% else %}
+
+								<a href="{{ path('desinscription_balade', {id: balade.getId()}) }}" class="btn btn-danger float-right ml-4" role="button">Se Désinscrire</a>
+							
+							{% endif %}
+
+						{% endif %}
+
 						<div class="float-right">S'inscrire</div>
+
+
+
+						<!-- CONTENU 'STATIQUE' -->
 						<strong>{{ balade.getTitre() }}</strong>
 						{% if balade.getDateDebut() == balade.getDateFin() %}
 							<div>le {{ balade.getDateDebut()|date('d/m/Y') }}</div>
