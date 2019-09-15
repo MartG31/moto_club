@@ -264,6 +264,9 @@ class UsersController extends MasterController {
 
     	$em = $this->getDoctrine()->getManager();
 
+        echo '<pre class="alert alert-info mb-0">';
+        print_r($this->checkTime('55:77'));
+        echo '</pre>';
 
 
         if(!empty($_POST)) {

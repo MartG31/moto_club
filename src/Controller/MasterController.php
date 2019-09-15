@@ -146,17 +146,15 @@ class MasterController extends AbstractController
     	return $dt;
     }
 
-    // protected function checkTime(string $time){
-    //     $exp_time = explode(':', $time);
-    //     if(($exp_time[0] > 23 || $exp_time[0] < 0) && ($exp_time[1] > 59 || $exp_time[1] < 00)){
-    //         return false;
-    //     }
-    //     else {
-    //         return true;
-    //     }
-        
-
-    // }
+    protected function checkTime(string $time){
+        $exp_time = explode(':', $time);
+        if(($exp_time[0] > 23 || $exp_time[0] < 0) && ($exp_time[1] > 59 || $exp_time[1] < 00)){
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
 
 
 }
