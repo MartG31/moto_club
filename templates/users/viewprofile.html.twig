@@ -10,7 +10,7 @@
 		    <div class="card-header">Mon avatar</div>
 		  	<div class="card-body">
 		  		<form id="change-avatar-form" method="post" enctype="multipart/form-data">
-		  			<figure class="profile-avatar">
+		  			<figure class="session-avatar profile-avatar">
 		  				{% if app.session.get('avatar') is not null %}
 		  					<img src="{{ '/uploads/avatars/' ~ app.session.get('avatar') }}">
 		  				{% else %}

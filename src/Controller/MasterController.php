@@ -69,9 +69,13 @@ class MasterController extends AbstractController
         // print_r('Accès réservé : '.$niv);
         // echo '</pre>';
 
+        if($this->session->get('ranks') === null) {
+            return true;
+        }
+
         if(!in_array($niv, $this->session->get('ranks'))) {
             return true;
-        }  
+        }
 
     }
 

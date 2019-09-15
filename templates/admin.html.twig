@@ -12,8 +12,8 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
         <!-- Custom styles for this template-->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <link href="/css/sb-admin.css" rel="stylesheet">
-        <link href="/css/admin.css" rel="stylesheet">
+        <link rel="stylesheet" href="/css/sb-admin.css">
+        <link rel="stylesheet" href="/css/avatars.css">
 
         {% block stylesheets %}{% endblock %}
     </head>
@@ -31,14 +31,24 @@
             <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0"></form>
 
             <!-- Navbar -->
-            <ul class="navbar-nav ml-auto ml-md-0">
+            <ul id="admin-head-session" class="navbar-nav ml-auto ml-md-0">
 
                 {% if app.session.get('ranks') is not null %}
-                    <li class="nav-item"><a class="nav-link" href="{{ path('view_profile') }}">{{ app.session.get('prenom') ~ ' ' ~ app.session.get('nom') }}</a></li>
-                    <li class="nav-item"><a class="nav-link btn btn-danger border border-dark" href="{{ path('deconnexion_user') }}"><i class="fas fa-power-off"></i></a></li>
-                {% else %}
-                    <li class="nav-item"><a class="nav-link" href="{{ path('inscription_user') }}">Inscription</a></li>
-                    <li class="nav-item"><a class="nav-link btn btn-success border border-dark" href="{{ path('connexion_user') }}">Connexion</a></li>
+                <li class="nav-item">
+                    <a id="head-profile-link" class="nav-link" href="{{ path('view_profile') }}">
+                        <figure class="session-avatar admin-avatar">
+                            {% if app.session.get('avatar') is not null %}
+                                <img src="{{ '/uploads/avatars/' ~ app.session.get('avatar') }}">
+                            {% else %}
+                                <img src="{{ '/images/default-user.png' }}">
+                            {% endif %}
+                        </figure>
+                        <div class="mx-3">{{ app.session.get('prenom') ~ ' ' ~ app.session.get('nom')|upper }}</div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-danger border border-dark" href="{{ path('deconnexion_user') }}"><i class="fas fa-power-off"></i></a>
+                </li>
                 {% endif %}
 
             </ul>
