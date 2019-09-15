@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Balades;
 use App\Entity\MembresBalades;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
@@ -17,6 +18,16 @@ class MembresBaladesRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, MembresBalades::class);
+    }
+
+    public function countInscrits(Balades $balade) {
+
+    	return $this->createQueryBuilder('mb')
+    			->select('count(mb.id) as count')
+    	        ->andWhere('mb.bal = :balade')
+    	        ->setParameter('balade', $balade)
+    	        ->getQuery()
+    	        ->getOneOrNullResult();
     }
 }
 

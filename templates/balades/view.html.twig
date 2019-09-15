@@ -18,17 +18,24 @@
 
 							{% if not inscrit %}
 
-								<a href="{{ path('inscription_balade', {id: balade.getId()}) }}" class="btn btn-success float-right ml-4" role="button">S'inscrire</a>
+								{% if not baladeFull %}
+									<a href="{{ path('inscription_balade', {id: balade.getId()}) }}" class="btn btn-success float-right ml-4" role="button">S'inscrire</a>
+								{% else %}
+									<a class="btn btn-success float-right ml-4 disabled" role="button">S'inscrire</a>
+								{% endif %}								
 
 							{% else %}
-
 								<a href="{{ path('desinscription_balade', {id: balade.getId()}) }}" class="btn btn-danger float-right ml-4" role="button">Se Désinscrire</a>
-							
+							{% endif %}
+
+							{% if nbMaxPers is not null %}
+								<div class="float-right">Participants : {{ nbInscrits ~ ' / ' ~ nbMaxPers }}</div>
+							{% else %}
+								<div class="float-right">Participants : {{ nbInscrits }} (illimité)</div>
 							{% endif %}
 
 						{% endif %}
 
-						<div class="float-right">S'inscrire</div>
 
 
 

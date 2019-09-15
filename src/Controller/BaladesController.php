@@ -170,6 +170,10 @@ class BaladesController extends MasterController
         return $this->render('balades/view.html.twig', [
             'balade' => $balade ?? [],
             'inscrit' => $this->inscrit($balade) ?? false,
+            'nbMaxPers' => $balade->getNbMaxPers(),
+            'nbInscrits' => $this->nbInscrits($balade),
+            'baladeFull' => $this->baladeFull($balade) ?? false,
+
         ]);
     }
 
@@ -179,7 +183,7 @@ class BaladesController extends MasterController
         $balade = $em->getRepository(Balades::class)->find($id);
         $user = $em->getRepository(Utilisateurs::class)->find($this->session->get('id'));
 
-        if(!$this->inscrit($balade)) {
+        if(!$this->inscrit($balade) && $this->baladeFull($balade)) {
 
             $mb = new MembresBalades();
             $mb->setBal($balade);
@@ -230,4 +234,23 @@ class BaladesController extends MasterController
             if($inscrit->getUser()->getId() == $this->session->get('id')) { return true; }
         }
     }
+
+    private function nbInscrits(Balades $balade) {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $nb_inscrits_tab = $em->getRepository(MembresBalades::class)->countInscrits($balade);
+        return array_shift($nb_inscrits_tab);    
+    }
+
+    private function baladeFull(Balades $balade) {
+
+        $em = $this->getDoctrine()->getManager();
+
+        if($this->nbInscrits($balade) == $balade->getNbMaxPers()) {
+            return true;
+        }
+    }
+
+
 }
