@@ -50,34 +50,6 @@ class Balades
     private $dateFin;
 
     /**
-     * @var \DateTime|null
-     *
-     * @ORM\Column(name="datetime_rdv", type="datetime", nullable=true)
-     */
-    private $datetimeRdv;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="adresse_rdv", type="string", length=120, nullable=true)
-     */
-    private $adresseRdv;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="cp_rdv", type="string", length=10, nullable=true)
-     */
-    private $cpRdv;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="ville_rdv", type="string", length=50, nullable=true)
-     */
-    private $villeRdv;
-
-    /**
      * @var string|null
      *
      * @ORM\Column(name="file_gps", type="string", length=80, nullable=true)
@@ -167,54 +139,6 @@ class Balades
     public function setDateFin(\DateTimeInterface $dateFin): self
     {
         $this->dateFin = $dateFin;
-
-        return $this;
-    }
-
-    public function getDatetimeRdv(): ?\DateTimeInterface
-    {
-        return $this->datetimeRdv;
-    }
-
-    public function setDatetimeRdv(?\DateTimeInterface $datetimeRdv): self
-    {
-        $this->datetimeRdv = $datetimeRdv;
-
-        return $this;
-    }
-
-    public function getAdresseRdv(): ?string
-    {
-        return $this->adresseRdv;
-    }
-
-    public function setAdresseRdv(?string $adresseRdv): self
-    {
-        $this->adresseRdv = $adresseRdv;
-
-        return $this;
-    }
-
-    public function getCpRdv(): ?string
-    {
-        return $this->cpRdv;
-    }
-
-    public function setCpRdv(?string $cpRdv): self
-    {
-        $this->cpRdv = $cpRdv;
-
-        return $this;
-    }
-
-    public function getVilleRdv(): ?string
-    {
-        return $this->villeRdv;
-    }
-
-    public function setVilleRdv(?string $villeRdv): self
-    {
-        $this->villeRdv = $villeRdv;
 
         return $this;
     }
