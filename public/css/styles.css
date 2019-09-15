@@ -13,29 +13,39 @@ body{
  box-sizing: inherit;
 }
 
-
+h1{
+	font-family: 'Philosopher', sans-serif;
+}
 header{
-	padding: 10px 100px;
+	padding: 0;
 	box-sizing: border-box;
 	background: url(../images/img1.jpg);
-	height: 250px;
+	height: 25em;
+	background-size: cover;
+}
+section {
+	padding-left: 1em;
+	padding-right: 1em;
 }
 
 footer{
 	background-color: #2e7ff0;
+	/*46, 127, 240*/
 	position: relative;
-	height: 70px;
+	height: 1.8em;
 	width: 100%;
 }
 
 nav{
-	min-height: 8vh;
-	background: #2e7ff0;
+	min-height: 5vh;
+	background: rgb(46, 127, 240);
+	box-shadow: 1px 5px 5px lightgrey;
+	
 }
 
-nav ul{
+/*nav ul{
 	padding: 0 100px;
-}
+}*/
 
 nav ul li a{
 	text-transform: uppercase;
@@ -47,6 +57,18 @@ nav ul li a:hover,
 nav ul li a.active{
 	background: #fff;
 }
+main{
+	box-shadow: 1px 5px 5px lightgrey; 
+	padding-top: 5em;
+}
+.blue {
+	background-color: #2e7ff0;
+}
+.parallax {
+	background: url(../images/img2.jpg);
+	background-attachment: fixed;
+	background-size: cover;
+}
 
 .navbar-light .navbar-nav .nav-item .nav-link:hover,
 .navbar-light .navbar-nav .nav-item.active .nav-link{
@@ -54,13 +76,19 @@ nav ul li a.active{
 	color: #fff;
 }
 
+.btn-nav-item {
+	margin-bottom: auto;
+	margin-top: auto;
+}
+
 .navbar-light .navbar-nav .nav-link {
     color: #000;
 }
 
 .img-logo{
-	width: 100px;
+	width: 80px;
 	height: auto; 
+
 }
 
 .cardSwip{
@@ -118,12 +146,14 @@ nav ul li a.active{
 }
 
 .text1{
-	font-size: 40px;
-	font-weight: 600;
-	border: 5px solid #000;
+	font-size:2em;
 	border-radius: 10px;
+	/*background-color: rgba(46, 127, 240, 0.3);
+	box-shadow: 1px 5px 5px #2e7ff0;*/
 	width: 100%;
-	margin: 3% auto 0 auto;
+	height: 100%;
+	margin: auto;
+
 }
 
 .colorlink{

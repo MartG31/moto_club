@@ -3,32 +3,35 @@
 {% block title %}Balades{% endblock %}
 
 {% block content %}
+	<section class="py-2 mb-5">
+		<h2>Titre pour les balades</h2>
 
-	{% for balade in balades %}
-		<div class="card-deck my-4">
-			<div class="card">
-				<div class="card-header">
-					<div class="card-title">
-						<a href="{{ path('view_balade', {id: balade.getId()}) }}" class="btn btn-primary float-right" role="button">Afficher la balade</a>
-						<strong>{{ balade.getTitre() }}</strong>
-						{% if balade.getDateDebut() == balade.getDateFin() %}
-							<div>le {{ balade.getDateDebut()|date('d/m/Y') }}</div>
-						{% else %}
-							<div>du {{ balade.getDateDebut()|date('d/m/Y') }} au {{ balade.getDateFin()|date('d/m/Y') }}</div>
-						{% endif %}
-				   </div>
-					<div class="card-footer">
-						<i>Posté par 
-							{{ balade.getUser().getPrenom() ~ ' ' ~ balade.getUser().getNom() }} 
-							le 
-							{{ balade.getDatetimePost()|date('d F Y') }} 
-							à 
-							{{ balade.getDatetimePost()|date('H:i') }}
-						</i>
+		{% for balade in balades %}
+			<div class="card-deck my-4">
+				<div class="card">
+					<div class="card-header">
+						<div class="card-title">
+							<a href="{{ path('view_balade', {id: balade.getId()}) }}" class="btn btn-primary float-right" role="button">Afficher la balade</a>
+							<strong>{{ balade.getTitre() }}</strong>
+							{% if balade.getDateDebut() == balade.getDateFin() %}
+								<div>le {{ balade.getDateDebut()|date('d/m/Y') }}</div>
+							{% else %}
+								<div>du {{ balade.getDateDebut()|date('d/m/Y') }} au {{ balade.getDateFin()|date('d/m/Y') }}</div>
+							{% endif %}
+					   </div>
+						<div class="card-footer">
+							<i>Posté par 
+								{{ balade.getUser().getPrenom() ~ ' ' ~ balade.getUser().getNom() }} 
+								le 
+								{{ balade.getDatetimePost()|date('d F Y') }} 
+								à 
+								{{ balade.getDatetimePost()|date('H:i') }}
+							</i>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	{% endfor %}
+		{% endfor %}
+	</section>
 
 {% endblock %}

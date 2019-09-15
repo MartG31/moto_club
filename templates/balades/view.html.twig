@@ -3,7 +3,7 @@
 {% block title %}{{ balade.getTitre() }}{% endblock %}
 
 {% block content %}
-	<div class="pb-5">
+	<section class="py-2 mb-5">
 
 		<a href="{{ path('index_balades') }}" class="btn btn-secondary mt-4" role="button"><i class="fas fa-angle-left"></i> Retour aux balades</a>
 		
@@ -36,9 +36,6 @@
 
 						{% endif %}
 
-
-
-
 						<!-- CONTENU 'STATIQUE' -->
 						<strong>{{ balade.getTitre() }}</strong>
 						{% if balade.getDateDebut() == balade.getDateFin() %}
@@ -60,4 +57,5 @@
 				</div>
 			</div>
 		</div>
+	</section>
 {% endblock %}

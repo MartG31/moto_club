@@ -5,7 +5,7 @@
 {% block content %}
 
 
-<div class="container">
+<section class="py-2 mb-5">
   <div class="card card-register mx-auto mt-5">
     <div class="card-header">Ajouter un compte-rendu pour {{ reunionTrouvee.getTitre() }}</div>
     {% if errors is not empty %}
@@ -39,5 +39,6 @@
       </form>
     </div>
   </div>
-</div>
+</section>
+
 {% endblock %}

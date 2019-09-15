@@ -3,39 +3,38 @@
 {% block title %}Compte-rendu - modification{% endblock %}
 
 {% block content %}
-
     
-<div class="container">
-  <div class="card card-register mx-auto mt-5">
-    <div class="card-header">Modifier le compte-rendu pour {{ crTrouve.getReu().getTitre() }}</div>
-    {% if errors is not empty %}
-      <div class="alert alert-danger">{{errors|raw}}</div>
-    {% elseif success == true %}
-      <div class="alert alert-success">Votre CR a bien été modifié</div>
-    {% endif %}
-    <div class="card-body">Réunion du {{ crTrouve.getReu().getDatetimeReu()|date("Y-m-d") }} à {{ crTrouve.getReu().getDatetimeReu()|date("H:i") }}
-    </div>
-    <div class="card-body">
-      <form method="post">
-        <div class="form-group">
-          <div class="form-row">
-            <div class="col-md-6">
-              <label for="titre">Nom du compte rendu</label>
-              <input type="text" id="titre" name="titre" class="form-control" required="required" autofocus="autofocus" value="{{ crTrouve.getTitre() }}">
+  <section class="py-2 mb-5">
+    <div class="card card-register mx-auto mt-5">
+      <div class="card-header">Modifier le compte-rendu pour {{ crTrouve.getReu().getTitre() }}</div>
+      {% if errors is not empty %}
+        <div class="alert alert-danger">{{errors|raw}}</div>
+      {% elseif success == true %}
+        <div class="alert alert-success">Votre CR a bien été modifié</div>
+      {% endif %}
+      <div class="card-body">Réunion du {{ crTrouve.getReu().getDatetimeReu()|date("Y-m-d") }} à {{ crTrouve.getReu().getDatetimeReu()|date("H:i") }}
+      </div>
+      <div class="card-body">
+        <form method="post">
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <label for="titre">Nom du compte rendu</label>
+                <input type="text" id="titre" name="titre" class="form-control" required="required" autofocus="autofocus" value="{{ crTrouve.getTitre() }}">
+              </div>
             </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label for="contenu">Contenu</label>
-          <textarea id="contenu" name="contenu" class="form-control" required="required" >{{ crTrouve.getContenu() }}</textarea>
-        </div>
-          <div class="card-body">
-            <a class="btn btn-success " href="{{ path('view_cr', {id : crTrouve.getReu().getId()}) }}" role="button">Afficher</a>
-            <input type="submit" value="Modifier" class="btn btn-primary">
-            <a class="btn btn-secondary " href="{{ path('index_cr') }}" role="button">Liste des compte-rendus</a>
+          <div class="form-group">
+            <label for="contenu">Contenu</label>
+            <textarea id="contenu" name="contenu" class="form-control" required="required" >{{ crTrouve.getContenu() }}</textarea>
           </div>
-      </form>
+            <div class="card-body">
+              <a class="btn btn-success " href="{{ path('view_cr', {id : crTrouve.getReu().getId()}) }}" role="button">Afficher</a>
+              <input type="submit" value="Modifier" class="btn btn-primary">
+              <a class="btn btn-secondary " href="{{ path('index_cr') }}" role="button">Liste des compte-rendus</a>
+            </div>
+        </form>
+      </div>
     </div>
-  </div>
-</div>
+  </section>
 {% endblock %}

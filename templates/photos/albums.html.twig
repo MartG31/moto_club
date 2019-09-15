@@ -7,31 +7,31 @@
  {% endblock %}
 
 {% block content %}
-
-<div id="content" class="container">
-    <div class="row">
-      {% for fPh in albums %}
-        <div class="col-md-4">            
-            <div class="titlealbums">
-                <b>{{ fPh.getBal().getTitre() }}</b>
-            </div>            
-           <figure>
-                <!-- A modifier le lien pour aller directement voir les photos de l'album séléctionné uniquement -->
-                <a href ="{{ path('view_portfolio',{id: fPh.getBal().getId()}) }}"> 
-                    <figcaption>
-                        <img class="img-fluid img-album" src="{{ '/' ~ uploadDir ~ fPh.getFileName() }}">
-                    </figcaption>
-                </a>
-            </figure>            
-            <div>{{ fPh.getLegende() }}</div>            
+<section class="py-2 mb-5">
+    <h2>Titre pour les albums</h2>
+    <div id="content">
+        <div class="row">
+          {% for fPh in albums %}
+            <div class="col-md-4">            
+                <div class="titlealbums">
+                    <b>{{ fPh.getBal().getTitre() }}</b>
+                </div>            
+               <figure>
+                    <!-- A modifier le lien pour aller directement voir les photos de l'album séléctionné uniquement -->
+                    <a href ="{{ path('view_portfolio',{id: fPh.getBal().getId()}) }}"> 
+                        <figcaption>
+                            <img class="img-fluid img-album" src="{{ '/' ~ uploadDir ~ fPh.getFileName() }}">
+                        </figcaption>
+                    </a>
+                </figure>            
+                <div>{{ fPh.getLegende() }}</div>            
+            </div>
+          {% endfor %}
         </div>
-      {% endfor %}
     </div>
-</div>  
+</section>  
 
 {% endblock %}
-
-
 {% block javascripts %}
 	<!-- Script bootstrap
     	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>-->

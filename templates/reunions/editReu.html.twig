@@ -4,62 +4,62 @@
 
 {% block content %}
     
-<div class="container">
-  <div class="card card-register mx-auto mt-5">
-    <div class="card-header">Modifier une réunion</div>
-    {% if errors is not empty %}
-      <div class="alert alert-danger">{{errors|raw}}</div>
-    {% elseif success == true %}
-      <div class="alert alert-success">Votre réunion a bien été ajoutée</div>
-    {% endif %}
-    <div class="card-body">
-      <form method="post">
-        <div class="form-group">
-          <div class="form-row">
-            <div class="col-md-6">
-                <label for="titre">Intitulé de la réunion</label>
-                <input type="text" id="titre" name="titre" class="form-control" required="required" autofocus="autofocus" value="{{ reunionTrouvee.getTitre() }}">
-            </div>
-            <div class="col-md-6">
-                <label for="type">Type de réunion</label>
-                <input type="text" id="type" name="type" class="form-control" required="required" value="{{ reunionTrouvee.getTypeReu() }}">
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-            <label for="contenu">Contenu</label>
-            <textarea id="contenu" name="contenu" class="form-control" required="required">{{ reunionTrouvee.getContenu() }}</textarea>
-        </div>
-        <div class="form-group">
-          <div class="form-row">
-            <div class="col-md-6">
-              <label for="date_reu">Date de la réunion</label>
-              <input type="date" id="date_reu" name="date_reu" class="form-control" required="required" value="{{ reunionTrouvee.getDatetimeReu()|date("Y-m-d") }}">
-            </div>
-            <div class="col-md-6">
-              <label for="time_reu">Heure de la réunion</label>
-              <input type="time" id="time_reu" name="time_reu" class="form-control" required="required" value="{{ reunionTrouvee.getDatetimeReu()|date("H:i") }}">
-            </div>
-            <div class="col-md-6">
-              <label for="user">Réunion proposée par : </label>
-              <input type="text" id="user" name="user" class="form-control" value="{{ reunionTrouvee.getUser().getPrenom() ?? '' }}" disabled="disabled">
-            </div>
-            <div class="col-md-6">
-              <label for="lieu">Lieu de la réunion</label>
-              <input type="text" id="lieu" name="lieu" class="form-control" required="required" value="{{ reunionTrouvee.getLieuReu() }}">
+  <section class="py-2 mb-5">
+    <div class="card card-register mx-auto mt-5">
+      <div class="card-header">Modifier une réunion</div>
+      {% if errors is not empty %}
+        <div class="alert alert-danger">{{errors|raw}}</div>
+      {% elseif success == true %}
+        <div class="alert alert-success">Votre réunion a bien été ajoutée</div>
+      {% endif %}
+      <div class="card-body">
+        <form method="post">
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                  <label for="titre">Intitulé de la réunion</label>
+                  <input type="text" id="titre" name="titre" class="form-control" required="required" autofocus="autofocus" value="{{ reunionTrouvee.getTitre() }}">
+              </div>
+              <div class="col-md-6">
+                  <label for="type">Type de réunion</label>
+                  <input type="text" id="type" name="type" class="form-control" required="required" value="{{ reunionTrouvee.getTypeReu() }}">
+              </div>
             </div>
           </div>
-          <div class="form-row my-2">
-            <div class="col-md-6">
-              <input type="submit" value="Modifier" class="btn btn-primary btn-block">
+          <div class="form-group">
+              <label for="contenu">Contenu</label>
+              <textarea id="contenu" name="contenu" class="form-control" required="required">{{ reunionTrouvee.getContenu() }}</textarea>
+          </div>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <label for="date_reu">Date de la réunion</label>
+                <input type="date" id="date_reu" name="date_reu" class="form-control" required="required" value="{{ reunionTrouvee.getDatetimeReu()|date("Y-m-d") }}">
+              </div>
+              <div class="col-md-6">
+                <label for="time_reu">Heure de la réunion</label>
+                <input type="time" id="time_reu" name="time_reu" class="form-control" required="required" value="{{ reunionTrouvee.getDatetimeReu()|date("H:i") }}">
+              </div>
+              <div class="col-md-6">
+                <label for="user">Réunion proposée par : </label>
+                <input type="text" id="user" name="user" class="form-control" value="{{ reunionTrouvee.getUser().getPrenom() ?? '' }}" disabled="disabled">
+              </div>
+              <div class="col-md-6">
+                <label for="lieu">Lieu de la réunion</label>
+                <input type="text" id="lieu" name="lieu" class="form-control" required="required" value="{{ reunionTrouvee.getLieuReu() }}">
+              </div>
             </div>
-            <div class="col-md-6">
-              <a class="btn btn-secondary btn-block" href="{{ path('index_reunions') }}" role="button">Retour à la liste des réunions</a>
+            <div class="form-row my-2">
+              <div class="col-md-6">
+                <input type="submit" value="Modifier" class="btn btn-primary btn-block">
+              </div>
+              <div class="col-md-6">
+                <a class="btn btn-secondary btn-block" href="{{ path('index_reunions') }}" role="button">Retour à la liste des réunions</a>
+              </div>
             </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
-  </div>
-</div>
+  </section>
 {% endblock %}

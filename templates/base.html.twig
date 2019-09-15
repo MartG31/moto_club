@@ -5,31 +5,32 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         	
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins&display=swap" >
+		<link href="https://fonts.googleapis.com/css?family=Philosopher&display=swap" rel="stylesheet">  
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
      	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 		<!-- fancybox -->
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"/>
 		<link rel="stylesheet" href="/css/swiper.min.css">
 		<link rel="stylesheet" href="/css/styles.css">
-		<link rel="stylesheet" href="/css/calendar.css">
+		
 		<link rel="stylesheet" href="/css/avatars.css" >
 
         {% block stylesheets %}{% endblock %}
     </head>
 
     <body>
-		<header></header>
-
-		<nav class="navbar sticky-top navbar-expand-lg navbar-light ">
-			<a class="navbar-brand" href="{{ path('accueil') }}">
-				<img src="/images/logo.png" class="float-right img-fluid h-auto img-logo" style="width: 100px;">
-			</a>
+		<header>
+			<!-- <a class="d-flex align-items-center justify-content-center" href="{{ path('accueil') }}"><img src="/images/logo.png" class="img-fluid h-auto img-logo" style="width: 3em;"></a> -->
+			<h1 class="text1 text-center d-flex align-items-start justify-content-end text-uppercase pr-3">Amicale BMW de l'Isère</h1>
+		</header>
+		
+		<nav class="navbar sticky-top navbar-expand-lg navbar-light py-0 ">			
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav ml-lg-auto">
+				<ul class="navbar-nav mr-lg-auto">
 					<li class="nav-item"><a class="nav-link" href="{{ path('accueil') }}">Accueil</a></li>
 					<li class="nav-item"><a class="nav-link" href="{{ path('index_balades') }}">Balades</a></li>
 					<li class="nav-item"><a class="nav-link" href="{{ path('view_albums') }}">Albums</a></li>
@@ -42,51 +43,53 @@
 					{% endif %}
 					
 					<li class="nav-item"><a class="nav-link" href="{{ path('contact') }}">Contact</a></li>
+				</ul>
+				<ul class="navbar-nav ml-lg-auto">
 
 					{% if app.session.get('ranks') is not null %}
 
-						<li class="nav-item">
+						<li class="nav-item my-auto pr-1">
 							<a class="nav-link btn btn-info border border-dark" href="{{ path('admin_accueil') }}">Back Office ({{ app.session.get('prenom') ~ ' ' ~ app.session.get('nom') }})</a>
 						</li>
-						<li class="nav-item">
+						<li class="nav-item my-auto pr-1 ">
 							<a class="nav-link btn btn-danger border border-dark" href="{{ path('deconnexion_user') }}">Déconnexion</a>
 						</li>
 
 					{% else %}
 
-						<li class="nav-item">
+						<li class="nav-item my-auto pr-1 ">
 							<a class="nav-link btn btn-secondary border border-dark" href="{{ path('inscription_user') }}">Inscription</a>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link btn btn-success border border-dark" href="{{ path('connexion_user') }}">Connexion</a>
+						<li class="nav-item my-auto pr-1 ">
+							<a class="nav-link btn btn-success border border-dark " href="{{ path('connexion_user') }}">Connexion</a>
 						</li>
 
 					{% endif %}
 				</ul>
 			</div>
 		</nav>
-		<div class="container">
-			{% block content %}{% endblock %}
+		<div class="space-between">
+
+			<main class="container px-0">
+				<!-- <div class="container"> -->
+					{% block content %}{% endblock %}
+				<!-- </div> -->
+			</main>
+	 
+			<footer class="base-footer footer px-5"> <!-- fixed-bottom -->
+				<div class="row">			
+					<div class="col-md-4 align-middle my-auto"><a href ="#" class="colorlink footerlink">Mentions légales</a></div>
+					<div class="col-md-4 text-center align-middle copyright my-auto ">GSM3 Copyright &copy; - {{"now"|date("Y")}}</div>
+					<div class="col-md-4 align-middle text-right my-auto"><a href="https://www.flickr.com/photos/136404712@N02/albums" target="blank" class="colorlink footerlink">Site photo de l'Amicale</a></div>
+				</div>  
+			</footer>
 		</div>
- 
-		<footer class="base-footer"> <!-- fixed-bottom -->
-			<div class="footer">
-				<div class="row ml-2">			
-					<div class="col-md-2"><a href ="#" class="colorlink footerlink">Mentions légales</a></div>
-					<div class="col-md-2"><a href="https://www.flickr.com/photos/136404712@N02/albums" target="blank" class="colorlink footerlink">Site photo de l'Amicale</a></div>
-				</div>
-				<div class="container my-auto">
-					<div class="copyright text-center my-auto"><span>Copyright &copy; - {{"now"|date("Y")}}</span></div>
-					<div class=" text-center"><p>Fait par : GSM3</p></div>
-				</div>
-			</div>  
-		</footer>
 
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
-		<script type="text/javascript" src="/js/calendar.js"></script>
+		
         {% block javascripts %}{% endblock %}
 
     </body>
