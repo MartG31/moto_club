@@ -41,7 +41,7 @@
 		  	<div class="card-body">
 		  		<form method="post">
 		  			<input type="hidden" name="action" value="infos-form">
-		  			<!-- <input type="hidden" name="action" value="form-infos-user"> -->
+
 		  			<div class="form-group row">
 		  				<label for="email" class="col-lg-3">Email</label>
 		  				<input id="email" class="col-lg-9 form-control" name="email" type="text" value="{{ app.session.get('email') }}" disabled>
@@ -87,9 +87,40 @@
 		  			{% elseif success == true %}
 		  				<div class="alert alert-success">Vos modifications ont bien été prises en compte</div>
 		  			{% endif %}
-		  			<div class="form-group row d-flex justify-content-center">
-		  				<input type="submit" class="btn btn-primary btn-lg" value="Enregistrer les modifications">
-		  				<input type="reset" class="btn btn-secondary btn-lg" value="Réinitialiser">
+		  			<div class="form-group row d-flex justify-content-end">
+		  				<input type="submit" class="btn btn-primary btn-lg m-1" value="Enregistrer les modifications">
+		  				<input type="reset" class="btn btn-secondary btn-lg m-1" value="Réinitialiser">
+		  			</div>
+		  		</form>
+			</div>
+		</div>
+
+		<div class="card mb-3">
+		    <div class="card-header">Modifier mon mot de passe</div>
+		  	<div class="card-body">
+		  		<form method="post">
+		  			<input type="hidden" name="action" value="pwd-form">
+
+		  			<div class="form-group row">
+		  				<label for="current_pwd" class="col-lg-3">Mot de passe actuel</label>
+		  				<input id="current_pwd" class="col-lg-9 form-control" name="current_pwd" type="password">
+		  			</div>
+		  			<div class="form-group row">
+		  				<label for="new_pwd" class="col-lg-3">Nouveau mot de passe</label>
+		  				<input id="new_pwd" class="col-lg-9 form-control" name="new_pwd" type="password">
+		  			</div>
+		  			<div class="form-group row">
+		  				<label for="new_pwd_confirm" class="col-lg-3">Confirmation du mot de passe</label>
+		  				<input id="new_pwd_confirm" class="col-lg-9 form-control" name="new_pwd_confirm" type="password">
+		  			</div>
+		  			{% if pwd_errors is not empty %}
+		  				<div class="alert alert-warning">{{ pwd_errors|join('<br>')|raw }}</div>
+		  			{% elseif pwd_success == true %}
+		  				<div class="alert alert-success">Votre mot de passe a été modifié avec succès</div>
+		  			{% endif %}
+		  			<div class="form-group row d-flex justify-content-end">
+		  				<input type="submit" class="btn btn-primary btn-lg m-1" value="Valider">
+		  				<input type="reset" class="btn btn-secondary btn-lg m-1" value="Réinitialiser">
 		  			</div>
 		  		</form>
 			</div>

@@ -392,15 +392,46 @@ class UsersController extends MasterController {
         			$success = true;
         		}
         	}
+
+            // UPDATE PWD
+
+            $pwd_errors = [];
+            
+            if($_POST['action'] == 'pwd-form') {
+
+                $post = array_map('trim', array_map('strip_tags', $_POST));
+
+                $user = $em->getRepository(Utilisateurs::class)->find($this->session->get('id'));
+
+                if(!password_verify($post['current_pwd'], $user->getPwd())) {
+                    $pwd_errors[] = 'Votre mot de passe est incorrect';
+                }
+                elseif(!v::stringType()->length(8, null)->validate($post['new_pwd'])){
+                    $pwd_errors[] = 'Le mot de passe doit comporter au moins 8 caractères';
+                }
+                elseif(!v::equals($post['new_pwd'])->validate($post['new_pwd_confirm'])) {
+                    $pwd_errors[] = 'Les mots de passe ne correspondent pas';
+                }
+
+                if(count($pwd_errors) === 0) {
+
+                    $user->setPwd(password_hash($post['new_pwd'], PASSWORD_DEFAULT));
+                    $em->flush();
+
+                    $pwd_success = true;
+                }
+            }
         }
 
 	    return $this->render('users/viewprofile.html.twig', [
+            'maxFileSize' => $this->maxFileSize,         
 	    	'post' => $post ?? [],
     	    'av_errors' => $av_errors ?? [],
     	    'av_success' => $av_success ?? false,
             'errors' => $errors ?? [],
-            'success' => $success ?? false,        	
-            'maxFileSize' => $this->maxFileSize,         
+            'success' => $success ?? false,
+            'pwd_errors' => $pwd_errors ?? [],
+            'pwd_success' => $pwd_success ?? false,        	
         ]);
     }
 
