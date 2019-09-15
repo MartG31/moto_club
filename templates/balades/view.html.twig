@@ -1,27 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}balade{% endblock %}
+{% block title %}{{ balade.getTitre() }}{% endblock %}
 
 {% block content %}
 	<div class="pb-5">
+
+		<a href="{{ path('index_balades') }}" class="btn btn-secondary my-4" role="button"><i class="fas fa-angle-left"></i> Retour aux balades</a>
 		
-		<div class="card-deck my-5">
+		<div class="card-deck my-4">
 			<div class="card">
 				<div class="card-header">
 					<div class="card-title">
-						{{ balade.getTitre() }}
+						<a href="{{ path('view_balade', {id: balade.getId()}) }}" class="btn btn-success float-right ml-4" role="button">S'inscrire</a>
+						<div class="float-right">S'inscrire</div>
+						<strong>{{ balade.getTitre() }}</strong>
+						{% if balade.getDateDebut() == balade.getDateFin() %}
+							<div>le {{ balade.getDateDebut()|date('d/m/Y') }}</div>
+						{% else %}
+							<div>du {{ balade.getDateDebut()|date('d/m/Y') }} au {{ balade.getDateFin()|date('d/m/Y') }}</div>
+						{% endif %}
 				   </div>
-
-
-					<div class="card-body">{{ balade.getContenu() }}</div>
-					<div class="card-footer">
-						Posté par 
-							{{ balade.getUser().getNom() ~ ' ' ~ balade.getUser().getPrenom() }} 
-							le 
-							{{ balade.getDatetimePost()|date('d/m/Y') }} 
-							à 
-							{{ balade.getDatetimePost()|date('H:i') }}
-					</div>
+				</div>
+				<div class="card-body">{{ balade.getContenu() }}</div>
+				<div class="card-footer">
+					<i>Posté par 
+						{{ balade.getUser().getPrenom() ~ ' ' ~ balade.getUser().getNom() }} 
+						le 
+						{{ balade.getDatetimePost()|date('d F Y') }} 
+						à 
+						{{ balade.getDatetimePost()|date('H:i') }}
+					</i>
 				</div>
 			</div>
 		</div>

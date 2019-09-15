@@ -29,6 +29,8 @@ class MasterController extends AbstractController
 
         $this->session = new Session();
 
+        setlocale(LC_TIME, 'fr_FR.utf8','fra'); 
+
         // echo '<pre class="alert alert-info mb-0">';
         // print_r('user id : '.$this->session->get('id').' ('.$this->session->get('email').') / RANG : '.$this->session->get('acces'));
         // echo '</pre>';
