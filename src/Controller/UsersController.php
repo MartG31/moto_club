@@ -274,7 +274,6 @@ class UsersController extends MasterController {
 
             // echo '<pre class="alert alert-info mb-0">';
             // print_r($_FILES);
-            // // print_r($_SERVER);
             // echo '</pre>';
 
 
@@ -282,9 +281,6 @@ class UsersController extends MasterController {
 
         		if($_FILES['avatar']['error'] != UPLOAD_ERR_OK) {
         		    $av_errors[] = 'Une erreur est survenue lors de la sélection du fichier';
-                    echo '<pre class="alert alert-danger mb-0">';
-                    print_r($av_errors);
-                    echo '</pre>';
         		}
         		else {
 
