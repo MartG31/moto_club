@@ -183,7 +183,7 @@ class BaladesController extends MasterController
         $balade = $em->getRepository(Balades::class)->find($id);
         $user = $em->getRepository(Utilisateurs::class)->find($this->session->get('id'));
 
-        if(!$this->inscrit($balade) && $this->baladeFull($balade)) {
+        if(!$this->inscrit($balade) && !$this->baladeFull($balade)) {
 
             $mb = new MembresBalades();
             $mb->setBal($balade);
