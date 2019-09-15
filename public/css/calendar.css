@@ -35,7 +35,7 @@
     -webkit-box-shadow: 0 0 5px #c9c9c9;
     box-shadow: 0 0 5px #c9c9c9;
     text-align: center;
-    margin: 4em auto;
+    margin: 0em auto;
 }
 
 #header-calendar {
@@ -132,6 +132,10 @@ tbody td:hover, .selected {
     color: #fff;
     background-color: #2a3246;
     border: none;
+
+}
+.view {
+    color : red;
 }
 
 #calendar tbody td:active {

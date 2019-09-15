@@ -83,14 +83,35 @@ document.addEventListener('DOMContentLoaded', function(){
         var selected = document.getElementsByClassName("selected"),
             len = selected.length;
         if(len !== 0){
-            selected[0].className = "";
+            selected[0].className = "";   
         }
+
+        console.log(o);
+
         o.className = "selected";
+
         selectedDay = new Date(year, month, o.innerHTML);
+
+        
         this.drawHeader(o.innerHTML);
         this.setCookie('selected_day', 1);
         
     };
+
+    // Calendar.prototype.clickDay = function(a) {
+    //     var selected = document.getElementById("bouh"),
+    //         len = selected.length;
+    //     if(len !== 0){
+    //         selected[0].id = "";   
+    //     }
+
+    //     console.log(a);
+
+    //     a.id = "bouh";
+
+    //     selectedDay = new Date(year, month, a.innerHTML);
+    
+    // };
     
     Calendar.prototype.preMonth = function() {
         if(month < 1){ 
