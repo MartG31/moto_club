@@ -74,8 +74,10 @@ gestion_balades:
     controller: App\Controller\BaladesController::gestionBalades
 
 gestion_inscrits:
-    path: /balades/gestion-inscrits
+    path: /balades/gestion/{id}
     controller: App\Controller\BaladesController::gestionInscrits
+    requirements:
+      id: '\d+'
 
 ############################# Photos ##################
 
