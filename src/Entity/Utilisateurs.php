@@ -110,16 +110,6 @@ class Utilisateurs
      */
     private $date_naiss;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $nb_max_pers;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $bal_active;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -292,30 +282,4 @@ class Utilisateurs
 
         return $this;
     }
-
-    public function getNbMaxPers(): ?int
-    {
-        return $this->nb_max_pers;
-    }
-
-    public function setNbMaxPers(?int $nb_max_pers): self
-    {
-        $this->nb_max_pers = $nb_max_pers;
-
-        return $this;
-    }
-
-    public function getBalActive(): ?bool
-    {
-        return $this->bal_active;
-    }
-
-    public function setBalActive(bool $bal_active): self
-    {
-        $this->bal_active = $bal_active;
-
-        return $this;
-    }
-
-
 }
