@@ -4,10 +4,6 @@ accueil:
     path: /
     controller: App\Controller\DefaultController::index
 
-contact:
-    path: /contact
-    controller: App\Controller\DefaultController::contact
-
 ############################# BackOffice ##################
 
 admin_accueil:
@@ -72,6 +68,14 @@ desinscription_balade:
     controller: App\Controller\BaladesController::desinscriptionBalade
     requirements:
       id: '\d+'
+
+gestion_balades:
+    path: /balades/gestion
+    controller: App\Controller\BaladesController::gestionBalades
+
+gestion_inscrits:
+    path: /balades/gestion-inscrits
+    controller: App\Controller\BaladesController::gestionInscrits
 
 ############################# Photos ##################
 

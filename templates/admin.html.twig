@@ -84,8 +84,11 @@
                             <span>Balades</span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-                            <a class="dropdown-item" href="{{path('add_balade')}}">Ajouter</a>
-                            <a class="dropdown-item" href="#">Modifier</a>
+                            <a class="dropdown-item" href="{{path('add_balade')}}">Proposer une balade</a>
+                            {% if 'bureau' in app.session.get('ranks') %}
+                                <a class="dropdown-item" href="{{path('gestion_balades')}}">Gérer les balades</a>
+                                <a class="dropdown-item" href="{{path('gestion_inscrits')}}">Gérer les inscrits</a>
+                            {% endif %}
                         </div>
                     </li>
                      <li class="nav-item dropdown">
