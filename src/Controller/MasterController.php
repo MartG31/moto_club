@@ -120,9 +120,6 @@ class MasterController extends AbstractController
                                 h2{
                                     color: grey;
                                 }
-                                p{
-                                    color: grey;
-                                }
                             </style>
                         </head>
                         <body>
