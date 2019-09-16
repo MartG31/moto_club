@@ -269,14 +269,14 @@ class BaladesController extends MasterController
                 $adherentsMin[] = $user->getEmail();
             }
         }
-        $receivers = $adherentsMin;
-        $subject = 'Amicale BMW Moto 38 - Nouvelle balade : '.$balade->getTitre().' le '.date("d/m/Y", strtotime($balade->getDateDebut()));
-        $content = '<h2>Nouvelle balade, "'.$balade->getTitre().'" le '.date("d/m/Y", strtotime($balade->getDateDebut()).' : ''</h2>
-                    <p>Bonjour, nous vous informons qu\'une réunion a été ajoutée sur le site de l\'Amicale BMW Moto 38.</p>
-                    <p>Cette réunion ('.$safe['type'].') a pour sujet <strong>"'.$safe['titre'].'"</strong> et se déroulera le <strong>'.date("d/m/Y", strtotime($safe['date_reu'])).'</strong> à <strong>'.$safe['lieu'].'</strong></p>
-                    <p>Vous pouvez consulter les <a href="http://127.0.0.1:8000/reunions/details/'.$reunion->getId().'">détails</a> de cette réunion.';
+        // $receivers = $adherentsMin;
+        // $subject = 'Amicale BMW Moto 38 - Nouvelle balade : '.$balade->getTitre().' le '.date("d/m/Y", strtotime($balade->getDateDebut());
+        // $content = '<h2>Nouvelle balade, "'.$balade->getTitre().'" le '.date("d/m/Y", strtotime($balade->getDateDebut()).' : ''</h2>
+        //             <p>Bonjour, nous vous informons qu\'une réunion a été ajoutée sur le site de l\'Amicale BMW Moto 38.</p>
+        //             <p>Cette réunion ('.$safe['type'].') a pour sujet <strong>"'.$safe['titre'].'"</strong> et se déroulera le <strong>'.date("d/m/Y", strtotime($safe['date_reu'])).'</strong> à <strong>'.$safe['lieu'].'</strong></p>
+        //             <p>Vous pouvez consulter les <a href="http://127.0.0.1:8000/reunions/details/'.$reunion->getId().'">détails</a> de cette réunion.';
 
-        $this->sendingMails($receivers, $subject, $content);
+        // $this->sendingMails($receivers, $subject, $content);
 
         return $this->render('balades/gestion-inscrits.html.twig', [
         ]);
