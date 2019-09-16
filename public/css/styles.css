@@ -61,8 +61,10 @@ main{
 	box-shadow: 1px 5px 5px lightgrey; 
 	padding-top: 5em;
 }
-.blue {
-	background-color: #2e7ff0;
+.blue {/*
+	background-color: #2e7ff0;*/
+	background: linear-gradient(transparent, #2e7ff0, transparent);
+	padding: 6em 1em;
 }
 .parallax {
 	background: url(../images/img2.jpg);

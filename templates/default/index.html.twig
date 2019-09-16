@@ -86,7 +86,7 @@
 		</div>
 	</section>
 	<!-- section bleue !-->
-	<section class="py-5 mb-5 blue">
+	<section class="mb-5 blue">
 		<h2>Titre pour dire "vas y on s'présente" et on s'appelle pas Henri</h2>
 		<p>présentation écrite ?? en blanc ou en noir ?? sur fond bleu (paragraphe court) la classe blue sert à ça
 		Simon : tu disais que t'avais un moyen de faire une transistion sans que ça fasse une limite aussi nette entre le bleu et le blanc ? Pour faire comme sur ton cv ? </p>
@@ -97,9 +97,66 @@
 		<p>ça serait cool, par exemple, que lorsque la personne est inscrite/connectée, cette section soit remplacé par la map, par exemple -- mais comme c'est censé être publiqu / perso j'ai du mal avec cette idée mais bon // peut être qu'on peut mettre la map à la place de la présentation (section précédente)</p>
 	</section>
 	<section class="py-5 mb-5 parallax" >
-		<h2>Formulaire de contact</h2>
-		<p>Dans une card comme on l'a fait pour les autres ? comme ça on n'aura pas trop de bleu - j'aime pas le bleu</p>
-		<p>Ici, à la place d'un background bleu, j'vois bien une image en effet parallax, puisque le formulaire de contact aura son propre bckgd</p>
+		<h2>Contactez nous</h2>
+	  	<div class="container pb-5">
+	    	<div class="card card-register mx-auto mt-5 pb-5 mb-5">
+	        	<div class="card-header">Nous contacter</div>
+        		<div class="card-body">
+        			<form method="post">
+            			<div class="form-group">
+            				<div class="form-row">
+                				<div class="col-md-6">
+                					<div class="form-group">
+                    					<label for="lastName">Nom</label>
+                    					<input type="text" id="lastName" name="lastname" class="form-control" value="{{donnees_saisies.lastname ?? ''}}" required autofocus>
+                					</div>
+                				</div>
+                				<div class="col-md-6">
+                  					<div class="form-group">
+                    					<label for="firstName">Prénom</label>
+                    					<input type="text" id="firstName" name="firstname" class="form-control" value="{{donnees_saisies.firstname ?? ''}}" required>
+                  					</div>
+                				</div>
+            				</div>
+            			</div>
+            			<div class="form-group">
+              				<div class="form-row">
+                				<div class="col-md-6">
+                					<div class="form-group">
+						                <label for="email">Adresse email</label>
+						                <input type="email" id="email" name="email" class="form-control" value="{{donnees_saisies.email ?? ''}}" required>
+                  					</div>
+                				</div>
+                				<div class="col-md-6">
+                  					<div class="form-group">
+					                    <label for="phone">Numéro de Téléphone</label>
+					                    <input type="text" id="phone" name="phone" class="form-control" value="{{donnees_saisies.phone ?? ''}}" maxlength="10" required>
+                					</div>
+                				</div>
+                				<div class="col-md-12">
+    	            				<div class="form-group">
+				    	                <label for="message">Message</label>
+				    	                <textarea name="message" id="message" class="form-control" required placeholder="Votre message ici" rows="5">{{donnees_saisies.message ?? ''}}</textarea>
+    	        					</div>
+            					</div>
+            				</div>
+            			</div>
+			            {% if errors is not empty %}
+			                <div class="alert alert-danger">
+			                    {{ errors|join('<br>')|raw }} 
+			                </div>
+			            {% elseif success == true %}
+			                <div class="alert alert-success">
+			                    Merci pour votre message <strong>{{donnees_saisies.firstname}}</strong> ! Nous l'avons bien reçu et le traiterons dans les plus brefs délais.
+			                </div>
+			            {% endif %}
+            			<div class="form-group">
+                			<input type="submit" class="btn btn-primary btn-block" value="Envoyer le message">
+            			</div>
+          			</form>
+        		</div>
+    		</div>
+    	</div>
 	</section>
 	<section>
 		<h2>Portfolio</h2>

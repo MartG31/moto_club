@@ -220,6 +220,22 @@ class BaladesController extends MasterController
         ]);
     }
 
+
+
+    public function gestionBalades() {
+
+        return $this->render('balades/gestion-balades.html.twig', [
+        ]);
+    }
+
+    public function gestionInscrits() {
+
+        return $this->render('balades/gestion-inscrits.html.twig', [
+        ]);
+    }
+
+
+
     // PRIVATE FUNCTIONS
 
     private function inscrit(Balades $balade) {
