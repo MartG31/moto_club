@@ -179,6 +179,8 @@ class BaladesController extends MasterController
 
     public function inscriptionBalade($id) {
 
+        if($this->restrictAccess('membre')) { return $this->redirectToRoute('accueil'); }
+
         $em = $this->getDoctrine()->getManager();
         $balade = $em->getRepository(Balades::class)->find($id);
         $user = $em->getRepository(Utilisateurs::class)->find($this->session->get('id'));
@@ -199,6 +201,8 @@ class BaladesController extends MasterController
     }
 
     public function desinscriptionBalade($id) {
+
+        if($this->restrictAccess('membre')) { return $this->redirectToRoute('accueil'); }
 
         $em = $this->getDoctrine()->getManager();
         $balade = $em->getRepository(Balades::class)->find($id);
@@ -260,9 +264,16 @@ class BaladesController extends MasterController
     }
 
     public function validerBalade($id) {
-        // Envoi du mail
-        $users = $this->getDoctrine()->getRepository(Utilisateurs::class)->findAll();
+
+        if($this->restrictAccess('bureau')) { return $this->redirectToRoute('accueil'); }
+
+        $em = $this->getDoctrine()->getManager();
         $balade = $em->getRepository(Balades::class)->find($id);
+        $balade->setBalActive(true);
+        $em->flush();
+
+        // Envoi du mail
+        $users = $em->getRepository(Utilisateurs::class)->findAll();
         $adherentsMin = [];
         foreach ($users as $user) {
             if($user->getAcces() != 'membre') {
@@ -278,8 +289,43 @@ class BaladesController extends MasterController
 
         // $this->sendingMails($receivers, $subject, $content);
 
-        return $this->render('balades/gestion-inscrits.html.twig', [
-        ]);
+        return $this->redirectToRoute('gestion_balades');
+    }
+
+    public function refuserBalade($id) {
+
+        if($this->restrictAccess('bureau')) { return $this->redirectToRoute('accueil'); }
+
+        $em = $this->getDoctrine()->getManager();
+        $balade = $em->getRepository(Balades::class)->find($id);
+        // $em->remove($balade);
+        // $em->flush();
+
+        return $this->redirectToRoute('gestion_balades');
+    }
+
+    public function cloturerInscriptions($id) {
+
+        if($this->restrictAccess('bureau')) { return $this->redirectToRoute('accueil'); }
+
+        $em = $this->getDoctrine()->getManager();
+        $balade = $em->getRepository(Balades::class)->find($id);
+        $balade->setInscActive(false);
+        $em->flush();
+
+        return $this->redirectToRoute('gestion_balades');
+    }
+
+    public function ouvrirInscriptions($id) {
+
+        if($this->restrictAccess('bureau')) { return $this->redirectToRoute('accueil'); }
+
+        $em = $this->getDoctrine()->getManager();
+        $balade = $em->getRepository(Balades::class)->find($id);
+        $balade->setInscActive(true);
+        $em->flush();
+
+        return $this->redirectToRoute('gestion_balades');
     }
 
 
@@ -291,7 +337,6 @@ class BaladesController extends MasterController
     private function inscrit(Balades $balade) {
 
         $em = $this->getDoctrine()->getManager();
-
         $inscrits = $em->getRepository(MembresBalades::class)->findBy([
             'bal' => $balade
         ]);
@@ -304,7 +349,6 @@ class BaladesController extends MasterController
     private function nbInscrits(Balades $balade) {
 
         $em = $this->getDoctrine()->getManager();
-
         $nb_inscrits_tab = $em->getRepository(MembresBalades::class)->countInscrits($balade);
         return array_shift($nb_inscrits_tab);    
     }
@@ -312,7 +356,6 @@ class BaladesController extends MasterController
     private function baladeFull(Balades $balade) {
 
         $em = $this->getDoctrine()->getManager();
-
         if($this->nbInscrits($balade) == $balade->getNbMaxPers()) {
             return true;
         }
