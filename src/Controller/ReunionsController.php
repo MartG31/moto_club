@@ -120,6 +120,7 @@ class ReunionsController extends MasterController
 
         // Utilisation de la base de données
         $entityManager = $this->getDoctrine()->getManager();
+        $user = $entityManager->getRepository(Utilisateurs::class)->find($this->session->get('id'));
         
 
         if(!empty($_POST)){
@@ -154,7 +155,8 @@ class ReunionsController extends MasterController
                         ->setContenu($safe['contenu'])
                         //->setUser($_SESSION['user'])
                         ->setDatetimeReu($this->mergeDateTime($safe['date_reu'], $safe['time_reu']))
-                        ->setDatetimePost(new \DateTime('now'));
+                        ->setDatetimePost(new \DateTime('now'))
+                        ->setUser($user);
                 
 
                 // tell Doctrine you want to (eventually) save the Product (no queries yet)
@@ -314,6 +316,7 @@ class ReunionsController extends MasterController
                 //suppression de l'article trouvé
                 $entityManager->remove($reuFound);
                 $entityManager->flush();
+                header('Refresh: 5; /backoffice/reunions');
 
         return $this->render('reunions/delConf.html.twig', [
             'reunionTrouvee' => $reuFound,
@@ -359,7 +362,7 @@ class ReunionsController extends MasterController
             $entityManager = $this->getDoctrine()->getManager();
             // Permet de chercher les réunions via le repository
             $reuFound = $entityManager->getRepository(Reunions::class)->find($id);
-
+            $user = $entityManager->getRepository(Utilisateurs::class)->find($this->session->get('id'));
 
             if(!empty($_POST)){
 
@@ -386,8 +389,9 @@ class ReunionsController extends MasterController
                         ->setTitre($safe['titre'])
                         ->setReu($reuFound)
                         //->setUser($_SESSION['user'])
-                        ->setDatetimePost(new \DateTime('now'));
-
+                        ->setDatetimePost(new \DateTime('now'))
+                        ->setUser($user);
+                        
                     // tell Doctrine you want to (eventually) save the Product (no queries yet)
                     $entityManager->persist($cr);
 
