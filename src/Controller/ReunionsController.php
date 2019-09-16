@@ -23,6 +23,14 @@ class ReunionsController extends MasterController
     /**
      * @Route("/reunions", name="reunions")
      */
+
+    ///////attributs
+    public $typesReu = array(
+        'bureau' => 'Réunion du bureau', 
+        'ag' => 'Assemblée Générale', 
+        'autre' => 'Autre', 
+    );
+
     
     public function indexReunion() {
 
@@ -128,11 +136,11 @@ class ReunionsController extends MasterController
             $errors = [                                                      
             (!v::notEmpty()->stringType()->length(3, 80)->validate($safe['titre'])) ? 'L\'intitulé de la réunion doit faire entre 3 et 80 caractères' : null,
             (!v::notEmpty()->stringType()->length(3, 80)->validate($safe['lieu'])) ? 'Le lieu de réunion doit faire entre 3 et 80 caractères' : null,
-            (!v::notEmpty()->stringType()->length(2, 30)->validate($safe['type'])) ? 'Le type de réunion doit faire entre 2 et 30 caractères' : null,
+            (!v::notEmpty()->stringType()->in(array_keys($this->typesReu))->validate($safe['type'])) ? 'Merci de choisir le type de réunion parmis les choix proposés' : null,
             (!v::notEmpty()->stringType()->length(3)->validate($safe['contenu'])) ? 'Le contenu doit faire au moins 3 caractères' : null,
             (!v::notEmpty()->date()->validate($safe['date_reu'])) ? 'La réunion doit être une date valide' : null,
-            //(!v::notEmpty()->date()->validate($safe['time_rdv'])) ? 'L\'heure de réunion doit être une heure valide' : null,
-            
+            (!v::notEmpty()->validate($safe['time_reu'])) ? 'L\'heure de la réunion doit être renseignée' : null,
+            (!$this->checkTime($safe['time_reu'])) ? 'L\'heure de la réunion doit être une heure valide' : null,            
             ];
 
             $errors = array_filter($errors);
@@ -206,6 +214,7 @@ class ReunionsController extends MasterController
            'success'            => $success ?? false,
            'errors'             => $errorsForm ?? [],
            'donnees_saisies'    => $safe ?? [],
+           'typesReu'           => $this->typesReu,
            //'maxSizeFile'          => $this->maxSizeFile,
 
                    
@@ -235,9 +244,11 @@ class ReunionsController extends MasterController
             $errors = [                                                      
             (!v::notEmpty()->stringType()->length(3, 80)->validate($safe['titre'])) ? 'L\'intitulé de la réunion doit faire entre 3 et 80 caractères' : null,
             (!v::notEmpty()->stringType()->length(3, 80)->validate($safe['lieu'])) ? 'Le lieu de réunion doit faire entre 3 et 80 caractères' : null,
-            (!v::notEmpty()->stringType()->length(2, 30)->validate($safe['type'])) ? 'Le type de réunion doit faire entre 2 et 30 caractères' : null,
+            (!v::notEmpty()->in(array_keys($this->typesReu))->validate($safe['type'])) ? 'Merci de choisir le type de réunion parmis les choix proposés' : null,
             (!v::notEmpty()->stringType()->length(3)->validate($safe['contenu'])) ? 'Le contenu doit faire au moins 3 caractères' : null,
             (!v::notEmpty()->date()->validate($safe['date_reu'])) ? 'La réunion doit être une date valide' : null,
+            (!v::notEmpty()->validate($safe['time_reu'])) ? 'L\'heure de la réunion doit être renseignée' : null,
+            (!$this->checkTime($safe['time_reu'])) ? 'L\'heure de la réunion doit être une heure valide' : null, 
             
             ];
 
@@ -271,6 +282,7 @@ class ReunionsController extends MasterController
             'success'        => $success ?? false,
             'errors'         => $errorsForm ?? [],
             'reunionTrouvee' => $reuFound,
+            'typesReu'       => $this->typesReu,
         ]);
     }
 
@@ -290,6 +302,25 @@ class ReunionsController extends MasterController
             'reunionTrouvee' => $reuFound,
         ]);
     }
+
+    public function delConf($id) {
+
+        if($this->restrictAccess('bureau')) { return $this->redirectToRoute('accueil'); }
+
+        // Récupération de la liste des réunions
+            $entityManager = $this->getDoctrine()->getManager();
+            // Permet de chercher les réunions via le repository
+            $reuFound = $entityManager->getRepository(Reunions::class)->find($id);
+                //suppression de l'article trouvé
+                $entityManager->remove($reuFound);
+                $entityManager->flush();
+
+        return $this->render('reunions/delConf.html.twig', [
+            'reunionTrouvee' => $reuFound,
+        ]);
+    }
+
+
 
     public function indexCr() {
 

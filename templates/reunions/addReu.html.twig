@@ -23,7 +23,12 @@
               </div>
               <div class="col-md-6">
                 <label for="type">Type de réunion</label>
-                <input type="text" id="type-reu" name="type" class="form-control" placeholder="ex: AG" required="required" value="{{ donnees_saisies.type ?? '' }}">
+                <select name="type" id="type" class="form-control">
+                  <option value="0">-- Sélectionnez --</option>            
+                  {% for key, typeReu in typesReu %}
+                    <option value="{{key}}">{{typeReu}}</option>
+                  {% endfor %};
+                </select>
               </div>
             </div>
           </div>
