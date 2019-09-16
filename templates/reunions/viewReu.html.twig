@@ -9,41 +9,35 @@
 		<div class="card-deck my-4">
 			<div class="card mb-3">
 			    <div class="card-header">
-			        <div class="card-title"><b>{{ reunionTrouvee.getTitre() }}</b> du {{ reunionTrouvee.getDatetimeReu()|date("d/m/Y") }} à {{ reunionTrouvee.getDatetimeReu()|date("H:i") }} (<em>{{ reunionTrouvee.getTypeReu() }})</em>
-					</div>
-		  			<div class="card-body">
-		  				Ordre du jour : {{ reunionTrouvee.getContenu() }}<br>
-		  				Proposé par :{{ reunionTrouvee.getUser().getPrenom() ?? '' }}				          
-				    </div>
-					  
-			            
-			          
-			        
-			        
-			          
-			            {{ reunionTrouvee.getTitre() }} 
-			            
-			            Le  
-			            {{ reunionTrouvee.getLieuReu() }} 
-			             
-			             
-			            {{ crTrouve.getUser().getPrenom() ?? '' }} 
-
-			        </div>  
-			            	{% if crTrouve is not null %}
-			            	<a class="btn btn-success btn-block" href="{{ path('edit_cr', {id : crTrouve.getId()}) }}" role="button">Modifier le CR</a>
-			            	{% else %}
-			            	<a class="btn btn-success btn-block" href="{{ path('add_cr', {id : reunionTrouvee.getId()}) }}" role="button">Ajouter le CR</a>
-			            	<a class="btn btn-primary btn-block" href="{{ path('edit_reunion', {id : reunionTrouvee.getId()}) }}" role="button">Modifier</a>
-			            	{% endif %}
-			            	<a class="btn btn-danger btn-block" href="{{ path('del_reunion', {id : reunionTrouvee.getId()}) }}" role="button">Supprimer</a>
-			            
-			        
-
-			      </div>
+			    	<h3><b>{{ reunionTrouvee.getTitre() }}</b></h3>
 			    </div>
+		        <div class="card-title">
+		        	<p>
+		        	<span> Le {{ reunionTrouvee.getDatetimeReu()|date("d/m/Y") }} à {{ reunionTrouvee.getDatetimeReu()|date("H:i") }} (<em>{{ reunionTrouvee.getTypeReu() }})</em>. </span>
+		        		<span> Lieu : {{ reunionTrouvee.getLieuReu() }}</span>
+		        	</p> 
+				</div>
+	  			<div class="card-body">
+	  				<p>Ordre du jour : {{ reunionTrouvee.getContenu() }}</p>
+		  			<p><em>Proposé par : {{ reunionTrouvee.getUser().getPrenom() ?? '' }}, le {{reunionTrouvee.getDatetimePost()|date("d/m/Y")}}</em></p>        
+			    </div>	
+			    {% if crTrouve is not empty %}
+				    <div class="card-title">
+				    	<h4>Compte-Rendu</h4>
+				    </div>
+				    <div class="card-body">
+				    	<p>
+				    		<span><b>{{ crTrouve.getTitre() }}</b><br></span>
+			            	<span>{{ crTrouve.getContenu() }}</span> 
+			           		<span> Publié le {{ crTrouve.getDatetimePost()|date("d/m/Y") }} à {{ crTrouve.getDatetimePost()|date("H:i") }}  
+			            	{% if crTrouve.getDatetimeModif() is defined %}
+			       		 		,<em> modifié le {{ crTrouve.getDatetimeModif()|date("d/m/Y") }} à {{ crTrouve.getDatetimeModif()|date("H:i") }}</em> 
+			       			{% endif %}
+			       				- par {{ crTrouve.getUser().getPrenom() ?? '' }}.</span>	
+			            </p>
+			        </div>
+			    {% endif %}   		              
 			</div>
-			<div class="card-footer small text-muted">Reunion postée le  {{reunionTrouvee.getDatetimePost()|date("d/m/Y")}}</div>
 		</div>
 	</section>
 {% endblock %}

@@ -146,12 +146,6 @@ main{
 	background: #2196f3;
 }
 
-.container span{
-	color: #000;
-	text-transform: uppercase;
-	display: block;
-}
-
 .text1{
 	font-size:2em;
 	border-radius: 10px;
