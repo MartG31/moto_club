@@ -1,0 +1,52 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Modifier balade{% endblock %}
+
+{% block content %}
+
+	<section class="py-2 mb-5">
+		<div class="card card-register mx-auto mt-5">
+			<div class="card-header">Modifier une balade</div>
+			<div class="card-body">
+				<form method="post" enctype="multipart/form-data">
+					<div class="form-group row">
+						<label for="titre" class="col-lg-3">Titre</label>
+						<input id="titre" class="col-lg-9 form-control" name="titre" type="text" value="{{ post.titre ?? balade.getTitre }}" required>
+					</div>
+					<div class="form-group row">
+						<label for="contenu" class="col-lg-3">Description</label>
+						<textarea id="contenu" class="col-lg-9 form-control" name="contenu" cols="50" rows="6" required>{{ post.contenu ?? balade.getContenu }}</textarea>
+					</div>
+					<div class="form-group row">
+						<label for="date_debut" class="col-lg-3">Date de début</label>
+						<input id="date_debut" class="col-lg-9 form-control" name="date_debut" type="date" value="{{ post.date_debut ?? balade.getDateDebut|date('Y-m-d') }}" required>
+					</div>
+					<div class="form-group row">
+						<label for="date_fin" class="col-lg-3">Date de fin</label>
+						<input id="date_fin" class="col-lg-9 form-control" name="date_fin" type="date" value="{{ post.date_fin ?? balade.getDateFin|date('Y-m-d') }}" required>
+					</div>
+					<div class="form-group row">
+						<label for="nb_max_pers" class="col-lg-3">Nombre de participants <em>(facultatif)</em></label>
+						<input id="nb_max_pers" class="col-lg-9 form-control" name="nb_max_pers" type="number" min="0" value="{{ post.nb_max_pers ?? balade.getNbMaxPers }}">
+					</div>
+					<!-- <div class="form-group row">
+						<label for="gps_file" class="col-lg-3">Ajouter un fichier GPS</label>
+						<input id="gps_file" class="col-lg-9" name="gps_file" type="file" value="{{ post.gps_file ?? '' }}">
+					</div> -->
+					<div class="form-group row d-flex justify-content-end">
+						<input type="submit" class="btn btn-primary btn-block m-1" value="Enregistrer les modifications">
+					</div>
+
+					{% if errors is not empty %}
+						<div class="alert alert-warning">
+							{{ errors|join('<br>')|raw }}
+						</div>
+					{% elseif success == true %}
+						<div class="alert alert-success">La balade a été modifiée avec succès.</div>
+					{% endif %}
+				</form>
+			</div>
+		</div>
+	</section>
+		
+{% endblock %}

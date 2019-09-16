@@ -35,7 +35,9 @@ class PhotosController extends MasterController
 
         foreach ($balades as $balade) {
             $firstPhotoDeChaqueBalade = $em->getRepository(Photos::class)->findOneBy(['bal' => $balade ]);
-            $albums[] = $firstPhotoDeChaqueBalade;
+            if($firstPhotoDeChaqueBalade != null) {
+                $albums[] = $firstPhotoDeChaqueBalade;
+            }
         }
 
         return $this->render('photos/albums.html.twig', [

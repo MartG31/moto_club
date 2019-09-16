@@ -49,7 +49,17 @@ add_balade:
     path: /balades/ajouter
     controller: App\Controller\BaladesController::addBalade
 
+edit_balade:
+    path: /balades/modifier/{id}
+    controller: App\Controller\BaladesController::editBalade
+    requirements:
+      id: '\d+'
 
+del_balade:
+    path: /balades/supprimer/{id}
+    controller: App\Controller\BaladesController::delBalade
+    requirements:
+      id: '\d+'
 
 view_balade:
     path: /balades/{id}

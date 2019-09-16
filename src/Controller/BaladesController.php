@@ -27,7 +27,7 @@ class BaladesController extends MasterController
     	// Affichage des dernières balades
 
         $em = $this->getDoctrine()->getManager();
-        $balades = $em->getRepository(Balades::class)->findAll();
+        $balades = $em->getRepository(Balades::class)->findBy(array(), array('dateDebut' => 'DESC'));
 
         return $this->render('balades/index.html.twig', [
             'balades' => $balades ?? [],
@@ -39,25 +39,20 @@ class BaladesController extends MasterController
 
         if($this->restrictAccess('adherent')) { return $this->redirectToRoute('accueil'); }
 
-    	$errors = [];
-
         $em = $this->getDoctrine()->getManager();
+    	$errors = [];
 
         if(!empty($_POST)) {
 
             $post = array_map('trim', array_map('strip_tags', $_POST));
 
 
-            echo '<pre>';
-            // var_dump($post);
-            echo '</pre>';
-
             if(!v::notEmpty()->length(3,30)->validate($post['titre'])) {
                 $errors[] = 'Le titre doit comporter entre 3 et 30 caractères';
             }
 
-            if(!v::notEmpty()->length(10,1000)->validate($post['titre'])) {
-                $errors[] = 'Le titre doit comporter entre 10 et 1000 caractères';
+            if(!v::notEmpty()->length(10,1000)->validate($post['contenu'])) {
+                $errors[] = 'Le contenu doit comporter entre 10 et 1000 caractères';
             }
 
             // DATE DEBUT & FIN
@@ -68,9 +63,6 @@ class BaladesController extends MasterController
             elseif(!v::date('Y-m-d')->validate($post['date_debut'])) {
                 $errors[] = 'La date de début est invalide';
             }
-            elseif(!$this->checkEnglishDate($post['date_debut'])) {
-                $errors[] = 'La date de début n\'existe pas';
-            }
 
             if(!v::notEmpty()->validate($post['date_fin'])) {
                 $errors[] = 'La date de fin doit être renseignée';   
@@ -78,54 +70,54 @@ class BaladesController extends MasterController
             elseif(!v::date('Y-m-d')->validate($post['date_fin'])) {
                 $errors[] = 'La date de fin est invalide';
             }
-            elseif(!$this->checkEnglishDate($post['date_fin'])) {
-                $errors[] = 'La date de fin n\'existe pas';
-            }
 
             if($post['date_debut'] > $post['date_fin']) {
                 $errors[] = 'La date de début doit être antérieure à la date de fin';
             }
 
-            // RENDEZ-VOUS
+            // NOMBRE PARTICIPANTS
 
-            // if(!v::notEmpty()->validate($post['adresse_rdv'])) {
-            //     $errors[] = 'L\'adresse du rendez-vous doit être renseignée';
-            // }
-
-            // if(!v::notEmpty()->postalCode('FR')->validate($post['cp_rdv'])) {
-            //     $errors[] = 'Le code postal du rendez-vous est invalide ou n\'a pas été correctement renseignée';
-            // }
-
-            // if(!v::notEmpty()->validate($post['ville_rdv'])) {
-            //     $errors[] = 'La ville du rendez-vous doit être renseignée';
-            // }
+            if($post['nb_max_pers'] != '' && !v::positive()->validate($post['nb_max_pers'])) {
+                $errors[] = 'Le nombre de participants doit impérativement être un nombre entier positif';
+            }
 
             // GPS
             // ???
 
             if(count($errors) === 0) {
 
-                $user = $em->getRepository(Utilisateurs::class)->find(1);
+                $user = $em->getRepository(Utilisateurs::class)->find($this->session->get('id'));
 
-                $bal = new Balades();
-                $bal->setUser($user);
+                $balade = new Balades();
+                $balade->setUser($user);
 
-                $bal->setTitre($post['titre']);
-                $bal->setContenu($post['contenu']);
-                $bal->setDateDebut(new \DateTime($post['date_debut']));
-                $bal->setDateFin(new \DateTime($post['date_fin']));
-                $bal->setDatetimeRdv($this->mergeDateTime($post['date_rdv'], $post['time_rdv']));
-                $bal->setAdresseRdv($post['adresse_rdv']);
-                $bal->setCpRdv($post['cp_rdv']);
-                $bal->setVilleRdv($post['ville_rdv']);
-                // $bal->setFileGps($post['file_gps']);
-                $bal->setDatetimePost(new \DateTime());
-                // $bal->setDatetimeModif(new \DateTime());
+                $balade->setTitre($post['titre']);
+                $balade->setContenu($post['contenu']);
+                $balade->setDateDebut(new \DateTime($post['date_debut']));
+                $balade->setDateFin(new \DateTime($post['date_fin']));
+                $balade->setDatetimePost(new \DateTime());
 
-                $em->persist($bal);
+                if(v::notEmpty()->validate($post['nb_max_pers'])) {
+                    $balade->setNbMaxPers($post['nb_max_pers']);
+                }
+                else {
+                    $balade->setNbMaxPers(null);                    
+                }
+
+                if(in_array('bureau', $this->session->get('ranks'))) {
+                    $balade->setBalActive(true);
+                    $balade->setInscActive(true);
+                }
+                else {
+                    $balade->setBalActive(false);
+                    $balade->setInscActive(false);
+                }
+
+                $em->persist($balade);
                 $em->flush();
 
                 $success = true;
+                $post = [];
             }
 
         }
@@ -137,18 +129,98 @@ class BaladesController extends MasterController
         ]);
     }
 
-    public function editBalade() {
+    public function editBalade($id) {
 
-    	if($this->restrictAccess('adherent')) { return $this->redirectToRoute('accueil'); }
+    	if($this->restrictAccess('bureau')) { return $this->redirectToRoute('accueil'); }
+
+        $em = $this->getDoctrine()->getManager();
+        $balade = $em->getRepository(Balades::class)->find($id);
+
+        $errors = [];
+
+        if(!empty($_POST)) {
+
+            $post = array_map('trim', array_map('strip_tags', $_POST));
+
+
+            if(!v::notEmpty()->length(3,30)->validate($post['titre'])) {
+                $errors[] = 'Le titre doit comporter entre 3 et 30 caractères';
+            }
+
+            if(!v::notEmpty()->length(10,1000)->validate($post['contenu'])) {
+                $errors[] = 'Le contenu doit comporter entre 10 et 1000 caractères';
+            }
+
+            // DATE DEBUT & FIN
+
+            if(!v::notEmpty()->validate($post['date_debut'])) {
+                $errors[] = 'La date de début doit être renseignée';   
+            }
+            elseif(!v::date('Y-m-d')->validate($post['date_debut'])) {
+                $errors[] = 'La date de début est invalide';
+            }
+
+            if(!v::notEmpty()->validate($post['date_fin'])) {
+                $errors[] = 'La date de fin doit être renseignée';   
+            }
+            elseif(!v::date('Y-m-d')->validate($post['date_fin'])) {
+                $errors[] = 'La date de fin est invalide';
+            }
+
+            if($post['date_debut'] > $post['date_fin']) {
+                $errors[] = 'La date de début doit être antérieure à la date de fin';
+            }
+
+            // NOMBRE PARTICIPANTS
+
+            if($post['nb_max_pers'] != '' && !v::positive()->validate($post['nb_max_pers'])) {
+                $errors[] = 'Le nombre de participants doit impérativement être un nombre entier positif';
+            }
+
+            // GPS
+            // ???
+
+            if(count($errors) === 0) {
+
+                $user = $em->getRepository(Utilisateurs::class)->find($this->session->get('id'));
+
+                $balade->setTitre($post['titre']);
+                $balade->setContenu($post['contenu']);
+                $balade->setDateDebut(new \DateTime($post['date_debut']));
+                $balade->setDateFin(new \DateTime($post['date_fin']));
+                $balade->setDatetimeModif(new \DateTime());
+
+                if(v::notEmpty()->validate($post['nb_max_pers'])) {
+                    $balade->setNbMaxPers($post['nb_max_pers']);
+                }
+                else {
+                    $balade->setNbMaxPers(null);                    
+                }
+
+                // $em->persist($balade);
+                $em->flush();
+
+                $success = true;
+                $post = [];
+            }
+
+        }
 
     	return $this->render('balades/edit.html.twig', [
+            'balade' => $balade ?? [],
+            'post' => $post ?? [],
+            'errors' => $errors ?? '',
+            'success' => $success ?? false,
 
         ]);
     }
 
-    public function deleteBalade() {
+    public function delBalade($id) {
 
     	if($this->restrictAccess('adherent')) { return $this->redirectToRoute('accueil'); }
+
+        $em = $this->getDoctrine()->getManager();
+        $balade = $em->getRepository(Balades::class)->find($id);
 
     	return $this->render('balades/delete.html.twig', [
 
@@ -230,7 +302,7 @@ class BaladesController extends MasterController
         if($this->restrictAccess('bureau')) { return $this->redirectToRoute('accueil'); }
 
         $em = $this->getDoctrine()->getManager();
-        $balades = $em->getRepository(Balades::class)->findAll();
+        $balades = $em->getRepository(Balades::class)->findBy(array(), array('dateDebut' => 'DESC'));
 
         $bal_datas = [];
         foreach ($balades as $balade) {
@@ -270,6 +342,7 @@ class BaladesController extends MasterController
         $em = $this->getDoctrine()->getManager();
         $balade = $em->getRepository(Balades::class)->find($id);
         $balade->setBalActive(true);
+        $balade->setInscActive(true);
         $em->flush();
 
         // Envoi du mail
