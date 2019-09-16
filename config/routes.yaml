@@ -109,6 +109,10 @@ index_reunions:
     path: /reunions
     controller: App\Controller\ReunionsController::indexReunion
 
+index_back_reunions:
+    path: /reunions
+    controller: App\Controller\ReunionsController::indexBackReunion
+
 view_reunion:
     path: /reunions/details/{id}
     controller: App\Controller\ReunionsController::viewReunion
