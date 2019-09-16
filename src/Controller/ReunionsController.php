@@ -55,6 +55,37 @@ class ReunionsController extends MasterController
         ]);
     }
 
+    public function indexBackReunion() {
+
+        // if($this->restrictAccess('adherent')) { return $this->redirectToRoute('accueil'); }
+
+        // Récupération de la liste des réunions
+        $entityManager = $this->getDoctrine()->getManager();
+        // Permet de chercher les réunions via le repository
+        $reuFound = $entityManager->getRepository(Reunions::class)->findAll();
+        $reuNotPass = $entityManager->getRepository(Reunions::class)->findAllNotPast();
+        $reuPass = $entityManager->getRepository(Reunions::class)->findAllPast();
+
+        $reuWithoutCr = [];
+        foreach ($reuPass as $reu) {
+            // Vérifie si un CR existe et l'ajoute a mon tableau
+            $crFound = $entityManager->getRepository(ComptesRendus::class)->findOneBy([
+                'reu' => $reu
+            ]);
+            if(empty($crFound)){
+                $reuWithoutCr[] = $reu;
+            }
+        }
+
+        return $this->render('reunions/indexBackReunion.html.twig', [
+            'reunionsPassees'  => $reuPass, 
+            'reusNonPassees'   => $reuNotPass,
+            'reusSansCr'       => $reuWithoutCr,
+            //'reunionsTrouvees' => $newReus, 
+            //'crTrouves' => $crFound,
+        ]);
+    }
+
     public function viewReunion($id) {
 
         // if($this->restrictAccess('adherent')) { return $this->redirectToRoute('accueil'); }
