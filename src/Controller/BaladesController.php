@@ -223,6 +223,8 @@ class BaladesController extends MasterController
 
     public function gestionBalades() {
 
+        if($this->restrictAccess('bureau')) { return $this->redirectToRoute('accueil'); }
+
         $em = $this->getDoctrine()->getManager();
         $balades = $em->getRepository(Balades::class)->findAll();
 
@@ -242,6 +244,8 @@ class BaladesController extends MasterController
     }
 
     public function gestionInscrits() {
+
+        if($this->restrictAccess('bureau')) { return $this->redirectToRoute('accueil'); }
 
         return $this->render('balades/gestion-inscrits.html.twig', [
         ]);
