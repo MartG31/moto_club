@@ -13,12 +13,6 @@ class DefaultController extends MasterController
      */
     public function index() {
 
-        return $this->render('default/index.html.twig', [
-        ]);
-    }
-
-    public function contact() {
-
         $errors = [];
         
         if(!empty($_POST)){
@@ -61,7 +55,7 @@ class DefaultController extends MasterController
         }
 
         
-        return $this->render('default/contact.html.twig', [
+        return $this->render('default/index.html.twig', [
             'errors'     => $errors ?? [],
             'donnees_saisies' => $safe ?? [],
             'success' => $success ?? false,
