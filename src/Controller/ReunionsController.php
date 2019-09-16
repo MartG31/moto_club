@@ -57,7 +57,7 @@ class ReunionsController extends MasterController
 
     public function viewReunion($id) {
 
-        if($this->restrictAccess('adherent')) { return $this->redirectToRoute('accueil'); }
+        // if($this->restrictAccess('adherent')) { return $this->redirectToRoute('accueil'); }
 
     	// Récupération de la liste des réunions
             $entityManager = $this->getDoctrine()->getManager();
