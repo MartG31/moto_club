@@ -90,6 +90,11 @@ class Balades
      */
     private $bal_active;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $insc_active;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -211,6 +216,18 @@ class Balades
     public function setBalActive(bool $bal_active): self
     {
         $this->bal_active = $bal_active;
+
+        return $this;
+    }
+
+    public function getInscActive(): ?bool
+    {
+        return $this->insc_active;
+    }
+
+    public function setInscActive(bool $insc_active): self
+    {
+        $this->insc_active = $insc_active;
 
         return $this;
     }
