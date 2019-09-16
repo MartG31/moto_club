@@ -73,6 +73,30 @@ gestion_balades:
     path: /balades/gestion
     controller: App\Controller\BaladesController::gestionBalades
 
+valider_balade:
+    path: /balades/valider/{id}
+    controller: App\Controller\BaladesController::validerBalade
+    requirements:
+      id: '\d+'
+
+refuser_balade:
+    path: /balades/refuser/{id}
+    controller: App\Controller\BaladesController::refuserBalade
+    requirements:
+      id: '\d+'
+
+cloturer_inscriptions:
+    path: /balades/cloturer-inscriptions/{id}
+    controller: App\Controller\BaladesController::cloturerInscriptions
+    requirements:
+      id: '\d+'
+
+ouvrir_inscriptions:
+    path: /balades/ouvrir-inscriptions/{id}
+    controller: App\Controller\BaladesController::ouvrirInscriptions
+    requirements:
+      id: '\d+'
+
 gestion_inscrits:
     path: /balades/gestion/{id}
     controller: App\Controller\BaladesController::gestionInscrits
