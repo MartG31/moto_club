@@ -20,9 +20,6 @@ use App\Entity\ComptesRendus;
 
 class ReunionsController extends MasterController
 {
-    /**
-     * @Route("/reunions", name="reunions")
-     */
 
     ///////attributs
     public $typesReu = array(
@@ -31,6 +28,9 @@ class ReunionsController extends MasterController
         'autre' => 'Autre', 
     );
 
+    /**
+     * @Route("/reunions", name="reunions")
+     */
     
     public function indexReunion() {
 
@@ -57,6 +57,7 @@ class ReunionsController extends MasterController
         return $this->render('reunions/index.html.twig', [
             'reunionsPassees'  => $reuPass, 
             'reusNonPassees'   => $reuNotPass,
+            'reusSansCr'       => $reuWithoutCr,
             'reusSansCr'       => $reuWithoutCr,
             //'reunionsTrouvees' => $newReus, 
             //'crTrouves' => $crFound,
@@ -89,8 +90,8 @@ class ReunionsController extends MasterController
             'reunionsPassees'  => $reuPass, 
             'reusNonPassees'   => $reuNotPass,
             'reusSansCr'       => $reuWithoutCr,
+            //'crTrouve'         => $crFound,
             //'reunionsTrouvees' => $newReus, 
-            //'crTrouves' => $crFound,
         ]);
     }
 
@@ -235,11 +236,6 @@ class ReunionsController extends MasterController
         if(!empty($_POST)){
 
             $safe = array_map('trim', array_map('strip_tags', $_POST));
-
-            //pas de controle d'unicité de la réunion : il s'agira d'une modération manuelle
-            #$entityManager = $this->getDoctrine()->getManager();
-            #$userFound = $entityManager->getRepository(Reunions::class)->findByEmail($safe['email']);
-            //var_dump($userFound);
             
            ///////////////////////////////////////// tableau d'erreur
 
@@ -277,7 +273,6 @@ class ReunionsController extends MasterController
             else {
                 $errorsForm = implode('<br>', $errors);
             }
-  
         }
 
         return $this->render('reunions/editReu.html.twig', [
@@ -323,7 +318,7 @@ class ReunionsController extends MasterController
         ]);
     }
 
-
+///////////////////////////////////// CR
 
     public function indexCr() {
 
@@ -422,17 +417,20 @@ class ReunionsController extends MasterController
         // Récupération de la liste des réunions
             $entityManager = $this->getDoctrine()->getManager();
             // Permet de chercher les réunions via le repository
-            $reuFound = $entityManager->getRepository(Reunions::class)->find($id);
-            $crFound = $entityManager->getRepository(ComptesRendus::class)->find($id);
+            $reuFound = $entityManager->getRepository(Reunions::class)->findAll();
+            
+            foreach ($reuFound as $reu) {
+            // Vérifie si un CR existe et l'ajoute a mon tableau
+                $crFound = $entityManager->getRepository(ComptesRendus::class)->findOneBy([
+                'reu' => $reu
+                ]);
+            }
+
+            // $crFound = $entityManager->getRepository(ComptesRendus::class)->find($id);
 
             if(!empty($_POST)){
 
                 $safe = array_map('trim', array_map('strip_tags', $_POST));
-
-                //pas de controle d'unicité de la réunion : il s'agira d'une modération manuelle
-                #$entityManager = $this->getDoctrine()->getManager();
-                #$userFound = $entityManager->getRepository(Reunions::class)->findByEmail($safe['email']);
-                //var_dump($userFound);
                 
                ///////////////////////////////////////// tableau d'erreur
 
@@ -468,7 +466,7 @@ class ReunionsController extends MasterController
             }
 
         return $this->render('reunions/editCr.html.twig', [
-            //'reunionTrouvee'    => $reuFound,
+            'reunionTrouvee'    => $reuFound ?? [],
             'crTrouve'          => $crFound,
             'donnees_saisies'   => $safe ?? [],
             'success'           => $success ?? false,

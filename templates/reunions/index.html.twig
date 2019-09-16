@@ -100,39 +100,7 @@
 		        </div>
 	        </div>
 		</div>
-
-		{% if 'bureau' in app.session.get('ranks') %}
-			<h3>Liste des réunions sans CR</h3>
-			{% if reuSansCr is defined %}
-				{% for reuSansCr in reusSansCr %}
-				  	<div class="card-deck my-4 alert alert-warning">
-				    	<div class="card">
-					  	  	<div class="card-header">
-					  			<div class="card-title py-2">
-					  	            <a class="btn btn-primary float-right" href="{{ path('view_reunion', {id : reuSansCr.getId()}) }}" role="button">Afficher</a>
-					  				<b>{{ reuSansCr.getTitre() }}</b>, le {{ reuSansCr.getDatetimeReu()|date("d/m/Y") }} (<em>{{ reuSansCr.getTypeReu() }}</em>)
-					  			</div>		     
-					  			<div class="card-footer small text-muted mb-2">
-					  				Mise à jour le {{ reuSansCr.getDatetimePost()|date("d/m/Y") }}
-					  			</div>
-					  	    </div>
-				  		</div>
-				  	</div>
-				{%  endfor %} 
-			{% else %}
-			  	<div class="card-deck my-4 ">
-			    	<div class="card">
-				  	  	<div class="card-header">
-				  			<div class="card-title py-2">
-				  	            <p>Aucune réunion en attente de compte-rendu.</p>
-				  			</div>
-				  	    </div>
-			  		</div>
-			  	</div>
-			{% endif %}
-		{% endif %}
-
-		<h3>Liste des réunions à venir</h3>
+		<h3>Réunions à venir</h3>
 		{% for reuNonPassee in reusNonPassees %}
 			<div class="card-deck my-4">
 			  	<div class="card">
@@ -150,7 +118,7 @@
 		{%  endfor %} 
 
 
-		<h3>Liste des réunions passées</h3>
+		<h3>Réunions passées</h3>
 		{% for reunionPassee in reunionsPassees %}
 		  	<div class="card-deck my-4">
 		    	<div class="card">

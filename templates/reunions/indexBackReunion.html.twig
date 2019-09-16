@@ -9,7 +9,7 @@
 	<section class="p-2 mb-5 bg-light bg-section-back">
 	<h2>Réunions </h2>
 		<h3 class="card-header">Liste des réunions sans CR</h3>
-		{% if reuSansCr is defined %}
+		{% if reusSansCr is not empty %}
 			{% for reuSansCr in reusSansCr %}
 			  	<div class="card-deck my-4 alert alert-warning">
 			    	<div class="card">
@@ -38,7 +38,7 @@
 		  		</div>
 		  	</div>
 		{% endif %}
-		<h3>Liste des réunions à venir</h3>
+		<h3>Réunions à venir</h3>
 		{% for reuNonPassee in reusNonPassees %}
 			<div class="card-deck my-4">
 			  	<div class="card">
@@ -57,7 +57,7 @@
 				</div>
 			</div>
 		{%  endfor %} 
-		<h3>Liste des réunions passées</h3>
+		<h3>Réunions passées</h3>
 		{% for reunionPassee in reunionsPassees %}
 		  	<div class="card-deck my-4">
 		    	<div class="card">
