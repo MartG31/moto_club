@@ -243,11 +243,19 @@ class BaladesController extends MasterController
         ]);
     }
 
-    public function gestionInscrits() {
+    public function gestionInscrits($id) {
 
         if($this->restrictAccess('bureau')) { return $this->redirectToRoute('accueil'); }
 
+        $em = $this->getDoctrine()->getManager();
+        $balade = $em->getRepository(Balades::class)->find($id);
+        $inscrits = $em->getRepository(MembresBalades::class)->findBy([
+            'bal' => $balade
+        ]);
+
         return $this->render('balades/gestion-inscrits.html.twig', [
+            'balade' => $balade,
+            'inscrits' => $inscrits,
         ]);
     }
 
