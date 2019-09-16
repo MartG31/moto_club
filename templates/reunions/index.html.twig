@@ -7,237 +7,154 @@
 {% block content %}
     
 	<section class="py-2 mb-5">
-	<h2>Accueil réunion </h2>
-		<div class="card-deck">
-	  	<div class="card">
-		    <div class="card-header">
-		    	<i class="fas fa-table"></i>Calendrier des réunions
-		    </div>
-	      <div class="row">
-	        <div class="col-md-8">
-	  			  <div class="card-body">
-				      <div class="body-calendar">
-				        <div class="elegant-calencar">
-				          <div id="header-calendar" class="clearfix">
-				            <div class="pre-button"><</div>
-				            <div class="head-info">
+	<h2>Réunions </h2>
+	    <div class="row">
+	        <div class="col-md-7 py-4">
+			<h3 class= "d-flex justify-content-center py-2">Calendrier des réunions</h3>
+			    <div class="body-calendar">
+			        <div class="elegant-calencar">
+			          	<div id="header-calendar" class="clearfix">
+			            	<div class="pre-button"><</div>
+			            	<div class="head-info">
 				                <div class="head-day"></div>
 				                <div class="head-month"></div>
-				            </div>
-				            <div class="next-button">></div>
-				          </div>
-				          <table id="calendar">
+			            	</div>
+			            	<div class="next-button">></div>
+			          	</div>
+			          	<table id="calendar">
 				            <thead>
 				                <tr>
 				                    <th>Lun</th>
-	                          <th>Mar</th>
-	                          <th>Mer</th>
-	                          <th>Jeu</th>
-	                          <th>Ven</th>
-	                          <th>Sam</th>
-	                          <th>Dim</th>
+		                          	<th>Mar</th>
+		                          	<th>Mer</th>
+		                          	<th>Jeu</th>
+		                          	<th>Ven</th>
+		                          	<th>Sam</th>
+		                          	<th>Dim</th>
 				                </tr>
 				            </thead>
 				            <tbody>
-			                <tr>
-			                    <td></td>
-			                    <td></td>
-			                    <td></td>
-			                    <td></td>
-			                    <td></td>
-			                    <td></td>
-			                    <td></td>
-			                </tr>
-			                <tr>
-			                    <td></td>
-			                    <td></td>
-			                    <td></td>
-			                    <td></td>
-			                    <td></td>
-			                    <td></td>
-			                    <td></td>
-			                </tr>
-			                <tr>
-			                    <td></td>
-			                    <td></td>
-			                    <td></td>
-			                    <td></td>
-			                    <td></td>
-			                    <td></td>
-			                    <td></td>
-			                </tr>
-			                <tr>
-			                    <td></td>
-			                    <td></td>
-			                    <td></td>
-			                    <td></td>
-			                    <td></td>
-			                    <td></td>
-			                    <td></td>
-			                </tr>
-			                <tr>
-			                    <td></td>
-			                    <td></td>
-			                    <td></td>
-			                    <td></td>
-			                    <td></td>
-			                    <td></td>
-			                    <td></td>
-			                </tr>
-			                <tr>
-			                    <td></td>
-			                    <td></td>
-			                    <td></td>
-			                    <td></td>
-			                    <td></td>
-			                    <td></td>
-			                    <td></td>
-			                </tr>
+				                <tr>
+				                    <td></td>
+				                    <td></td>
+				                    <td></td>
+				                    <td></td>
+				                    <td></td>
+				                    <td></td>
+				                    <td></td>
+				                </tr>
+				                <tr>
+				                    <td></td>
+				                    <td></td>
+				                    <td></td>
+				                    <td></td>
+				                    <td></td>
+				                    <td></td>
+				                    <td></td>
+				                </tr>
+				                <tr>
+				                    <td></td>
+				                    <td></td>
+				                    <td></td>
+				                    <td></td>
+				                    <td></td>
+				                    <td></td>
+				                    <td></td>
+				                </tr>
+				                <tr>
+				                    <td></td>
+				                    <td></td>
+				                    <td></td>
+				                    <td></td>
+				                    <td></td>
+				                    <td></td>
+				                    <td></td>
+				                </tr>
+				                <tr>
+				                    <td></td>
+				                    <td></td>
+				                    <td></td>
+				                    <td></td>
+				                    <td></td>
+				                    <td></td>
+				                    <td></td>
+				                </tr>
+				                <tr>
+				                    <td></td>
+				                    <td></td>
+				                    <td></td>
+				                    <td></td>
+				                    <td></td>
+				                    <td></td>
+				                    <td></td>
+				                </tr>
 				            </tbody>
-				          </table>
-			          </div>
-			        </div>
-	          </div>
+			          	</table>
+		          	</div>
+		        </div>
+	      	</div>
+	        <div class="offset-md-1 col-md-4">
+			<h3 class= " py-2">Evènements</h3>
+		        <div class="view">
+		            <p>Test</p>
+		        </div>
 	        </div>
-	        <div class="offset-md-1 col-md-3">
-	          <div class="view">
-	            <p>Test</p>
-	          </div>
-	        </div>
-	      </div>
-			</div>
 		</div>
-		<div class="card-deck my-5 pb-5">
-		  	<div class="card">
-			  	<div class="card-header">
-			    	<i class="fas fa-table"></i>Liste des réunions à venir
-			    </div>
-			        {% for reuNonPassee in reusNonPassees %}
-		  		<div class="card my-2">
-						{# <div class="row col-md-3"> #}
-					<div class="card-title">
-						<b> Intitulé de la réunion </b>
-					</div>
-					<div class="card-body">
-		  				{{ reuNonPassee.getTitre() }}
-					</div>
-					<div class="card-title">
-				         <b>Type de réunion</b>
+		
+		{% if 'bureau' in app.session.get('ranks') %}
+			<h3>Liste des réunions sans CR</h3>
+			{% for reuSansCr in reusSansCr %}
+			  	<div class="card-deck my-4 alert alert-warning">
+			    	<div class="card">
+				  	  	<div class="card-header">
+				  	    	
+				  			<div class="card-title py-2">
+				  	            <a class="btn btn-primary float-right" href="{{ path('view_reunion', {id : reuSansCr.getId()}) }}" role="button">Afficher</a>
+				  				<b>{{ reuSansCr.getTitre() }}</b>, le {{ reuSansCr.getDatetimeReu()|date("d/m/Y") }} (<em>{{ reuSansCr.getTypeReu() }}</em>)
+				  			</div>		     
+				  			<div class="card-footer small text-muted mb-2">
+				  				Mise à jour le {{ reuSansCr.getDatetimePost()|date("d/m/Y") }}
+				  			</div>
+				  	    </div>
+			  		</div>
+			  	</div>
+			{%  endfor %} 
+		{% endif %}
+
+		<h3>Liste des réunions à venir</h3>
+		{% for reuNonPassee in reusNonPassees %}
+			<div class="card-deck my-4">
+			  	<div class="card">
+				  	<div class="card-header ">
+						<div class="card-title py-2">
+				          	<a class="btn btn-primary float-right" href="{{ path('view_reunion', {id : reuNonPassee.getId()}) }}" role="button">Afficher</a>
+							<b>{{ reuNonPassee.getTitre() }}</b>, le {{ reuNonPassee.getDatetimeReu()|date("d/m/Y") }} (<em>{{ reuNonPassee.getTypeReu() }}</em>) 					
+			  			</div>
+						<div class="card-footer small text-muted mb-2">
+							Mise à jour le {{ reuNonPassee.getDatetimePost()|date("d/m/Y") }}
+						</div>
 				    </div>
-			    	<div class="card-body">
-		  				{{ reuNonPassee.getTypeReu() }}
-			    	</div>
-				    <div class="card-title">
-				        <b>Date de la réunion</b>
-				    </div>
-			         <div class="card-body">
-		    			{{ reuNonPassee.getDatetimeReu()|date("d/m/Y") }}
-			    	</div>
-				    <div class="card-title">
-				        <b>Action</b>
-				    </div>
-			        <div class="card-body">
-			            <a class="btn btn-primary" href="{{ path('view_reunion', {id : reuNonPassee.getId()}) }}" role="button">Afficher</a>
-			            <a class="btn btn-secondary" href="{{ path('edit_reunion', {id : reuNonPassee.getId()}) }}" role="button">Modifier</a>
-			            <a class="btn btn-danger" href="{{ path('del_reunion', {id : reuNonPassee.getId()}) }}" role="button">Supprimer</a>
-			    	</div>
-					{# </div> #}    		      
-			         
-					<div class="card-footer small text-muted mb-2">
-						Updated yesterday at 11:59 PM
-					</div>
 				</div>
-		          {%  endfor %} 
 			</div>
-		</div>
+		{%  endfor %} 
 
-	  <div class="card-deck my-5 pb-5">
-	    	<div class="card">
-	  	  	<div class="card-header">
-	  	    	<i class="fas fa-table"></i>Liste des réunions sans CR
-	  	    </div>
-	  	        {% for reuSansCr in reusSansCr %}
-	    		<div class="card my-2">
-	  				{# <div class="row col-md-3"> #}
-	  			<div class="card-title">
-	  				<b> Intitulé de la réunion </b>
-	  			</div>
-	  			<div class="card-body">
-	    				{{ reuSansCr.getTitre() }}
-	  			</div>
-	  			<div class="card-title">
-	  		         <b>Type de réunion</b>
-	  		    </div>
-	  	    	<div class="card-body">
-	    				{{ reuSansCr.getTypeReu() }}
-	  	    	</div>
-	  		    <div class="card-title">
-	  		        <b>Date de la réunion</b>
-	  		    </div>
-	  	         <div class="card-body">
-	      			{{ reuSansCr.getDatetimeReu()|date("d/m/Y") }}
-	  	    	</div>
-	  		    <div class="card-title">
-	  		        <b>Action</b>
-	  		    </div>
-	  	        <div class="card-body">
-	  	            <a class="btn btn-primary" href="{{ path('view_reunion', {id : reuSansCr.getId()}) }}" role="button">Afficher</a>
-	  	            <a class="btn btn-secondary" href="{{ path('edit_reunion', {id : reuSansCr.getId()}) }}" role="button">Modifier</a>
-	  	            <a class="btn btn-danger" href="{{ path('del_reunion', {id : reuSansCr.getId()}) }}" role="button">Supprimer</a>
-	  	    	</div>
-	  			{# </div> #}    		      
-	  	         
-	  			<div class="card-footer small text-muted mb-2">
-	  				Updated yesterday at 11:59 PM
-	  			</div>
-	  		</div>
-	            {%  endfor %} 
-	  	</div>
-	  </div>
 
-	  <div class="card-deck my-5 pb-5">
-	    	<div class="card">
-	  	  	<div class="card-header">
-	  	    	<i class="fas fa-table"></i>Liste des réunions passées
-	  	    </div>
-	  	        {% for reunionPassee in reunionsPassees %}
-	    		<div class="card my-2">
-	  				{# <div class="row col-md-3"> #}
-	  			<div class="card-title">
-	  				<b> Intitulé de la réunion </b>
-	  			</div>
-	  			<div class="card-body">
-	    				{{ reunionPassee.getTitre() }}
-	  			</div>
-	  			<div class="card-title">
-	  		         <b>Type de réunion</b>
-	  		    </div>
-	  	    	<div class="card-body">
-	    				{{ reunionPassee.getTypeReu() }}
-	  	    	</div>
-	  		    <div class="card-title">
-	  		        <b>Date de la réunion</b>
-	  		    </div>
-	  	         <div class="card-body">
-	      			{{ reunionPassee.getDatetimeReu()|date("d/m/Y") }}
-	  	    	</div>
-	  		    <div class="card-title">
-	  		        <b>Action</b>
-	  		    </div>
-	  	        <div class="card-body">
-	  	            <a class="btn btn-primary" href="{{ path('view_reunion', {id : reunionPassee.getId()}) }}" role="button">Afficher</a>
-	  	            <a class="btn btn-secondary" href="{{ path('edit_reunion', {id : reunionPassee.getId()}) }}" role="button">Modifier</a>
-	  	            <a class="btn btn-danger" href="{{ path('del_reunion', {id : reunionPassee.getId()}) }}" role="button">Supprimer</a>
-	  	    	</div>
-	  			{# </div> #}    		      
-	  	         
-	  			<div class="card-footer small text-muted mb-2">
-	  				Updated yesterday at 11:59 PM
-	  			</div>
-	  		</div>
-	            {%  endfor %} 
-	  	</div>
-	  </div>
+		<h3>Liste des réunions passées</h3>
+		{% for reunionPassee in reunionsPassees %}
+		  	<div class="card-deck my-4">
+		    	<div class="card">
+			  	  	<div class="card-header"> 
+			  			<div class="card-title py-2">
+			  	            <a class="btn btn-primary float-right" href="{{ path('view_reunion', {id : reunionPassee.getId()}) }}" role="button">Afficher</a>
+			  				<b>{{ reunionPassee.getTitre() }}</b>, le {{ reunionPassee.getDatetimeReu()|date("d/m/Y") }} (<em>{{ reunionPassee.getTypeReu() }}</em>)
+			  			</div>
+			  			<div class="card-footer small text-muted mb-2">
+			  				Mise à jour le {{ reunionPassee.getDatetimePost()|date("d/m/Y") }}
+			  			</div>
+			  	    </div>
+		  		</div>
+		  	</div>
+		{%  endfor %} 
 	</section>
 
 {% endblock %}

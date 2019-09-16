@@ -26,7 +26,7 @@ class ReunionsController extends MasterController
     
     public function indexReunion() {
 
-        if($this->restrictAccess('adherent')) { return $this->redirectToRoute('accueil'); }
+        // if($this->restrictAccess('adherent')) { return $this->redirectToRoute('accueil'); }
 
     	// Récupération de la liste des réunions
         $entityManager = $this->getDoctrine()->getManager();
@@ -36,7 +36,7 @@ class ReunionsController extends MasterController
         $reuPass = $entityManager->getRepository(Reunions::class)->findAllPast();
 
         $reuWithoutCr = [];
-        foreach ($reuFound as $reu) {
+        foreach ($reuPass as $reu) {
             // Vérifie si un CR existe et l'ajoute a mon tableau
             $crFound = $entityManager->getRepository(ComptesRendus::class)->findOneBy([
                 'reu' => $reu
@@ -57,7 +57,7 @@ class ReunionsController extends MasterController
 
     public function viewReunion($id) {
 
-        if($this->restrictAccess('adherent')) { return $this->redirectToRoute('accueil'); }
+        // if($this->restrictAccess('adherent')) { return $this->redirectToRoute('accueil'); }
 
     	// Récupération de la liste des réunions
             $entityManager = $this->getDoctrine()->getManager();
@@ -124,6 +124,15 @@ class ReunionsController extends MasterController
                 // actually executes the queries (i.e. the INSERT query)
                 $entityManager->flush();
                 $success = true;
+
+                // Envoi du mail
+                $receivers = [];
+                $subject = 'Amicale BMW Moto 38 - Nouvelle réunion : '.date("d/m/Y", strtotime($safe['date_reu'])).' - '.$safe['titre'];
+                $content = '<h2>Nouvelle réunion </h2>
+                            <p>Bonjour, nous vous informons qu\'une réunion a été ajoutée sur le site de l\'Amicale BMW Moto 38.</p>
+                            <p>Cette réunion ('.$safe['type'].') a pour sujet "'.$safe['titre'].'" et se déroulera le '.date("d/m/Y", strtotime($safe['date_reu'])).' à '.$safe['lieu'].'</p>';
+
+                $this->sendingMails($receivers, $subject, $content);
             }
             else {
                 $errorsForm = implode('<br>', $errors);

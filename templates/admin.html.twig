@@ -87,7 +87,6 @@
                             <a class="dropdown-item" href="{{path('add_balade')}}">Proposer une balade</a>
                             {% if 'bureau' in app.session.get('ranks') %}
                                 <a class="dropdown-item" href="{{path('gestion_balades')}}">Gérer les balades</a>
-                                <a class="dropdown-item" href="{{path('gestion_inscrits')}}">Gérer les inscrits</a>
                             {% endif %}
                         </div>
                     </li>

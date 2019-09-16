@@ -44,7 +44,7 @@ class DefaultController extends MasterController
                 $success = true;// Envoi du mail
                 $receivers = ['mathieu.webforce3@gmail.com'];
                 $subject = 'Message de '.$safe['lastname'].' '.$safe['firstname'];
-                $content = '<h2>"'.$safe['lastname'].' '.$safe['firstname'].' via "contactez-nous"</h2>
+                $content = '<h2>'.$safe['lastname'].' '.$safe['firstname'].' via "contactez-nous"</h2>
                             <p><strong>Email :</strong> '.$safe['email'].'
                             <strong>Téléphone :</strong> '.$safe['phone'].'
                             <hr>
