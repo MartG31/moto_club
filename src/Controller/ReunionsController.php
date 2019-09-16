@@ -126,7 +126,7 @@ class ReunionsController extends MasterController
                 $success = true;
 
                 // Envoi du mail
-                $receivers = [$safe['email']];
+                $receivers = ;
                 $subject = 'Amicale BMW Moto 38 - Nouvelle réunion : '.date("d/m/Y", strtotime($safe['date_reu'])).' - '.$safe['titre'];
                 $content = '<h2>Nouvelle réunion </h2>
                             <p>Bonjour, nous vous informons qu\'une réunion a été ajoutée sur le site de l\'Amicale BMW Moto 38.</p>
