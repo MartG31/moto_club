@@ -157,12 +157,20 @@ class ReunionsController extends MasterController
                 $success = true;
 
                 // Envoi du mail
-                $receivers = [];
+                $users = $this->getDoctrine()->getRepository(Utilisateurs::class)->findAll();
+                $adherentsMin = [];
+                foreach ($users as $user) {
+                    if($user->getAcces() != 'membre') {
+                        $adherentsMin[] = $user->getEmail();
+                    }
+                }
+
+                $receivers = $adherentsMin;
                 $subject = 'Amicale BMW Moto 38 - Nouvelle réunion : '.date("d/m/Y", strtotime($safe['date_reu'])).' - '.$safe['titre'];
                 $content = '<h2>Nouvelle réunion </h2>
                             <p>Bonjour, nous vous informons qu\'une réunion a été ajoutée sur le site de l\'Amicale BMW Moto 38.</p>
-                            <p>Cette réunion ('.$safe['type'].') a pour sujet "'.$safe['titre'].'" et se déroulera le '.date("d/m/Y", strtotime($safe['date_reu'])).' à '.$safe['lieu'].'</p>
-                            <p>Vous pouvez consulter les détails de cette réunion en cliquant <a href="http://127.0.0.1:8000/reunions/details/'.getId().'">ici</a>.';
+                            <p>Cette réunion ('.$safe['type'].') a pour sujet <strong>"'.$safe['titre'].'"</strong> et se déroulera le <strong>'.date("d/m/Y", strtotime($safe['date_reu'])).'</strong> à <strong>'.$safe['lieu'].'</strong></p>
+                            <p>Vous pouvez consulter les détails de cette réunion en cliquant <a href="http://127.0.0.1:8000/reunions/details/'.$reunion->getId().'">ici</a>.';
 
                 $this->sendingMails($receivers, $subject, $content);
             }
