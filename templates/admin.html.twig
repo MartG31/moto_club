@@ -88,17 +88,8 @@
                             <a class="dropdown-item" href="{{path('add_balade')}}">Proposer une balade</a>
                             {% if 'bureau' in app.session.get('ranks') %}
                                 <a class="dropdown-item" href="{{path('gestion_balades')}}">Gérer les balades</a>
+                                <a class="dropdown-item">Gérer les photos</a>
                             {% endif %}
-                        </div>
-                    </li>
-                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-images"></i>
-                            <span>Photos</span>
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-                            <a class="dropdown-item" href="{{path('add_photo')}}">Ajouter</a>
-                            <a class="dropdown-item" href="#">Modifier</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -120,24 +111,18 @@
 
                 {% if 'bureau' in app.session.get('ranks') %}
 
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="#">
                             <i class="fas fa-chart-area"></i>
                             <span>Statistiques</span>
                         </a>
-                    </li>
+                    </li> -->
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{path('liste_users')}}">
                             <i class="fas fa-users-cog"></i>
                             <span>Utilisateurs</span>
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-                            <a class="dropdown-item" href="{{path('liste_users')}}">Liste des membres</a>
-                            {% if 'admin' in app.session.get('ranks') %}
-                            <a class="dropdown-item" href="#">Gérer les adhérents</a>
-                            {% endif %}
-                        </div>
                     </li>
 
                 {% endif %}
