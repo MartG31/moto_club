@@ -161,7 +161,7 @@ class ReunionsController extends MasterController
                     $users = $this->getDoctrine()->getRepository(Utilisateurs::class)->findAll();
                     $bureauMin = [];
                     foreach ($users as $user) {
-                        if($user->getAcces() = 'bureau' || $user->getAcces() = 'admin' ) {
+                        if($user->getAcces() == 'bureau' || $user->getAcces() == 'admin') {
                             $bureauMin[] = $user->getEmail();
                         }
                     }
