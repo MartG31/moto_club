@@ -2,20 +2,22 @@
 
 {% block title %}Réunions{% endblock %}
 
-{% block stylesheets %}<link rel="stylesheet" href="/css/calendar.css">{% endblock %}
+{% block stylesheets %}<link rel="stylesheet" href="/css/styles_back.css">{% endblock %}
 
 {% block content %}
     
-	<section class="py-2 mb-5">
+	<section class="p-2 mb-5 bg-light bg-section-back">
 	<h2>Réunions </h2>
-		<h3>Liste des réunions sans CR</h3>
+		<h3 class="card-header">Liste des réunions sans CR</h3>
 		{% if reuSansCr is defined %}
 			{% for reuSansCr in reusSansCr %}
 			  	<div class="card-deck my-4 alert alert-warning">
 			    	<div class="card">
 				  	  	<div class="card-header">
 				  			<div class="card-title py-2">
-				  	            <a class="btn btn-primary float-right" href="{{ path('view_reunion', {id : reuSansCr.getId()}) }}" role="button">Afficher</a>
+				  				<a class="btn btn-danger float-right mx-1" href="{{ path('del_reunion', {id : reuSansCr.getId()}) }}" role="button">Supprimer</a>
+				  				<a class="btn btn-success float-right mx-1" href="{{ path('add_cr', {id : reuSansCr.getId()}) }}" role="button">Ajouter le CR</a>	
+				  	            <a class="btn btn-primary float-right px-1" href="{{ path('view_reunion', {id : reuSansCr.getId()}) }}" role="button">Visualiser (sur le site)</a>
 				  				<b>{{ reuSansCr.getTitre() }}</b>, le {{ reuSansCr.getDatetimeReu()|date("d/m/Y") }} (<em>{{ reuSansCr.getTypeReu() }}</em>)
 				  			</div>		     
 				  			<div class="card-footer small text-muted mb-2">
@@ -42,8 +44,11 @@
 			  	<div class="card">
 				  	<div class="card-header ">
 						<div class="card-title py-2">
-				          	<a class="btn btn-primary float-right" href="{{ path('view_reunion', {id : reuNonPassee.getId()}) }}" role="button">Afficher</a>
-							<b>{{ reuNonPassee.getTitre() }}</b>, le {{ reuNonPassee.getDatetimeReu()|date("d/m/Y") }} (<em>{{ reuNonPassee.getTypeReu() }}</em>) 					
+							<a class="btn btn-danger float-right mx-1" href="{{ path('del_reunion', {id : reuNonPassee.getId()}) }}" role="button">Supprimer</a>
+							<a class="btn btn-success float-right mx-1" href="{{ path('edit_reunion', {id : reuNonPassee.getId()}) }}" role="button">Modifier</a>
+				          	<a class="btn btn-primary float-right mx-1" href="{{ path('view_reunion', {id : reuNonPassee.getId()}) }}" role="button">Visualiser (sur le site)</a>
+							<b>{{ reuNonPassee.getTitre() }}</b>, le {{ reuNonPassee.getDatetimeReu()|date("d/m/Y") }} (<em>{{ reuNonPassee.getTypeReu() }}</em>) 
+
 			  			</div>
 						<div class="card-footer small text-muted mb-2">
 							Mise à jour le {{ reuNonPassee.getDatetimePost()|date("d/m/Y") }}
@@ -58,7 +63,9 @@
 		    	<div class="card">
 			  	  	<div class="card-header"> 
 			  			<div class="card-title py-2">
-			  	            <a class="btn btn-primary float-right" href="{{ path('view_reunion', {id : reunionPassee.getId()}) }}" role="button">Afficher</a>
+			  				<a class="btn btn-danger float-right mx-1" href="{{ path('del_reunion', {id : reunionPassee.getId()}) }}" role="button">Supprimer</a>
+			  				{#<a class="btn btn-success float-right mx-1" href="{{ path('edit_cr', {id : crTrouve.getId()}) }}" role="button">Modifier le CR</a>#}
+			  	            <a class="btn btn-primary float-right mx-1" href="{{ path('view_reunion', {id : reunionPassee.getId()}) }}" role="button">Visualiser (sur le site)</a>
 			  				<b>{{ reunionPassee.getTitre() }}</b>, le {{ reunionPassee.getDatetimeReu()|date("d/m/Y") }} (<em>{{ reunionPassee.getTypeReu() }}</em>)
 			  			</div>
 			  			<div class="card-footer small text-muted mb-2">

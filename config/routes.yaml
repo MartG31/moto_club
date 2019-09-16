@@ -110,7 +110,7 @@ index_reunions:
     controller: App\Controller\ReunionsController::indexReunion
 
 index_back_reunions:
-    path: /reunions
+    path: /backoffice/reunions
     controller: App\Controller\ReunionsController::indexBackReunion
 
 view_reunion:
