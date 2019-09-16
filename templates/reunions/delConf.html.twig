@@ -1,5 +1,10 @@
-<!-- del_conf:
-    path: /reunions/confirmation-suppression/{id}
-    controller: App\Controller\ReunionsController::delConf
-    requirements:
-      id: '\d+' -->
+{% extends 'admin.html.twig' %}
+
+{% block title %}Confirmation suppression{% endblock %}
+
+{% block content %}
+
+<div class="alert alert-danger">Vous avez supprimé la réunion {{ reunionTrouvee.getTitre() }}. Vous allez être redirigé·e vers la liste des réunions</div>
+
+
+{% endblock %}
