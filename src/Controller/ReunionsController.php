@@ -36,7 +36,7 @@ class ReunionsController extends MasterController
         $reuPass = $entityManager->getRepository(Reunions::class)->findAllPast();
 
         $reuWithoutCr = [];
-        foreach ($reuNotPass as $reu) {
+        foreach ($reuPass as $reu) {
             // Vérifie si un CR existe et l'ajoute a mon tableau
             $crFound = $entityManager->getRepository(ComptesRendus::class)->findOneBy([
                 'reu' => $reu
