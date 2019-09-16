@@ -270,7 +270,7 @@ class BaladesController extends MasterController
             }
         }
         $receivers = $adherentsMin;
-        $subject = 'Amicale BMW Moto 38 - Nouvelle balade : '.$balade->getTitre().' le '.date("d/m/Y", strtotime($balade->getDateDebut());
+        $subject = 'Amicale BMW Moto 38 - Nouvelle balade : '.$balade->getTitre().' le '.date("d/m/Y", strtotime($balade->getDateDebut()));
         $content = '<h2>Nouvelle balade, "'.$balade->getTitre().'" le '.date("d/m/Y", strtotime($balade->getDateDebut()).' : ''</h2>
                     <p>Bonjour, nous vous informons qu\'une réunion a été ajoutée sur le site de l\'Amicale BMW Moto 38.</p>
                     <p>Cette réunion ('.$safe['type'].') a pour sujet <strong>"'.$safe['titre'].'"</strong> et se déroulera le <strong>'.date("d/m/Y", strtotime($safe['date_reu'])).'</strong> à <strong>'.$safe['lieu'].'</strong></p>
