@@ -221,10 +221,23 @@ class BaladesController extends MasterController
     }
 
 
-
     public function gestionBalades() {
 
+        $em = $this->getDoctrine()->getManager();
+        $balades = $em->getRepository(Balades::class)->findAll();
+
+        $bal_datas = [];
+        foreach ($balades as $balade) {
+            $bal_datas[] = array(
+                'balade' => $balade,
+                'nbInscrits' => $this->nbInscrits($balade),
+                'baladeFull' => $this->baladeFull($balade) ?? false,
+            );
+        }
+
+
         return $this->render('balades/gestion-balades.html.twig', [
+            'bal_datas' => $bal_datas ?? [],            
         ]);
     }
 

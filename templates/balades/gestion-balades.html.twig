@@ -3,10 +3,61 @@
 {% block title %}Gestion Balades{% endblock %}
 
 {% block content %}
+
 	<section class="py-2 mb-5">
-		<h2>Titre pour la gestion & validation des balades</h2>
+		<h2>Titre pour la gestion et la validation des balades</h2>
 
+		
+		<div class="card-deck my-4">
+			<div class="card">
+				<div class="card-header">
+					<div class="card-title">
+						<strong>Liste des balades</strong>
+					</div>
+					<div class="card-body">
+						<div class="table-responsive">
+						  	<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+							    <thead>
+									<tr>
+										<th>Titre</th>
+										<th>Début</th>
+										<th>Fin</th>
+										<th>Proposée par</th>
+										<th>Date d'ajout</th>
+										<th>Dernière modification</th>
+										<th>Nombre d'inscrits</th>
+										<th>Actions</th>
+									</tr>
+							    </thead>
+						    <tbody>
+						      	{% for bal_data in bal_datas %}
+									<tr>
+										<td>{{ bal_data.balade.getTitre() }}</td>
+										<td>{{ bal_data.balade.getDateDebut()|date('d/m/Y') }}</td>
+										<td>{{ bal_data.balade.getDateFin()|date('d/m/Y') }}</td>
+										<td>{{ bal_data.balade.getUser().getPrenom() ~ ' ' ~ bal_data.balade.getUser().getNom() }}</td>
+										<td>{{ bal_data.balade.getDatetimePost()|date('d/m/Y H:i') }}</td>
+										<td>{{ bal_data.balade.getDatetimeModif|date('d/m/Y H:i') }}</td>
+										<td{% if bal_data.baladeFull %}{{ ' class="font-weight-bold"' }}{% endif %}>
+											{{ bal_data.nbInscrits }}
+											{% if bal_data.balade.getNbMaxPers() is not null %}{{ ' / ' ~ bal_data.balade.getNbMaxPers() }}{% endif %}
+										</td>
+										<td>
+											<a class="btn btn-secondary" href="{{path('admin_accueil')}}" role="button">Modifier</a>
+											<a class="btn btn-secondary" href="{{path('admin_accueil')}}" role="button">Afficher</a>
+										</td>
+									</tr>
+								{% endfor %}
+						    </tbody>
 
+						  </table>
+						</div>
+						
+						
+					</div>
+				</div>
+			</div>
+		</div>
 	</section>
 
 {% endblock %}
