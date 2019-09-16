@@ -93,6 +93,11 @@ main{
 
 }
 
+.img-port{
+
+	height: 15em;
+}
+
 .cardSwip{
 	position: relative;
 	background: #fff;
