@@ -92,6 +92,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
         selectedDay = new Date(year, month, o.innerHTML);
 
+        o.setAttribute('id', selectedDay);
         
         this.drawHeader(o.innerHTML);
         this.setCookie('selected_day', 1);
