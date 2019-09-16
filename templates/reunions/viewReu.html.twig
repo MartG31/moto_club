@@ -26,15 +26,15 @@
 				    	<h4>Compte-Rendu</h4>
 				    </div>
 				    <div class="card-body">
-				    	<p>
-				    		<span><b>{{ crTrouve.getTitre() }}</b><br></span>
-			            	<span>{{ crTrouve.getContenu() }}</span> 
-			           		<span> Publié le {{ crTrouve.getDatetimePost()|date("d/m/Y") }} à {{ crTrouve.getDatetimePost()|date("H:i") }}  
+				    	
+				    		<p><b>{{ crTrouve.getTitre() }}</b></p>
+			            	{{ crTrouve.getContenu() }}
+			           		 Publié le {{ crTrouve.getDatetimePost()|date("d/m/Y") }} à {{ crTrouve.getDatetimePost()|date("H:i") }}  
 			            	{% if crTrouve.getDatetimeModif() is defined %}
 			       		 		,<em> modifié le {{ crTrouve.getDatetimeModif()|date("d/m/Y") }} à {{ crTrouve.getDatetimeModif()|date("H:i") }}</em> 
 			       			{% endif %}
-			       				- par {{ crTrouve.getUser().getPrenom() ?? '' }}.</span>	
-			            </p>
+			       				- par {{ crTrouve.getUser().getPrenom() ?? '' }}.	
+			            
 			        </div>
 			    {% endif %}   		              
 			</div>
