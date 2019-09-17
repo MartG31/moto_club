@@ -26,24 +26,25 @@
 					  	<table class="footable" data-show-toggle="true" data-expand-first="true">
 						    <thead>
 								<tr>
-									<th data-visible="false" data-breakpoints="xs sm md">#</th>
-									<th data-breakpoints="xs sm md">Titre</th>
-									<th data-breakpoints="xs sm md">Dates</th>
-									<th data-breakpoints="xs sm md">Proposée par</th>
-									<th data-breakpoints="xs sm md">Date d'ajout</th>
-									<th data-breakpoints="xs sm md">Statut</th>
-									<th data-breakpoints="xs sm md">Nombre<br>d'inscrits</th>
-									<th data-breakpoints="xs sm md">Actions</th>
+									<th data-visible="false" data-breakpoints="xs sm">#</th>
+									<th data-breakpoints="xs sm">Titre</th>
+									<th data-breakpoints="xs sm">Dates</th>
+									<th data-breakpoints="xs sm">Proposée par</th>
+									<th data-breakpoints="xs sm all">Date d'ajout</th>
+									<th data-breakpoints="xs sm">Statut</th>
+									<th data-breakpoints="xs sm">Nombre<br>d'inscrits</th>
+									<th data-breakpoints="xs sm">Actions</th>
 								</tr>
 						    </thead>
 						    <tbody>
 						      	{% for bal_data in bal_datas %}
-									<tr>
-										<td data-breakpoints="xs sm md">{% set i = ( i | default(0) ) + 1 %}{{i}}</td>
-										<td data-breakpoints="xs sm md"><a class="text-info" href="{{path('view_balade', {id: bal_data.balade.getId()})}}"><strong>{{ bal_data.balade.getTitre() }}</strong></a></td>
-										<td data-breakpoints="xs sm md">{{ bal_data.balade.getDateDebut()|date('d/m/Y') ~ ' - ' ~ bal_data.balade.getDateDebut()|date('d/m/Y') }}</td>
-										<td data-breakpoints="xs sm md">{{ bal_data.balade.getUser().getPrenom() ~ ' ' ~ bal_data.balade.getUser().getNom() }}</td>
-										<td data-breakpoints="xs sm md">{{ bal_data.balade.getDatetimePost()|date('d/m/Y H:i') }}</td>
+						      		<hr>
+									<tr data-expanded="true">
+										<td data-breakpoints="all xs sm">{% set i = ( i | default(0) ) + 1 %}{{i}}</td>
+										<td data-breakpoints="all xs sm"><a class="text-info" href="{{path('view_balade', {id: bal_data.balade.getId()})}}"><strong>{{ bal_data.balade.getTitre() }}</strong></a></td>
+										<td data-breakpoints="all xs sm">{{ bal_data.balade.getDateDebut()|date('d/m/Y') ~ ' - ' ~ bal_data.balade.getDateDebut()|date('d/m/Y') }}</td>
+										<td data-breakpoints="all xs sm">{{ bal_data.balade.getUser().getPrenom() ~ ' ' ~ bal_data.balade.getUser().getNom() }}</td>
+										<td data-breakpoints="all xs sm">{{ bal_data.balade.getDatetimePost()|date('d/m/Y H:i') }}</td>
 										
 										{% if bal_data.balade.getBalActive() %}
 											{% if bal_data.balade.getInscActive() %}
