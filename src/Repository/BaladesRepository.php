@@ -18,6 +18,34 @@ class BaladesRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Balades::class);
     }
+	/**
+     * @return Balades[] Returns an array of Balades objects
+     */
+    public function findLastNotPast($param = null)
+    {
+        return $this->createQueryBuilder('r')
+                ->andWhere('r.dateDebut > :datecourant')
+                ->setParameter('datecourant', new \Datetime())
+                ->orderBy('r.dateDebut', 'DESC')
+                ->setMaxResults(1)
+                ->getQuery()
+                ->getSingleResult();
+
+    }
+	/**
+     * @return Balades[] Returns an array of Balades objects
+     */
+    public function findLast($param = null)
+    {
+        return $this->createQueryBuilder('r')
+                ->andWhere('r.dateDebut < :datecourant')
+                ->setParameter('datecourant', new \Datetime())
+                ->orderBy('r.dateDebut', 'DESC')
+                ->setMaxResults(1)
+                ->getQuery()
+                ->getSingleResult();
+
+    }
 }
 
 ?>

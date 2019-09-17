@@ -45,7 +45,23 @@ class ReunionsRepository extends ServiceEntityRepository
                 ->setParameter('datecourant', new \Datetime())
                 ->orderBy('r.datetimeReu', 'DESC')
                 ->getQuery()
-                ->getResult();
+                ->getSingleResult();
+
+    }
+
+
+    /**
+     * @return Reunions[] Returns an array of Reunions objects
+     */
+    public function findLastNotPast($param = null)
+    {
+        return $this->createQueryBuilder('r')
+                ->andWhere('r.datetimeReu > :datecourant')
+                ->setParameter('datecourant', new \Datetime())
+                ->orderBy('r.datetimeReu', 'DESC')
+                ->setMaxResults(1)
+                ->getQuery()
+                ->getSingleResult();
 
     }
     

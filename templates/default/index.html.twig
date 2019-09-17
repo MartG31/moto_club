@@ -18,11 +18,13 @@
 							<h3>Prochaine balade</h3>
 						</div>
 						<div class="content">
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-							consequat.</p>
-							<a href="#">En savoir plus</a>
+							{% if nextbalade is not empty %}
+								<p>{{nextbalade.Titre}}</p>
+								<p>le {{nextbalade.DateDebut|date("d/m/Y")}}</p>
+								<a href="{{ path('view_balade', {id : nextbalade.Id}) }}">En savoir plus</a>
+							{% else %}
+								<p>En attente de vos propositions</p>
+							{% endif %}
 						</div>
 					</div>
 				</div>
@@ -32,11 +34,13 @@
 							<h3>Prochaine réunion</h3>
 						</div>
 						<div class="content">
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-							consequat.</p>
-							<a href="#">En savoir plus</a>
+							{% if reunion is not empty %}
+								<p>{{reunion.Titre}}</p>
+								<p>le {{reunion.datetimeReu|date("d/m/Y")}}</p>
+								<a href="{{ path('view_reunion', {id : reunion.Id}) }}">En savoir plus</a>
+							{% else %}
+								<p>En attente de vos propositions</p>
+							{% endif %}
 						</div>
 					</div>
 				</div>
@@ -46,11 +50,13 @@
 							<h3>Dernière balade</h3>
 						</div>
 						<div class="content">
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-							consequat.</p>
-							<a href="#">En savoir plus</a>
+							{% if lastbalade is not empty %}
+								<p>{{lastbalade.Titre}}</p>
+								<p>le {{lastbalade.DateDebut|date("d/m/Y")}}</p>
+								<a href="{{ path('view_balade', {id : lastbalade.Id}) }}">En savoir plus</a>
+							{% else %}
+								<p>En attente de vos propositions</p>
+							{% endif %}
 						</div>
 					</div>
 				</div>

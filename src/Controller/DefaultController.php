@@ -5,6 +5,8 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use \Respect\Validation\Validator as v;
+use App\Entity\Reunions;
+use App\Entity\Balades;
 
 class DefaultController extends MasterController
 {
@@ -14,6 +16,11 @@ class DefaultController extends MasterController
     public function index() {
 
         $errors = [];
+
+        $em = $this->getDoctrine()->getManager();
+        $nextbalade = $em->getRepository(Balades::class)->findLastNotPast(array());
+        $lastbalade = $em->getRepository(Balades::class)->findLast(array());
+        $reunion = $em->getRepository(Reunions::class)->findLastNotPast(array());
         
         if(!empty($_POST)){
 
@@ -59,6 +66,9 @@ class DefaultController extends MasterController
             'errors'     => $errors ?? [],
             'donnees_saisies' => $safe ?? [],
             'success' => $success ?? false,
+            'nextbalade' => $nextbalade,
+            'lastbalade' => $lastbalade,
+            'reunion' => $reunion
         ]);
     }
 }
