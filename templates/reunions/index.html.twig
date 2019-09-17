@@ -8,7 +8,7 @@
     
 	<section class="py-2 mb-5">
 	<h2 class="pb-5">Réunions </h2>
-	    <div class="row">
+	    <!-- <div class="row">
 	        <div class="col-md-7 py-4">
 			<h3 class= "d-flex justify-content-center py-2">Calendrier des réunions</h3>
 			    <div class="body-calendar">
@@ -99,14 +99,14 @@
 		            <p>Test</p>
 		        </div>
 	        </div>
-		</div>
+		</div> -->
 		<h3>Réunions à venir</h3>
 		{% for reuNonPassee in reusNonPassees %}
 			<div class="card-deck my-4">
 			  	<div class="card">
 				  	<div class="card-header ">
 						<div class="card-title py-2">
-				          	<a class="btn btn-primary float-right" href="{{ path('view_reunion', {id : reuNonPassee.getId()}) }}" role="button">Afficher</a>
+				          	<a class="btn btn-primary float-right" data-dt="{{ reuNonPassee.getDatetimeReu()|date('Y-m-d H:i') }}" href="{{ path('view_reunion', {id : reuNonPassee.getId()}) }}" role="button">Afficher</a>
 							<b>{{ reuNonPassee.getTitre() }}</b>, le {{ reuNonPassee.getDatetimeReu()|date("d/m/Y") }} (<em>{{ reuNonPassee.getTypeReu() }}</em>) 					
 			  			</div>
 						<div class="card-footer small text-muted mb-2">
