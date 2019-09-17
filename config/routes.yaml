@@ -151,6 +151,12 @@ view_reunion:
     path: /reunions/details/{id}
     controller: App\Controller\ReunionsController::viewReunion
     requirements:
+      id: '\d+'
+
+view_back_reunion:
+    path: backoffice/reunions/details/{id}
+    controller: App\Controller\ReunionsController::viewBackReunion
+    requirements:
       id: '\d+' 
 
 edit_reunion:
