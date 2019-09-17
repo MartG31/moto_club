@@ -377,7 +377,7 @@ class ReunionsController extends MasterController
         // Envoi du mail
         $users = $this->getDoctrine()->getRepository(Utilisateurs::class)->findAll();
 
-        if ($safe['type'] == 'Bureau') {
+        if ($reuFound->getTypeReu() == 'Bureau') {
             // Envoi du mail
             $users = $this->getDoctrine()->getRepository(Utilisateurs::class)->findAll();
             $bureauMin = [];
