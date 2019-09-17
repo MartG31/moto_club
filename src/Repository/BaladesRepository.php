@@ -29,7 +29,7 @@ class BaladesRepository extends ServiceEntityRepository
                 ->orderBy('r.dateDebut', 'DESC')
                 ->setMaxResults(1)
                 ->getQuery()
-                ->getSingleResult();
+                ->getResult();
 
     }
 	/**
