@@ -157,6 +157,7 @@ main{
 	align-items: center;
 	border-radius: 10px 10px 0 0;
 	background: #000;
+	text-align: center;
 }
 
 .cardSwip .sliderText h3{
