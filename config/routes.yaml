@@ -204,9 +204,9 @@ edit_cr:
     requirements:
       id: '\d+'
 
-# index_cr:
-#     path: /reunions/liste-cr
-#     controller: App\Controller\ReunionsController::indexCr
+index_cr:
+    path: /reunions/liste-cr
+    controller: App\Controller\ReunionsController::indexCr
 
 view_cr:
     path: /reunions/cr-details/{id}

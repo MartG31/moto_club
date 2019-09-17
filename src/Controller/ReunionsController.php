@@ -66,7 +66,7 @@ class ReunionsController extends MasterController
 
     public function indexBackReunion() {
 
-        // if($this->restrictAccess('adherent')) { return $this->redirectToRoute('accueil'); }
+        if($this->restrictAccess('adherent')) { return $this->redirectToRoute('accueil'); }
 
         // Récupération de la liste des réunions
         $entityManager = $this->getDoctrine()->getManager();
@@ -118,21 +118,28 @@ class ReunionsController extends MasterController
 
     public function viewBackReunion($id) {
 
-        // if($this->restrictAccess('adherent')) { return $this->redirectToRoute('accueil'); }
+        if($this->restrictAccess('adherent')) { return $this->redirectToRoute('accueil'); }
+
 
         // Récupération de la liste des réunions
             $entityManager = $this->getDoctrine()->getManager();
-            // Permet de chercher les réunions via le repository
+            // Permet de chercher les réunions via le repository 
             $reuFound = $entityManager->getRepository(Reunions::class)->find($id);
             $crFound = $entityManager->getRepository(ComptesRendus::class)->findOneBy([
                 'reu' => $reuFound
             ]);
-            //$crFound = $entityManager->getRepository(ComptesRendus::class)->find(getReu()->$id);
-            //$crFound = $entityManager->getRepository(ComptesRendus::class)->findOneBy(['reu'];
 
-        return $this->render('reunions/viewBackReu.html.twig', [
-            'reunionTrouvee' => $reuFound, 
-            'crTrouve'       => $crFound,
+            $showBtn = false;
+            if($reuFound->getDatetimeReu() > new \DateTime('now')){
+                $showBtn = true;
+            }
+
+            
+
+        return $this->render('reunions/viewBackReu.html.twig', [ 
+            'crTrouve'          => $crFound,
+            'reunionTrouvee'    => $reuFound,
+            'bouton'            => $showBtn        
         ]);
     }
 
@@ -341,28 +348,28 @@ class ReunionsController extends MasterController
 
 ///////////////////////////////////// CR
 
-    // public function indexCr() {
+    public function indexCr() {
 
-    //     if($this->restrictAccess('adherent')) { return $this->redirectToRoute('accueil'); }
+        header('Refresh: 5; /reunions');
+        // Récupération de la liste des réunions
+            $entityManager = $this->getDoctrine()->getManager();
+            // Permet de chercher les réunions via le repository
+            $crFound = $entityManager->getRepository(ComptesRendus::class)->findAll();
 
-    //     // Récupération de la liste des réunions
-    //         $entityManager = $this->getDoctrine()->getManager();
-    //         // Permet de chercher les réunions via le repository
-    //         $crFound = $entityManager->getRepository(ComptesRendus::class)->findAll();
-
-    //         // foreach ($reuPass as $reu) {
-    //         // // Vérifie si un CR existe et l'ajoute a mon tableau
-    //         // $crFound = $entityManager->getRepository(ComptesRendus::class)->findOneBy([
-    //         //     'reu' => $reu
-    //         // ]);
+            // foreach ($reuPass as $reu) {
+            // // Vérifie si un CR existe et l'ajoute a mon tableau
+            // $crFound = $entityManager->getRepository(ComptesRendus::class)->findOneBy([
+            //     'reu' => $reu
+            // ]);
 
 
-    //     return $this->render('reunions/indexCr.html.twig', [
-    //         'crTrouves' => $crFound, 
-    //     ]);
-    // }
+        return $this->render('reunions/indexCr.html.twig', [
+            'crTrouves' => $crFound, 
+        ]);
+    }
 
     public function viewCr($id) {
+            header('Refresh: 5; /reunions');
 
         if($this->restrictAccess('adherent')) { return $this->redirectToRoute('accueil'); }
         
@@ -511,6 +518,7 @@ class ReunionsController extends MasterController
                 //suppression de l'article trouvé
                 #$entityManager->remove($reuFound);
                 #$entityManager->flush();
+            header('Refresh: 1; /backoffice/reunions');
 
         return $this->render('reunions/delCr.html.twig', [
             'crTrouve' => $crFound,
