@@ -3,10 +3,12 @@
 {% block title %}Compte-rendu - modification{% endblock %}
 
 {% block content %}
+{{ dump(reunionTrouvee) }}
+
     
   <section class="py-2 mb-5">
     <div class="card card-register mx-auto mt-5">
-
+  
       <div class="card-header">Modifier le compte-rendu pour {{ reunionTrouvee.getTitre() }}</div>
       {% if errors is not empty %}
         <div class="alert alert-danger">{{errors|raw}}</div>

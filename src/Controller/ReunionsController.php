@@ -111,7 +111,7 @@ class ReunionsController extends MasterController
 
         return $this->render('reunions/viewReu.html.twig', [
             'reunionTrouvee' => $reuFound, 
-            'crTrouve' => $crFound,
+            'crTrouve'       => $crFound,
         ]);
     }
 
@@ -329,6 +329,13 @@ class ReunionsController extends MasterController
             // Permet de chercher les réunions via le repository
             $crFound = $entityManager->getRepository(ComptesRendus::class)->findAll();
 
+            // foreach ($reuPass as $reu) {
+            // // Vérifie si un CR existe et l'ajoute a mon tableau
+            // $crFound = $entityManager->getRepository(ComptesRendus::class)->findOneBy([
+            //     'reu' => $reu
+            // ]);
+
+
         return $this->render('reunions/indexCr.html.twig', [
             'crTrouves' => $crFound, 
         ]);
@@ -342,6 +349,7 @@ class ReunionsController extends MasterController
             $entityManager = $this->getDoctrine()->getManager();
             // Permet de chercher les réunions via le repository
             $crFound = $entityManager->getRepository(ComptesRendus::class)->find($id);
+
 
 
         return $this->render('reunions/viewCr.html.twig', [
@@ -417,14 +425,17 @@ class ReunionsController extends MasterController
         // Récupération de la liste des réunions
             $entityManager = $this->getDoctrine()->getManager();
             // Permet de chercher les réunions via le repository
-            $reuFound = $entityManager->getRepository(Reunions::class)->findAll();
+            $reuFound = $entityManager->getRepository(Reunions::class)->find($id);
             
-            foreach ($reuFound as $reu) {
+            
             // Vérifie si un CR existe et l'ajoute a mon tableau
                 $crFound = $entityManager->getRepository(ComptesRendus::class)->findOneBy([
-                'reu' => $reu
+                'reu' => $reuFound
                 ]);
-            }
+                // if(!empty($crFound)){
+                //     $reuWithCr[] = $reu;
+                // }
+            
 
             // $crFound = $entityManager->getRepository(ComptesRendus::class)->find($id);
 
@@ -442,11 +453,11 @@ class ReunionsController extends MasterController
                 $errors = array_filter($errors);
 
                 if(count($errors) == 0 ){
-                       /////////////////////////////////////////// ajout bdd ////////////////////////////////////              
+                       ////// ajout bdd             
                    
                     $crFound->setContenu($safe['contenu'])
                         ->setTitre($safe['titre'])
-                        ->setReu($reuFound)
+                        ->setReu($reu)///********//////********////////*********
                         //->setUser($_SESSION['user'])
                         ->setDatetimeModif(new \DateTime('now'));
 
@@ -466,11 +477,12 @@ class ReunionsController extends MasterController
             }
 
         return $this->render('reunions/editCr.html.twig', [
-            'reunionTrouvee'    => $reuFound ?? [],
+            'reunionTrouvee'    => $reuFound,
             'crTrouve'          => $crFound,
             'donnees_saisies'   => $safe ?? [],
             'success'           => $success ?? false,
             'errors'            => $errorsForm ?? [],
+            //'test'              => $reu ?? []
         ]);
     }
 
