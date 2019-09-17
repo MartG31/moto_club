@@ -3,106 +3,104 @@
 {% block title %}S'enregistrer{% endblock %}
 
 {% block content %}
-
-<section class="py-2 mb-5">
-  <div class="card card-register mx-auto mt-5 pb-5 mb-5">
-    <div class="card-header">S'inscrire</div>
-    <div class="card-body">
-      <form method="post">
-        <div class="form-group">
+  <section class="py-2 mb-5">
+    <div class="card card-register mx-auto mt-5 pb-5 mb-5">
+      <div class="card-header">S'inscrire</div>
+      <div class="card-body">
+        <form method="post">
           <div class="form-group">
-            <label for="email">Adresse email</label>
-            <input type="email" id="email" name="email" class="form-control" value="{{donnees_saisies.email ?? ''}}" required autofocus>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="form-row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="password">Mot de passe</label>
-                <input type="password" id="password" name="password" class="form-control" required>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="confirmpassword">Confirmer le mot de passe</label>
-                <input type="password" id="confirmpassword" name="confirmpassword" class="form-control" required>
-              </div>
+            <div class="form-group">
+              <label for="email">Adresse email</label>
+              <input type="email" id="email" name="email" class="form-control" value="{{donnees_saisies.email ?? ''}}" required autofocus>
             </div>
           </div>
-        </div>
-        <div class="form-group">
-          <div class="form-row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="lastName">Nom</label>
-                <input type="text" id="lastName" name="lastname" class="form-control" value="{{donnees_saisies.lastname ?? ''}}" required>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="password">Mot de passe</label>
+                  <input type="password" id="password" name="password" class="form-control" required>
+                </div>
               </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="firstName">Prénom</label>
-                <input type="text" id="firstName" name="firstname" class="form-control" value="{{donnees_saisies.firstname ?? ''}}" required>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="confirmpassword">Confirmer le mot de passe</label>
+                  <input type="password" id="confirmpassword" name="confirmpassword" class="form-control" required>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="form-group">
-          <div class="form-row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="birthday">Date de Naissance</label>
-                <input type="date" id="birthday" name="birthday" class="form-control" value="{{donnees_saisies.birthday ?? ''}}" required>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="lastName">Nom</label>
+                  <input type="text" id="lastName" name="lastname" class="form-control" value="{{donnees_saisies.lastname ?? ''}}" required>
+                </div>
               </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="phone">Numéro de Téléphone</label>
-                <input type="text" id="phone" name="phone" class="form-control" value="{{donnees_saisies.phone ?? ''}}" maxlength="10" required>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-            <label for="address">Adresse</label>
-            <input type="text" id="address" name="address" class="form-control" value="{{donnees_saisies.address ?? ''}}" required>
-        </div>
-        <div class="form-group">
-          <div class="form-row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="postal_code">Code Postal</label>
-                <input type="text" id="postal_code" name="postal_code" class="form-control" value="{{donnees_saisies.postal_code ?? ''}}" required>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="city">Ville</label>
-                <input type="text" id="city" name="city" class="form-control" value="{{donnees_saisies.city ?? ''}}" required>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="firstName">Prénom</label>
+                  <input type="text" id="firstName" name="firstname" class="form-control" value="{{donnees_saisies.firstname ?? ''}}" required>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        {% if errors is not empty %}
-            <div class="alert alert-danger">
-                {{ errors|join('<br>')|raw }} 
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="birthday">Date de Naissance</label>
+                  <input type="date" id="birthday" name="birthday" class="form-control" value="{{donnees_saisies.birthday ?? ''}}" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="phone">Numéro de Téléphone</label>
+                  <input type="text" id="phone" name="phone" class="form-control" value="{{donnees_saisies.phone ?? ''}}" maxlength="10" required>
+                </div>
+              </div>
             </div>
-        {% elseif success == true %}
-            <div class="alert alert-success">
-                Bienvenue <strong>{{donnees_saisies.firstname}}</strong>, vous êtes inscrit(e) !
-                Vous allez être redirigé(e) dans quelques secondes.
+          </div>
+          <div class="form-group">
+              <label for="address">Adresse</label>
+              <input type="text" id="address" name="address" class="form-control" value="{{donnees_saisies.address ?? ''}}" required>
+          </div>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="postal_code">Code Postal</label>
+                  <input type="text" id="postal_code" name="postal_code" class="form-control" value="{{donnees_saisies.postal_code ?? ''}}" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="city">Ville</label>
+                  <input type="text" id="city" name="city" class="form-control" value="{{donnees_saisies.city ?? ''}}" required>
+                </div>
+              </div>
             </div>
-        {% endif %}
-        <div class="form-group">
-            <input type="submit" class="btn btn-primary btn-block" value="S'inscrire">
+          </div>
+          {% if errors is not empty %}
+              <div class="alert alert-danger">
+                  {{ errors|join('<br>')|raw }} 
+              </div>
+          {% elseif success == true %}
+              <div class="alert alert-success">
+                  Bienvenue <strong>{{donnees_saisies.firstname}}</strong>, vous êtes inscrit(e) !
+                  Vous allez être redirigé(e) dans quelques secondes.
+              </div>
+          {% endif %}
+          <div class="form-group">
+              <input type="submit" class="btn btn-primary btn-block" value="S'inscrire">
+          </div>
+        </form>
+        <div class="text-center">
+          <a class="d-block small mt-3" href="login">Se connecter</a>
+          <a class="d-block small" href="forgot-password">Mot de passe oublié ?</a>
         </div>
-      </form>
-      <div class="text-center">
-        <a class="d-block small mt-3" href="login">Se connecter</a>
-        <a class="d-block small" href="forgot-password">Mot de passe oublié ?</a>
       </div>
     </div>
-  </div>
-</section>
-
+  </section>
 {% endblock %}
