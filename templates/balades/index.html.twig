@@ -5,6 +5,13 @@
 {% block content %}
 	<section class="py-2 mb-5">
 		<h2 class="pb-5">Titre pour les balades</h2>
+		<div class="d-flex justify-content-between">
+			<span>
+			</span>
+			<span>
+				<a title="Gérer les balades" class="btn btn-secondary" href="{{ path('gestion_balades') }}" role="button"><i class="fas fa-cogs"></i></a>
+			</span>
+		</div>
 
 		{% for balade in balades %}
 			<div class="card-deck my-4">

@@ -10,13 +10,24 @@
 		
 		<div class="card-deck my-4">
 			<div class="card">
-				<div class="card-header">Liste des balades</div>
+				<div class="card-header">
+					<div class="d-flex justify-content-between align-items-center">
+						
+							Liste des balades
+						
+						<span>
+							<a title="Afficher les balades" class="btn btn-info" href="{{ path('index_balades') }}" role="button"><i class="fas fa-globe-europe"></i></a>
+						</span>
+					</div>
+					
+				</div>
 				<div class="card-body">
 					<div class="table-responsive">
-					  	<!-- <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"> -->
-					  	<table>
+					  	<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+					  	<!-- <table> -->
 						    <thead>
 								<tr class="text-center align-top">
+									<th class="d-none">#</th>
 									<th>Titre</th>
 									<th>Dates</th>
 									<th>Proposée par</th>
@@ -30,6 +41,7 @@
 						    <tbody>
 						      	{% for bal_data in bal_datas %}
 									<tr class="text-center">
+										<td class="d-none">{% set i = ( i | default(0) ) + 1 %}{{i}}</td>
 										<td><a href="{{path('view_balade', {id: bal_data.balade.getId()})}}"><strong>{{ bal_data.balade.getTitre() }}</strong></a></td>
 										<td>{{ bal_data.balade.getDateDebut()|date('d/m/Y') ~ ' - ' ~ bal_data.balade.getDateDebut()|date('d/m/Y') }}</td>
 										<td>{{ bal_data.balade.getUser().getPrenom() ~ ' ' ~ bal_data.balade.getUser().getNom() }}</td>
