@@ -28,22 +28,19 @@ class BaladesController extends MasterController
     	// Affichage des dernières balades
 
         $em = $this->getDoctrine()->getManager();
-        $balades = $em->getRepository(Balades::class)->findBy(array(), array('dateDebut' => 'DESC'));
+        $balades = $em->getRepository(Balades::class)->findBy([
+            'bal_active' => true,
+        ],[
+            'dateDebut' => 'DESC',
+        ]);
 
         $bal_datas = [];
         foreach ($balades as $balade) {
-            $photos = $em->getRepository(Photos::class)->findBy(['bal' => $balade]);
-
-            if(!empty($photos)) {
-                $photosAdded = true;
-            }
-            else {
-                $photosAdded = false;   
-            }
+            $nb_photos = $em->getRepository(Photos::class)->countPhotosByBalade($balade);
 
             $bal_datas[] = array(
                 'balade' => $balade,
-                'photosAdded' => $photosAdded,
+                'nb_photos' => array_shift($nb_photos),
             );
         }
 
@@ -440,7 +437,7 @@ class BaladesController extends MasterController
     private function nbInscrits(Balades $balade) {
 
         $em = $this->getDoctrine()->getManager();
-        $nb_inscrits_tab = $em->getRepository(MembresBalades::class)->countInscrits($balade);
+        $nb_inscrits_tab = $em->getRepository(MembresBalades::class)->countInscritsByBalade($balade);
         return array_shift($nb_inscrits_tab);    
     }
 

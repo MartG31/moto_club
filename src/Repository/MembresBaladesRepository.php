@@ -20,7 +20,7 @@ class MembresBaladesRepository extends ServiceEntityRepository
         parent::__construct($registry, MembresBalades::class);
     }
 
-    public function countInscrits(Balades $balade) {
+    public function countInscritsByBalade(Balades $balade) {
 
     	return $this->createQueryBuilder('mb')
     			->select('count(mb.id) as count')
