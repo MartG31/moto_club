@@ -45,7 +45,7 @@ class ReunionsRepository extends ServiceEntityRepository
                 ->setParameter('datecourant', new \Datetime())
                 ->orderBy('r.datetimeReu', 'DESC')
                 ->getQuery()
-                ->getSingleResult();
+                ->getResult();
 
     }
 
