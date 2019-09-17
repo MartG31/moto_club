@@ -20,8 +20,9 @@ h1{
 h2{
 	text-transform: uppercase;
 	font-family: 'Alfa Slab One', cursive;
-	color: #1c1b1b;
-	font-weight: 700;
+	color: #009ada;
+	font-weight: 400;
+	letter-spacing: 4px;
 	font-size: 3em;
 	text-shadow: 1px 1px 1px #5e5c5c,
 	1px 2px 1px #5e5c5c,
