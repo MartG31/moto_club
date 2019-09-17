@@ -7,11 +7,11 @@
 	    <h2>Détails de réunion  </h2>
 	    <div class="d-flex justify-content-between">
 			{% if 'bureau' in app.session.get('ranks') %}
-				<a href="{{ path('index_reunions') }}" class="btn btn-secondary mt-4" role="button"><i class="fas fa-angle-left"></i> Retour à la liste des réunions - <em>Sur le site</em> </a>
+				<a href="{{ path('index_reunions') }}" class="btn btn-secondary mt-4" role="button"><i class="fas fa-angle-left"></i> La liste des réunions <br> <em>Sur le site</em> </a>
 				{% if crTrouve is not empty %}
-				<a href="{{ path('edit_cr', {id : reunionTrouvee.getId()}) }}" class="btn btn-primary mt-4" role="button">Modifier le compte-rendu</a>
+				<a href="{{ path('edit_cr', {id : reunionTrouvee.getId()}) }}" class="btn btn-primary mt-4" role="button">Modifier <br> le compte-rendu</a>
 				{% endif %}
-				<a href="{{ path('index_back_reunions') }}" class="btn btn-secondary mt-4 " role="button">Retour à la gestion des réunions <i class="fas fa-angle-right"></i></a> 
+				<a href="{{ path('index_back_reunions') }}" class="btn btn-secondary mt-4 " role="button">Gestion des réunions <i class="fas fa-angle-right"></i><br> <em>BackOffice</em> </a> 
 			{% else %}
 				<a href="{{ path('index_reunions') }}" class="btn btn-secondary mt-4" role="button"><i class="fas fa-angle-left"></i> Retour à la liste des réunions</a>
 			{% endif %}

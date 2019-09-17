@@ -34,9 +34,9 @@
             <label for="contenu">Contenu</label>
             <textarea id="contenu" name="contenu" class="form-control" required="required" >{{ crTrouve.getContenu() }}</textarea>
           </div>
-            <div class="card-body">
-              <a class="btn btn-success " href="{{ path('view_back_reunion', {id : reunionTrouvee.getId()}) }}" role="button">Afficher</a>
-              <input type="submit" value="Modifier" class="btn btn-primary">
+            <div class="card-body d-flex justify-content-between">
+              <input type="submit" value="Modifier" class="btn btn-success">
+              <a class="btn btn-primary " href="{{ path('view_back_reunion', {id : reunionTrouvee.getId()}) }}" role="button">Afficher</a>
             </div>
         </form>
       </div>
