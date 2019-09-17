@@ -259,25 +259,22 @@
         <!-- Demo scripts for this page-->
         <script src="/js/demo/datatables-demo.js"></script>
         <script src="/js/demo/chart-area-demo.js"></script>
+        
+        {% block javascripts %}{% endblock %}
 
         <script>
             $(document).ready(function() {
 
-                $('a[data-target="#modalDelete"]').click(function() {
+                $('.modal-delete').click(function() {
+                    alert('wtf');
                     var href = $(this).attr('href');
                     $('#modalConfirm').attr('href', href);
                     var content = $(this).attr('data-content');
                     $('#modalContent').html(content);
                 });
-
-
             });
-
-
         </script>
 
-
-        {% block javascripts %}{% endblock %}
 
     </body>
 </html>

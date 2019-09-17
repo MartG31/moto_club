@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Utilisateurs;
 use App\Entity\Balades;
 use App\Entity\MembresBalades;
+use App\Entity\Photos;
 
 use \Respect\Validation\Validator as v;
 
@@ -29,9 +30,25 @@ class BaladesController extends MasterController
         $em = $this->getDoctrine()->getManager();
         $balades = $em->getRepository(Balades::class)->findBy(array(), array('dateDebut' => 'DESC'));
 
-        return $this->render('balades/index.html.twig', [
-            'balades' => $balades ?? [],
+        $bal_datas = [];
+        foreach ($balades as $balade) {
+            $photos = $em->getRepository(Photos::class)->findBy(['bal' => $balade]);
 
+            if(!empty($photos)) {
+                $photosAdded = true;
+            }
+            else {
+                $photosAdded = false;   
+            }
+
+            $bal_datas[] = array(
+                'balade' => $balade,
+                'photosAdded' => $photosAdded,
+            );
+        }
+
+        return $this->render('balades/index.html.twig', [
+            'bal_datas' => $bal_datas ?? [],
         ]);
     }
 

@@ -83,8 +83,6 @@ class PhotosController extends MasterController
                 $success = true;
 
             }
-
-        	
         }
 
     	return $this->render('photos/add.html.twig', [
@@ -120,13 +118,14 @@ class PhotosController extends MasterController
 
         if($this->restrictAccess('adherent')) { return $this->redirectToRoute('accueil'); }
 
+        $balade = $em->getRepository(Balades::class)->find($id);
+        $photos = $em->getRepository(Photos::class)->findBy(['bal' => $balade]);
+
 
 
         $em = $this->getDoctrine()->getManager();
         
-        return $this->render('photos/portfolio.html.twig', [
-             'photos' => $photos,
-             'uploadDir' => $this->uploadDir,        
+        return $this->render('photos/gestion-photos.html.twig', [   
         ]);
     }
 

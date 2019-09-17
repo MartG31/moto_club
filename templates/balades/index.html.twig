@@ -13,26 +13,26 @@
 			</span>
 		</div>
 
-		{% for balade in balades %}
+		{% for bal_data in bal_datas %}
 			<div class="card-deck my-4">
 				<div class="card">
 					<div class="card-header">
 						<div class="card-title">
-							<a href="{{ path('view_balade', {id: balade.getId()}) }}" class="btn btn-primary float-right" role="button">Afficher la balade</a>
-							<strong>{{ balade.getTitre() }}</strong>
-							{% if balade.getDateDebut() == balade.getDateFin() %}
-								<div>le {{ balade.getDateDebut()|date('d/m/Y') }}</div>
+							<a href="{{ path('view_balade', {id: bal_data.balade.getId()}) }}" class="btn btn-primary float-right" role="button">Afficher la balade</a>
+							<strong>{{ bal_data.balade.getTitre() }}</strong>
+							{% if bal_data.balade.getDateDebut() == bal_data.balade.getDateFin() %}
+								<div>le {{ bal_data.balade.getDateDebut()|date('d/m/Y') }}</div>
 							{% else %}
-								<div>du {{ balade.getDateDebut()|date('d/m/Y') }} au {{ balade.getDateFin()|date('d/m/Y') }}</div>
+								<div>du {{ bal_data.balade.getDateDebut()|date('d/m/Y') }} au {{ bal_data.balade.getDateFin()|date('d/m/Y') }}</div>
 							{% endif %}
 					   </div>
 						<div class="card-footer">
 							<i>Posté par 
-								{{ balade.getUser().getPrenom() ~ ' ' ~ balade.getUser().getNom() }} 
+								{{ bal_data.balade.getUser().getPrenom() ~ ' ' ~ bal_data.balade.getUser().getNom() }} 
 								le 
-								{{ balade.getDatetimePost()|date('d F Y') }} 
+								{{ bal_data.balade.getDatetimePost()|date('d F Y') }} 
 								à 
-								{{ balade.getDatetimePost()|date('H:i') }}
+								{{ bal_data.balade.getDatetimePost()|date('H:i') }}
 							</i>
 						</div>
 					</div>
