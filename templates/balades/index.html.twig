@@ -4,12 +4,14 @@
 
 {% block content %}
 	<section class="py-2 mb-5">
-		<h2 class="py-5">Balades</h2>
+		<h2 class="py-3">Balades</h2>
 		<div class="d-flex justify-content-between">
 			<span>
 			</span>
 			<span>
-				<a title="Gérer les balades" class="btn btn-secondary" href="{{ path('gestion_balades') }}" role="button"><i class="fas fa-cogs"></i></a>
+				{% if 'bureau' in app.session.get('ranks') %}
+					<a title="Gérer les balades" class="btn btn-secondary" href="{{ path('gestion_balades') }}" role="button"><i class="fas fa-cogs"></i></a>
+				{% endif %}
 			</span>
 		</div>
 
@@ -18,6 +20,11 @@
 				<div class="card">
 					<div class="card-header">
 						<div class="card-title">
+							{% if bal_data.nb_photos > 0 %}
+								<a href="{{ path('view_album', {id: bal_data.balade.getId()}) }}" class="btn btn-primary float-right ml-2" role="button" title="Voir les photos ({{bal_data.nb_photos}})"><i class="fas fa-images"></i></a>
+							{% else %}
+								<a href="{{ path('view_album', {id: bal_data.balade.getId()}) }}" class="btn btn-primary disabled float-right ml-2" role="button" disabled><i class="fas fa-images"></i></a>
+							{% endif %}
 							<a href="{{ path('view_balade', {id: bal_data.balade.getId()}) }}" class="btn btn-primary float-right" role="button">Afficher la balade</a>
 							<strong>{{ bal_data.balade.getTitre() }}</strong>
 							{% if bal_data.balade.getDateDebut() == bal_data.balade.getDateFin() %}
@@ -30,7 +37,7 @@
 							<i>Posté par 
 								{{ bal_data.balade.getUser().getPrenom() ~ ' ' ~ bal_data.balade.getUser().getNom() }} 
 								le 
-								{{ bal_data.balade.getDatetimePost()|date('d F Y') }} 
+								{{ bal_data.balade.getDatetimePost()|date('d/m/Y') }} 
 								à 
 								{{ bal_data.balade.getDatetimePost()|date('H:i') }}
 							</i>
