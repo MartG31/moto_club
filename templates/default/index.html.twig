@@ -23,7 +23,7 @@
 							{% if nextbalade is not empty %}
 								<p>{{nextbalade.Titre}}</p>
 								<p>le {{nextbalade.DateDebut|date("d/m/Y")}}</p>
-								<a href="{{ path('view_balade', {id : nextbalade.Id}) }}">En savoir plus</a>
+								<a class="cadre" href="{{ path('view_balade', {id : nextbalade.Id}) }}">En savoir plus</a>
 							{% else %}
 								<p>En attente de vos propositions</p>
 							{% endif %}
@@ -39,7 +39,7 @@
 							{% if reunion is not empty %}
 								<p>{{reunion.Titre}}</p>
 								<p>le {{reunion.datetimeReu|date("d/m/Y")}}</p>
-								<a href="{{ path('view_reunion', {id : reunion.Id}) }}">En savoir plus</a>
+								<a class="cadre" href="{{ path('view_reunion', {id : reunion.Id}) }}">En savoir plus</a>
 							{% else %}
 								<p>En attente de vos propositions</p>
 							{% endif %}
@@ -55,7 +55,7 @@
 							{% if lastbalade is not empty %}
 								<p>{{lastbalade.Titre}}</p>
 								<p>le {{lastbalade.DateDebut|date("d/m/Y")}}</p>
-								<a href="{{ path('view_balade', {id : lastbalade.Id}) }}">En savoir plus</a>
+								<a class="cadre" href="{{ path('view_balade', {id : lastbalade.Id}) }}">En savoir plus</a>
 							{% else %}
 								<p>En attente de vos propositions</p>
 							{% endif %}

@@ -122,6 +122,10 @@ main{
 	box-shadow: 1px 5px 5px green;
 }
 
+.cadre {
+	border-radius: 4px;
+}
+
 
 
 .navbar-light .navbar-nav .nav-item .nav-perso:hover,
