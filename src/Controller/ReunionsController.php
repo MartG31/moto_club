@@ -23,9 +23,9 @@ class ReunionsController extends MasterController
 
     ///////attributs
     public $typesReu = array(
-        'bureau' => 'Réunion du bureau', 
-        'ag' => 'Assemblée Générale', 
-        'autre' => 'Autre', 
+        'Bureau' => 'Réunion du bureau', 
+        'AG' => 'Assemblée Générale', 
+        'Autre' => 'Autre', 
     );
 
     /**
@@ -206,10 +206,10 @@ class ReunionsController extends MasterController
                     }
 
                     $receivers = $adherentsMin;
-                    $subject = 'Amicale BMW Moto 38 - Nouvelle réunion Bureau : '.date("d/m/Y", strtotime($safe['date_reu'])).' - '.$safe['titre'];
-                    $content = '<h2>Nouvelle réunion ('.$safe['type'].') le '.date("d/m/Y", strtotime($safe['date_reu'])).' : '.$safe['titre'].'</h2>
+                    $subject = 'Amicale BMW Moto 38 - Nouvelle réunion Bureau : '.$safe['date_reu']->format('d/m/Y').' - '.$safe['titre'];
+                    $content = '<h2>Nouvelle réunion ('.$safe['type'].') le '.$safe['date_reu']->format('d/m/Y').' : '.$safe['titre'].'</h2>
                                 <p>Bonjour, nous vous informons qu\'une réunion Bureau a été ajoutée sur le site de l\'Amicale BMW Moto 38.</p>
-                                <p>Cette réunion ('.$safe['type'].') a pour sujet <strong>"'.$safe['titre'].'"</strong> et se déroulera le <strong>'.date("d/m/Y", strtotime($safe['date_reu'])).'</strong> à <strong>'.$safe['lieu'].'</strong></p>
+                                <p>Cette réunion ('.$safe['type'].') a pour sujet <strong>"'.$safe['titre'].'"</strong> et se déroulera le <strong>'.$safe['date_reu']->format('d/m/Y').'</strong> à <strong>'.$safe['lieu'].'</strong></p>
                                 <p>Vous pouvez consulter les <a href="http://127.0.0.1:8000/reunions/details/'.$reunion->getId().'">détails</a> de cette réunion.';
 
                     $this->sendingMails($receivers, $subject, $content);
@@ -226,10 +226,10 @@ class ReunionsController extends MasterController
                     }
 
                     $receivers = $adherentsMin;
-                    $subject = 'Amicale BMW Moto 38 - Nouvelle réunion : '.date("d/m/Y", strtotime($safe['date_reu'])).' - '.$safe['titre'];
-                    $content = '<h2>Nouvelle réunion ('.$safe['type'].') le '.date("d/m/Y", strtotime($safe['date_reu'])).' : '.$safe['titre'].'</h2>
+                    $subject = 'Amicale BMW Moto 38 - Nouvelle réunion : '.$safe['date_reu']->format('d/m/Y').' - '.$safe['titre'];
+                    $content = '<h2>Nouvelle réunion ('.$safe['type'].') le '.$safe['date_reu']->format('d/m/Y').' : '.$safe['titre'].'</h2>
                                 <p>Bonjour, nous vous informons qu\'une réunion a été ajoutée sur le site de l\'Amicale BMW Moto 38.</p>
-                                <p>Cette réunion ('.$safe['type'].') a pour sujet <strong>"'.$safe['titre'].'"</strong> et se déroulera le <strong>'.date("d/m/Y", strtotime($safe['date_reu'])).'</strong> à <strong>'.$safe['lieu'].'</strong></p>
+                                <p>Cette réunion ('.$safe['type'].') a pour sujet <strong>"'.$safe['titre'].'"</strong> et se déroulera le <strong>'.$safe['date_reu']->format('d/m/Y').'</strong> à <strong>'.$safe['lieu'].'</strong></p>
                                 <p>Vous pouvez consulter les <a href="http://127.0.0.1:8000/reunions/details/'.$reunion->getId().'">détails</a> de cette réunion.';
 
                     $this->sendingMails($receivers, $subject, $content);
@@ -297,6 +297,22 @@ class ReunionsController extends MasterController
                 // actually executes the queries (i.e. the INSERT query)
                 $entityManager->flush();
                 $success = true;
+                // Envoi du mail
+                $users = $this->getDoctrine()->getRepository(Utilisateurs::class)->findAll();
+                $adherentsMin = [];
+                foreach ($users as $user) {
+                    if($user->getAcces() != 'membre') {
+                        $adherentsMin[] = $user->getEmail();
+                    }
+                }
+
+                $receivers = $adherentsMin;
+                $subject = 'Amicale BMW Moto 38 - Modification d\'une réunion : '.$safe['date_reu']->format('d/m/Y').' - '.$safe['titre'];
+                $content = '<h2>Modification sur la réunion ('.$safe['type'].') du '.$safe['date_reu']->format('d/m/Y').' : '.$safe['titre'].'</h2>
+                            <p>Bonjour, nous vous informons qu\'une modification a été apportée sur la réunion.</p>
+                            <p>Vous pouvez consulter les <a href="http://127.0.0.1:8000/reunions/details/'.$reuFound->getId().'">détails</a> de cette réunion.';
+
+                $this->sendingMails($receivers, $subject, $content);
             }
             else {
                 $errorsForm = implode('<br>', $errors);
@@ -333,13 +349,28 @@ class ReunionsController extends MasterController
         if($this->restrictAccess('bureau')) { return $this->redirectToRoute('accueil'); }
 
         // Récupération de la liste des réunions
-            $entityManager = $this->getDoctrine()->getManager();
-            // Permet de chercher les réunions via le repository
-            $reuFound = $entityManager->getRepository(Reunions::class)->find($id);
-                //suppression de l'article trouvé
-                $entityManager->remove($reuFound);
-                $entityManager->flush();
-                header('Refresh: 5; /backoffice/reunions');
+        $entityManager = $this->getDoctrine()->getManager();
+        // Permet de chercher les réunions via le repository
+        $reuFound = $entityManager->getRepository(Reunions::class)->find($id);
+        // Envoi du mail
+        $users = $this->getDoctrine()->getRepository(Utilisateurs::class)->findAll();
+        $adherentsMin = [];
+        foreach ($users as $user) {
+            if($user->getAcces() != 'membre') {
+                $adherentsMin[] = $user->getEmail();
+            }
+        }
+
+        $receivers = $adherentsMin;
+        $subject = 'Amicale BMW Moto 38 - Suppression d\'une réunion : '.$reuFound->getDatetimeReu()->format('d/m/Y').' - '.$reuFound->getTitre();
+        $content = '<h2>Suppression de la réunion du '.$reuFound->getDatetimeReu()->format('d/m/Y').' : '.$reuFound->getTitre().'</h2>
+                    <p>Bonjour, nous vous informons que la réunion a été supprimée.</p>';
+
+        $this->sendingMails($receivers, $subject, $content);
+        //suppression de l'article trouvé
+        $entityManager->remove($reuFound);
+        $entityManager->flush();
+        header('Refresh: 5; /backoffice/reunions');
 
         return $this->render('reunions/delConf.html.twig', [
             'reunionTrouvee' => $reuFound,
