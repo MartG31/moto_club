@@ -16,23 +16,38 @@
 
 						{% if 'adherent' in app.session.get('ranks') %}
 
-							{% if not inscrit %}
 
-								{% if not baladeFull %}
-									<a href="{{ path('inscription_balade', {id: balade.getId()}) }}" class="btn btn-success float-right ml-4" role="button">S'inscrire</a>
+							{% if balade.getInscActive() %}
+
+								{% if not inscrit %}
+
+									{% if not baladeFull %}
+										<a href="{{ path('inscription_balade', {id: balade.getId()}) }}" class="btn btn-success float-right ml-4" role="button">S'inscrire</a>
+									{% else %}
+										<a class="btn btn-success float-right ml-4 disabled" role="button">S'inscrire</a>
+									{% endif %}								
+
 								{% else %}
-									<a class="btn btn-success float-right ml-4 disabled" role="button">S'inscrire</a>
-								{% endif %}								
+									<a href="{{ path('desinscription_balade', {id: balade.getId()}) }}" class="btn btn-danger float-right ml-4" role="button">Se Désinscrire</a>
+								{% endif %}
 
-							{% else %}
-								<a href="{{ path('desinscription_balade', {id: balade.getId()}) }}" class="btn btn-danger float-right ml-4" role="button">Se Désinscrire</a>
 							{% endif %}
 
-							{% if nbMaxPers is not null %}
-								<div class="float-right">Participants : {{ nbInscrits ~ ' / ' ~ nbMaxPers }}</div>
-							{% else %}
-								<div class="float-right">Participants : {{ nbInscrits }} (illimité)</div>
-							{% endif %}
+							<div class="float-right">
+
+								{% if nbMaxPers is not null %}
+									<div>Participants : {{ nbInscrits ~ ' / ' ~ nbMaxPers }}</div>
+								{% else %}
+									<div>Participants : {{ nbInscrits }}</div>
+								{% endif %}
+
+								{% if not balade.getInscActive() %}
+
+									<div><em>Les inscriptions sont closes</em></div>
+
+								{% endif %}
+
+							</div>
 
 						{% endif %}
 

@@ -31,7 +31,7 @@
 							      		{% set i = ( i | default(0) ) + 1 %}
 										<tr>
 											<td class="text-center">{{ i }}</td>
-											<td>{{ inscrit.getUser().getPrenom() ~ ' ' ~ inscrit.getUser().getNom() }}</td>
+											<td>{{ inscrit.getUser().getPrenom() ~ ' ' ~ inscrit.getUser().getNom() }}<br><em>{{ nomsRanks[inscrit.getUser().getAcces()] }}</em></td>
 											<td>
 												<a title="Valider la proposition" class="btn btn-success" href="#" role="button"><i class="fas fa-check"></i></a>
 												<a title="Clôturer les inscriptions" class="btn btn-warning" href="#" role="button"><i class="fas fa-lock"></i></i></a>
