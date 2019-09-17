@@ -47,7 +47,7 @@ header{
 	padding: 0;
 	box-sizing: border-box;
 	background: url(../images/img1.jpg);
-	height: 25em;
+	height: 15em;
 	background-size: cover;
 }
 section {
@@ -97,6 +97,15 @@ main{
 	background: url(../images/img2.jpg);
 	background-attachment: fixed;
 	background-size: cover;
+}
+
+.name-asso {
+	font-size: 1.5em;
+	padding-top: 0.5em;
+}
+
+.logo-div {
+	padding-top: 2em;
 }
 
 .navbar-light .navbar-nav .nav-item .nav-link:hover,
