@@ -30,7 +30,7 @@
 						    <tbody>
 						      	{% for bal_data in bal_datas %}
 									<tr class="text-center">
-										<td><strong>{{ bal_data.balade.getTitre() }}</strong></td>
+										<td><a href="{{path('view_balade', {id: bal_data.balade.getId()})}}"><strong>{{ bal_data.balade.getTitre() }}</strong></a></td>
 										<td>{{ bal_data.balade.getDateDebut()|date('d/m/Y') ~ ' - ' ~ bal_data.balade.getDateDebut()|date('d/m/Y') }}</td>
 										<td>{{ bal_data.balade.getUser().getPrenom() ~ ' ' ~ bal_data.balade.getUser().getNom() }}</td>
 										<td>{{ bal_data.balade.getDatetimePost()|date('d/m/Y H:i') }}</td>

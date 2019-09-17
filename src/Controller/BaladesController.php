@@ -329,6 +329,7 @@ class BaladesController extends MasterController
         ]);
 
         return $this->render('balades/gestion-inscrits.html.twig', [
+            'nomsRanks' => $this->nomsRanks,
             'balade' => $balade,
             'inscrits' => $inscrits,
         ]);

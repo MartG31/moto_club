@@ -26,7 +26,7 @@ class MembresBalades
      *
      * @ORM\ManyToOne(targetEntity="Balades")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="bal_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="bal_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     private $bal;

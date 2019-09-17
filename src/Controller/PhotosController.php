@@ -105,11 +105,12 @@ class PhotosController extends MasterController
 
         $em = $this->getDoctrine()->getManager();
 
-        $balFound = $em->getRepository(Balades::class)->find($id);
-        $photos = $em->getRepository(Photos::class)->findBy(['bal' => $balFound]);
+        $balade = $em->getRepository(Balades::class)->find($id);
+        $photos = $em->getRepository(Photos::class)->findBy(['bal' => $balade]);
 
         
         return $this->render('photos/view.html.twig', [
+             'balade' => $balade,
              'photos' => $photos,
              'uploadDir' => $this->uploadDir,        
         ]);
