@@ -108,11 +108,28 @@ main{
 	padding-top: 2em;
 }
 
-.navbar-light .navbar-nav .nav-item .nav-link:hover,
-.navbar-light .navbar-nav .nav-item.active .nav-link{
+.btn-link-grey {
+	background-color: white;
+	box-shadow: 1px 5px 5px grey;
+}
+
+.btn-link-red {
+	background-color: white;
+	box-shadow: 1px 5px 5px red;
+}
+.btn-link-green {
+	background-color: white;
+	box-shadow: 1px 5px 5px green;
+}
+
+
+
+.navbar-light .navbar-nav .nav-item .nav-perso:hover,
+.navbar-light .navbar-nav .nav-item.active .nav-perso {
 	background: #2e7ff0;
 	color: #fff;
 }
+
 
 .btn-nav-item {
 	margin-bottom: auto;

@@ -37,10 +37,10 @@
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-lg-auto">
-					<li class="nav-item"><a class="nav-link" href="{{ path('accueil') }}">Accueil</a></li>
-					<li class="nav-item"><a class="nav-link" href="{{ path('index_balades') }}">Balades</a></li>
-					<li class="nav-item"><a class="nav-link" href="{{ path('index_albums') }}">Albums</a></li>
-					<li class="nav-item"><a class="nav-link" href="{{ path('index_reunions') }}">Réunions</a></li>				
+					<li class="nav-item"><a class="nav-link nav-perso" href="{{ path('accueil') }}">Accueil</a></li>
+					<li class="nav-item"><a class="nav-link nav-perso" href="{{ path('index_balades') }}">Balades</a></li>
+					<li class="nav-item"><a class="nav-link nav-perso" href="{{ path('index_albums') }}">Albums</a></li>
+					<li class="nav-item"><a class="nav-link nav-perso" href="{{ path('index_reunions') }}">Réunions</a></li>				
 					{#{% if 'bureau' in app.session.get('ranks') %}#}
 					{#{% endif %}#}
 				</ul>
@@ -49,19 +49,19 @@
 					{% if app.session.get('ranks') is not null %}
 
 						<li class="nav-item my-auto pr-1">
-							<a class="nav-link btn btn-info border border-dark" href="{{ path('admin_accueil') }}">Back Office ({{ app.session.get('prenom') ~ ' ' ~ app.session.get('nom') }})</a>
+							<a class="nav-link btn-link-grey btn btn-outline-secondary" href="{{ path('admin_accueil') }}"><i class="fas fa-user-edit"></i> {{ app.session.get('prenom') ~ ' ' ~ app.session.get('nom') }}</a>
 						</li>
 						<li class="nav-item my-auto pr-1 ">
-							<a class="nav-link btn btn-danger border border-dark" href="{{ path('deconnexion_user') }}">Déconnexion</a>
+							<a class="nav-link btn-link-red btn btn-outline-danger" href="{{ path('deconnexion_user') }}"><i class="fas fa-power-off"></i></a>
 						</li>
 
 					{% else %}
 
 						<li class="nav-item my-auto pr-1 ">
-							<a class="nav-link btn btn-secondary border border-dark" href="{{ path('inscription_user') }}">Inscription</a>
+							<a class="nav-link btn-outline-secondary btn btn-link-grey" href="{{ path('inscription_user') }}">Inscription</a>
 						</li>
 						<li class="nav-item my-auto pr-1 ">
-							<a class="nav-link btn btn-success border border-dark " href="{{ path('connexion_user') }}">Connexion</a>
+							<a class="nav-link btn-link-green btn btn-outline-success " href="{{ path('connexion_user') }}"><i class="fas fa-power-off"></i></a>
 						</li>
 
 					{% endif %}
