@@ -7,6 +7,7 @@ body{
 	padding: 0;
 	margin:0;
 	font-family: 'Poppins';
+	background-color:#6c757d3d;
 }
 
 *, *:before, *:after {
@@ -82,6 +83,7 @@ nav ul li a.active{
 }
 main{
 	box-shadow: 1px 5px 5px lightgrey;
+	background-color:#ffffff33;
 }
 .blue {/*
 	background-color: #2e7ff0;*/
@@ -127,6 +129,7 @@ main{
 	height: 500px;
 	margin: 0 auto;
 	border: 1px solid #000;
+	border-radius: 10px;
 }
 
 .cardSwip .content{
@@ -152,6 +155,7 @@ main{
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	border-radius: 10px 10px 0 0;
 	background: #000;
 }
 
