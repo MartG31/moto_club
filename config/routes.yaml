@@ -115,23 +115,25 @@ gestion_inscrits:
 
 ############################# Photos ##################
 
-portfolio:
-    path: /portfolio/
-    controller: App\Controller\PhotosController::portfolio
+index_albums:
+    path: /photos/albums
+    controller: App\Controller\PhotosController::indexAlbums
 
-view_portfolio:
-    path: /photos/portfolio/{id}
-    controller: App\Controller\PhotosController::viewPortfolio
+view_album:
+    path: /photos/albums/{id}
+    controller: App\Controller\PhotosController::viewAlbum
     requirements:
       id: '\d+'
-
-view_albums:
-    path: /photos/albums
-    controller: App\Controller\PhotosController::viewAlbums
 
 add_photo:
     path: /photos/ajouter
     controller: App\Controller\PhotosController::addPhoto
+
+del_photo:
+    path: /photos/supprimer/{id}
+    controller: App\Controller\PhotosController::delPhoto
+    requirements:
+      id: '\d+'
 
 gestion_photos:
     path: /photos/gestion/{id}
@@ -139,7 +141,12 @@ gestion_photos:
     requirements:
       id: '\d+'
 
+# portfolio:
+#     path: /portfolio/
+#     controller: App\Controller\PhotosController::portfolio
+
 ############################# Réunions ##################
+
 add_reunion:
     path: /reunions/ajouter-une-reunion
     controller: App\Controller\ReunionsController::addReunion
@@ -197,9 +204,9 @@ edit_cr:
     requirements:
       id: '\d+'
 
-index_cr:
-    path: /reunions/liste-cr
-    controller: App\Controller\ReunionsController::indexCr
+# index_cr:
+#     path: /reunions/liste-cr
+#     controller: App\Controller\ReunionsController::indexCr
 
 view_cr:
     path: /reunions/cr-details/{id}

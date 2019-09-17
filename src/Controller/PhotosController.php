@@ -26,7 +26,7 @@ class PhotosController extends MasterController
 
     // PAGES & METHODES
 
-    public function viewAlbums() {
+    public function indexAlbums() {
 
         $em = $this->getDoctrine()->getManager();
 
@@ -40,7 +40,7 @@ class PhotosController extends MasterController
             }
         }
 
-        return $this->render('photos/albums.html.twig', [
+        return $this->render('photos/index.html.twig', [
             'albums' => $albums,
             'uploadDir' => $this->uploadDir,
         ]);
@@ -94,13 +94,34 @@ class PhotosController extends MasterController
         ]);
     }
 
-    public function viewPortfolio($id) {
+    // public function delPhoto() {
+
+    //     if($this->restrictAccess('adherent')) { return $this->redirectToRoute('accueil'); }
+
+    //     return $this->redirectToRoute('');
+    // }
+
+    public function viewAlbum($id) {
 
         $em = $this->getDoctrine()->getManager();
 
         $balFound = $em->getRepository(Balades::class)->find($id);
         $photos = $em->getRepository(Photos::class)->findBy(['bal' => $balFound]);
 
+        
+        return $this->render('photos/view.html.twig', [
+             'photos' => $photos,
+             'uploadDir' => $this->uploadDir,        
+        ]);
+    }
+
+    public function gestionPhotos($id) {
+
+        if($this->restrictAccess('adherent')) { return $this->redirectToRoute('accueil'); }
+
+
+
+        $em = $this->getDoctrine()->getManager();
         
         return $this->render('photos/portfolio.html.twig', [
              'photos' => $photos,
@@ -139,17 +160,4 @@ class PhotosController extends MasterController
         return false;
     }
 
-    public function viewPortfolio($id) {
-
-        $em = $this->getDoctrine()->getManager();
-
-        $balFound = $em->getRepository(Balades::class)->find($id);
-        $photos = $em->getRepository(Photos::class)->findBy(['bal' => $balFound]);
-
-        
-        return $this->render('photos/portfolio.html.twig', [
-             'photos' => $photos,
-             'uploadDir' => $this->uploadDir,        
-        ]);
-    }
  }
