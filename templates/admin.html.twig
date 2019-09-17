@@ -47,7 +47,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link btn btn-danger border border-dark" href="{{ path('deconnexion_user') }}"><i class="fas fa-power-off"></i></a>
+                    <a title="Déconnexion" class="nav-link btn btn-danger border border-dark" href="{{ path('deconnexion_user') }}"><i class="fas fa-power-off"></i></a>
                 </li>
                 {% endif %}
 
@@ -257,16 +257,15 @@
         <!-- Custom scripts for all pages-->
         <script src="/js/sb-admin.min.js"></script>
         <!-- Demo scripts for this page-->
-        <script src="/js/demo/datatables-demo.js"></script>
-        <script src="/js/demo/chart-area-demo.js"></script>
+        <!-- // <script src="/js/demo/datatables-demo.js"></script> -->
+        <!-- // <script src="/js/demo/chart-area-demo.js"></script> -->
         
         {% block javascripts %}{% endblock %}
 
         <script>
             $(document).ready(function() {
 
-                $('.modal-delete').click(function() {
-                    alert('wtf');
+                $('a[data-target="#modalDelete"]').click(function() {
                     var href = $(this).attr('href');
                     $('#modalConfirm').attr('href', href);
                     var content = $(this).attr('data-content');
