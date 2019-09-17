@@ -65,12 +65,26 @@
 											{% endif %}
 											
 
-											<a title="Modifier la balade" class="btn btn-dark" href="{{path('edit_balade', {id: bal_data.balade.getId()})}}" role="button"><i class="fas fa-edit"></i></a>
+											<a title="Modifier la balade" class="btn btn-dark" href="{{ path('edit_balade', {id: bal_data.balade.getId()}) }}" role="button"><i class="fas fa-edit"></i></a>
 											{% if bal_data.balade.getBalActive() %}
-												<a title="Supprimer la balade" class="btn btn-danger" href="#" role="button"><i class="fas fa-trash-alt"></i></a>
+												<a 	title="Supprimer la balade" 
+													class="btn btn-danger" 
+													href="{{ path('del_balade', {id: bal_data.balade.getId()}) }}" 
+													role="button" 
+													data-toggle="modal" 
+													data-target="#modalDelete"
+													data-content="Vous êtes sur le point de supprimer la balade <strong>{{ bal_data.balade.getTitre() }}</strong> de manière irréversible. Êtes-vous sûr(e) de vouloir continuer ?">
+													<i class="fas fa-trash-alt"></i>
+												</a>
 											{% else %}
-												<a title="Refuser la proposition" class="btn btn-danger" href="#" role="button"><i class="fas fa-times"></i></a>
-
+												<a 	title="Refuser la proposition" 
+													class="btn btn-danger" 
+													href="#" 
+													role="button"
+													data-toggle="modal" 
+													data-target="#modalDelete">
+													<i class="fas fa-times"></i>
+												</a>
 											{% endif %}
 										</td>
 									</tr>

@@ -222,6 +222,9 @@ class BaladesController extends MasterController
         $em = $this->getDoctrine()->getManager();
         $balade = $em->getRepository(Balades::class)->find($id);
 
+        echo $balade->getTitre();
+        die;
+
     	return $this->render('balades/delete.html.twig', [
 
         ]);
