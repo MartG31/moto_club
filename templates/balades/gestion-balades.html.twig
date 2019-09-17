@@ -2,13 +2,9 @@
 
 {% block title %}Gestion Balades{% endblock %}
 
-{% block stylesheets %}
-	<link rel="stylesheet" href="/css/footable.bootstrap.min.css">
-{% endblock %}
-
 {% block content %}
 
-	<section class="py-2 mb-5">		
+	<section class="py-2 mb-5 container">		
 		<div class="card-deck my-4">
 			<div class="card">
 				<div class="card-header">
@@ -21,102 +17,102 @@
 					
 				</div>
 				<div class="card-body">
-					<!-- <div class="table-responsive"> -->
-					  	<!-- <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"> -->
-					  	<table class="footable" data-show-toggle="true" data-expand-first="true">
-						    <thead>
-								<tr>
-									<th data-visible="false" data-breakpoints="xs sm">#</th>
-									<div class="container">
-										<th>Titre</th>
-										<th data-breakpoints="xs sm">Dates</th>
-										<th data-breakpoints="xs sm">Proposée par</th>
-										<th data-breakpoints="xs sm all">Date d'ajout</th>
-										<th data-breakpoints="xs sm">Statut</th>
-										<th data-breakpoints="xs sm">Nombre<br>d'inscrits</th>
-										<th data-breakpoints="xs sm">Actions</th>
-									</div>
-								</tr>
-						    </thead>
-						    <tbody>
+					<div class="scrolling-table">
+						<table class="admin-table-mg">
+							<thead>
+								<th class="text-left">Balade</th>
+								<th>Statut</th>
+								<th>Participants</th>
+								<th>Actions</th>
+							</thead>
+							
+							<tbody>
 						      	{% for bal_data in bal_datas %}
-						      		<hr>
-									<tr data-expanded="true">
-										<td data-breakpoints="all xs sm">{% set i = ( i | default(0) ) + 1 %}{{i}}</td>
-										<td data-breakpoints="all xs sm"><a class="text-info" href="{{path('view_balade', {id: bal_data.balade.getId()})}}"><strong>{{ bal_data.balade.getTitre() }}</strong></a></td>
-										<td data-breakpoints="all xs sm">{{ bal_data.balade.getDateDebut()|date('d/m/Y') ~ ' - ' ~ bal_data.balade.getDateDebut()|date('d/m/Y') }}</td>
-										<td data-breakpoints="all xs sm">{{ bal_data.balade.getUser().getPrenom() ~ ' ' ~ bal_data.balade.getUser().getNom() }}</td>
-										<td data-breakpoints="all xs sm">{{ bal_data.balade.getDatetimePost()|date('d/m/Y H:i') }}</td>
-										
-										{% if bal_data.balade.getBalActive() %}
-											{% if bal_data.balade.getInscActive() %}
-												<td class='text-success font-weight-bold'>{{ 'Ouvert' }}</td>
-											{% else %}
-												<td class='text-danger font-weight-bold'>{{ 'Fermé' }}</td>
-											{% endif %}
-										{% else %}
-												<td class='text-secondary font-italic'>{{ 'En attente<br>de validation' }}</td>
-										{% endif %}
+									<tr>
+										<td>
+											<div class="title"><a class="text-info" href="{{path('view_balade', {id: bal_data.balade.getId()})}}"><strong>{{ bal_data.balade.getTitre() }}</strong></a></div>
+											<div><em>Proposée par :</em> <strong>{{ bal_data.balade.getUser().getPrenom() ~ ' ' ~ bal_data.balade.getUser().getNom() }}</strong></div>
+											<div><em>Posté le :</em> <strong>{{ bal_data.balade.getDatetimePost()|date('d/m/Y H:i') }}</strong></div>
+											<div><em>Date de début :</em> <strong>{{ bal_data.balade.getDateDebut()|date('d/m/Y') }}</strong></div>
+										</td>
 
-										</td>
-										<td{% if bal_data.baladeFull %}{{ ' class="font-weight-bold"' }}{% endif %}>
-											{{ bal_data.nbInscrits }}
-											{% if bal_data.balade.getNbMaxPers() is not null %}{{ ' / ' ~ bal_data.balade.getNbMaxPers() }}{% endif %}
-										</td>
 										<td>
 											{% if bal_data.balade.getBalActive() %}
 												{% if bal_data.balade.getInscActive() %}
-													<a title="Clôturer les inscriptions" class="btn btn-warning" href="{{path('cloturer_inscriptions', {id: bal_data.balade.getId()})}}" role="button"><i class="fas fa-lock-open"></i></i></a>
+													<div class='text-success text-center font-weight-bold'>{{ 'Ouvert' }}</div>
 												{% else %}
-													<a title='Réouvrir les inscriptions'class="btn btn-warning" href="{{path('ouvrir_inscriptions', {id: bal_data.balade.getId()})}}" role="button"><i class="fas fa-lock"></i></a>
+													<div class='text-danger text-center font-weight-bold'>{{ 'Fermé' }}</div>
 												{% endif %}
-													<a title='Gérer les inscrits'class="btn btn-info" href="{{path('gestion_inscrits', {id: bal_data.balade.getId()})}}" role="button"><i class="fas fa-users-cog"></i></a>
-													<a title='Gérer les photos' class="btn btn-primary" href="{{path('gestion_photos', {id: bal_data.balade.getId()})}}" role="button"><i class="fas fa-images"></i></a>
 											{% else %}
-													<a title="Valider la proposition" class="btn btn-success" href="{{path('valider_balade', {id: bal_data.balade.getId()})}}" role="button"><i class="fas fa-check"></i></a>
+													<div class='text-secondary text-center font-weight-bold font-italic'>{{ 'En attente<br>de validation' }}</div>
 											{% endif %}
-											
+										</td>
+										<td>
+											<div class="text-center font-weight-bold">{{ bal_data.nbInscrits }}{% if bal_data.balade.getNbMaxPers() is not null %}{{ ' / ' ~ bal_data.balade.getNbMaxPers() }}{% endif %}</div>
+										</td>
 
-											<a title="Modifier la balade" class="btn btn-dark" href="{{ path('edit_balade', {id: bal_data.balade.getId()}) }}" role="button"><i class="fas fa-edit"></i></a>
-											{% if bal_data.balade.getBalActive() %}
-												<a 	title="Supprimer la balade" 
-													class="btn btn-danger" 
-													href="{{ path('del_balade', {id: bal_data.balade.getId()}) }}" 
-													role="button" 
-													data-toggle="modal" 
-													data-target="#modalDelete"
-													data-content="Vous êtes sur le point de supprimer la balade <strong>{{ bal_data.balade.getTitre() }}</strong> de manière irréversible. Êtes-vous sûr(e) de vouloir continuer ?">
-													<i class="fas fa-trash-alt"></i>
-												</a>
-											{% else %}
-												<a 	title="Refuser la proposition" 
-													class="btn btn-danger" 
-													href="{{ path('del_balade', {id: bal_data.balade.getId()}) }}" 
-													role="button"
-													data-toggle="modal" 
-													data-target="#modalDelete"
-													data-content="Vous êtes sur le point de supprimer la balade <strong>{{ bal_data.balade.getTitre() }}</strong> proposée par <strong>{{ bal_data.balade.getUser().getPrenom() ~ ' ' ~ bal_data.balade.getUser().getNom() }}</strong>. Cette action est irréversible. Êtes-vous sûr de vouloir continuer ?">
-													<i class="fas fa-times"></i>
-												</a>
-											{% endif %}
+										<td class="d-flex justify-content-center align-items-center flex-nowrap">
+											<span>
+												<div>
+													{% if bal_data.balade.getBalActive() %}
+														{% if bal_data.balade.getInscActive() %}
+
+															<a title="Clôturer les inscriptions" class="btn btn-warning" href="{{path('cloturer_inscriptions', {id: bal_data.balade.getId()})}}" role="button"><i class="fas fa-lock-open"></i></i></a>
+														{% else %}
+
+															<a title='Réouvrir les inscriptions'class="btn btn-warning" href="{{path('ouvrir_inscriptions', {id: bal_data.balade.getId()})}}" role="button"><i class="fas fa-lock"></i></a>
+
+														{% endif %}
+													{% else %}
+
+															<a title="Valider la proposition" class="btn btn-success" href="{{path('valider_balade', {id: bal_data.balade.getId()})}}" role="button"><i class="fas fa-check"></i></a>
+
+													{% endif %}
+												
+													<a title="Modifier la balade" class="btn btn-dark" href="{{ path('edit_balade', {id: bal_data.balade.getId()}) }}" role="button"><i class="fas fa-edit"></i></a>
+
+													{% if bal_data.balade.getBalActive() %}
+														<a 	title="Supprimer la balade" 
+															class="btn btn-danger" 
+															href="{{ path('del_balade', {id: bal_data.balade.getId()}) }}" 
+															role="button" 
+															data-toggle="modal" 
+															data-target="#modalDelete"
+															data-content="Vous êtes sur le point de supprimer la balade <strong>{{ bal_data.balade.getTitre() }}</strong> de manière irréversible. Êtes-vous sûr(e) de vouloir continuer ?">
+															<i class="fas fa-trash-alt"></i>
+														</a>
+													{% else %}
+														<a 	title="Refuser la proposition" 
+															class="btn btn-danger" 
+															href="{{ path('del_balade', {id: bal_data.balade.getId()}) }}" 
+															role="button"
+															data-toggle="modal" 
+															data-target="#modalDelete"
+															data-content="Vous êtes sur le point de supprimer la balade <strong>{{ bal_data.balade.getTitre() }}</strong> proposée par <strong>{{ bal_data.balade.getUser().getPrenom() ~ ' ' ~ bal_data.balade.getUser().getNom() }}</strong>. Cette action est irréversible. Êtes-vous sûr de vouloir continuer ?">
+															<i class="fas fa-times"></i>
+														</a>
+													{% endif %}
+												</div>
+
+												{% if bal_data.balade.getBalActive() %}
+
+													<div>
+														<a title='Gérer les inscrits'class="btn btn-info" href="{{path('gestion_inscrits', {id: bal_data.balade.getId()})}}" role="button"><i class="fas fa-users-cog"></i></a>
+														<a title='Gérer les photos' class="btn btn-primary" href="{{path('gestion_photos', {id: bal_data.balade.getId()})}}" role="button"><i class="fas fa-images"></i></a>
+													</div>
+
+												{% endif %}
+											</span>
 										</td>
 									</tr>
 								{% endfor %}
-						    </tbody>
-					  	</table>
-					<!-- </div> -->
+							</tbody>
+						</table>
+					</div>
+			      	
 				</div>
 			</div>
 		</div>
 	</section>
 
-{% endblock %}
-
-{% block javascripts %}
-	<script src="/js/footable.min.js"></script>
-	<script>
-		$(function () {
-		    $('.footable').footable();
-		});
-	</script>
 {% endblock %}

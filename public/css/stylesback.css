@@ -1,3 +1,43 @@
 .bg-section-back {
 	border-radius: 5px;
 }
+
+.small-title {
+
+}
+
+
+/* MG */
+
+.scrolling-table {
+	overflow-x: auto;
+}
+
+.admin-table-mg {
+	width: 100%;
+	min-width: 800px;
+}
+
+.admin-table-mg thead th {
+	text-align: center;
+}
+
+.admin-table-mg tbody tr {
+	border-top: 1px solid #ccc;
+	margin-top: 1em;
+	padding-top: 1em;
+}
+
+.admin-table-mg a.btn {
+	display: inline-block;
+	width: 3em;
+	margin: .2em 0;
+}
+
+.admin-table-mg .title {
+	font-size: 120%;
+}
+
+
+
+/*@media (min-width :) and (max-width: )*/

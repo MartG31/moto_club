@@ -43,6 +43,16 @@ class Photos
     private $datetimePost;
 
     /**
+     * @var \Utilisateurs
+     *
+     * @ORM\ManyToOne(targetEntity="Utilisateurs")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * })
+     */
+    private $user;
+
+    /**
      * @var \Balades
      *
      * @ORM\ManyToOne(targetEntity="Balades")
@@ -89,6 +99,18 @@ class Photos
     public function setDatetimePost(\DateTimeInterface $datetimePost): self
     {
         $this->datetimePost = $datetimePost;
+
+        return $this;
+    }
+
+    public function getUser(): ?Utilisateurs
+    {
+        return $this->user;
+    }
+
+    public function setUser(?Utilisateurs $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
