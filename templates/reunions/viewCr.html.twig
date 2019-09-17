@@ -3,48 +3,5 @@
 {% block title %}Détails d'un compte-rendu{% endblock %}
 
 {% block content %}
-    
-    <section class="py-2 mb-5">
-		<div class="card mb-3">
-		    <h2>Compte-rendu complet  </h2>
-		  	<div class="card-header">
-		    	<i class="fas fa-table"></i>{{ crTrouve.getTitre() }}
-		    </div>
-		  	<div class="card-body">
-			    <div class="table-responsive">
-			      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-			        <thead>
-			          <tr>
-			            <th>Intitulé du CR</th>
-			            <th>Compte-rendu</th>
-			            <th>Publication <em>et modification</em> </th>
-			            <th>Redigé par </th>
-			            <th></th>
-			          </tr>
-			        </thead>
-			        <tbody>
-			          <tr>
-			            <td>{{ crTrouve.getTitre() }} </td>
-			            <td>{{ crTrouve.getContenu() }} </td>
-			            <td>Publié le {{ crTrouve.getDatetimePost()|date("d/m/Y") }} à {{ crTrouve.getDatetimePost()|date("H:i") }} 
-			            {% if crTrouve.getDatetimeModif() is defined %}
-			       		 	,<em> modifié le {{ crTrouve.getDatetimeModif()|date("d/m/Y") }} à {{ crTrouve.getDatetimeModif()|date("H:i") }}</em></td>
-			       		{% else %}
-			       		 	</td>
-			       		{% endif %}
-			            <td>{{ crTrouve.getUser().getPrenom() ?? '' }} </td>
-			            <td>
-			            	<a class="btn btn-primary btn-block" href="{{ path('edit_cr', {id : crTrouve.getId()}) }}" role="button">Modifier</a>
-			            	<a class="btn btn-secondary btn-block" href="{{ path('index_cr') }}" role="button">Liste des compte-rendus</a>
-			            	<a class="btn btn-danger btn-block" href="{{ path('del_cr', {id : crTrouve.getId()}) }}" role="button">Supprimer</a>
-			            </td>
-			          </tr>
-			        </tbody>
-
-			      </table>
-			    </div>
-			</div>
-			<div class="card-footer small text-muted">Reunion postée le  {{crTrouve.getDatetimePost()|date("d/m/Y")}}</div>
-		</div>
-	</section>
+  <div class="alert alert-danger">Vous allez être redirigé·e vers la liste des réunions</div>
 {% endblock %}
