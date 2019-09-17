@@ -17,7 +17,7 @@
 				  			<div class="card-title py-2">
 				  				<a class="btn btn-danger float-right mx-1" href="{{ path('del_reunion', {id : reuSansCr.getId()}) }}" role="button">Supprimer</a>
 				  				<a class="btn btn-success float-right mx-1" href="{{ path('add_cr', {id : reuSansCr.getId()}) }}" role="button">Ajouter le CR</a>	
-				  	            <a class="btn btn-primary float-right px-1" href="{{ path('view_reunion', {id : reuSansCr.getId()}) }}" role="button">Visualiser (sur le site)</a>
+				  	            <a class="btn btn-primary float-right px-1" href="{{ path('view_back_reunion', {id : reuSansCr.getId()}) }}" role="button">Afficher</a>
 				  				<b>{{ reuSansCr.getTitre() }}</b>, le {{ reuSansCr.getDatetimeReu()|date("d/m/Y") }} (<em>{{ reuSansCr.getTypeReu() }}</em>)
 				  			</div>		     
 				  			<div class="card-footer small text-muted mb-2">
@@ -46,7 +46,7 @@
 						<div class="card-title py-2">
 							<a class="btn btn-danger float-right mx-1" href="{{ path('del_reunion', {id : reuNonPassee.getId()}) }}" role="button">Supprimer</a>
 							<a class="btn btn-success float-right mx-1" href="{{ path('edit_reunion', {id : reuNonPassee.getId()}) }}" role="button">Modifier</a>
-				          	<a class="btn btn-primary float-right mx-1" href="{{ path('view_reunion', {id : reuNonPassee.getId()}) }}" role="button">Visualiser (sur le site)</a>
+				          	<a class="btn btn-primary float-right mx-1" href="{{ path('view_back_reunion', {id : reuNonPassee.getId()}) }}" role="button">Afficher</a>
 							<b>{{ reuNonPassee.getTitre() }}</b>, le {{ reuNonPassee.getDatetimeReu()|date("d/m/Y") }} (<em>{{ reuNonPassee.getTypeReu() }}</em>) 
 
 			  			</div>
@@ -65,7 +65,7 @@
 			  			<div class="card-title py-2">
 			  				<a class="btn btn-danger float-right mx-1" href="{{ path('del_reunion', {id : reunionPassee.getId()}) }}" role="button">Supprimer</a>
 			  				{#<a class="btn btn-success float-right mx-1" href="{{ path('edit_cr', {id : crTrouve.getId()}) }}" role="button">Modifier le CR</a>#}
-			  	            <a class="btn btn-primary float-right mx-1" href="{{ path('view_reunion', {id : reunionPassee.getId()}) }}" role="button">Visualiser (sur le site)</a>
+			  	            <a class="btn btn-primary float-right mx-1" href="{{ path('view_back_reunion', {id : reunionPassee.getId()}) }}" role="button">Afficher</a>
 			  				<b>{{ reunionPassee.getTitre() }}</b>, le {{ reunionPassee.getDatetimeReu()|date("d/m/Y") }} (<em>{{ reunionPassee.getTypeReu() }}</em>)
 			  			</div>
 			  			<div class="card-footer small text-muted mb-2">

@@ -3,40 +3,6 @@
 {% block title %}Compte-rendus{% endblock %}
 
 {% block content %}
-    <section class="py-2 mb-5">
-		<div class="card mb-3">
-		    <h2>Accueil compte-rendu </h2>
-		  	<div class="card-header">
-		    	<i class="fas fa-table"></i>Liste des compte-rendus
-		    </div>
-		  	<div class="card-body">
-			    <div class="table-responsive">
-			      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-			        <thead>
-			          <tr>
-			            <th>Réunion</th>
-			            <th>CR</th>
-			            <th></th>
-			          </tr>
-			        </thead>
-			        <tbody>
-			          {% for crTrouve in crTrouves %}
-			          <tr>
-			            <td>{{ crTrouve.getReu().getTitre() }}, ordre du jour : {{ crTrouve.getReu().getContenu() }}  </td>
-			            <td>{{ crTrouve.getTitre() }} </td>
-			            <td>
-			            	<a class="btn btn-primary" href="{{ path('view_cr', {id : crTrouve.getId()}) }}" role="button">Afficher</a>
-			           		<a class="btn btn-secondary" href="{{ path('edit_cr', {id : crTrouve.getId()}) }}" role="button">Modifier</a>
-			            	<a class="btn btn-danger" href="{{ path('del_cr', {id : crTrouve.getId()}) }}" role="button">Supprimer</a>
-			            </td>
-			          </tr>
-			          {%  endfor %} 
-			        </tbody>
-
-			      </table>
-			    </div>
-			</div>
-			<div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-		</div>
-	</section>
+    
+	<div class="alert alert-danger">Vous allez être redirigé·e vers la liste des réunions</div>
 {% endblock %}
