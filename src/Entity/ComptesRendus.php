@@ -54,7 +54,7 @@ class ComptesRendus
      *
      * @ORM\ManyToOne(targetEntity="Reunions")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="reu_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="reu_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     private $reu;
