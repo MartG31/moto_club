@@ -217,17 +217,14 @@ class BaladesController extends MasterController
 
     public function delBalade($id) {
 
-    	if($this->restrictAccess('adherent')) { return $this->redirectToRoute('accueil'); }
+    	if($this->restrictAccess('bureau')) { return $this->redirectToRoute('accueil'); }
 
         $em = $this->getDoctrine()->getManager();
         $balade = $em->getRepository(Balades::class)->find($id);
+        $em->remove($balade);
+        $em->flush();
 
-        echo $balade->getTitre();
-        die;
-
-    	return $this->render('balades/delete.html.twig', [
-
-        ]);
+        return $this->redirectToRoute('gestion_balades');
     }
 
     public function viewBalade($id) {
@@ -295,10 +292,9 @@ class BaladesController extends MasterController
         }
 
         return $this->redirectToRoute('view_balade', [
-            'id' => $balade->getId()
+            'id' => $balade->getId(),
         ]);
     }
-
 
     public function gestionBalades() {
 
@@ -436,6 +432,5 @@ class BaladesController extends MasterController
             return true;
         }
     }
-
 
 }

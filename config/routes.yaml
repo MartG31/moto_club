@@ -134,6 +134,12 @@ add_photo:
     controller: App\Controller\PhotosController::addPhoto
 
 
+gestion_photos:
+    path: /photos/gestion/{id}
+    controller: App\Controller\BaladesController::gestionPhotos
+    requirements:
+      id: '\d+'
+
 ############################# Réunions ##################
 add_reunion:
     path: /reunions/ajouter-une-reunion
