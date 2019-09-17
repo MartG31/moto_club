@@ -133,10 +133,9 @@ add_photo:
     path: /photos/ajouter
     controller: App\Controller\PhotosController::addPhoto
 
-
 gestion_photos:
     path: /photos/gestion/{id}
-    controller: App\Controller\BaladesController::gestionPhotos
+    controller: App\Controller\PhotosController::gestionPhotos
     requirements:
       id: '\d+'
 

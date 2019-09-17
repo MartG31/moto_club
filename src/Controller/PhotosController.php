@@ -94,7 +94,21 @@ class PhotosController extends MasterController
         ]);
     }
 
+    public function viewPortfolio($id) {
 
+        $em = $this->getDoctrine()->getManager();
+
+        $balFound = $em->getRepository(Balades::class)->find($id);
+        $photos = $em->getRepository(Photos::class)->findBy(['bal' => $balFound]);
+
+        
+        return $this->render('photos/portfolio.html.twig', [
+             'photos' => $photos,
+             'uploadDir' => $this->uploadDir,        
+        ]);
+    }
+
+    // PRIVATE FUNCTIONS
 
     private function checkUploadedPhoto(&$img) {
 
