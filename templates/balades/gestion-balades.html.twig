@@ -26,24 +26,24 @@
 					  	<table class="footable" data-show-toggle="true" data-expand-first="true">
 						    <thead>
 								<tr>
-									<th data-visible="false">#</th>
-									<th>Titre</th>
-									<th data-breakpoints="sm">Dates</th>
-									<th>Proposée par</th>
-									<th data-breakpoints="all">Date d'ajout</th>
-									<th>Statut</th>
-									<th>Nombre<br>d'inscrits</th>
-									<th>Actions</th>
+									<th data-visible="false" data-breakpoints="xs sm md">#</th>
+									<th data-breakpoints="xs sm md">Titre</th>
+									<th data-breakpoints="xs sm md">Dates</th>
+									<th data-breakpoints="xs sm md">Proposée par</th>
+									<th data-breakpoints="xs sm md">Date d'ajout</th>
+									<th data-breakpoints="xs sm md">Statut</th>
+									<th data-breakpoints="xs sm md">Nombre<br>d'inscrits</th>
+									<th data-breakpoints="xs sm md">Actions</th>
 								</tr>
 						    </thead>
 						    <tbody>
 						      	{% for bal_data in bal_datas %}
 									<tr>
-										<td>{% set i = ( i | default(0) ) + 1 %}{{i}}</td>
-										<td><a class="text-info" href="{{path('view_balade', {id: bal_data.balade.getId()})}}"><strong>{{ bal_data.balade.getTitre() }}</strong></a></td>
-										<td>{{ bal_data.balade.getDateDebut()|date('d/m/Y') ~ ' - ' ~ bal_data.balade.getDateDebut()|date('d/m/Y') }}</td>
-										<td>{{ bal_data.balade.getUser().getPrenom() ~ ' ' ~ bal_data.balade.getUser().getNom() }}</td>
-										<td>{{ bal_data.balade.getDatetimePost()|date('d/m/Y H:i') }}</td>
+										<td data-breakpoints="xs sm md">{% set i = ( i | default(0) ) + 1 %}{{i}}</td>
+										<td data-breakpoints="xs sm md"><a class="text-info" href="{{path('view_balade', {id: bal_data.balade.getId()})}}"><strong>{{ bal_data.balade.getTitre() }}</strong></a></td>
+										<td data-breakpoints="xs sm md">{{ bal_data.balade.getDateDebut()|date('d/m/Y') ~ ' - ' ~ bal_data.balade.getDateDebut()|date('d/m/Y') }}</td>
+										<td data-breakpoints="xs sm md">{{ bal_data.balade.getUser().getPrenom() ~ ' ' ~ bal_data.balade.getUser().getNom() }}</td>
+										<td data-breakpoints="xs sm md">{{ bal_data.balade.getDatetimePost()|date('d/m/Y H:i') }}</td>
 										
 										{% if bal_data.balade.getBalActive() %}
 											{% if bal_data.balade.getInscActive() %}
