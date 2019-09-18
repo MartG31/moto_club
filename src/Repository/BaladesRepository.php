@@ -25,11 +25,12 @@ class BaladesRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('r')
                 ->andWhere('r.dateDebut > :datecourant')
+                ->andWhere('r.bal_active = 1')
                 ->setParameter('datecourant', new \Datetime())
-                ->orderBy('r.dateDebut', 'DESC')
+                ->orderBy('r.dateDebut', 'ASC')
                 ->setMaxResults(1)
                 ->getQuery()
-                ->getResult();
+                ->getOneOrNullResult();
 
     }
 	/**
@@ -39,11 +40,12 @@ class BaladesRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('r')
                 ->andWhere('r.dateDebut < :datecourant')
+                ->andWhere('r.bal_active = 1')
                 ->setParameter('datecourant', new \Datetime())
                 ->orderBy('r.dateDebut', 'DESC')
                 ->setMaxResults(1)
                 ->getQuery()
-                ->getSingleResult();
+                ->getOneOrNullResult();
 
     }
 }
