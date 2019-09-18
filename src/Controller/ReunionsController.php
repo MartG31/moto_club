@@ -209,7 +209,9 @@ class ReunionsController extends MasterController
                     $subject = 'Amicale BMW Moto 38 - Nouvelle réunion Bureau : '.date("d/m/Y", strtotime($safe['date_reu'])).' - '.$safe['titre'];
                     $content = '<h2>Nouvelle réunion ('.$safe['type'].') le '.date("d/m/Y", strtotime($safe['date_reu'])).' : '.$safe['titre'].'</h2>
                                 <p>Bonjour, nous vous informons qu\'une réunion Bureau a été ajoutée sur le site de l\'Amicale BMW Moto 38.<br>
-                                Cette réunion ('.$safe['type'].') a pour sujet <strong>"'.$safe['titre'].'"</strong> et se déroulera le <strong>'.date("d/m/Y", strtotime($safe['date_reu'])).'</strong> à <strong>'.$safe['lieu'].'</strong><br>
+                                Cette réunion ('.$safe['type'].') a pour sujet <strong>"'.$safe['titre'].'"</strong><br>
+                                <strong>Date :</strong> '.date("d/m/Y", strtotime($safe['date_reu'])).'.<br>
+                                <strong>Lieu :</strong> '.$safe['lieu'].'.<br>
                                 Vous pouvez consulter les <a href="http://127.0.0.1:8000/reunions/details/'.$reunion->getId().'">détails</a> de cette réunion.</p>';
 
                     $this->sendingMails($receivers, $subject, $content);
@@ -229,7 +231,9 @@ class ReunionsController extends MasterController
                     $subject = 'Amicale BMW Moto 38 - Nouvelle réunion : '.date("d/m/Y", strtotime($safe['date_reu'])).' - '.$safe['titre'];
                     $content = '<h2>Nouvelle réunion ('.$safe['type'].') le '.date("d/m/Y", strtotime($safe['date_reu'])).' : '.$safe['titre'].'</h2>
                                 <p>Bonjour, nous vous informons qu\'une réunion a été ajoutée sur le site de l\'Amicale BMW Moto 38.<br>
-                                Cette réunion ('.$safe['type'].') a pour sujet <strong>"'.$safe['titre'].'"</strong> et se déroulera le <strong>'.date("d/m/Y", strtotime($safe['date_reu'])).'</strong> à <strong>'.$safe['lieu'].'</strong><br>
+                                Cette réunion ('.$safe['type'].') a pour sujet <strong>"'.$safe['titre'].'"</strong><br>
+                                <strong>Date :</strong> '.date("d/m/Y", strtotime($safe['date_reu'])).'.<br>
+                                <strong>Lieu :</strong> '.$safe['lieu'].'.<br>
                                 Vous pouvez consulter les <a href="http://127.0.0.1:8000/reunions/details/'.$reunion->getId().'">détails</a> de cette réunion.</p>';
 
                     $this->sendingMails($receivers, $subject, $content);
@@ -416,7 +420,7 @@ class ReunionsController extends MasterController
         //suppression de l'article trouvé
         $entityManager->remove($reuFound);
         $entityManager->flush();
-        header('Refresh: 5; /backoffice/reunions');
+        header('Refresh: 3; /backoffice/reunions');
 
         return $this->render('reunions/delConf.html.twig', [
             'reunionTrouvee' => $reuFound,
@@ -427,7 +431,7 @@ class ReunionsController extends MasterController
 
     public function indexCr() {
 
-        header('Refresh: 5; /reunions');
+        header('Refresh: 3; /reunions');
         // Récupération de la liste des réunions
             $entityManager = $this->getDoctrine()->getManager();
             // Permet de chercher les réunions via le repository
@@ -446,7 +450,7 @@ class ReunionsController extends MasterController
     }
 
     public function viewCr($id) {
-            header('Refresh: 5; /reunions');
+            header('Refresh: 3; /reunions');
 
         if($this->restrictAccess('adherent')) { return $this->redirectToRoute('accueil'); }
         
