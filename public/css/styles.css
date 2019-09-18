@@ -93,6 +93,44 @@ main{
 	background: linear-gradient(transparent, #2e7ff0, transparent);
 	padding: 6em 1em;
 }
+.subscribe{
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 200px;
+	height: 60px;
+	line-height: 60px;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 24px;
+	color: #009ada;
+	text-decoration: none;
+}
+.subscribe:hover{
+	text-decoration: none;
+}
+.subscribe svg,
+.subscribe svg rect{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	fill: transparent;
+}
+.subscribe svg rect{
+	stroke: #32547d;
+	stroke-width: 4;
+	transition: 2s;
+	stroke-dasharray: 60 200;
+	stroke-dashoffset: 320;
+}
+.subscribe:hover svg rect{
+	stroke: #2eca94;
+	stroke-dasharray: 200 60;
+	stroke-dashoffset: 320;
+	stroke-dashoffset: 0;
+}
 .parallax {
 	background: url(../images/img2.jpg);
 	background-attachment: fixed;
