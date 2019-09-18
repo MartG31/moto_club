@@ -33,7 +33,7 @@
           </div>
           <div class="form-group">
               <label for="contenu">Ordre du jour</label>
-              <textarea id="contenu" name="contenu" class="form-control" required="required">{{ reunionTrouvee.getContenu() }}</textarea>
+              <textarea id="contenu" name="contenu" class="form-control" required="required">{{ reunionTrouvee.getContenu()|nl2br }}</textarea>
           </div>
           <div class="form-group">
             <div class="form-row">

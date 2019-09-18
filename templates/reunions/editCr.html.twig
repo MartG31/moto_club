@@ -32,7 +32,7 @@
           </div>
           <div class="form-group">
             <label for="contenu">Contenu</label>
-            <textarea id="contenu" name="contenu" class="form-control" required="required" >{{ crTrouve.getContenu() }}</textarea>
+            <textarea id="contenu" name="contenu" class="form-control" required="required" >{{ crTrouve.getContenu()|nl2br }}</textarea>
           </div>
             <div class="card-body d-flex justify-content-between">
               <input type="submit" value="Modifier" class="btn btn-success">
