@@ -7,34 +7,31 @@
  {% endblock %}
 
 {% block content %}
-<section class="py-2 mb-5">
-    <h2 class="pb-5 pt-5">Albums</h2>
-    <div id="content">
-        <div class="row">
-          {% for fPh in albums %}
-            <div class="col-md-4">            
-                <div class="titlealbums">
-                    <b>{{ fPh.getBal().getTitre() }}</b>
-                </div>            
-               <figure>
-                    <!-- A modifier le lien pour aller directement voir les photos de l'album séléctionné uniquement -->
-                    <a href ="{{ path('view_album',{id: fPh.getBal().getId()}) }}"> 
-                        <figcaption>
-                            <img class="img-fluid img-album" src="{{ '/' ~ uploadDir ~ fPh.getFileName() }}">
-                        </figcaption>
-                    </a>
-                </figure>            
-                <div>{{ fPh.getLegende() }}</div>            
+
+    <section class="py-2 mb-5">
+        <h2 class="pb-5 pt-5">Albums</h2>
+        <div id="content">
+            <div class="row">
+                {% for fPh in albums %}
+                    <div class="col-12 col-lg-4">  
+                        <a href ="{{ path('view_album',{id: fPh.getBal().getId()}) }}">
+                            <figure class="album-fig">
+                                <figcaption class="album-title"><b>{{ fPh.getBal().getTitre() }}</b></figcaption>
+                                <img class="img-fluid" src="{{ '/' ~ uploadDir ~ fPh.getFileName() }}">
+                            </figure>            
+                         </a>
+                        <!-- <div>{{ fPh.getLegende() }}</div> -->
+                    </div>
+                {% endfor %}
             </div>
-          {% endfor %}
         </div>
-    </div>
-</section>  
+    </section>  
 
 {% endblock %}
+
 {% block javascripts %}
 	<!-- Script bootstrap
-    	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>-->
+    	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>-->
     	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>    
     <!-- Script jquery -->
     	<script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
