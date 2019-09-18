@@ -18,6 +18,7 @@
 			{% if 'adherent' in app.session.get('ranks') %}
 				<a title="Gérer les photos" class="btn btn-secondary" href="{{ path('gestion_photos', {id: balade.getId()}) }}" role="button"><i class="fas fa-images"></i></a>
 			{% endif %}	
+			<a title="Afficher la balade" class="btn btn-primary" href="{{ path('view_balade', {id: balade.getId()}) }}" role="button"><i class="fas fa-road"></i></a>
 		</span>
 	</div>
 	<div id="content">

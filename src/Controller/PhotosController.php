@@ -30,7 +30,7 @@ class PhotosController extends MasterController
 
         $em = $this->getDoctrine()->getManager();
 
-        $balades = $em->getRepository(Balades::class)->findAll();
+        $balades = $em->getRepository(Balades::class)->findBy(['bal_active' => true],['dateDebut' => 'DESC']);
         $albums = [];
 
         foreach ($balades as $balade) {

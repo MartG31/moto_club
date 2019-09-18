@@ -28,11 +28,7 @@ class BaladesController extends MasterController
     	// Affichage des dernières balades
 
         $em = $this->getDoctrine()->getManager();
-        $balades = $em->getRepository(Balades::class)->findBy([
-            'bal_active' => true,
-        ],[
-            'dateDebut' => 'DESC',
-        ]);
+        $balades = $em->getRepository(Balades::class)->findBy(['bal_active' => true],['dateDebut' => 'DESC']);
 
         $bal_datas = [];
         foreach ($balades as $balade) {
@@ -335,7 +331,7 @@ class BaladesController extends MasterController
         if($this->restrictAccess('bureau')) { return $this->redirectToRoute('accueil'); }
 
         $em = $this->getDoctrine()->getManager();
-        $balades = $em->getRepository(Balades::class)->findBy(array(), array('dateDebut' => 'DESC'));
+        $balades = $em->getRepository(Balades::class)->findBy([], ['dateDebut' => 'DESC']);
 
 
         $bal_datas = [];
