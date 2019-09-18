@@ -98,7 +98,13 @@
 
 													<div>
 														<a title='Gérer les inscrits'class="btn btn-info" href="{{path('gestion_inscrits', {id: bal_data.balade.getId()})}}" role="button"><i class="fas fa-users-cog"></i></a>
-														<a title='Gérer les photos' class="btn btn-primary" href="{{path('gestion_photos', {id: bal_data.balade.getId()})}}" role="button"><i class="fas fa-images"></i></a>
+
+														{% if bal_data.nb_photos > 0 %}
+															<a title='Gérer les photos' class="btn btn-primary" href="{{path('gestion_photos', {id: bal_data.balade.getId()})}}" role="button"><i class="fas fa-images"></i></a>
+														{% else %}
+															<a class="btn btn-primary disabled" href="{{path('gestion_photos', {id: bal_data.balade.getId()})}}" role="button" disabled><i class="fas fa-images"></i></a>
+														{% endif %}
+
 													</div>
 
 												{% endif %}

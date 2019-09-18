@@ -92,12 +92,19 @@ class PhotosController extends MasterController
         ]);
     }
 
-    // public function delPhoto() {
+    public function delPhoto($id) {
 
-    //     if($this->restrictAccess('adherent')) { return $this->redirectToRoute('accueil'); }
+        if($this->restrictAccess('adherent')) { return $this->redirectToRoute('accueil'); }
 
-    //     return $this->redirectToRoute('');
-    // }
+        $em = $this->getDoctrine()->getManager();
+        $ph = $em->getRepository(Photos::class)->find($id);
+        $em->remove($ph);
+        $em->flush();
+
+        return $this->redirectToRoute('gestion_photos', [
+            'id' => $ph->getBal()->getId(),
+        ]);
+    }
 
     public function viewAlbum($id) {
 
@@ -118,14 +125,16 @@ class PhotosController extends MasterController
 
         if($this->restrictAccess('adherent')) { return $this->redirectToRoute('accueil'); }
 
+        $em = $this->getDoctrine()->getManager();
+
         $balade = $em->getRepository(Balades::class)->find($id);
         $photos = $em->getRepository(Photos::class)->findBy(['bal' => $balade]);
-
-
-
-        $em = $this->getDoctrine()->getManager();
         
-        return $this->render('photos/gestion-photos.html.twig', [   
+        
+        return $this->render('photos/gestion-photos.html.twig', [
+            'balade' => $balade,
+            'photos' => $photos,
+            'uploadDir' => $this->uploadDir,  
         ]);
     }
 

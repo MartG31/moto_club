@@ -4,29 +4,67 @@
 
 {% block content %}
 
-	<section class="py-2 mb-5">
+	<section class="py-2 mb-5 container">
+		<div class="d-flex justify-content-between">
+			<span>
+				<a href="{{ path('gestion_balades') }}" class="btn btn-secondary" role="button"><i class="fas fa-angle-left"></i> Retour</a>
+			</span>
+			<span>
+			</span>
+		</div>	
 		<div class="card-deck my-4">
 			<div class="card">
 				<div class="card-header">
-					<div class="card-title">
-						<strong>Liste des inscrits</strong>
+					<div class="d-flex justify-content-between align-items-center">
+						<span>Liste des photo - {{ balade.getTitre() }}</span>
+						<span>
+						</span>
 					</div>
-					<div class="card-body">
-						<div>Infos sur la balade</div>
-
-						<!-- <div class="table-responsive"> -->
-						  	<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-							    <thead>
+					
+				</div>
+				<div class="card-body">
+					<div class="scrolling-table">
+						<table class="admin-table-mg">
+							<thead>
+								<th>#</th>
+								<th class="text-left">Photo</th>
+								<th>Actions</th>
+							</thead>
+							
+							<tbody>
+						      	{% for photo in photos %}
 									<tr>
-
+										<td class="text-center">
+										    {% set i = ( i | default(0) ) + 1 %}{{i}}
+										</td>
+										<td>
+											<figure class="admin-fig-photo">
+											    <a href="{{ '/' ~ uploadDir ~ photo.getFileName() }}" data-fancybox="images" data-caption="{{ photo.getLegende() }}">
+											        <img class="img-fluid" src="{{ '/' ~ uploadDir ~ photo.getFileName() }}">
+											    </a>   
+											</figure>
+										</td>
+										<td class="d-flex justify-content-center align-items-center flex-nowrap">
+											<span>
+												<div>
+													<a 	title="Supprimer la photo" 
+														class="btn btn-danger" 
+														href="{{ path('del_photo', {id: photo.getId()}) }}" 
+														role="button" 
+														data-toggle="modal" 
+														data-target="#modalDelete"
+														data-content="Vous êtes de supprimer une photo liée à la balade <strong>{{ balade.getTitre() }}</strong> de manière irréversible. Êtes-vous sûr(e) de vouloir continuer ?">
+														<i class="fas fa-times"></i>
+													</a>
+												</div>
+											</span>
+										</td>
 									</tr>
-							    </thead>
-							    <tbody>
-
-							    </tbody>
-						  	</table>
-						<!-- </div> -->
+								{% endfor %}
+							</tbody>
+						</table>
 					</div>
+			      	
 				</div>
 			</div>
 		</div>

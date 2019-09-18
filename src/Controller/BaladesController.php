@@ -121,6 +121,24 @@ class BaladesController extends MasterController
                 if(in_array('bureau', $this->session->get('ranks'))) {
                     $balade->setBalActive(true);
                     $balade->setInscActive(true);
+
+                    // Envoi du mail
+                    $users = $em->getRepository(Utilisateurs::class)->findAll();
+                    $adherentsMin = [];
+                    foreach ($users as $user) {
+                        if($user->getAcces() != 'membre') {
+                            $adherentsMin[] = $user->getEmail();
+                        }
+                    }
+                    $receivers = $adherentsMin;
+                    $subject = 'Amicale BMW Moto 38 - Nouvelle balade : '.$balade->getTitre().' le '.$balade->getDateDebut()->format('d/m/Y');
+                    $content = '<h2>Nouvelle balade, "'.$balade->getTitre().'" :</h2>
+                                <p>Bonjour, nous vous informons qu\'une balade a été ajoutée sur le site de l\'Amicale BMW Moto 38.</p>
+                                <p>Cette balade se déroulera du <strong>'.$balade->getDateDebut()->format('d/m/Y').'</strong> au <strong>'
+                                .$balade->getDateFin()->format('d/m/Y').'</strong></p>
+                                <p>Vous pouvez consulter les <a href="http://127.0.0.1:8000/balades/'.$balade->getId().'">détails</a> de cette balade.';
+
+                    $this->sendingMails($receivers, $subject, $content);
                 }
                 else {
                     $balade->setBalActive(false);
@@ -319,12 +337,18 @@ class BaladesController extends MasterController
         $em = $this->getDoctrine()->getManager();
         $balades = $em->getRepository(Balades::class)->findBy(array(), array('dateDebut' => 'DESC'));
 
+
         $bal_datas = [];
         foreach ($balades as $balade) {
+
+            $nb_photos = $em->getRepository(Photos::class)->countPhotosByBalade($balade);
+
+
             $bal_datas[] = array(
                 'balade' => $balade,
                 'nbInscrits' => $this->nbInscrits($balade),
                 'baladeFull' => $this->baladeFull($balade) ?? false,
+                'nb_photos' => array_shift($nb_photos),
             );
         }
 

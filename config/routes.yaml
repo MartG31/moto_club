@@ -147,10 +147,6 @@ gestion_photos:
     requirements:
       id: '\d+'
 
-# portfolio:
-#     path: /portfolio/
-#     controller: App\Controller\PhotosController::portfolio
-
 ############################# Réunions ##################
 
 add_reunion:
