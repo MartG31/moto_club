@@ -20,70 +20,70 @@
     </head>
 
     <body>
-		<header>
-			<!-- <a class="d-flex align-items-center justify-content-center" href="{{ path('accueil') }}"><img src="/images/logo.png" class="img-fluid h-auto img-logo" style="width: 3em;"></a> -->
-				<div class="logo-div">
-					<figure class="logo">
-						<img src="/images/logo.jpg" alt="logo">
-					</figure>
+		<div id="top-content">
+			<header>
+				<!-- <a class="d-flex align-items-center justify-content-center" href="{{ path('accueil') }}"><img src="/images/logo.png" class="img-fluid h-auto img-logo" style="width: 3em;"></a> -->
+					<div class="logo-div">
+						<figure class="logo">
+							<img src="/images/logo.jpg" alt="logo">
+						</figure>
+					</div>
+					<h1 class="justify-content-center d-flex text-uppercase mx-auto name-asso">Amicale BMW Moto 38</h1>
+			</header>
+			
+			<nav class="navbar sticky-top navbar-expand-lg navbar-light py-0 ">			
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-lg-auto">
+						<li class="nav-item"><a class="nav-link nav-perso" href="{{ path('accueil') }}">Accueil</a></li>
+						<li class="nav-item"><a class="nav-link nav-perso" href="{{ path('index_balades') }}">Balades</a></li>
+						<li class="nav-item"><a class="nav-link nav-perso" href="{{ path('index_albums') }}">Albums</a></li>
+						<li class="nav-item"><a class="nav-link nav-perso" href="{{ path('index_reunions') }}">Réunions</a></li>				
+						{#{% if 'bureau' in app.session.get('ranks') %}#}
+						{#{% endif %}#}
+					</ul>
+					<ul class="navbar-nav ml-lg-auto">
+
+						{% if app.session.get('ranks') is not null %}
+
+							<li class="nav-item my-auto pr-1">
+								<a class="nav-link btn-link-grey btn btn-outline-secondary" href="{{ path('admin_accueil') }}"><i class="fas fa-user-edit"></i> {{ app.session.get('prenom') ~ ' ' ~ app.session.get('nom') }}</a>
+							</li>
+							<li class="nav-item my-auto pr-1 ">
+								<a title="Déconnexion" class="nav-link btn-link-red btn btn-outline-danger" href="{{ path('deconnexion_user') }}"><i class="fas fa-power-off"></i></a>
+							</li>
+
+						{% else %}
+
+							<li class="nav-item my-auto pr-1 ">
+								<a class="nav-link btn-outline-secondary btn btn-link-grey" href="{{ path('inscription_user') }}">Inscription</a>
+							</li>
+							<li class="nav-item my-auto pr-1 ">
+								<a title="Connexion" class="nav-link btn-link-green btn btn-outline-success " href="{{ path('connexion_user') }}"><i class="fas fa-power-off"></i></a>
+							</li>
+
+						{% endif %}
+					</ul>
 				</div>
-				<h1 class="justify-content-center d-flex text-uppercase mx-auto name-asso">Amicale BMW Moto 38</h1>
-		</header>
-		
-		<nav class="navbar sticky-top navbar-expand-lg navbar-light py-0 ">			
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+			</nav>
 
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-lg-auto">
-					<li class="nav-item"><a class="nav-link nav-perso" href="{{ path('accueil') }}">Accueil</a></li>
-					<li class="nav-item"><a class="nav-link nav-perso" href="{{ path('index_balades') }}">Balades</a></li>
-					<li class="nav-item"><a class="nav-link nav-perso" href="{{ path('index_albums') }}">Albums</a></li>
-					<li class="nav-item"><a class="nav-link nav-perso" href="{{ path('index_reunions') }}">Réunions</a></li>				
-					{#{% if 'bureau' in app.session.get('ranks') %}#}
-					{#{% endif %}#}
-				</ul>
-				<ul class="navbar-nav ml-lg-auto">
-
-					{% if app.session.get('ranks') is not null %}
-
-						<li class="nav-item my-auto pr-1">
-							<a class="nav-link btn-link-grey btn btn-outline-secondary" href="{{ path('admin_accueil') }}"><i class="fas fa-user-edit"></i> {{ app.session.get('prenom') ~ ' ' ~ app.session.get('nom') }}</a>
-						</li>
-						<li class="nav-item my-auto pr-1 ">
-							<a title="Déconnexion" class="nav-link btn-link-red btn btn-outline-danger" href="{{ path('deconnexion_user') }}"><i class="fas fa-power-off"></i></a>
-						</li>
-
-					{% else %}
-
-						<li class="nav-item my-auto pr-1 ">
-							<a class="nav-link btn-outline-secondary btn btn-link-grey" href="{{ path('inscription_user') }}">Inscription</a>
-						</li>
-						<li class="nav-item my-auto pr-1 ">
-							<a title="Connexion" class="nav-link btn-link-green btn btn-outline-success " href="{{ path('connexion_user') }}"><i class="fas fa-power-off"></i></a>
-						</li>
-
-					{% endif %}
-				</ul>
-			</div>
-		</nav>
-		<div class="space-between">
-
-			<main class="container px-0">
-				<!-- <div class="container"> -->
+			<main class="px-0">
+				<div class="container">
 					{% block content %}{% endblock %}
-				<!-- </div> -->
+				</div>
 			</main>
-	 
-			<footer class="base-footer footer px-5 h-auto"> <!-- fixed-bottom -->
-				<div class="row">			
-					<div class="col-md-4 align-middle my-auto"><a href ="#" class="colorlink footerlink">Mentions légales</a></div>
-					<div class="col-md-4 text-center align-middle copyright my-auto ">GSM3 Copyright &copy; - {{"now"|date("Y")}}</div>
-					<div class="col-md-4 align-middle text-right my-auto"><a href="https://www.flickr.com/photos/136404712@N02/albums" target="blank" class="colorlink footerlink">Site photo de l'Amicale</a></div>
-				</div>  
-			</footer>
 		</div>
+ 
+		<footer class="base-footer footer px-5 h-auto"> <!-- fixed-bottom -->
+			<div class="row">			
+				<div class="col-md-4 align-middle my-auto"><a href ="#" class="colorlink footerlink">Mentions légales</a></div>
+				<div class="col-md-4 text-center align-middle copyright my-auto ">GSM3 Copyright &copy; - {{"now"|date("Y")}}</div>
+				<div class="col-md-4 align-middle text-right my-auto"><a href="https://www.flickr.com/photos/136404712@N02/albums" target="blank" class="colorlink footerlink">Site photo de l'Amicale</a></div>
+			</div>  
+		</footer>
 
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
