@@ -83,7 +83,7 @@
             </div>
           </div>
           {% if errors is not empty %}
-              <div class="alert alert-danger">
+              <div class="alert alert-warning">
                   {{ errors|join('<br>')|raw }} 
               </div>
           {% elseif success == true %}
