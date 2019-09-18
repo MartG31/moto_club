@@ -7,7 +7,12 @@
 	<section class="py-2 mb-5 container">
 		<div class="d-flex justify-content-between">
 			<span>
+				{% if 'bureau' in app.session.get('ranks') %}
 				<a href="{{ path('gestion_balades') }}" class="btn btn-secondary" role="button"><i class="fas fa-angle-left"></i> Retour</a>
+				{% endif %}
+				<a title="Retour à l'album (site)" class="btn btn-info" href="{{ path('index_balades') }}" role="button">
+					<i class="fas fa-angle-left"></i>
+					<i class="fas fa-globe-europe"></i></a>
 			</span>
 			<span>
 			</span>
