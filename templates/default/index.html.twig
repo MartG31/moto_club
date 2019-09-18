@@ -21,11 +21,11 @@
 						</div>
 						<div class="content">
 							{% if nextbalade is not empty %}
-								<p>{{nextbalade.Titre}}</p>
-								<p>le {{nextbalade.DateDebut|date("d/m/Y")}}</p>
-								<a class="cadre" href="{{ path('view_balade', {id : nextbalade.Id}) }}">En savoir plus</a>
+								<p>Partageons ensemble la prochaine balade ({{nextbalade.Titre}}), proposée par {{nextbalade.user.prenom ~ ' ' ~ nextbalade.user.nom }}.</p>
+								<p>RDV le {{nextbalade.DateDebut|date("d/m/Y")}}</p>
+								<p>Pour plus d'informations, c'est par là ! <a class="cadre" href="{{ path('view_balade', {id : nextbalade.Id}) }}">Voir la balade</a></p>
 							{% else %}
-								<p>En attente de vos propositions</p>
+								<p>Amicaliste, partagez vos idées pour de futures balades ! </p>
 							{% endif %}
 						</div>
 					</div>
@@ -38,10 +38,10 @@
 						<div class="content">
 							{% if reunion is not empty %}
 								<p>{{reunion.Titre}}</p>
-								<p>le {{reunion.datetimeReu|date("d/m/Y")}}</p>
-								<a class="cadre" href="{{ path('view_reunion', {id : reunion.Id}) }}">En savoir plus</a>
+								<p>La prochaine réunion se tiendra le {{reunion.datetimeReu|date("d/m/Y")}} (Type de réunion : {{reunion.typereu}}), proposée par {{reunion.user.prenom}} {{reunion.user.nom}} </p>
+								<p><a class="cadre" href="{{ path('view_reunion', {id : reunion.Id}) }}">+ d'informations</a></p>
 							{% else %}
-								<p>En attente de vos propositions</p>
+								<p>Nous vous communiquerons très vite la date de la prochaine réunion ! </p>
 							{% endif %}
 						</div>
 					</div>
@@ -53,11 +53,10 @@
 						</div>
 						<div class="content">
 							{% if lastbalade is not empty %}
-								<p>{{lastbalade.Titre}}</p>
-								<p>le {{lastbalade.DateDebut|date("d/m/Y")}}</p>
-								<a class="cadre" href="{{ path('view_balade', {id : lastbalade.Id}) }}">En savoir plus</a>
+								<p>Retour sur notre dernière aventure ({{lastbalade.Titre}}) du {{lastbalade.DateDebut|date("d/m/Y")}}, amicalement proposée par {{lastbalade.user.prenom}} {{lastbalade.user.nom}}.</p>
+								<a class="cadre" href="{{ path('view_balade', {id : lastbalade.Id}) }}">Photos et plus</a>
 							{% else %}
-								<p>En attente de vos propositions</p>
+								<p>Nous vous raconterons bientôt nos aventures...</p>
 							{% endif %}
 						</div>
 					</div>
