@@ -51,6 +51,10 @@
 
 								{% if not balade.getInscActive() %}
 
+									{% if inscrit %}
+										<div class="text-success"><em>Vous êtes inscrit(e)</em></div>
+									{% endif %}
+
 									<div><em>Les inscriptions sont closes</em></div>
 
 								{% endif %}

@@ -15,12 +15,18 @@ class DefaultController extends MasterController
      */
     public function index() {
 
-        $errors = [];
+
+        // SWIPER
 
         $em = $this->getDoctrine()->getManager();
         $nextbalade = $em->getRepository(Balades::class)->findLastNotPast(array());
         $lastbalade = $em->getRepository(Balades::class)->findLast(array());
         $reunion = $em->getRepository(Reunions::class)->findLastNotPast(array());
+
+
+        // CONTACT
+
+        $errors = [];
         
         if(!empty($_POST)){
 
