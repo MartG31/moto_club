@@ -72,12 +72,12 @@
 						{% endif %}
 				   </div>
 				</div>
-				<div class="card-body">{{ balade.getContenu() }}</div>
+				<div class="card-body">{{ balade.getContenu()|nl2br }}</div>
 				<div class="card-footer">
 					<i>Posté par 
 						{{ balade.getUser().getPrenom() ~ ' ' ~ balade.getUser().getNom() }} 
 						le 
-						{{ balade.getDatetimePost()|date('d F Y') }} 
+						{{ balade.getDatetimePost()|date('d/m/Y') }} 
 						à 
 						{{ balade.getDatetimePost()|date('H:i') }}
 					</i>
