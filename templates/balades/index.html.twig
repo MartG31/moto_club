@@ -33,14 +33,7 @@
 								<div>du {{ bal_data.balade.getDateDebut()|date('d/m/Y') }} au {{ bal_data.balade.getDateFin()|date('d/m/Y') }}</div>
 							{% endif %}
 					   </div>
-						<div class="card-footer">
-							<i>Posté par 
-								{{ bal_data.balade.getUser().getPrenom() ~ ' ' ~ bal_data.balade.getUser().getNom() }} 
-								le 
-								{{ bal_data.balade.getDatetimePost()|date('d/m/Y') }} 
-								à 
-								{{ bal_data.balade.getDatetimePost()|date('H:i') }}
-							</i>
+						<div class="card-footer small text-muted mb-2">Proposé par {{ bal_data.balade.getUser().getPrenom() ~ ' ' ~ bal_data.balade.getUser().getNom() }}, le {{ bal_data.balade.getDatetimePost()|date('d/m/Y') }} à {{ bal_data.balade.getDatetimePost()|date('H:i') }}
 						</div>
 					</div>
 				</div>
