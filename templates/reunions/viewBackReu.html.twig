@@ -24,7 +24,7 @@
 			        	<p>Lieu : {{ reunionTrouvee.getLieuReu() }}</p> 
 					</div>
 		  			<div class="card-body pt-1">
-		  				<p>Ordre du jour : {{ reunionTrouvee.getContenu() }}</p>
+		  				<p>Ordre du jour : {{ reunionTrouvee.getContenu()|nl2br }}</p>
 			  			<p><em>Proposé par : {{ reunionTrouvee.getUser().getPrenom() ?? '' }}, le {{reunionTrouvee.getDatetimePost()|date("d/m/Y")}}</em></p>        
 				    </div>	
 				    {% if crTrouve is not empty %}
@@ -33,7 +33,7 @@
 					    </div>
 					    <div class="card-body">
 				    		<p><b>{{ crTrouve.getTitre() }}</b></p>
-			            	<p>{{ crTrouve.getContenu() }}</p>
+			            	<p>{{ crTrouve.getContenu()|nl2br }}</p>
 			           		<p>Publié le {{ crTrouve.getDatetimePost()|date("d/m/Y") }} à {{ crTrouve.getDatetimePost()|date("H:i") }}
 			              	{% if crTrouve.getDatetimeModif() is defined %}
 			       		 		,<em> modifié le {{ crTrouve.getDatetimeModif()|date("d/m/Y") }} à {{ crTrouve.getDatetimeModif()|date("H:i") }}</em> 

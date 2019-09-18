@@ -43,7 +43,7 @@ nav{
 }
 
 
-main .container {
+main > .container {
 	box-shadow: 1px 5px 5px lightgrey;
 	background-color:#ffffff33;
 }
