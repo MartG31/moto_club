@@ -25,8 +25,8 @@ class BackOfficeController extends MasterController
     public function viewUsers() {
         // Si pas accès < bureau : redirection
         if($this->restrictAccess('bureau')) { return $this->redirectToRoute('admin_accueil'); }
-
-    	// Récupération la liste des utilisateurs
+        
+            // Récupération la liste des utilisateurs
             $entityManager = $this->getDoctrine()->getManager();
             // Permet de chercher la liste via le repository
             $users = $entityManager->getRepository(Utilisateurs::class)->findAll();
