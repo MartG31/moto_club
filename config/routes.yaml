@@ -113,6 +113,12 @@ gestion_inscrits:
     requirements:
       id: '\d+'
 
+exclure_inscrit:
+    path: /balades/exclure/{id}
+    controller: App\Controller\BaladesController::exclureInscrit
+    requirements:
+      id: '\d+'
+
 ############################# Photos ##################
 
 index_albums:

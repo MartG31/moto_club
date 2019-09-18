@@ -32,8 +32,8 @@
 										<td>
 											<div class="title"><a class="text-info" href="{{path('view_balade', {id: bal_data.balade.getId()})}}"><strong>{{ bal_data.balade.getTitre() }}</strong></a></div>
 											<div><em>Proposée par :</em> <strong>{{ bal_data.balade.getUser().getPrenom() ~ ' ' ~ bal_data.balade.getUser().getNom() }}</strong></div>
-											<div><em>Posté le :</em> <strong>{{ bal_data.balade.getDatetimePost()|date('d/m/Y H:i') }}</strong></div>
 											<div><em>Date de début :</em> <strong>{{ bal_data.balade.getDateDebut()|date('d/m/Y') }}</strong></div>
+											<div><em>Posté le :</em> {{ bal_data.balade.getDatetimePost()|date('d/m/Y H:i') }}</div>
 										</td>
 
 										<td>

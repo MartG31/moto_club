@@ -310,6 +310,8 @@ class BaladesController extends MasterController
         ]);
     }
 
+    // GESTION BALADES
+
     public function gestionBalades() {
 
         if($this->restrictAccess('bureau')) { return $this->redirectToRoute('accueil'); }
@@ -332,22 +334,6 @@ class BaladesController extends MasterController
         ]);
     }
 
-    public function gestionInscrits($id) {
-
-        if($this->restrictAccess('bureau')) { return $this->redirectToRoute('accueil'); }
-
-        $em = $this->getDoctrine()->getManager();
-        $balade = $em->getRepository(Balades::class)->find($id);
-        $inscrits = $em->getRepository(MembresBalades::class)->findBy([
-            'bal' => $balade
-        ]);
-
-        return $this->render('balades/gestion-inscrits.html.twig', [
-            'nomsRanks' => $this->nomsRanks,
-            'balade' => $balade,
-            'inscrits' => $inscrits,
-        ]);
-    }
 
     public function validerBalade($id) {
 
@@ -416,6 +402,38 @@ class BaladesController extends MasterController
         return $this->redirectToRoute('gestion_balades');
     }
 
+    // GESTION INSCRITS
+
+    public function gestionInscrits($id) {
+
+        if($this->restrictAccess('bureau')) { return $this->redirectToRoute('accueil'); }
+
+        $em = $this->getDoctrine()->getManager();
+        $balade = $em->getRepository(Balades::class)->find($id);
+        $inscrits = $em->getRepository(MembresBalades::class)->findBy([
+            'bal' => $balade
+        ]);
+
+        return $this->render('balades/gestion-inscrits.html.twig', [
+            'nomsRanks' => $this->nomsRanks,
+            'balade' => $balade,
+            'inscrits' => $inscrits,
+        ]);
+    }
+
+    public function exclureInscrit($id) {
+
+        if($this->restrictAccess('bureau')) { return $this->redirectToRoute('accueil'); }
+
+        $em = $this->getDoctrine()->getManager();
+        $mb = $em->getRepository(MembresBalades::class)->find($id);
+        $em->remove($mb);
+        $em->flush();
+
+        return $this->redirectToRoute('gestion_inscrits', [
+            'id' => $mb->getBal()->getId(),
+        ]);
+    }
 
 
 
