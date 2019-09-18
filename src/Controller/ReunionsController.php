@@ -208,9 +208,9 @@ class ReunionsController extends MasterController
                     $receivers = $bureauMin;
                     $subject = 'Amicale BMW Moto 38 - Nouvelle réunion Bureau : '.date("d/m/Y", strtotime($safe['date_reu'])).' - '.$safe['titre'];
                     $content = '<h2>Nouvelle réunion ('.$safe['type'].') le '.date("d/m/Y", strtotime($safe['date_reu'])).' : '.$safe['titre'].'</h2>
-                                <p>Bonjour, nous vous informons qu\'une réunion Bureau a été ajoutée sur le site de l\'Amicale BMW Moto 38.</p>
-                                <p>Cette réunion ('.$safe['type'].') a pour sujet <strong>"'.$safe['titre'].'"</strong> et se déroulera le <strong>'.date("d/m/Y", strtotime($safe['date_reu'])).'</strong> à <strong>'.$safe['lieu'].'</strong></p>
-                                <p>Vous pouvez consulter les <a href="http://127.0.0.1:8000/reunions/details/'.$reunion->getId().'">détails</a> de cette réunion.';
+                                <p>Bonjour, nous vous informons qu\'une réunion Bureau a été ajoutée sur le site de l\'Amicale BMW Moto 38.<br>
+                                Cette réunion ('.$safe['type'].') a pour sujet <strong>"'.$safe['titre'].'"</strong> et se déroulera le <strong>'.date("d/m/Y", strtotime($safe['date_reu'])).'</strong> à <strong>'.$safe['lieu'].'</strong><br>
+                                Vous pouvez consulter les <a href="http://127.0.0.1:8000/reunions/details/'.$reunion->getId().'">détails</a> de cette réunion.</p>';
 
                     $this->sendingMails($receivers, $subject, $content);
                 }
@@ -228,9 +228,9 @@ class ReunionsController extends MasterController
                     $receivers = $adherentsMin;
                     $subject = 'Amicale BMW Moto 38 - Nouvelle réunion : '.date("d/m/Y", strtotime($safe['date_reu'])).' - '.$safe['titre'];
                     $content = '<h2>Nouvelle réunion ('.$safe['type'].') le '.date("d/m/Y", strtotime($safe['date_reu'])).' : '.$safe['titre'].'</h2>
-                                <p>Bonjour, nous vous informons qu\'une réunion a été ajoutée sur le site de l\'Amicale BMW Moto 38.</p>
-                                <p>Cette réunion ('.$safe['type'].') a pour sujet <strong>"'.$safe['titre'].'"</strong> et se déroulera le <strong>'.date("d/m/Y", strtotime($safe['date_reu'])).'</strong> à <strong>'.$safe['lieu'].'</strong></p>
-                                <p>Vous pouvez consulter les <a href="http://127.0.0.1:8000/reunions/details/'.$reunion->getId().'">détails</a> de cette réunion.';
+                                <p>Bonjour, nous vous informons qu\'une réunion a été ajoutée sur le site de l\'Amicale BMW Moto 38.<br>
+                                Cette réunion ('.$safe['type'].') a pour sujet <strong>"'.$safe['titre'].'"</strong> et se déroulera le <strong>'.date("d/m/Y", strtotime($safe['date_reu'])).'</strong> à <strong>'.$safe['lieu'].'</strong><br>
+                                Vous pouvez consulter les <a href="http://127.0.0.1:8000/reunions/details/'.$reunion->getId().'">détails</a> de cette réunion.</p>';
 
                     $this->sendingMails($receivers, $subject, $content);
                 }
@@ -311,8 +311,8 @@ class ReunionsController extends MasterController
                     $receivers = $bureauMin;
                     $subject = 'Amicale BMW Moto 38 - Modification d\'une réunion : '.date("d/m/Y", strtotime($safe['date_reu'])).' - '.$safe['titre'];
                     $content = '<h2>Modification sur la réunion ('.$safe['type'].') du '.date("d/m/Y", strtotime($safe['date_reu'])).' : '.$safe['titre'].'</h2>
-                            <p>Bonjour, nous vous informons qu\'une modification a été apportée sur la réunion.</p>
-                            <p>Vous pouvez consulter les <a href="http://127.0.0.1:8000/reunions/details/'.$reuFound->getId().'">détails</a> de cette réunion.';
+                            <p>Bonjour, nous vous informons qu\'une modification a été apportée sur la réunion.<br>
+                            Vous pouvez consulter les <a href="http://127.0.0.1:8000/reunions/details/'.$reuFound->getId().'">détails</a> de cette réunion.</p>';
 
                     $this->sendingMails($receivers, $subject, $content);
                 }
@@ -330,8 +330,8 @@ class ReunionsController extends MasterController
                     $receivers = $adherentsMin;
                     $subject = 'Amicale BMW Moto 38 - Modification d\'une réunion : '.date("d/m/Y", strtotime($safe['date_reu'])).' - '.$safe['titre'];
                     $content = '<h2>Modification sur la réunion ('.$safe['type'].') du '.date("d/m/Y", strtotime($safe['date_reu'])).' : '.$safe['titre'].'</h2>
-                            <p>Bonjour, nous vous informons qu\'une modification a été apportée sur la réunion.</p>
-                            <p>Vous pouvez consulter les <a href="http://127.0.0.1:8000/reunions/details/'.$reuFound->getId().'">détails</a> de cette réunion.';
+                            <p>Bonjour, nous vous informons qu\'une modification a été apportée sur la réunion.<br>
+                            Vous pouvez consulter les <a href="http://127.0.0.1:8000/reunions/details/'.$reuFound->getId().'">détails</a> de cette réunion.</p>';
 
                     $this->sendingMails($receivers, $subject, $content);
                 }

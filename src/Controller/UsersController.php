@@ -103,12 +103,12 @@ class UsersController extends MasterController {
 				$subject = 'Bienvenue !';
 				$content = '<h2>Vous venez de vous inscrire sur notre site, nous avons le plaisir de vous souhaiter la bienvenue</h2>
 							<hr>
-							<p>Voici un récapitulatif des informations que vous avez saisies :</p>
-							<p>Nom : '.$safe['lastname'].'</p>
-							<p>Prénom : '.$safe['firstname'].'</p>
-							<p>Téléphone : '.$safe['phone'].'</p>
-							<p>Date de naissance : '.date("d/m/Y", strtotime($safe['birthday'])).'</p>
-							<p>Adresse : '.$safe['address'].', '.$safe['postal_code'].' '.$safe['city'].'</p>';
+							<p>Voici un récapitulatif des informations que vous avez saisies :<br>
+							<strong>Nom :</strong> '.$safe['lastname'].'<br>
+							<strong>Prénom :</strong> '.$safe['firstname'].'<br>
+							<strong>Téléphone :</strong> '.$safe['phone'].'<br>
+							<strong>Date de naissance :</strong> '.date("d/m/Y", strtotime($safe['birthday'])).'<br>
+							<strong>Adresse :</strong> '.$safe['address'].', '.$safe['postal_code'].' '.$safe['city'].'</p>';
 
 				$this->sendingMails($receivers, $subject, $content);
     			header('Refresh: 1; /users/login');
@@ -209,9 +209,9 @@ class UsersController extends MasterController {
 				$receivers = [$safe['email']];
 				$subject = 'Récupération de Mot de passe';
 				$content = '<h2>Mot de passe perdu ?</h2>
-							<p>Bonjour, vous avez indiqué avoir perdu votre mot de passe, veuillez cliquer sur le lien suivant pour récupérer l\'accès à votre compte.</p>
-							<p><a href="http://127.0.0.1:8000/users/reinit-password?token='.$token.'">Réinitialiser mon mot de passe</a></p>
-							<p>Si vous n\'êtes pas à l\'origine de cette demande, veuillez ignorer cet email. Vous pouvez continuer à utiliser votre mot de passe actuel.</p>';
+							<p>Bonjour, vous avez indiqué avoir perdu votre mot de passe, veuillez cliquer sur le lien suivant pour récupérer l\'accès à votre compte.<br>
+							<a href="http://127.0.0.1:8000/users/reinit-password?token='.$token.'">Réinitialiser mon mot de passe</a><br>
+							Si vous n\'êtes pas à l\'origine de cette demande, veuillez ignorer cet email. Vous pouvez continuer à utiliser votre mot de passe actuel.</p>';
 
 				$this->sendingMails($receivers, $subject, $content);
 			}

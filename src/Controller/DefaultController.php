@@ -58,9 +58,8 @@ class DefaultController extends MasterController
                 $receivers = ['mathieu.webforce3@gmail.com'];
                 $subject = 'Message de '.$safe['lastname'].' '.$safe['firstname'];
                 $content = '<h2>'.$safe['lastname'].' '.$safe['firstname'].' via "contactez-nous"</h2>
-                            <p><strong>Email :</strong> '.$safe['email'].'
-                            <strong>Téléphone :</strong> '.$safe['phone'].'
-                            <hr>
+                            <p><strong>Email :</strong> '.$safe['email'].'<br>
+                            <strong>Téléphone :</strong> '.$safe['phone'].'<hr>
                             <strong>Message :</strong> '.$safe['message'].'</p>';
 
                 $this->sendingMails($receivers, $subject, $content);
