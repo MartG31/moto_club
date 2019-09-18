@@ -10,6 +10,9 @@
 				<a href="{{ path('index_balades') }}" class="btn btn-secondary" role="button"><i class="fas fa-angle-left"></i> Retour aux balades</a>
 			</span>
 			<span>
+				{% if 'adherent' in app.session.get('ranks') %}
+					<a title="Gérer les photos" class="btn btn-secondary" href="{{ path('gestion_photos', {id: balade.getId()}) }}" role="button"><i class="fas fa-images"></i></a>
+				{% endif %}
 				{% if 'bureau' in app.session.get('ranks') %}
 					<a title="Gérer les balades" class="btn btn-secondary" href="{{ path('gestion_balades') }}" role="button"><i class="fas fa-cogs"></i></a>
 				{% endif %}
