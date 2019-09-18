@@ -3,19 +3,7 @@
 {% block title %}Gestion Photos{% endblock %}
 
 {% block content %}
-
-	<form id="add-photo-form" method="post" enctype="multipart/form-data" style="width: 0; height: 0;">
-		<input id="add-photo-input" name="photo" type="file" style="visibility: hidden;">
-	</form>
-
-	<div id="dyn-errors">
-		{% if errors is not empty %}
-			<div class="alert alert-warning">{{ errors|join('<br>')|raw }}</div>
-		{% elseif success == true %}
-			<div class="alert alert-success">L'avatar a été modifié avec succès</div>
-		{% endif %}
-	</div>
-
+	
 	<section class="py-2 mb-5 container">
 		<div class="d-flex justify-content-between">
 			<span>
@@ -29,14 +17,33 @@
 				
 			</span>
 		</div>	
+
+		<div class="card my-4">
+		    <div class="card-header">Ajout de nouvelles photos à l'album <strong>{{ balade.getTitre() }}</strong></div>
+		  	<div class="card-body">
+		  		<form id="add-photo-form" method="post" enctype="multipart/form-data">
+		  			<input type="hidden" name="action" value="avatar-form">
+		  			<input type="hidden" name="MAX_FILE_SIZE" value="{{ maxFileSize }}">
+		  			<div class="profile-avatar-file">
+		  				<div class="form-group row d-flex justify-content-center text-center">
+		  					<label for="add-photo-input" class="col-12 "><strong>Ajouter une photo</strong></label>
+		  					<input id="add-photo-input" class="text-center" name="photo" type="file" value="Sélectionner une photo">
+		  				</div>
+		  			</div>
+	  				{% if errors is not empty %}
+	  					<div class="alert alert-warning">{{ errors|join('<br>')|raw }}</div>
+	  				{% elseif success == true %}
+	  					<div class="alert alert-success">L'avatar a été modifié avec succès</div>
+	  				{% endif %}
+		  		</form>
+			</div>
+		</div>
+
 		<div class="card-deck my-4">
 			<div class="card">
 				<div class="card-header">
 					<div class="d-flex justify-content-between align-items-center">
-						<span>
-							<a id="add-photo-btn" title="Ajouter une photo" class="btn btn-success" href="" role="button"><i class="fas fa-plus"></i></a>
-							<span>&nbsp;Liste des photos - {{ balade.getTitre() }}</span>
-						</span>
+						<span>Liste des photos</span>
 						<span>
 							{% if 'bureau' in app.session.get('ranks') %}
 							<a title="Retour à l'album (site)" class="btn btn-info" href="{{ path('index_balades') }}" role="button"><i class="fas fa-globe-europe"></i></a>
@@ -99,40 +106,20 @@
 
 	<script>
 		$(document).ready(function() {
-
-			$('#add-photo-btn').click(function() {
-
-					alert('oups');
-
-
-				
-
-
-				$('#add-photo-input').trigger('click');
-
-			});
-			
 			$('#add-photo-input').change(function() {
 
+				$('#js-error-size').remove();
 
-				alert('batard');
+				$form = $(this).closest('#add-photo-form');
 
-				// $('#js-error-size').remove();
-
-				// $form = $(this).closest('#add-photo-form');
-
-					$('#add-photo-form').trigger('submit');
-				// if(this.files[0].size < {{ maxFileSize }}) {
-				// }
-				// else {
-				// 	$('#dyn-errors').find('.alert').remove();
-				// 	$('#dyn-errors').append('<div id="js-error-size" class="alert alert-warning">Fichier trop volumineux pour être traîté</div>');
-				// }
+				if(this.files[0].size < {{ maxFileSize }}) {
+					$form.trigger('submit');
+				}
+				else {
+					$form.find('.alert').remove();
+					$form.append('<div id="js-error-size" class="alert alert-warning">Fichier trop volumineux pour être traîté</div>');
+				}
 			});
-
-			
-
-
 		});
 	</script>
 

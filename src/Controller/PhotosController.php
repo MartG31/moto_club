@@ -168,7 +168,7 @@ class PhotosController extends MasterController
 
                     $path = pathinfo($_FILES['photo']['name']);
                     $dt = new \DateTime();
-                    $fileName = tr::transliterate($dt->format('Ymd-His').'-'.$balade->getTitle()).'.'.$path['extension'];
+                    $fileName = tr::transliterate($dt->format('Ymd-His').'-'.$balade->getTitre()).'.'.$path['extension'];
 
                     // Enregistrement en bdd
                     $user = $em->getRepository(Utilisateurs::class)->find($this->session->get('id'));
