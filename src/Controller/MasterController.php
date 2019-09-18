@@ -18,7 +18,7 @@ class MasterController extends AbstractController
     public $em;
     public $ranks = array('admin', 'bureau', 'adherent', 'membre');
     public $nomsRanks = array(
-        'admin' => 'Administrateur / Développeur(se)', 
+        'admin' => 'Administrateur(trice)', 
         'bureau' => 'Membre du bureau', 
         'adherent' => 'Adhérent(e) de l\'association', 
         'membre' => 'Membre du site', 

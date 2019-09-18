@@ -20,6 +20,7 @@
               <th>Email</th>
               <th>Date inscription</th>
               <th>Date adhésion</th>
+              <th>Rang</th>
             </tr>
           </thead>
           <tbody>
@@ -30,10 +31,21 @@
               <td>{{ user.getEmail() }}</td>
               <td>{{ user.getDatetimeInscription|date('d/m/Y') }}</td>
               <td>{{ user.getDatetimeAdhesion|date('d/m/Y') }}</td>
-              <td><a class="btn btn-secondary" href="{{path('admin_accueil')}}" role="button">Modifier</a></td>
-              <td><a class="btn btn-secondary" href="{{path('admin_accueil')}}" role="button">Afficher</a></td>
+              <td>
+                    {% if 'admin' in app.session.get('ranks') %}
+                <form>
+                  <select>
+                    {% for key, rank in nomsRanks %}
+                      <option name="{{user.getId()}}" value="{{key}}"{% if key == user.getAcces %}{{' selected'}}{% endif %}>{{rank}}</option>
+                  {% endfor %}
+                </select>
+                    {% else %}
+                      {{nomsRanks[user.getAcces()]}}
+                    {% endif %}
+              </form>
+            </td>
             </tr>
-            {%  endfor %} 
+            {% endfor %}
           </tbody>
 
         </table>
