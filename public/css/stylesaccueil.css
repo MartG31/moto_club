@@ -3,10 +3,16 @@ header {
 }
 
 .name-asso {
-	font-size: 4em;
-	padding-top: 1.2em;
+	font-size: 5vw;
+	padding-top: 2vh;
 }
 
 .logo-div {
-	padding-top: 2.5em;
+	padding-top: 10vh;
+	padding-bottom: 5vh;
+}
+
+.logo {
+	width: 10em;
+	height: 10em;
 }

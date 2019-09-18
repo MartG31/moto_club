@@ -75,7 +75,7 @@ h2{
 	color: #009ada;
 	font-weight: 400;
 	letter-spacing: 4px;
-	font-size: 3em;
+	font-size: 8vw;
 	text-shadow: 1px 1px 1px #91d3ff,
 	1px 2px 1px #91d3ff,
 	1px 3px 1px #91d3ff,
@@ -166,12 +166,12 @@ nav ul li a.active{
 }
 
 .name-asso {
-	font-size: 1.5em;
-	padding-top: 0.5em;
+	font-size: 2.5vw;
+	padding-top: 3.5vh;
 }
 
 .logo-div {
-	padding-top: 2em;
+	padding-top: 3.5vh;
 }
 
 .btn-link-grey {
@@ -196,24 +196,17 @@ nav ul li a.active{
 .btn-link-green,
 .btn-link-red{
 	width: 3em;
-
-
 }
-
-
 
 .cadre {
 	border-radius: 4px;
 }
-
-
 
 .navbar-light .navbar-nav .nav-item .nav-perso:hover,
 .navbar-light .navbar-nav .nav-item.active .nav-perso {
 	background: #2e7ff0;
 	color: #fff;
 }
-
 
 .btn-nav-item {
 	margin-bottom: auto;
@@ -234,9 +227,10 @@ nav ul li a.active{
 	justify-content: center;
 	align-items: center;
 	overflow: hidden;
-	width: 10em;
-	height: 10em;
+	width: 6em;
+	height: 6em;
 }
+
 
 .logo img {
 	width: 100%;
