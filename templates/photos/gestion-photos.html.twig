@@ -4,6 +4,18 @@
 
 {% block content %}
 
+	<form id="add-photo-form" method="post" enctype="multipart/form-data" style="width: 0; height: 0;">
+		<input id="add-photo-input" name="photo" type="file" style="visibility: hidden;">
+	</form>
+
+	<div id="dyn-errors">
+		{% if errors is not empty %}
+			<div class="alert alert-warning">{{ errors|join('<br>')|raw }}</div>
+		{% elseif success == true %}
+			<div class="alert alert-success">L'avatar a été modifié avec succès</div>
+		{% endif %}
+	</div>
+
 	<section class="py-2 mb-5 container">
 		<div class="d-flex justify-content-between">
 			<span>
@@ -22,7 +34,7 @@
 				<div class="card-header">
 					<div class="d-flex justify-content-between align-items-center">
 						<span>
-							<a title="Ajouter une photo" class="btn btn-success" href="{{ path('add_photo', {id: balade.getId() }) }}" role="button"><i class="fas fa-plus"></i></a>
+							<a id="add-photo-btn" title="Ajouter une photo" class="btn btn-success" href="" role="button"><i class="fas fa-plus"></i></a>
 							<span>&nbsp;Liste des photos - {{ balade.getTitre() }}</span>
 						</span>
 						<span>
@@ -80,5 +92,48 @@
 			</div>
 		</div>
 	</section>
+
+{% endblock %}
+
+{% block javascripts %}
+
+	<script>
+		$(document).ready(function() {
+
+			$('#add-photo-btn').click(function() {
+
+					alert('oups');
+
+
+				
+
+
+				$('#add-photo-input').trigger('click');
+
+			});
+			
+			$('#add-photo-input').change(function() {
+
+
+				alert('batard');
+
+				// $('#js-error-size').remove();
+
+				// $form = $(this).closest('#add-photo-form');
+
+					$('#add-photo-form').trigger('submit');
+				// if(this.files[0].size < {{ maxFileSize }}) {
+				// }
+				// else {
+				// 	$('#dyn-errors').find('.alert').remove();
+				// 	$('#dyn-errors').append('<div id="js-error-size" class="alert alert-warning">Fichier trop volumineux pour être traîté</div>');
+				// }
+			});
+
+			
+
+
+		});
+	</script>
 
 {% endblock %}
