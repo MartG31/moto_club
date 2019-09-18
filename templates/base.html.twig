@@ -50,20 +50,20 @@
 
 						{% if app.session.get('ranks') is not null %}
 
-							<li class="nav-item my-auto pr-1">
-								<a class="nav-link btn-link-grey btn btn-outline-secondary" href="{{ path('admin_accueil') }}"><i class="fas fa-user-edit"></i> {{ app.session.get('prenom') ~ ' ' ~ app.session.get('nom') }}</a>
-							</li>
 							<li class="nav-item my-auto pr-1 ">
 								<a title="Déconnexion" class="nav-link btn-link-red btn btn-outline-danger" href="{{ path('deconnexion_user') }}"><i class="fas fa-power-off"></i></a>
+							</li>
+							<li class="nav-item my-auto pr-1">
+								<a class="nav-link btn-link-grey btn btn-outline-secondary" href="{{ path('admin_accueil') }}"><i class="fas fa-user-edit"></i> {{ app.session.get('prenom') ~ ' ' ~ app.session.get('nom') }}</a>
 							</li>
 
 						{% else %}
 
 							<li class="nav-item my-auto pr-1 ">
-								<a class="nav-link btn-outline-secondary btn btn-link-grey" href="{{ path('inscription_user') }}">Inscription</a>
+								<a title="Connexion" class="nav-link btn-link-green btn btn-outline-success " href="{{ path('connexion_user') }}"><i class="fas fa-power-off"></i></a>
 							</li>
 							<li class="nav-item my-auto pr-1 ">
-								<a title="Connexion" class="nav-link btn-link-green btn btn-outline-success " href="{{ path('connexion_user') }}"><i class="fas fa-power-off"></i></a>
+								<a class="nav-link btn-outline-secondary btn btn-link-grey" href="{{ path('inscription_user') }}">Inscription</a>
 							</li>
 
 						{% endif %}

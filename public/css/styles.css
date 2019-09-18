@@ -175,18 +175,32 @@ nav ul li a.active{
 }
 
 .btn-link-grey {
-	background-color: white;
 	box-shadow: 1px 5px 5px grey;
 }
 
 .btn-link-red {
-	background-color: white;
 	box-shadow: 1px 5px 5px red;
 }
 .btn-link-green {
-	background-color: white;
 	box-shadow: 1px 5px 5px green;
 }
+
+.btn-link-green,
+.btn-link-red,
+.btn-link-grey {
+	background-color: white;
+	height: 2.5em;
+	width: 12em;
+	margin-bottom: 0.8em;
+}
+.btn-link-green,
+.btn-link-red{
+	width: 3em;
+
+
+}
+
+
 
 .cadre {
 	border-radius: 4px;
