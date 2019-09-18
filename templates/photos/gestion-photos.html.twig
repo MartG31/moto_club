@@ -46,7 +46,7 @@
 						<span>Liste des photos</span>
 						<span>
 							{% if 'bureau' in app.session.get('ranks') %}
-							<a title="Retour à l'album (site)" class="btn btn-info" href="{{ path('index_balades') }}" role="button"><i class="fas fa-globe-europe"></i></a>
+							<a title="Afficher la galerie" class="btn btn-info" href="{{ path('view_album', {id: balade.getId() }) }}" role="button"><i class="fas fa-globe-europe"></i></a>
 							{% endif %}
 						</span>
 					</div>

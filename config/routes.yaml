@@ -131,10 +131,6 @@ view_album:
     requirements:
       id: '\d+'
 
-add_photo:
-    path: /photos/ajouter
-    controller: App\Controller\PhotosController::addPhoto
-
 del_photo:
     path: /photos/supprimer/{id}
     controller: App\Controller\PhotosController::delPhoto

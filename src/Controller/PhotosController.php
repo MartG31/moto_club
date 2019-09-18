@@ -46,51 +46,6 @@ class PhotosController extends MasterController
         ]);
     }
 
-    public function addPhoto() {
-
-        if($this->restrictAccess('adherent')) { return $this->redirectToRoute('accueil'); }
-
-    	$this->errors = [];
-
-        if(!empty($_POST)) {
-            $post = array_map('trim', array_map('strip_tags', $_POST));
-
-            if(empty($_FILES) || $_FILES['photo']['error'] != UPLOAD_ERR_OK) {
-                $this->errors[] = 'Aucun fichier n\'a été sélectionné';
-            }
-            else {
-                $img = Image::make($_FILES['photo']['tmp_name']);
-                $fileName = $this->checkUploadedPhoto($img);
-            }
-
-            if(count($this->errors) === 0) {
-
-                $img->save($this->uploadDir.$fileName);
-
-                $bal = $em->getRepository(Balades::class)->find(3);
-
-                $ph = new Photos();
-                $ph->setBal($bal);
-
-                $ph->setFileName($fileName);
-                $ph->setLegende($post['legende']);
-                $ph->setDatetimePost(new \DateTime());
-
-                $em->persist($ph);
-                $em->flush();
-
-                $success = true;
-
-            }
-        }
-
-    	return $this->render('photos/add.html.twig', [
-            'post' => $post ?? [],
-            'errors' => $this->errors ?? '',
-            'success' => $success ?? false,
-        ]);
-    }
-
     public function delPhoto($id) {
 
         if($this->restrictAccess('adherent')) { return $this->redirectToRoute('accueil'); }
@@ -206,10 +161,6 @@ class PhotosController extends MasterController
             'success' => $success ?? false,
         ]);
     }
-
-
-
-
 
 
  }
