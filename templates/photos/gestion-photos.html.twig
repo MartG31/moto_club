@@ -10,7 +10,7 @@
 				{% if 'bureau' in app.session.get('ranks') %}
 					<a href="{{ path('gestion_balades') }}" class="btn btn-secondary" role="button"><i class="fas fa-angle-left"></i> Retour</a>
 				{% else %}
-					<a href="{{ path('view_balade', {id: balade.getId() }) }}" class="btn btn-info" role="button"><i class="fas fa-angle-left"></i> Retour</a>
+					<a href="{{ path('view_album', {id: balade.getId() }) }}" class="btn btn-info" role="button"><i class="fas fa-angle-left"></i> Retour</a>
 				{% endif %}
 			</span>
 			<span>

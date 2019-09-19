@@ -263,12 +263,14 @@ class BaladesController extends MasterController
 
         $em = $this->getDoctrine()->getManager();
         $balade = $em->getRepository(Balades::class)->find($id);
+        $nb_photos = $em->getRepository(Photos::class)->countPhotosByBalade($balade);
 
         
 
 
         return $this->render('balades/view.html.twig', [
             'balade' => $balade ?? [],
+            'nb_photos' => array_shift($nb_photos),
             'inscrit' => $this->inscrit($balade) ?? false,
             'nbMaxPers' => $balade->getNbMaxPers(),
             'nbInscrits' => $this->nbInscrits($balade),

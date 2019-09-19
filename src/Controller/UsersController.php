@@ -388,6 +388,7 @@ class UsersController extends MasterController {
         			$this->refreshSession($user);
 
         			$success = true;
+                    $post = [];
         		}
         	}
 

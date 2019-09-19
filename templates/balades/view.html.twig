@@ -13,7 +13,11 @@
 				{% if 'bureau' in app.session.get('ranks') %}
 					<a title="Gérer les balades" class="btn btn-secondary" href="{{ path('gestion_balades') }}" role="button"><i class="fas fa-cogs"></i></a>
 				{% endif %}
-				<a title="Afficher la galerie" class="btn btn-primary" href="{{ path('view_album', {id: balade.getId()}) }}" role="button"><i class="fas fa-images"></i></a>
+				{% if nb_photos > 0 %}
+					<a title="Afficher la galerie ({{nb_photos}})" class="btn btn-primary" href="{{ path('view_album', {id: balade.getId()}) }}" role="button"><i class="fas fa-images"></i></a>
+				{% else %}
+					<a href="{{ path('view_album', {id: balade.getId()}) }}" class="btn btn-primary disabled" role="button" disabled><i class="fas fa-images"></i></a>
+				{% endif %}
 			</span>
 		</div>
 		
