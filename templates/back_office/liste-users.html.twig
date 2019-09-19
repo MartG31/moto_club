@@ -4,77 +4,112 @@
 
 {% block content %}
 
+	<section class="py-2 mb-5 container">
+		<div class="card-deck my-4">
+			<div class="card">
+				<div class="card-header">
+					<div class="d-flex justify-content-between align-items-center">
+						<span>Liste des utilisateurs</span>
+						<span>
+						</span>
+					</div>
+					
+				</div>
+				<div class="card-body">
+					<div class="scrolling-table">
+						<table class="admin-table-mg">
+							<thead>
+								<th>#</th>
+								<th class="text-left">Participant</th>
+								<th>Actions</th>
+							</thead>
+							
+							<tbody>
+						      	{% for user in users %}
+									<tr>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+			      	
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	{% if errors is not empty %}
+			<div class="alert alert-warning">
+					{{ errors|join('<br>')|raw }} 
+			</div>
+	{% elseif success == true %}
+			<div class="alert alert-success">
+					Les droits de <strong>{{user.prenom}}</strong> ont été modifiés avec succès.
+			</div>
+	{% endif %}
+	<div class="card mb-3">
+		<div class="card-header">
+			<i class="fas fa-table"></i>
+			Liste des utlisateurs</div>
+		<div class="card-body">
+			<div class="table-responsive">
+				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+					<thead>
+						<tr>
+							<th>Nom</th>
+							<th>Prénom</th>
+							<th>Email</th>
+							<th>Date inscription</th>
+							<th>Date adhésion</th>
+							<th>Rang</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for user in users %}
+						<tr>
+							<td>{{ user.getNom() }}</td>
+							<td>{{ user.getPrenom() }}</td>
+							<td>{{ user.getEmail() }}</td>
+							<td>{{ user.getDatetimeInscription|date('d/m/Y') }}</td>
+							<td>{{ user.getDatetimeAdhesion|date('d/m/Y') }}</td>
+							<td>
+										{% if 'admin' in app.session.get('ranks') %}
+								<form method="post">
+									<select name="{{user.getId()}}">
+										{% for key, rank in nomsRanks %}
+											<option value="{{key}}"{% if key == user.getAcces %}{{' selected'}}{% endif %}>{{rank}}</option>
+									{% endfor %}
+								</select>
+										{% else %}
+											{{nomsRanks[user.getAcces()]}}
+										{% endif %}
+							</form>
+						</td>
+						</tr>
+						{% endfor %}
+					</tbody>
 
-  
-  {% if errors is not empty %}
-      <div class="alert alert-warning">
-          {{ errors|join('<br>')|raw }} 
-      </div>
-  {% elseif success == true %}
-      <div class="alert alert-success">
-          Les droits de <strong>{{user.prenom}}</strong> ont été modifiés avec succès.
-      </div>
-  {% endif %}
-  <div class="card mb-3">
-    <div class="card-header">
-      <i class="fas fa-table"></i>
-      Liste des utlisateurs</div>
-    <div class="card-body">
-      <div class="table-responsive">
-        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-          <thead>
-            <tr>
-              <th>Nom</th>
-              <th>Prénom</th>
-              <th>Email</th>
-              <th>Date inscription</th>
-              <th>Date adhésion</th>
-              <th>Rang</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for user in users %}
-            <tr>
-              <td>{{ user.getNom() }}</td>
-              <td>{{ user.getPrenom() }}</td>
-              <td>{{ user.getEmail() }}</td>
-              <td>{{ user.getDatetimeInscription|date('d/m/Y') }}</td>
-              <td>{{ user.getDatetimeAdhesion|date('d/m/Y') }}</td>
-              <td>
-                    {% if 'admin' in app.session.get('ranks') %}
-                <form method="post">
-                  <select name="{{user.getId()}}">
-                    {% for key, rank in nomsRanks %}
-                      <option value="{{key}}"{% if key == user.getAcces %}{{' selected'}}{% endif %}>{{rank}}</option>
-                  {% endfor %}
-                </select>
-                    {% else %}
-                      {{nomsRanks[user.getAcces()]}}
-                    {% endif %}
-              </form>
-            </td>
-            </tr>
-            {% endfor %}
-          </tbody>
-
-        </table>
-      </div>
-    </div>
-    <div class="card-footer small text-muted">GSM3 Copyright &copy; - {{"now"|date("Y")}}</div>
-  </div>
+				</table>
+			</div>
+		</div>
+		<div class="card-footer small text-muted">GSM3 Copyright &copy; - {{"now"|date("Y")}}</div>
+	</div>
 {% endblock %}
 
 {% block javascripts %}
 
-  <script>
-    $(document).ready(function() {
-      $('select').change(function() {
+	<script>
+		$(document).ready(function() {
+			$('select').change(function() {
 
-        $(this).closest('form').trigger('submit');
-      });
-    });
-  </script>
+				$(this).closest('form').trigger('submit');
+			});
+		});
+	</script>
 
 {% endblock %}
 
-      
+			
