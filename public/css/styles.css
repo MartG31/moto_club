@@ -202,6 +202,11 @@ h2{
 	text-align: center;
 }
 
+.policy {
+	font-size: 2.5em;
+
+}
+
 /********************* swiper *****************/
 
 .cardSwip{
@@ -341,19 +346,16 @@ h2{
 /*Medias queries*/
 
 
-
-
-/*moyen Grand*/
-/*@media screen and (min-width: 992px) and (max-width: 1200px) {
-	
-	
-}*/
-
-
 /*moyen*/
 @media screen and (min-width: 360px) and (max-width:768px) {
 	.name-asso {
-		padding-top: 2em;
+		font-size :2em;	
+	}
+	h2 {
+		font-size : 2.5em;
+	}
+	.policy {
+		font-size: 2em;
 	}
 	
 }
@@ -361,18 +363,15 @@ h2{
 /*petit*/
 @media screen and (max-width: 360px){
 	.name-asso{
-		font-size: 2em;
-		padding-top: 6em;
-	}
-
-	.logo{
-		width: 8em; 
-		height: 8em;
-	}
-
-	.logo-div{
-		padding-top: 0; 
+		font-size: 1.5em;
 		
+	}
+		h2 {
+		font-size : 2em;
+	}
+
+	.policy {
+		font-size: 1.5em;
 	}
 
 }

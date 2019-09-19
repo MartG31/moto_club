@@ -15,3 +15,37 @@ header {
 	width: 10em;
 	height: 10em;
 }
+
+/*********** queries*******/ 
+
+/*Grand*/
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+	.name-asso {
+		font-size :4em;	
+	}
+	
+}
+
+/*Grand*/
+@media screen and (min-width: 768px) and (max-width: 992px) {
+	.name-asso {
+		font-size :3em;	
+	}
+	
+}
+
+
+/*moyen*/
+@media screen and (min-width: 360px) and (max-width:768px) {
+	.name-asso {
+		font-size :2em;	
+	}
+}
+
+/*petit*/
+@media screen and (max-width: 360px){
+	.name-asso{
+		font-size: 1.5em;
+		
+	}
+}
