@@ -9,7 +9,7 @@
 				<a href="{{ path('index_back_reunions') }}" class="btn btn-secondary m-2 float-left" role="button"><i class="fas fa-angle-left"></i> Gestion des réunions</a>
 			</div>
 			<div class="col-md-6">
-				<a href="{{ path('index_reunions') }}" class="btn btn-primary m-2 float-right" role="button">Liste des réunions <i class="fas fa-angle-right"></i></a>
+				<a href="{{ path('view_reunion', {id : reunionTrouvee.getId()}) }}" class="btn btn-info m-2 float-right" title="Voir la réunion sur le site" role="button"><i class="fas fa-globe-europe"></i></a>
 			</div> 
 		</div>
 			
@@ -45,20 +45,19 @@
 			</div>
 		</div>{#fin du deck#}
 		<div class="row ">
-			<div class="col-md-12 d-flex justify-content-center">
-				{% if reunionTrouvee.getDatetimeReu() < "now" %}
+			{% if bouton == false %}
+				<div class="col-md-12 d-flex justify-content-center">
 					{% if crTrouve is not empty  %}
 						<a href="{{ path('edit_cr', {id : reunionTrouvee.getId()}) }}" class="btn btn-primary m-2" role="button">Modifier le compte-rendu</a>
 					{% else %}
-						<a href="{{ path('add_cr', {id : reunionTrouvee.getId()}) }}" class="btn btn-primary m-2" role="button">Ajouter un  compte-rendu</a>
+						<a href="{{ path('add_cr', {id : reunionTrouvee.getId()}) }}" class="btn btn-success m-2" role="button">Ajouter un  compte-rendu</a>
 					{% endif %}
-				{% endif %}
-			</div>
-			<div class="col-md-12 d-flex justify-content-center">
-			{% if bouton == true %}
-				<a class="btn btn-success m-2" href="{{ path('edit_reunion', {id : reunionTrouvee.getId()}) }}" role="button">Modifier la réunion</a>
+				</div>
+			{% else %}
+				<div class="col-md-12 d-flex justify-content-center">
+					<a class="btn btn-primary m-2" href="{{ path('edit_reunion', {id : reunionTrouvee.getId()}) }}" role="button">Modifier la réunion</a>
+				</div>
 			{% endif %}
-			</div>
 		</div>
 	</section>
 {% endblock %}

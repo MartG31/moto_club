@@ -63,3 +63,8 @@
 	object-fit: cover;
 	margin: 0;
 }
+/* Pages de gestion reunions et cr */
+
+.btn-reu {
+	width: 3em;
+}
