@@ -10,10 +10,10 @@
 				<a href="{{ path('index_balades') }}" class="btn btn-secondary" role="button"><i class="fas fa-angle-left"></i> Retour aux balades</a>
 			</span>
 			<span>
-				<a title="Afficher la galerie" class="btn btn-primary" href="{{ path('view_album', {id: balade.getId()}) }}" role="button"><i class="fas fa-images"></i></a>
 				{% if 'bureau' in app.session.get('ranks') %}
 					<a title="Gérer les balades" class="btn btn-secondary" href="{{ path('gestion_balades') }}" role="button"><i class="fas fa-cogs"></i></a>
 				{% endif %}
+				<a title="Afficher la galerie" class="btn btn-primary" href="{{ path('view_album', {id: balade.getId()}) }}" role="button"><i class="fas fa-images"></i></a>
 			</span>
 		</div>
 		
