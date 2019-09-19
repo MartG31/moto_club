@@ -10,7 +10,11 @@
 				{% if 'bureau' in app.session.get('ranks') %}
 					<a href="{{ path('gestion_balades') }}" class="btn btn-secondary" role="button"><i class="fas fa-angle-left"></i> Retour</a>
 				{% else %}
-					<a href="{{ path('view_album', {id: balade.getId() }) }}" class="btn btn-info" role="button"><i class="fas fa-angle-left"></i> Retour</a>
+					{% if nb_photos > 0 %}
+						<a href="{{ path('view_album', {id: balade.getId() }) }}" class="btn btn-info" role="button"><i class="fas fa-angle-left"></i> Retour</a>
+					{% else %}
+						<a href="{{ path('view_balade', {id: balade.getId() }) }}" class="btn btn-info" role="button"><i class="fas fa-angle-left"></i> Retour</a>
+					{% endif %}
 				{% endif %}
 			</span>
 			<span>
@@ -53,6 +57,11 @@
 						<span>
 							{% if 'bureau' in app.session.get('ranks') %}
 							<a title="Afficher la galerie" class="btn btn-info" href="{{ path('view_album', {id: balade.getId() }) }}" role="button"><i class="fas fa-globe-europe"></i></a>
+								{% if nb_photos > 0 %}
+									<a title="Afficher la galerie" class="btn btn-info" href="{{ path('view_album', {id: balade.getId() }) }}" role="button"><i class="fas fa-globe-europe"></i></a>
+								{% else %}
+									<a title="Afficher la balade" class="btn btn-info" href="{{ path('view_balade', {id: balade.getId() }) }}" role="button"><i class="fas fa-globe-europe"></i></a>
+								{% endif %}
 							{% endif %}
 						</span>
 					</div>

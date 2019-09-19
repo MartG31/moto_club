@@ -157,6 +157,7 @@ class PhotosController extends MasterController
             'uploadDir' => $this->uploadDir,  
             'balade' => $balade,
             'photos' => $photos,
+            'nb_photos' => count($photos),
             'errors' => $errors ?? [],
             'success' => $success ?? false,
         ]);

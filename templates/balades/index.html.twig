@@ -21,7 +21,7 @@
 					<div class="card-header">
 						<div class="card-title">
 							{% if bal_data.nb_photos > 0 %}
-								<a href="{{ path('view_album', {id: bal_data.balade.getId()}) }}" class="btn btn-primary float-right ml-2" role="button" title="Voir les photos ({{bal_data.nb_photos}})"><i class="fas fa-images"></i></a>
+								<a href="{{ path('view_album', {id: bal_data.balade.getId()}) }}" class="btn btn-primary float-right ml-2" role="button" title="Afficher la galerie ({{bal_data.nb_photos}})"><i class="fas fa-images"></i></a>
 							{% else %}
 								<a href="{{ path('view_album', {id: bal_data.balade.getId()}) }}" class="btn btn-primary disabled float-right ml-2" role="button" disabled><i class="fas fa-images"></i></a>
 							{% endif %}
