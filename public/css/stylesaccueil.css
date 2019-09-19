@@ -42,6 +42,13 @@ header {
 	.name-asso {
 		font-size :2em;	
 	}
+
+	.cardSwip{
+		width: 350px;
+	}
+	.cardSwip .content{
+		width: 350px;
+	}
 }
 
 /*Petit*/
@@ -50,10 +57,29 @@ header {
 		font-size: 1.5em;
 		
 	}
+}
+
+@media screen and (max-width: 414px){
+
 	.cardSwip{
 		width: 290px;
 	}
 	.cardSwip .content{
 		width: 290px;
+	}
+}
+
+@media screen and (max-width: 769px){
+	
+	.swiper-container-3d .swiper-slide-shadow-bottom, .swiper-container-3d .swiper-slide-shadow-left, .swiper-container-3d .swiper-slide-shadow-right, .swiper-container-3d .swiper-slide-shadow-top{
+		width: 100%;
+		margin-left: 25px;
+	}
+}
+
+@media screen and (max-width: 460px){
+	
+	.swiper-container-3d .swiper-slide-shadow-bottom, .swiper-container-3d .swiper-slide-shadow-left, .swiper-container-3d .swiper-slide-shadow-right, .swiper-container-3d .swiper-slide-shadow-top{
+		width: 0;
 	}
 }
