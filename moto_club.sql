@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  jeu. 19 sep. 2019 à 12:35
+-- Généré le :  jeu. 19 sep. 2019 à 13:04
 -- Version du serveur :  10.4.6-MariaDB
 -- Version de PHP :  7.3.9
 
@@ -84,7 +84,7 @@ INSERT INTO `balades` (`id`, `user_id`, `titre`, `contenu`, `date_debut`, `date_
 (3, 1, 'Mémorial SPADINO 2014', 'Cette année, le rassemblement en l\'honneur de SPADINO a changé de date. \r\n\r\nCette manifestation est fixée le we des 26 et 27 avril 2014 avec rassemblement le dimanche 27 avril à COURMAYER (Italie) et non plus à la sortie du tunnel, par mesure de sécurité. La traversée aller et retour du tunnel sera toujours gratuite pour les motards mais il n\'y aura plus de convoi comme l\'an dernier. Chaque moto passera le tunnel en respectant les distances de sécurité ce qui laisse présager  une forte attente  pour traverser le tunnel.  Il conviendra pour ceux qui veulent y participer de bien anticiper leur départ pour éviter de trop attendre. \r\n\r\nPour plus d\'infos, rendez-vous sur le site de Moto Mag par exemple. \r\n\r\nEn ce qui concerne les membres de l\'Amicale BMW 38, on fera le point sur les éventuels participants afin de partir en groupe, à la réunion du mois d\'Avril.', '2014-04-26', '2014-04-27', NULL, '2019-09-11 16:08:44', '2019-09-19 01:06:01', NULL, 1, 0),
 (29, 6, 'Tour des Grandes Alpes', 'Vous voulez prendre le grand air et faire le tour des plus belles vallées des Alpes ? Rejoignez pour un parcours autour du massif des Écrins pour s\'en mettre plein. Sensations garanties !', '2017-07-04', '2017-07-05', NULL, '2019-09-17 00:50:55', '2019-09-19 00:36:30', 6, 1, 0),
 (36, 2, 'Mont Saint-Michel', 'Petit séjour au Mont Saint-Michel, on ferait le tour de la région et visiterait tous les petits villages du coin, mangerait des omelettes de la mère Poulard et testeraient l\'étanchéité de nos motos', '2019-09-26', '2019-10-05', NULL, '2019-09-18 12:28:11', NULL, NULL, 1, 1),
-(38, 2, 'Salon de la Moto 2019', 'Salon de la moto 2019 le 19 et 20 mai 2019 à Paris (porte de Versailles)', '2019-05-19', '2019-05-20', NULL, '2019-09-18 12:35:06', NULL, NULL, 1, 1),
+(38, 2, 'Salon de la Moto 2019', 'Salon de la moto 2019 le 19 et 20 mai 2019 à Paris (porte de Versailles)', '2019-05-19', '2019-05-20', NULL, '2019-09-18 12:35:06', '2019-09-19 13:00:22', 3, 1, 1),
 (39, 8, 'Week-end à la campagne', 'On roulerait tout le week-end du 28/09 et on pourrait profiter de ma maison de campagne pour passer la nuit.', '2019-09-28', '2019-09-29', NULL, '2019-09-18 12:38:38', NULL, NULL, 0, 0),
 (40, 7, 'Trip en Croatie', 'Salut les amis-calistes,\r\n\r\nJe sais que je m\'y prends un peu tôt mais j\'aimerais organiser un voyage en Croatie tous ensemble sur deux semaines pendant le printemps prochain, histoire de profiter pleinement des magnifiques paysages de l\'Adriatique. Si vous êtes motivés, rejoignez moi au plus vite. \r\n\r\nPour des raisons d\'organisation, je préfère limiter le nombre de personnes à 8 pour l\'instant, mais ce sera peut être amené à évoluer.\r\n\r\nBisous bisous.\r\n\r\nPS : Denis, tu es obligé d\'être de la partie ! (Et laisse un peu Simone tranquille plz)', '2020-05-11', '2020-05-24', NULL, '2019-09-19 00:55:08', NULL, 8, 1, 1);
 
@@ -141,7 +141,11 @@ INSERT INTO `membres_balades` (`id`, `user_id`, `bal_id`) VALUES
 (33, 1, 29),
 (34, 10, 29),
 (35, 1, 36),
-(36, 7, 40);
+(36, 7, 40),
+(37, 2, 36),
+(38, 2, 38),
+(40, 6, 38),
+(41, 8, 38);
 
 -- --------------------------------------------------------
 
@@ -460,7 +464,7 @@ ALTER TABLE `comptes_rendus`
 -- AUTO_INCREMENT pour la table `membres_balades`
 --
 ALTER TABLE `membres_balades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT pour la table `photos`
