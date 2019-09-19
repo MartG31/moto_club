@@ -101,15 +101,15 @@ class UsersController extends MasterController {
     			$success = true;// Envoi du mail
 				$receivers = [$safe['email']];
 				$subject = 'Bienvenue !';
-				$content = '<h2>Vous venez de vous inscrire sur notre site, nous avons le plaisir de vous souhaiter la bienvenue</h2>
+				$content = '<h2>Nous avons le plaisir de vous souhaiter la bienvenue !</h2>
 							<hr>
-							<p>Voici un récapitulatif des informations que vous avez saisies :<br>
+							<p>Vous venez de vous inscrire sur notre site, voici un récapitulatif des informations que vous avez saisies :<br>
 							<strong>Nom :</strong> '.$safe['lastname'].'<br>
 							<strong>Prénom :</strong> '.$safe['firstname'].'<br>
 							<strong>Téléphone :</strong> '.$safe['phone'].'<br>
 							<strong>Date de naissance :</strong> '.date("d/m/Y", strtotime($safe['birthday'])).'<br>
-							<strong>Adresse :</strong> '.$safe['address'].', '.$safe['postal_code'].' '.$safe['city'].'<br>
-                            Merci de nous contacter si vous voulez adhérer à l\'association.</p>';
+							<strong>Adresse :</strong> '.$safe['address'].', '.$safe['postal_code'].' '.$safe['city'].'<hr>
+                            <strong>Merci de nous contacter si vous voulez adhérer à l\'association.</strong></p>';
 
 				$this->sendingMails($receivers, $subject, $content);
     			header('Refresh: 1; /users/login');
@@ -316,7 +316,8 @@ class UsersController extends MasterController {
         				});
 
         				$path = pathinfo($_FILES['avatar']['name']);
-        				$fileName = tr::transliterate(time().'-'.$path['filename']).'.'.$path['extension'];
+                        $dt = new \DateTime();
+                        $fileName = tr::transliterate($dt->format('Ymd-His').'-'.$this->session->get('id')).'.'.$path['extension'];
 
         				// Enregistrement en bdd
         				$user->setAvatar($fileName);
