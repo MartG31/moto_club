@@ -25,7 +25,7 @@
 							{% else %}
 								<a href="{{ path('view_album', {id: bal_data.balade.getId()}) }}" class="btn btn-primary disabled float-right ml-2" role="button" disabled><i class="fas fa-images"></i></a>
 							{% endif %}
-							<a href="{{ path('view_balade', {id: bal_data.balade.getId()}) }}" class="btn btn-primary float-right" role="button">Afficher la balade</a>
+							<a title="Afficher la balade" href="{{ path('view_balade', {id: bal_data.balade.getId()}) }}" class="btn btn-primary float-right" role="button"><i class="far fa-eye"></i></a>
 							<strong>{{ bal_data.balade.getTitre() }}</strong>
 							{% if bal_data.balade.getDateDebut() == bal_data.balade.getDateFin() %}
 								<div>le {{ bal_data.balade.getDateDebut()|date('d/m/Y') }}</div>
