@@ -7,13 +7,13 @@
 html { 
   box-sizing: border-box;
 
-  width: 100vw;
+  width: 100%;
 }
 
 body{
 
-	width: 100vw;
-  	min-height: 100vh;
+	width: 100%;
+  	min-height: 100%;
   	overflow-x: hidden;
 
   	display: flex;
@@ -36,7 +36,7 @@ header{
 }
 
 nav{
-	min-height: 5vh;
+	min-height: 4em;
 	background: rgb(46, 127, 240);
 	box-shadow: 1px 5px 5px lightgrey;
 	
@@ -63,41 +63,52 @@ section {
 	padding-left: 1em;
 	padding-right: 1em;
 }
-
 h1{
 	font-family: 'Philosopher', sans-serif;
 	color: #fff;
 	text-shadow: 1px 5px 5px #000;
 }
-h2{
-	text-transform: uppercase;
-	font-family: 'Alfa Slab One', cursive;
-	color: #009ada;
-	font-weight: 400;
-	letter-spacing: 4px;
-	font-size: 8vw;
-	text-shadow: 1px 1px 1px #91d3ff,
-	1px 2px 1px #91d3ff,
-	1px 3px 1px #91d3ff,
-	1px 4px 1px #91d3ff,
-	1px 5px 1px #91d3ff,
-	1px 6px 1px #91d3ff,
-	1px 7px 1px #91d3ff,
-	1px 8px 1px #91d3ff,
-	1px 9px 1px #91d3ff,
-	1px 10px 1px #91d3ff,
-	1px 18px 6px rgba(16,16,16,0.4),
-	1px 22px 10px rgba(16,16,16,0.2),
-	1px 25px 35px rgba(16,16,16,0.2),
-	1px 30px 60px rgba(16,16,16,0.4);
-	transform: 0.8s all;
-	text-align: center;
+ /********************************* header *************************/
+
+.name-asso {
+	font-size: 2.5em;
+	padding-top: 1em;
 }
 
-/*nav ul{
-	padding: 0 100px;
-}*/
+@media screen and (){
+	.name-asso{
+		font-size: 1.5em;
+		padding-top: 0.5em;
+	}
 
+
+}
+
+.logo-div {
+	padding-top: 1em;
+}
+
+.logo {
+	border-radius: 50%;
+	background-color: rgba(255,255,255,0.5);
+	margin: 0 auto;
+	border: 1px solid #000;
+	box-shadow: 1px 5px 5px #000;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	width: 6em;
+	height: 6em;
+}
+
+.logo img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	margin: 0;
+}
+/**************************** navbar ****************************/
 nav ul li a{
 	text-transform: uppercase;
 	font-weight: bold;
@@ -109,69 +120,15 @@ nav ul li a.active{
 	background: #fff;
 }
 
-.blue {/*
-	background-color: #2e7ff0;*/
-	background: linear-gradient(transparent, #2e7ff0, transparent);
-	padding: 6em 1em;
-}
-.subscribe{
-	position: relative;
-	/*left: 50%;
-	transform: translate(-50%, -50%);*/
-	width: 250px;
-	height: 70px;
-	line-height: 70px;
-	text-align: center;
-	text-transform: uppercase;
-	font-size: 24px;
-	color: #009ada;
-	display: inline-block;
-	text-decoration: none;
-	background: linear-gradient(to right, #acb6e5, #86fde8);
-	box-shadow: 1px 5px 5px #acb6e5;
-	/*background: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),
-            	linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);*/
-            	
+.navbar-light .navbar-nav .nav-item .nav-perso:hover,
+.navbar-light .navbar-nav .nav-item.active .nav-perso {
+	background: #2e7ff0;
+	color: #fff;
 }
 
-.subscribe:hover{
-	text-decoration: none;
-}
-.subscribe svg,
-.subscribe svg rect{
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	fill: transparent;
-}
-.subscribe svg rect{
-	stroke: #32547d;
-	stroke-width: 4;
-	transition: 2s;
-	stroke-dasharray: 70 250;
-	stroke-dashoffset: 390;
-}
-.subscribe:hover svg rect{
-	stroke: #2eca94;
-	stroke-dasharray: 250 70;
-	stroke-dashoffset: 0;
-}
-
-.parallax {
-	background: url(../images/img2.jpg);
-	background-attachment: fixed;
-	background-size: cover;
-}
-
-.name-asso {
-	font-size: 2.5vw;
-	padding-top: 3.5vh;
-}
-
-.logo-div {
-	padding-top: 3.5vh;
+.btn-nav-item {
+	margin-bottom: auto;
+	margin-top: auto;
 }
 
 .btn-link-grey {
@@ -198,51 +155,59 @@ nav ul li a.active{
 	width: 3em;
 }
 
-.cadre {
-	border-radius: 4px;
-}
-
-.navbar-light .navbar-nav .nav-item .nav-perso:hover,
-.navbar-light .navbar-nav .nav-item.active .nav-perso {
-	background: #2e7ff0;
-	color: #fff;
-}
-
-.btn-nav-item {
-	margin-bottom: auto;
-	margin-top: auto;
-}
-
 .navbar-light .navbar-nav .nav-link {
     color: #000;
 }
 
-.logo {
-	border-radius: 50%;
-	background-color: rgba(255,255,255,0.5);
-	margin: 0 auto;
-	border: 1px solid #000;
-	box-shadow: 1px 5px 5px #000;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	overflow: hidden;
-	width: 6em;
-	height: 6em;
+
+/********** footer ********/
+
+.colorlink{
+	color: black;
 }
 
-
-.logo img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	margin: 0;
+.footerlink{
+	color: black;
 }
 
-.img-port{
-
-	height: 15em;
+.footerlink:hover{
+	color: white;
+	text-decoration: none;
 }
+
+/****************************************** Contenu des pages ******************************************************/
+
+h2{
+	text-transform: uppercase;
+	font-family: 'Alfa Slab One', cursive;
+	color: #009ada;
+	font-weight: 400;
+	letter-spacing: 4px;
+	font-size: 5em;
+	text-shadow: 1px 1px 1px #91d3ff,
+	1px 2px 1px #91d3ff,
+	1px 3px 1px #91d3ff,
+	1px 4px 1px #91d3ff,
+	1px 5px 1px #91d3ff,
+	1px 6px 1px #91d3ff,
+	1px 7px 1px #91d3ff,
+	1px 8px 1px #91d3ff,
+	1px 9px 1px #91d3ff,
+	1px 10px 1px #91d3ff,
+	1px 18px 6px rgba(16,16,16,0.4),
+	1px 22px 10px rgba(16,16,16,0.2),
+	1px 25px 35px rgba(16,16,16,0.2),
+	1px 30px 60px rgba(16,16,16,0.4);
+	transform: 0.8s all;
+	text-align: center;
+}
+
+.policy {
+	font-size: 2.5em;
+
+}
+
+/********************* swiper *****************/
 
 .cardSwip{
 	position: relative;
@@ -303,18 +268,112 @@ nav ul li a.active{
 	width: 100%;
 	height: 100%;
 	margin: auto;
-
 }
 
-.colorlink{
-	color: black;
+/*************** div qui sommes-nous *****************/
+
+.blue {/*
+	background-color: #2e7ff0;*/
+	background: linear-gradient(transparent, #2e7ff0, transparent);
+	padding: 6em 1em;
 }
 
-.footerlink{
-	color: black;
+/********************** PAC *****************************/
+
+.subscribe{
+	position: relative;
+	/*left: 50%;
+	transform: translate(-50%, -50%);*/
+	width: 250px;
+	height: 70px;
+	line-height: 70px;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 24px;
+	color: #009ada;
+	display: inline-block;
+	text-decoration: none;
+	background: linear-gradient(to right, #acb6e5, #86fde8);
+	box-shadow: 1px 5px 5px #acb6e5;
+	/*background: 	linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),
+            		linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);*/         	
 }
 
-.footerlink:hover{
-	color: white;
+.subscribe:hover{
 	text-decoration: none;
 }
+
+.subscribe svg,
+.subscribe svg rect{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	fill: transparent;
+}
+.subscribe svg rect{
+	stroke: #32547d;
+	stroke-width: 4;
+	transition: 2s;
+	stroke-dasharray: 70 250;
+	stroke-dashoffset: 390;
+}
+.subscribe:hover svg rect{
+	stroke: #2eca94;
+	stroke-dasharray: 250 70;
+	stroke-dashoffset: 0;
+}
+
+/**************************** formulaire de contact ***********************************/
+.parallax {
+	background: url(../images/img2.jpg);
+	background-attachment: fixed;
+	background-size: cover;
+}
+
+/********************** portfolio ************************/
+
+.cadre {
+	border-radius: 4px;
+}
+
+.img-port{
+
+	height: 15em;
+}
+
+/*Medias queries*/
+
+
+/*moyen*/
+@media screen and (min-width: 360px) and (max-width:768px) {
+	.name-asso {
+		font-size :2em;	
+	}
+	h2 {
+		font-size : 2.5em;
+	}
+	.policy {
+		font-size: 2em;
+	}
+	
+}
+
+/*petit*/
+@media screen and (max-width: 360px){
+	.name-asso{
+		font-size: 1.5em;
+		
+	}
+		h2 {
+		font-size : 2em;
+	}
+
+	.policy {
+		font-size: 1.5em;
+	}
+
+}
+	
+

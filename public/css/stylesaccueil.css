@@ -3,16 +3,49 @@ header {
 }
 
 .name-asso {
-	font-size: 5vw;
-	padding-top: 2vh;
+	font-size: 5em;
+	padding-top: 0.5em;
 }
 
 .logo-div {
-	padding-top: 10vh;
-	padding-bottom: 5vh;
+	padding-top: 2.5em;
 }
 
 .logo {
 	width: 10em;
 	height: 10em;
+}
+
+/*********** queries*******/ 
+
+/*Grand*/
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+	.name-asso {
+		font-size :4em;	
+	}
+	
+}
+
+/*Grand*/
+@media screen and (min-width: 768px) and (max-width: 992px) {
+	.name-asso {
+		font-size :3em;	
+	}
+	
+}
+
+
+/*moyen*/
+@media screen and (min-width: 360px) and (max-width:768px) {
+	.name-asso {
+		font-size :2em;	
+	}
+}
+
+/*petit*/
+@media screen and (max-width: 360px){
+	.name-asso{
+		font-size: 1.5em;
+		
+	}
 }
