@@ -374,7 +374,7 @@ class UsersController extends MasterController {
         			$user = $em->getRepository(Utilisateurs::class)->find($this->session->get('id'));
 
         			$user->setPseudo($post['pseudo']);
-        			$user->setNom($post['nom']);
+        			$user->setNom(strtoupper($post['nom']));
         			$user->setPrenom($post['prenom']);
         			$user->setPseudo($post['pseudo']);
         			$user->setAdresse($post['adresse']);
