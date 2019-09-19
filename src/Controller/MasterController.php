@@ -117,9 +117,6 @@ class MasterController extends AbstractController
         $mail->Body = '<html>
                         <head>
                             <style>
-                                h2{
-                                    color: grey;
-                                }
                             </style>
                         </head>
                         <body>

@@ -108,7 +108,8 @@ class UsersController extends MasterController {
 							<strong>Prénom :</strong> '.$safe['firstname'].'<br>
 							<strong>Téléphone :</strong> '.$safe['phone'].'<br>
 							<strong>Date de naissance :</strong> '.date("d/m/Y", strtotime($safe['birthday'])).'<br>
-							<strong>Adresse :</strong> '.$safe['address'].', '.$safe['postal_code'].' '.$safe['city'].'</p>';
+							<strong>Adresse :</strong> '.$safe['address'].', '.$safe['postal_code'].' '.$safe['city'].'<br>
+                            Merci de nous contacter si vous voulez adhérer à l\'association.</p>';
 
 				$this->sendingMails($receivers, $subject, $content);
     			header('Refresh: 1; /users/login');
