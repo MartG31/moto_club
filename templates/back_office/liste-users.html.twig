@@ -28,18 +28,18 @@
 						<table class="admin-table-mg">
 							<thead>
               <th class="text-left">Identité</th>
-              <th>Date d'inscription</th>
-              <th>Date d'adhésion</th>
-              <th>Rang</th>
+              <th class="text-left">Date d'inscription</th>
+              <th class="text-left">Date d'adhésion</th>
+              <th class="text-left">Rang</th>
 							</thead>
 							
 							<tbody>
 						      	{% for user in users %}
             <tr>
-              <td><div><strong>{{ user.getNom() }} {{ user.getPrenom() }}</strong></div>
+              <td class="text-left"><div><strong>{{ user.getNom() }} {{ user.getPrenom() }}</strong></div>
                 <div>{{ user.getEmail() }}</div></td>
-              <td></div>{{ user.getDatetimeInscription|date('d/m/Y') }}</div></td>
-              <td><div>{{ user.getDatetimeAdhesion|date('d/m/Y') }}</div></td>
+              <td class="text-left"></div>{{ user.getDatetimeInscription|date('d/m/Y') }}</div></td>
+              <td class="text-left"><div>{{ user.getDatetimeAdhesion|date('d/m/Y') }}</div></td>
               <td>
                     {% if 'admin' in app.session.get('ranks') %}
                 <form method="post">
