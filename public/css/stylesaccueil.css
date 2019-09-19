@@ -37,17 +37,23 @@ header {
 }
 
 
-/*moyen*/
+/*Moyen*/
 @media screen and (min-width: 360px) and (max-width:768px) {
 	.name-asso {
 		font-size :2em;	
 	}
 }
 
-/*petit*/
+/*Petit*/
 @media screen and (max-width: 360px){
 	.name-asso{
 		font-size: 1.5em;
 		
+	}
+	.cardSwip{
+		width: 290px;
+	}
+	.cardSwip .content{
+		width: 290px;
 	}
 }

@@ -147,7 +147,6 @@ nav ul li a.active{
 .btn-link-grey {
 	background-color: white;
 	height: 2.5em;
-	width: 12em;
 	margin-bottom: 0.8em;
 }
 .btn-link-green,
@@ -157,6 +156,10 @@ nav ul li a.active{
 
 .navbar-light .navbar-nav .nav-link {
     color: #000;
+}
+
+.perso-nav-btn {
+	width:30%;
 }
 
 
@@ -373,7 +376,7 @@ h2{
 	.policy {
 		font-size: 1.5em;
 	}
-
+	
 }
 	
 
