@@ -4,6 +4,10 @@ accueil:
     path: /
     controller: App\Controller\DefaultController::index
 
+confidentialite:
+    path: /politique-de-confidentialite
+    controller: App\Controller\DefaultController::confidentialite
+
 ############################# BackOffice ##################
 
 admin_accueil:

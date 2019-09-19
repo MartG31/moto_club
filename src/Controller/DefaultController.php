@@ -68,12 +68,24 @@ class DefaultController extends MasterController
 
         
         return $this->render('default/index.html.twig', [
-            'errors'     => $errors ?? [],
-            'donnees_saisies' => $safe ?? [],
-            'success' => $success ?? false,
-            'nextbalade' => $nextbalade,
-            'lastbalade' => $lastbalade,
-            'reunion' => $reunion
+            'errors'            => $errors ?? [],
+            'donnees_saisies'   => $safe ?? [],
+            'success'           => $success ?? false,
+            'nextbalade'        => $nextbalade,
+            'lastbalade'        => $lastbalade,
+            'reunion'           => $reunion
         ]);
     }
+
+    /**
+     * @Route("/default", name="default")
+     */
+    public function confidentialite() {
+
+        return $this->render('default/confidentialite.html.twig', [
+        ]);
+
+
+    }
+
 }
