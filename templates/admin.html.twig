@@ -92,6 +92,10 @@
                             {% endif %}
                         </div>
                     </li>
+                {% endif %}
+
+
+                {% if 'bureau' in app.session.get('ranks') %}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-copy"></i>
@@ -105,10 +109,6 @@
                         </div>
                     </li>
 
-                {% endif %}
-
-
-                {% if 'bureau' in app.session.get('ranks') %}
 
                     <!-- <li class="nav-item">
                         <a class="nav-link" href="#">

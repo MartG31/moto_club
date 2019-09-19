@@ -86,7 +86,7 @@ class UsersController extends MasterController {
     			$usersData = new Utilisateurs();
     			$usersData->setEmail($safe['email'])
 							->setPwd(password_hash($safe['password'], PASSWORD_DEFAULT))
-							->setNom($safe['lastname'])
+							->setNom(strtoupper($safe['lastname']))
 							->setPrenom($safe['firstname'])
 							->setTelephone($safe['phone'])
 							->setDateNaiss(new \DateTime($safe['birthday']))
