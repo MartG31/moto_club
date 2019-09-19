@@ -86,7 +86,7 @@ class UsersController extends MasterController {
     			$usersData = new Utilisateurs();
     			$usersData->setEmail($safe['email'])
 							->setPwd(password_hash($safe['password'], PASSWORD_DEFAULT))
-							->setNom($safe['lastname'])
+							->setNom(strtoupper($safe['lastname']))
 							->setPrenom($safe['firstname'])
 							->setTelephone($safe['phone'])
 							->setDateNaiss(new \DateTime($safe['birthday']))
@@ -374,7 +374,7 @@ class UsersController extends MasterController {
         			$user = $em->getRepository(Utilisateurs::class)->find($this->session->get('id'));
 
         			$user->setPseudo($post['pseudo']);
-        			$user->setNom($post['nom']);
+        			$user->setNom(strtoupper($post['nom']));
         			$user->setPrenom($post['prenom']);
         			$user->setPseudo($post['pseudo']);
         			$user->setAdresse($post['adresse']);

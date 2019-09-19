@@ -46,8 +46,7 @@
 						{#{% if 'bureau' in app.session.get('ranks') %}#}
 						{#{% endif %}#}
 					</ul>
-					<ul class="navbar-nav ml-lg-auto">
-
+					<ul class="navbar-nav ml-lg-auto perso-nav-btn d-flex justify-content-end">
 						{% if app.session.get('ranks') is not null %}
 
 							<li class="nav-item my-auto pr-1 ">
@@ -67,7 +66,9 @@
 							</li>
 
 						{% endif %}
+
 					</ul>
+					
 				</div>
 			</nav>
 
