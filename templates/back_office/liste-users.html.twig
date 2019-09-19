@@ -13,87 +13,55 @@
 						<span>
 						</span>
 					</div>
-					
+          {% if errors is not empty %}
+            <div class="alert alert-warning">
+              {{ errors|join('<br>')|raw }} 
+            </div>
+          {% elseif success == true %}
+            <div class="alert alert-success">
+              Les droits de <strong>{{user.prenom}}</strong> ont été modifiés avec succès.
+            </div>
+          {% endif %}
 				</div>
 				<div class="card-body">
 					<div class="scrolling-table">
 						<table class="admin-table-mg">
 							<thead>
-								<th>#</th>
-								<th class="text-left">Participant</th>
-								<th>Actions</th>
+              <th class="text-left">Identité</th>
+              <th>Date d'inscription</th>
+              <th>Date d'adhésion</th>
+              <th>Rang</th>
 							</thead>
 							
 							<tbody>
 						      	{% for user in users %}
-									<tr>
-										<td></td>
-										<td></td>
-										<td></td>
-									</tr>
-								{% endfor %}
+            <tr>
+              <td><div><strong>{{ user.getNom() }} {{ user.getPrenom() }}</strong></div>
+                <div>{{ user.getEmail() }}</div></td>
+              <td></div>{{ user.getDatetimeInscription|date('d/m/Y') }}</div></td>
+              <td><div>{{ user.getDatetimeAdhesion|date('d/m/Y') }}</div></td>
+              <td>
+                    {% if 'admin' in app.session.get('ranks') %}
+                <form method="post">
+                  <select class="custom-select" name="{{user.getId()}}">
+                    {% for key, rank in nomsRanks %}
+                      <option value="{{key}}"{% if key == user.getAcces %}{{' selected'}}{% endif %}>{{rank}}</option>
+                  {% endfor %}
+                </select>
+                    {% else %}
+                      {{nomsRanks[user.getAcces()]}}
+                    {% endif %}
+              </form>
+            </td>
+            </tr>
+            {% endfor %}
 							</tbody>
 						</table>
-					</div>
-			      	
+					</div>	
 				</div>
 			</div>
 		</div>
 	</section>
-	
-	{% if errors is not empty %}
-			<div class="alert alert-warning">
-					{{ errors|join('<br>')|raw }} 
-			</div>
-	{% elseif success == true %}
-			<div class="alert alert-success">
-					Les droits de <strong>{{user.prenom}}</strong> ont été modifiés avec succès.
-			</div>
-	{% endif %}
-	<div class="card mb-3">
-		<div class="card-header">
-			<i class="fas fa-table"></i>
-			Liste des utlisateurs</div>
-		<div class="card-body">
-			<div class="table-responsive">
-				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-					<thead>
-						<tr>
-							<th>Identité</th>
-							<th>Date d'inscription</th>
-              <th>Date d'adhésion</th>
-							<th>Rang</th>
-						</tr>
-					</thead>
-					<tbody>
-						{% for user in users %}
-						<tr>
-							<td><div><strong>{{ user.getNom() }} {{ user.getPrenom() }}</strong></div>
-                <div>{{ user.getEmail() }}</div></td>
-							<td></div>{{ user.getDatetimeInscription|date('d/m/Y') }}</div></td>
-							<td><div>{{ user.getDatetimeAdhesion|date('d/m/Y') }}</div></td>
-							<td>
-										{% if 'admin' in app.session.get('ranks') %}
-								<form method="post">
-									<select class="custom-select" name="{{user.getId()}}">
-										{% for key, rank in nomsRanks %}
-											<option value="{{key}}"{% if key == user.getAcces %}{{' selected'}}{% endif %}>{{rank}}</option>
-									{% endfor %}
-								</select>
-										{% else %}
-											{{nomsRanks[user.getAcces()]}}
-										{% endif %}
-							</form>
-						</td>
-						</tr>
-						{% endfor %}
-					</tbody>
-
-				</table>
-			</div>
-		</div>
-		<div class="card-footer small text-muted">GSM3 Copyright &copy; - {{"now"|date("Y")}}</div>
-	</div>
 {% endblock %}
 
 {% block javascripts %}
