@@ -71,19 +71,39 @@
 		et de solidarité avec tous les passionnés de moto.</p>
 	</section>
 	<section class="py-5 mb-5">
-		<div class="row">
-			<div class="col-md-6 py-3">
-				<div class="d-flex justify-content-center align-items-center h-100">
-					<a href="{{ path('inscription_user') }}" class="subscribe"><svg><rect></rect></svg>Inscrivez-vous</a>
+		{% if app.session.get('ranks') is  null %}
+			<div class="row">
+				<div class="col-md-6 py-3">
+					<div class="d-flex justify-content-center align-items-center h-100">
+						<a href="{{ path('inscription_user') }}" class="subscribe"><svg><rect></rect></svg>Inscrivez-vous</a>
+					</div>
+				</div>
+				<div class="col-md-6 py-3">
+					<div>
+						<p>Les bons comptes font les bons amis, c'est la raison pour laquelle vous devez créer le votre afin de rejoindre notre belle et grande famille, pour cela rien de plus simple il vous suffit de cliquer sur le joli bouton.</p>
+						<p>Si vous êtes déjà membre de cette Amicale, n'hésitez à vous créer un compte ou à vous connecter si vous en avez déjà un !  </p>
+					</div>
 				</div>
 			</div>
-			<div class="col-md-6 py-3">
-				<div>
-					<p>Les bons comptes font les bons amis, c'est la raison pour laquelle vous devez créer le votre afin de rejoindre notre belle et grande famille, pour cela rien de plus simple il vous suffit de cliquer sur le joli bouton ci-dessus.</p>
-					<p>ça serait cool, par exemple, que lorsque la personne est inscrite/connectée, cette section soit remplacé par la map, par exemple -- mais comme c'est censé être publiqu / perso j'ai du mal avec cette idée mais bon // peut être qu'on peut mettre la map à la place de la présentation (section précédente)</p>
+			{% else %}
+				<div class="row">
+					<div class="col-md-12 py-3">
+						<div class="d-flex justify-content-center align-items-center h-100">
+							<div class="subscribe"><svg><rect></rect></svg>Prochainement</div></a>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6 py-3">
+						<p>Vous pourrez consulter ici l'itinéraire de la prochaine</p>
+					</div>
+					<div class="col-md-6 py-3">
+						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2890.8222223636526!2d1.4120306157384406!3d43.56858736591556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12aebbc66a0644b1%3A0x92867b7cb6c0d89b!2s244%20Route%20de%20Seysses%2C%2031100%20Toulouse!5e0!3m2!1sfr!2sfr!4v1568884368621!5m2!1sfr!2sfr" width="400" height="300" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+					</div>
 				</div>
 			</div>
-		</div>
+		{% endif %}
+					
 	</section>
 	<section class="py-5 mb-5 parallax" >
 
