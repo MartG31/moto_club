@@ -23,15 +23,13 @@ class BackOfficeController extends MasterController
     }
 
     public function viewUsers() {
-        // Si pas accès < bureau : redirection
-        if($this->restrictAccess('bureau')) { return $this->redirectToRoute('admin_accueil'); }
-        // Récupération la liste des utilisateurs
-        $entityManager = $this->getDoctrine()->getManager();
-        // Permet de chercher la liste via le repository
 
-        // echo '<pre class="alert alert-info mb-0">';
-        // print_r($_POST);
-        // echo '</pre>';
+        if($this->restrictAccess('bureau')) { return $this->redirectToRoute('admin_accueil'); }
+
+        $entityManager = $this->getDoctrine()->getManager();
+
+
+        // UPDATE DROITS USER
 
         if(!empty($_POST)){
 
@@ -40,11 +38,6 @@ class BackOfficeController extends MasterController
             $keysafe = array_keys($safe);
             $userId = array_shift($keysafe);
             $newAcces = array_shift($safe);
-
-        // echo '<pre class="alert alert-info mb-0">';
-        // print_r($userId);
-        // print_r($newAcces);
-        // echo '</pre>';
 
             $user = $entityManager->getRepository(Utilisateurs::class)->find($userId);
 
@@ -64,11 +57,25 @@ class BackOfficeController extends MasterController
             }
         }
 
-        $users = $entityManager->getRepository(Utilisateurs::class)->findAll();
+        $users = $entityManager->getRepository(Utilisateurs::class)->findBy([], ['datetimeInscription' => 'ASC']);
+
+        $admins = [];
+        $bureaux = [];
+        $adherents = [];
+        $membres = [];
+
+        foreach($users as $user) {
+            if($user->getAcces() == 'admin') { $admins[] = $user; }
+            if($user->getAcces() == 'bureau') { $bureaux[] = $user; }
+            if($user->getAcces() == 'adherent') { $adherents[] = $user; }
+            if($user->getAcces() == 'membre') { $membres[] = $user; }
+        }
+
+        $sortedUsers = array_merge($admins, $bureaux, $adherents, $membres);
 
         return $this->render('back_office/liste-users.html.twig', [
             'nomsRanks' => $this->nomsRanks,
-        	'users' => $users ?? [],
+        	'users' => $sortedUsers ?? [],
             'errors'     => $errors ?? [],
             'success' => $success ?? false,
             'user' => $user ?? null,
