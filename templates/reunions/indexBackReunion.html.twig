@@ -59,7 +59,6 @@
 								</div>
 								<div class="col-md-6">
 									<a title="Supprimer la réunion" class="btn btn-danger float-right btn-reu mx-1" href="{{ path('del_reunion', {id : reuNonPassee.getId()}) }}" role="button"><i class="fas fa-trash-alt"></i></a>
-									{#<a class="btn btn-success float-right mx-1" href="{{ path('edit_reunion', {id : reuNonPassee.getId()}) }}" role="button">Modifier</a>#}
 				          			<a title="Afficher la réunion" class="btn btn-secondary float-right btn-reu mx-1" href="{{ path('view_back_reunion', {id : reuNonPassee.getId()}) }}" role="button"><i class="far fa-eye"></i></a>
 				          		</div>
 							</div>
@@ -73,6 +72,7 @@
 			</div>
 		{%  endfor %} 
 		<h3 class="card-header">Anciennes réunions</h3>
+		{% if reunionsPassees is not empty %}
 
 			{% for reunionPassee in reunionsPassees %}
 			  	<div class="card-deck my-4">
@@ -98,6 +98,7 @@
 			  	</div>
 
 			{%  endfor %}
+		{% endif %}
 
 		 
 	</section>
