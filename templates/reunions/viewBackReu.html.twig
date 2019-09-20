@@ -29,7 +29,7 @@
 				    </div>	
 				    {% if crTrouve is not empty %}
 					    <div class="card-header">
-					    	<h3>Compte-Rendu</h3>
+					    	<h3>Compte Rendu</h3>
 					    </div>
 					    <div class="card-body">
 				    		<p><b>{{ crTrouve.getTitre() }}</b></p>
@@ -48,9 +48,9 @@
 			{% if bouton == false %}
 				<div class="col-md-12 d-flex justify-content-center">
 					{% if crTrouve is not empty  %}
-						<a href="{{ path('edit_cr', {id : reunionTrouvee.getId()}) }}" class="btn btn-primary m-2" role="button">Modifier le compte-rendu</a>
+						<a href="{{ path('edit_cr', {id : reunionTrouvee.getId()}) }}" class="btn btn-primary m-2" role="button">Modifier le compte rendu</a>
 					{% else %}
-						<a href="{{ path('add_cr', {id : reunionTrouvee.getId()}) }}" class="btn btn-success m-2" role="button">Ajouter un  compte-rendu</a>
+						<a href="{{ path('add_cr', {id : reunionTrouvee.getId()}) }}" class="btn btn-success m-2" role="button">Ajouter un  compte rendu</a>
 					{% endif %}
 				</div>
 			{% else %}
