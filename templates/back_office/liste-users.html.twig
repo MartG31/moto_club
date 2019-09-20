@@ -14,11 +14,11 @@
 						</span>
 					</div>
           {% if errors is not empty %}
-            <div class="alert alert-warning">
+            <div class="alert alert-warning mt-3">
               {{ errors|join('<br>')|raw }} 
             </div>
           {% elseif success == true %}
-            <div class="alert alert-success">
+            <div class="alert alert-success mt-3">
               Les droits de <strong>{{user.prenom}}</strong> ont été modifiés avec succès.
             </div>
           {% endif %}
@@ -39,7 +39,7 @@
               <td class="text-left"><div><strong>{{ user.getNom() }} {{ user.getPrenom() }}</strong></div>
                 <div>{{ user.getEmail() }}</div></td>
               <td class="text-left"></div>{{ user.getDatetimeInscription|date('d/m/Y') }}</div></td>
-              <td class="text-left"><div>{{ user.getDatetimeAdhesion|date('d/m/Y') }}</div></td>
+              <td class="text-left"><div>{% if user.getDatetimeAdhesion is not null %}{{ user.getDatetimeAdhesion|date('d/m/Y') }}{% endif %}</div></td>
               <td>
                     {% if 'admin' in app.session.get('ranks') %}
                 <form method="post">

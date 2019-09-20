@@ -7,7 +7,10 @@
 {% block content %}
     
 	<section class="p-2 mb-5 bg-light bg-section-back">
-	<h2>Réunions </h2>
+	<div class="d-flex justify-content-between">
+		<h2>Réunions </h2>
+		<a href="{{ path('index_reunions') }}" title="Index des réunions sur le site" class="btn btn-info mb-3" role="button"><i class="fas fa-globe-europe"></i></a>
+	</div>
 		<h3 class="card-header">Réunions sans CR</h3>
 		{% if reusSansCr is not empty %}
 			{% for reuSansCr in reusSansCr %}
@@ -20,9 +23,9 @@
 				  					<b>{{ reuSansCr.getTitre() }}</b>, le {{ reuSansCr.getDatetimeReu()|date("d/m/Y") }} (<em>{{ reuSansCr.getTypeReu() }}</em>)
 						  	        </div>
 				  					<div class="col-md-6">
-						  				<a title="Supprimer la réunion" class="btn btn-danger float-right mx-1" href="{{ path('del_reunion', {id : reuSansCr.getId()}) }}" role="button"><i class="fas fa-trash-alt"></i></a>
-						  				<a title ="Ajouter le compte-rendu" class="btn btn-success float-right mx-1" href="{{ path('add_cr', {id : reuSansCr.getId()}) }}" role="button"><i class="fas fa-edit"></i></a>	
-						  	            <a title="Afficher la réunion" class="btn btn-primary float-right px-1" href="{{ path('view_back_reunion', {id : reuSansCr.getId()}) }}" role="button"><i class="far fa-eye"></i></a>
+						  				<a title="Supprimer la réunion" class="btn btn-danger float-right btn-reu mx-1" href="{{ path('del_reunion', {id : reuSansCr.getId()}) }}" role="button"><i class="fas fa-trash-alt"></i></a>
+						  	            <a title="Afficher la réunion" class="btn btn-secondary float-right btn-reu mx-1" href="{{ path('view_back_reunion', {id : reuSansCr.getId()}) }}" role="button"><i class="far fa-eye"></i></a>
+						  				<a title ="Ajouter le compte-rendu" class="btn btn-success float-right btn-reu mx-1" href="{{ path('add_cr', {id : reuSansCr.getId()}) }}" role="button"><i class="fas fa-pen"></i></a>	
 						  	        </div>
 				  				</div>
 				  			</div>		     
@@ -44,7 +47,7 @@
 		  		</div>
 		  	</div>
 		{% endif %}
-		<h3>Réunions à venir</h3>
+		<h3 class="card-header">Futures réunions</h3>
 		{% for reuNonPassee in reusNonPassees %}
 			<div class="card-deck my-4">
 			  	<div class="card">
@@ -55,9 +58,8 @@
 									<b>{{ reuNonPassee.getTitre() }}</b>, le {{ reuNonPassee.getDatetimeReu()|date("d/m/Y") }} (<em>{{ reuNonPassee.getTypeReu() }}</em>) 
 								</div>
 								<div class="col-md-6">
-									<a title="Supprimer la réunion" class="btn btn-danger float-right mx-1" href="{{ path('del_reunion', {id : reuNonPassee.getId()}) }}" role="button"><i class="fas fa-trash-alt"></i></a>
-									{#<a class="btn btn-success float-right mx-1" href="{{ path('edit_reunion', {id : reuNonPassee.getId()}) }}" role="button">Modifier</a>#}
-				          			<a title="Afficher la réunion" class="btn btn-primary float-right mx-1" href="{{ path('view_back_reunion', {id : reuNonPassee.getId()}) }}" role="button"><i class="far fa-eye"></i></a>
+									<a title="Supprimer la réunion" class="btn btn-danger float-right btn-reu mx-1" href="{{ path('del_reunion', {id : reuNonPassee.getId()}) }}" role="button"><i class="fas fa-trash-alt"></i></a>
+				          			<a title="Afficher la réunion" class="btn btn-secondary float-right btn-reu mx-1" href="{{ path('view_back_reunion', {id : reuNonPassee.getId()}) }}" role="button"><i class="far fa-eye"></i></a>
 				          		</div>
 							</div>
 
@@ -69,30 +71,36 @@
 				</div>
 			</div>
 		{%  endfor %} 
-		<h3>Réunions passées</h3>
-		{% for reunionPassee in reunionsPassees %}
-		  	<div class="card-deck my-4">
-		    	<div class="card">
-			  	  	<div class="card-header"> 
-			  			<div class="card-title py-2">
-			  				<div class="row">
-			  					<div class="col-md-6">
-			  						<b>{{ reunionPassee.getTitre() }}</b>, le {{ reunionPassee.getDatetimeReu()|date("d/m/Y") }} (<em>{{ reunionPassee.getTypeReu() }}</em>)
-			  					</div>
-			  					<div class="col-md-6">
-					  				<a title="Supprimer la réunion" class="btn btn-danger float-right mx-1" href="{{ path('del_reunion', {id : reunionPassee.getId()}) }}" role="button"><i class="fas fa-trash-alt"></i></a>
-					  				{#<a class="btn btn-success float-right mx-1" href="{{ path('edit_cr', {id : crTrouve.getId()}) }}" role="button">Modifier le CR</a>#}
-					  	            <a title="Afficher la réunion" class="btn btn-primary float-right mx-1" href="{{ path('view_back_reunion', {id : reunionPassee.getId()}) }}" role="button"><i class="far fa-eye"></i></a>
-			  					</div>
-			  				</div>
-			  			</div>
-			  			<div class="card-footer small text-muted mb-2">
-			  				Publiée le {{ reunionPassee.getDatetimePost()|date("d/m/Y") }}
-			  			</div>
-			  	    </div>
-		  		</div>
-		  	</div>
-		{%  endfor %} 
+		<h3 class="card-header">Anciennes réunions</h3>
+		{% if reunionsPassees is not empty %}
+
+			{% for reunionPassee in reunionsPassees %}
+			  	<div class="card-deck my-4">
+			    	<div class="card">
+				  	  	<div class="card-header"> 
+				  			<div class="card-title py-2">
+				  				<div class="row">
+				  					<div class="col-md-6">
+				  						<b>{{ reunionPassee.getTitre() }}</b>, le {{ reunionPassee.getDatetimeReu()|date("d/m/Y") }} (<em>{{ reunionPassee.getTypeReu() }}</em>)
+				  					</div>
+				  					<div class="col-md-6">
+						  				<a title="Supprimer la réunion" class="btn btn-danger float-right btn-reu mx-1" href="{{ path('del_reunion', {id : reunionPassee.getId()}) }}" role="button"><i class="fas fa-trash-alt"></i></a>
+						  				{#<a class="btn btn-success float-right mx-1" href="{{ path('edit_cr', {id : crTrouve.getId()}) }}" role="button">Modifier le CR</a>#}
+						  	            <a title="Afficher la réunion" class="btn btn-secondary float-right btn-reu mx-1" href="{{ path('view_back_reunion', {id : reunionPassee.getId()}) }}" role="button"><i class="far fa-eye"></i></a>
+				  					</div>
+				  				</div>
+				  			</div>
+				  			<div class="card-footer small text-muted mb-2">
+				  				Publiée le {{ reunionPassee.getDatetimePost()|date("d/m/Y") }}
+				  			</div>
+				  	    </div>
+			  		</div>
+			  	</div>
+
+			{%  endfor %}
+		{% endif %}
+
+		 
 	</section>
 
 {% endblock %}

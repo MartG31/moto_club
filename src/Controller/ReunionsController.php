@@ -76,6 +76,7 @@ class ReunionsController extends MasterController
         $reuPass = $entityManager->getRepository(Reunions::class)->findAllPast();
 
         $reuWithoutCr = [];
+        $reuWhitCR = [];
         foreach ($reuPass as $reu) {
             // Vérifie si un CR existe et l'ajoute a mon tableau
             $crFound = $entityManager->getRepository(ComptesRendus::class)->findOneBy([
@@ -84,10 +85,13 @@ class ReunionsController extends MasterController
             if(empty($crFound)){
                 $reuWithoutCr[] = $reu;
             }
+            else{
+                $reuWithCr[] = $reu;
+            }
         }
 
         return $this->render('reunions/indexBackReunion.html.twig', [
-            'reunionsPassees'  => $reuPass, 
+            'reunionsPassees'  => $reuWithCr, 
             'reusNonPassees'   => $reuNotPass,
             'reusSansCr'       => $reuWithoutCr,
             //'crTrouve'         => $crFound,

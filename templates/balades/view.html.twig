@@ -7,13 +7,21 @@
 		<h2 class="py-3">Balade</h2>
 		<div class="d-flex justify-content-between">
 			<span>
-				<a href="{{ path('index_balades') }}" class="btn btn-secondary" role="button"><i class="fas fa-angle-left"></i> Retour aux balades</a>
+				<a href="{{ path('index_balades') }}" class="btn btn-primary" role="button"><i class="fas fa-angle-left"></i> Retour aux balades</a>
 			</span>
 			<span>
 				{% if 'bureau' in app.session.get('ranks') %}
 					<a title="Gérer les balades" class="btn btn-secondary" href="{{ path('gestion_balades') }}" role="button"><i class="fas fa-cogs"></i></a>
 				{% endif %}
-				<a title="Afficher la galerie" class="btn btn-primary" href="{{ path('view_album', {id: balade.getId()}) }}" role="button"><i class="fas fa-images"></i></a>
+				{% if nb_photos > 0 %}
+					<a title="Afficher la galerie ({{nb_photos}})" class="btn btn-primary" href="{{ path('view_album', {id: balade.getId()}) }}" role="button"><i class="fas fa-images"></i></a>
+				{% else %}
+					{% if 'adherent' in app.session.get('ranks') %}
+						<a title="Ajouter des photos" class="btn btn-success" href="{{ path('gestion_photos', {id: balade.getId()}) }}" role="button"><i class="fas fa-images"></i></a>
+					{% else %}
+						<a href="" class="btn btn-primary disabled" role="button" disabled><i class="fas fa-images"></i></a>
+					{% endif %}
+				{% endif %}
 			</span>
 		</div>
 		

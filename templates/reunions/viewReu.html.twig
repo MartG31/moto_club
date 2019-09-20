@@ -4,14 +4,14 @@
 
 {% block content %}
 	<section class="py-2 mb-5">
-	    <h2>Détails de réunion  </h2>
+	    <h2 class="py-3">Détails de réunion</h2>
 	    <div class="d-flex justify-content-between">
 			{% if 'bureau' in app.session.get('ranks') %}
 				<a href="{{ path('index_reunions') }}" class="btn btn-primary mt-4" role="button"><i class="fas fa-angle-left"></i> Retour aux réunions</a>
 				{% if crTrouve is not empty %}
-				<a href="{{ path('edit_cr', {id : reunionTrouvee.getId()}) }}" class="btn btn-secondary mt-4" role="button">Modifier CR</a>
+					<a href="{{ path('edit_cr', {id : reunionTrouvee.getId()}) }}" class="btn btn-secondary mt-4" role="button">Modifier CR</a>
 				{% endif %}
-				<a title="Gestion des réunions"href="{{ path('index_back_reunions') }}" class="btn btn-secondary mt-4 " role="button"><i class="fas fa-cogs"></i> </a> 
+				<a title="Gestion de cette réunion"href="{{ path('view_back_reunion', {id :reunionTrouvee.getId()}) }}" class="btn btn-secondary mt-4 " role="button"><i class="fas fa-cogs"></i> </a> 
 			{% else %}
 				<a href="{{ path('index_reunions') }}" class="btn btn-secondary mt-4" role="button"><i class="fas fa-angle-left"></i> Retour aux réunions</a>
 			{% endif %}
