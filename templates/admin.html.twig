@@ -246,6 +246,7 @@
 
         <!-- Bootstrap core JavaScript-->
         <script src="/vendor/jquery/jquery.min.js"></script>
+        <script src="/js/jquery.cookie.js"></script>    
         <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         <!-- Core plugin JavaScript-->
         <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -269,6 +270,53 @@
                     $('#modalConfirm').attr('href', href);
                     var content = $(this).attr('data-content');
                     $('#modalContent').html(content);
+                });
+            });
+        </script>
+
+        {% set currentPath = path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) %}
+        <script>
+
+            $(document).ready(function() {
+
+                var prevPath = $.cookie('currPath');
+                $.removeCookie('prevPath');
+                $.cookie('prevPath', prevPath);
+
+                $.removeCookie('currPath');
+                $.cookie('currPath', '{{ currentPath }}');
+                var currPath = $.cookie('currPath');
+
+                var prevScroll = $.cookie('scroll');
+                
+                if(currPath == prevPath) {
+                    $('html, body, #wrapper').animate({
+                        'scrollTop': prevScroll
+                    });
+                }
+
+                var currScroll;
+
+                console.log('current_path = '+ currPath + ' / prev_path = ' + prevPath);
+                console.log('prevScroll = ' + prevScroll);
+                console.log('-----');
+
+                
+
+
+                $(document).scroll(function() {
+
+                    // alert('scroll');
+
+                    currScroll = $(this).scrollTop();
+
+                    // console.log(currScroll + ' / ' + prevScroll);
+
+                    $.removeCookie('scroll');
+                    $.cookie('scroll', currScroll);
+                
+
+
                 });
             });
         </script>
