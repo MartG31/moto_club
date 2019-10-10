@@ -284,15 +284,20 @@
                 $.cookie('prevPath', prevPath);
 
                 $.removeCookie('currPath');
+                $.removeCookie('currPath');
+                $.removeCookie('currPath');
+                $.removeCookie('currPath');
+                $.removeCookie('currPath');
+                $.removeCookie('currPath');
                 $.cookie('currPath', '{{ currentPath }}');
                 var currPath = $.cookie('currPath');
 
                 var prevScroll = $.cookie('scroll');
-                
-                if(currPath == prevPath) {
-                    $('html, body, #wrapper').animate({
+
+                if(currPath == prevPath && prevScroll != 0) {
+                    $('html, body').animate({
                         'scrollTop': prevScroll
-                    });
+                    },300);
                 }
 
                 var currScroll;
