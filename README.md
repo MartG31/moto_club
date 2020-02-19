@@ -13,7 +13,7 @@ Réalisé en équipe sur 10 jours (du 9 au 20 sept 2019)
   - la partie "profil"
 - Support équipe front
 
-
+<br>
 *alice-elix (scrum master)*
 - Reflexion avec le lead dev autour de la structuration de la bdd et des tables
 - Relation avec le client (association motoclubBMW38)
@@ -25,7 +25,7 @@ Réalisé en équipe sur 10 jours (du 9 au 20 sept 2019)
   - création des pages de vue et des routes attenantes
   - insertion des expressions twig dans les structures html des vues
 
-
+<br>
 *Mathieuwf3*
 - Dev en charge de 
   - la partie connexion + récupération mdp (token)  => admin + base + création de toutes les fonctionnalités attenantes
@@ -33,7 +33,7 @@ Réalisé en équipe sur 10 jours (du 9 au 20 sept 2019)
   - formulaire de contact sur la page d'accueil
 
 
-  <b> Equipe Front-end</b>
+<b> Equipe Front-end</b>
 
 *Nebuchadnezzar81*
 -Dev en charge 
@@ -44,9 +44,8 @@ Réalisé en équipe sur 10 jours (du 9 au 20 sept 2019)
   - la nav-bar
   - l'aspect général (hors partie admin)
 
-  
+<br>  
 *Marionwf3*
-
 - Dev en charge de
   - la mise en forme de la partie balades et albums photos
    - le slider
