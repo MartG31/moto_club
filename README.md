@@ -3,7 +3,7 @@
 Réalisé en équipe sur 10 jours (du 9 au 20 sept 2019)
 
 # Contributions
-  Equipe Back-end
+ <b> Equipe Back-end </b>
 
 *MartG31 (lead dev back + front)*
 - Mise en place de la structure initiale 
@@ -33,7 +33,7 @@ Réalisé en équipe sur 10 jours (du 9 au 20 sept 2019)
   - formulaire de contact sur la page d'accueil
 
 
-  Equipe Front-end :
+  <b> Equipe Front-end</b>
 
 *Nebuchadnezzar81*
 -Dev en charge 
