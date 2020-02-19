@@ -1,10 +1,11 @@
 # moto_club - Projet de fin de formation 
-Dev avec Symfony
+*Dev avec Symfony*
 Réalisé en équipe sur 10 jours (du 9 au 20 sept 2019)
 
-Contributions :
+# Contributions
 Equipe Back-end
-# MartG31 (lead dev back + front)
+
+*MartG31 (lead dev back + front)*
 Mise en place de la structure initiale 
 Création de la bdd et des tables
 Dev en charge de 
@@ -13,7 +14,7 @@ Dev en charge de
 Support équipe front
 
 
-# alice-elix (scrum master)
+*alice-elix (scrum master)*
 Reflexion avec le lead dev autour de la structuration de la bdd et des tables
 Relation avec le client (association motoclubBMW38)
 Dev en charge de 
@@ -25,14 +26,14 @@ En support pour l'équipe front :
 - insertion des expressions twig dans les structures html des vues
 
 
-#Mathieuwf3
+*Mathieuwf3*
 Dev en charge de 
 - la partie connexion + récupération mdp (token)  => admin + base + création de toutes les fonctionnalités attenantes
 - l'envoi automatique de mails
 - formulaire de contact sur la page d'accueil
 
 Equipe Front-end : 
-# Nebuchadnezzar81 
+*Nebuchadnezzar81*
 Dev en charge 
 - sur la partie accueil :
   - le swip 
@@ -42,7 +43,7 @@ Dev en charge
 - l'aspect général (hors partie admin)
 
   
-# Marionwf3
+*Marionwf3*
 Dev en charge de
 - la mise en forme de la partie balades et albums photos
   - le slider
