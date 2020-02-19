@@ -32,6 +32,7 @@ Réalisé en équipe sur 10 jours (du 9 au 20 sept 2019)
   - l'envoi automatique de mails
   - formulaire de contact sur la page d'accueil
 
+
   Equipe Front-end :
 
 *Nebuchadnezzar81*
