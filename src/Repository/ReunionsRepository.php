@@ -59,7 +59,7 @@ class ReunionsRepository extends ServiceEntityRepository
                 ->orderBy('r.datetimeReu', 'DESC')
                 ->setMaxResults(1)
                 ->getQuery()
-                ->getSingleResult();
+                ->getResult();
 
     }
     
