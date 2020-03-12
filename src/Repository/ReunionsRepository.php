@@ -32,7 +32,6 @@ class ReunionsRepository extends ServiceEntityRepository
                 ->orderBy('r.datetimeReu', 'DESC')
                 ->getQuery()
                 ->getResult();
-
     }
 
      /**
@@ -46,7 +45,6 @@ class ReunionsRepository extends ServiceEntityRepository
                 ->orderBy('r.datetimeReu', 'DESC')
                 ->getQuery()
                 ->getResult();
-
     }
 
 
